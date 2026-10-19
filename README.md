@@ -28,10 +28,13 @@ Hai skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
      winget install OpenJS.NodeJS.LTS Gyan.FFmpeg Git.Git astral-sh.uv
      ```
    Cài thêm Claude Code: https://claude.com/claude-code (đăng nhập bằng tài khoản Team).
-2. Giải nén `teo-skills.zip`, mở Terminal (Mac) hoặc PowerShell (Windows) trong thư mục `teo-skills` và chạy:
+2. Tải bộ cài về (repo private, cần được mời vào repo), rồi chạy installer trong Terminal (Mac) hoặc PowerShell (Windows):
    ```bash
+   git clone https://github.com/ngovanhai/skill-video-teo.git
+   cd skill-video-teo
    node install.mjs
    ```
+   Khi có bản mới: `git pull` rồi chạy lại `node install.mjs`.
    - `--muse-root <thư mục>`: nơi đặt kit và thư mục video. Mặc định là `~/MuseStudio` (Mac) hoặc `C:\Users\<tên>\MuseStudio` (Windows).
    - `--vieneu-dir <thư mục>`: nơi cài VieNeu-TTS. Mặc định là thư mục `VieNeu-TTS` nằm cạnh MuseRoot.
    - `--gpu`: dùng khi máy Windows có card NVIDIA, đọc giọng nhanh hơn khoảng 25 lần. Mac không cần cờ này.
