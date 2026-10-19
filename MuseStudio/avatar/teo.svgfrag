@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 760" style="width:100%;height:100%;display:block;overflow:visible" data-pose="talk">
+  <!-- legs -->
+  <rect x="140" y="540" width="54" height="180" rx="10" fill="#2B2D42" stroke="#111" stroke-width="6"/>
+  <rect x="206" y="540" width="54" height="180" rx="10" fill="#2B2D42" stroke="#111" stroke-width="6"/>
+  <ellipse cx="160" cy="728" rx="40" ry="17" fill="#111"/><ellipse cx="240" cy="728" rx="40" ry="17" fill="#111"/>
+  <path d="M128 305 L108 420 L118 515" fill="none" stroke="#111" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 305 L108 420 L118 515" fill="none" stroke="#5B8DEF" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="118" cy="528" r="19" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <!-- torso -->
+  <path d="M120 300 Q200 272 280 300 L290 560 L110 560 Z" fill="#5B8DEF" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M168 288 L232 288 L226 560 L174 560 Z" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+  <text x="200" y="372" text-anchor="middle" font-family="Inter" font-weight="800" font-size="30" fill="#111">T</text>
+  <path d="M168 288 L150 360 L178 420 M232 288 L250 360 L222 420" fill="none" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+  <!-- neck + head -->
+  <rect x="182" y="244" width="36" height="44" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <ellipse cx="120" cy="188" rx="14" ry="20" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <ellipse cx="280" cy="188" rx="14" ry="20" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <path d="M124 180 Q122 262 200 266 Q278 262 276 180 Q276 104 200 100 Q124 104 124 180 Z" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <path d="M118 176 Q108 92 168 72 Q204 52 246 70 Q296 88 284 168 Q270 128 246 118 Q236 138 200 132 Q218 116 210 104 Q176 136 132 130 Q124 150 118 176 Z" fill="#5A3825" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M150 140 L192 136 M208 136 L250 140" stroke="#111" stroke-width="6" stroke-linecap="round"/><circle cx="172" cy="178" r="6" fill="#111"/><circle cx="228" cy="178" r="6" fill="#111"/><g id="mouth-closed"><path d="M182 228 Q200 242 218 228" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g>
+  <g id="mouth-open" opacity="0"><path d="M180 224 Q200 222 220 224 Q216 252 200 252 Q184 252 180 224 Z" fill="#B3263A" stroke="#111" stroke-width="5" stroke-linejoin="round"/></g>
+  <!-- glasses -->
+  <circle cx="172" cy="180" r="27" fill="none" stroke="#111" stroke-width="5"/>
+  <circle cx="228" cy="180" r="27" fill="none" stroke="#111" stroke-width="5"/>
+  <path d="M199 178 Q200 172 201 178 M145 176 L126 170 M255 176 L274 170" stroke="#111" stroke-width="5" fill="none"/>
+  <path d="M272 305 L318 410 L348 345" fill="none" stroke="#111" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M272 305 L318 410 L348 345" fill="none" stroke="#5B8DEF" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="352" cy="330" r="19" fill="#FFD9B8" stroke="#111" stroke-width="6"/></svg>

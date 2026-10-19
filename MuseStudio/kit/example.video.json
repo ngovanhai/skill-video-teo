@@ -1,0 +1,26 @@
+{
+  "slug": "_pilot",
+  "title": "Thanh gươm dưới đáy hồ",
+  "voice": "Lóng",
+  "names": "Lê Lợi, Rùa Vàng, Hồ Gươm, Thuận Thiên",
+  "cast": {
+    "zeus": { "svg": "library/zeus", "name": "Lê Lợi" }
+  },
+  "thumbnail": { "text": "Ai lấy lại thanh gươm thần?", "highlight": "GƯƠM THẦN", "who": ["teo"], "pose": "shock", "bg": "red", "sub": "Sự thật bất ngờ" },
+  "publish": { "titles": ["Thanh gươm dưới đáy hồ"], "description": "Pilot test.", "tags": ["lịch sử"] },
+  "chapters": [
+    { "title": "Mở đầu", "scenes": [
+      { "type": "hook", "say": "Một thanh gươm. Một con rùa. Và một lời hứa bị trả lại giữa hồ. Nhưng tại sao vua lại phải trả gươm?",
+        "lines": [{ "text": "Một thanh gươm", "at": "Một thanh gươm" }, { "text": "Một con rùa", "at": "Một con rùa" }],
+        "question": { "text": "Tại sao phải trả gươm?", "at": "tại sao" }, "pill": "Truyền thuyết" },
+      { "type": "stat", "say": "Chuyện xảy ra vào năm 1428, sau mười năm kháng chiến chống quân Minh.", "value": 1428, "label": "Năm trả gươm", "at": "năm 1428" }
+    ]},
+    { "title": "Thanh gươm thần", "scenes": [
+      { "type": "chapter", "num": 1, "title": "Thanh gươm thần", "kicker": "Chương một", "say": "Chương một. Thanh gươm thần." },
+      { "type": "intro", "who": "zeus", "name": "Lê Lợi", "tag": "Lãnh tụ khởi nghĩa", "say": "Đây là Lê Lợi, người cầm đầu cuộc khởi nghĩa Lam Sơn. Ông nhận được một thanh gươm có khắc hai chữ Thuận Thiên.",
+        "facts": [{ "text": "Khởi nghĩa Lam Sơn", "at": "khởi nghĩa Lam Sơn" }, { "text": "Gươm Thuận Thiên", "at": "Thuận Thiên" }] },
+      { "type": "place", "name": "Hồ Lục Thủy", "sub": "Thăng Long", "kind": "river", "say": "Khi đi thuyền trên hồ Lục Thủy, một con rùa vàng nổi lên đòi lại gươm.", "at": "hồ Lục Thủy" },
+      { "type": "outro", "say": "Tập sau, mình kể chuyện vì sao Thăng Long đổi tên. Hẹn gặp lại nha!", "next": { "text": "Vì sao Thăng Long đổi tên", "at": "Tập sau" }, "bye_at": "Hẹn gặp lại" }
+    ]}
+  ]
+}

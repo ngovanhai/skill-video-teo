@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "historyId": "da00c8e0-3a30-4021-a7fd-6b4cacf43a79",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "index.html": {
+      "hash": "f5e52b644ca6a2338995fb8838c3449c607ae8e4aef1c11028c7cb12ff8bce9d",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\da00c8e0-3a30-4021-a7fd-6b4cacf43a79\\blobs\\f5\\f5e52b644ca6a2338995fb8838c3449c607ae8e4aef1c11028c7cb12ff8bce9d"
+    },
+    "package.json": {
+      "hash": "ef02f188933970475ccfb78c3946d535e4642a573b84df28fe844dd3f127f5e3",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\da00c8e0-3a30-4021-a7fd-6b4cacf43a79\\blobs\\ef\\ef02f188933970475ccfb78c3946d535e4642a573b84df28fe844dd3f127f5e3"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "f5985d94-0407-422b-9d32-a587b9926691-0"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "f5985d94-0407-422b-9d32-a587b9926691-0",
+        "image": "E:\\tool\\MuseStudio\\avatar\\shot\\frame-00-at-0.5s.png",
+        "time": 0.5,
+        "metadata": {
+          "width": 600,
+          "height": 600,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792414961581,
+        "contentHash": "6bef7d552fb1beff1f6a880af982b51afed5d6f843b6f65395a09d8f1f2863ae",
+        "revision": null,
+        "inputFingerprint": "e25785760603fcf127acd04b14ce78f1003694b1a0bf47db38523ad6c0397621",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  }
+}

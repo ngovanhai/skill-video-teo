@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "historyId": "3f28b513-fe62-462b-83cb-3baf142b2ae0",
+  "currentRevision": "e23c5bb5-2179-4062-a2ba-7bd853c1dc20",
+  "pendingChanges": false,
+  "files": {
+    "assets/fonts/Inter-Variable.ttf": {
+      "hash": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\29\\29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    "assets/fonts/Space_Grotesk-Variable.ttf": {
+      "hash": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\ac\\acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+    },
+    "build.mjs": {
+      "hash": "b5b0a57d4dedae87616f563e3978a29a9ce5dae6cb6c1046d82305b9b253d2a9",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\b5\\b5b0a57d4dedae87616f563e3978a29a9ce5dae6cb6c1046d82305b9b253d2a9"
+    },
+    "index.html": {
+      "hash": "14d33009753950861898aa75d5a40967691c1009962722aa7104e71d5a69437b",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\14\\14d33009753950861898aa75d5a40967691c1009962722aa7104e71d5a69437b"
+    },
+    "package.json": {
+      "hash": "a303f9a8944acf2f2a0b299b225cc40eb586c583157699e17058c24268323efb",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\a3\\a303f9a8944acf2f2a0b299b225cc40eb586c583157699e17058c24268323efb"
+    },
+    "teo.svgfrag": {
+      "hash": "481baa6b94fc90ca9418c101b728a5945409c291aaed14f59161fbd64cf34120",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\48\\481baa6b94fc90ca9418c101b728a5945409c291aaed14f59161fbd64cf34120"
+    },
+    "teo-avatar.png": {
+      "hash": "bc655570017363d4d501959f4c4b715d6ef72cf05adde3d41f08a0d7e02ff99c",
+      "content": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\bc\\bc655570017363d4d501959f4c4b715d6ef72cf05adde3d41f08a0d7e02ff99c"
+    }
+  },
+  "revisions": {
+    "e23c5bb5-2179-4062-a2ba-7bd853c1dc20": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792414472042,
+      "endedAt": 1792414472063,
+      "files": {
+        "build.mjs": {
+          "before": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\db\\db8da018d39e4d7bbece97773308a0123a39fc0af319d9a45772555719beec6d",
+          "after": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\b5\\b5b0a57d4dedae87616f563e3978a29a9ce5dae6cb6c1046d82305b9b253d2a9"
+        },
+        "index.html": {
+          "before": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\15\\1525b1cba447dff449d196a540b40b8df386f7007b15b4ddc81d75810f78ae00",
+          "after": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\14\\14d33009753950861898aa75d5a40967691c1009962722aa7104e71d5a69437b"
+        },
+        "teo-avatar.png": {
+          "before": null,
+          "after": "C:\\Users\\Administrator\\.cache\\hyperframes\\history\\3f28b513-fe62-462b-83cb-3baf142b2ae0\\blobs\\bc\\bc655570017363d4d501959f4c4b715d6ef72cf05adde3d41f08a0d7e02ff99c"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "b82601cb-bf03-406e-85f7-cc0adb1e23f7-0"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "b82601cb-bf03-406e-85f7-cc0adb1e23f7-0",
+        "image": "E:\\tool\\MuseStudio\\avatar\\shot\\frame-00-at-0.5s.png",
+        "time": 0.5,
+        "metadata": {
+          "width": 800,
+          "height": 800,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792414476827,
+        "contentHash": "710b01f5064ec225800ae924d6bb577d0e916ba9646aaab429c0df8191017150",
+        "revision": null,
+        "inputFingerprint": "1d29b4bce7f5208a911c2ca49393166d49c907df144dab31a417be7b20088cf6",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      }
+    ]
+  }
+}

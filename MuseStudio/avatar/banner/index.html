@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/Space_Grotesk-Variable.ttf") format("truetype"); font-weight: 300 700; font-display: block; }
+  @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 2560px; height: 1440px; overflow: hidden; background: #000; }
+  #root { position: relative; width: 2560px; height: 1440px; overflow: hidden; font-family: "Space Grotesk", sans-serif; }
+</style></head>
+<body>
+<div id="root" data-composition-id="banner" data-start="0" data-duration="1" data-width="2560" data-height="1440">
+  <div class="clip" data-start="0" data-duration="1" data-track-index="0" style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, #FFE066 0%, #F5B700 70%, #E8A900 100%);">
+    <div style="position:absolute;left:-2000px;top:-2000px;width:6560px;height:5440px;opacity:0.25;background:repeating-conic-gradient(from 0deg at 50% 50%, #fff 0deg 6deg, transparent 6deg 14deg);"></div>
+    <div style="position:absolute;left:0;top:930px;width:2560px;height:510px;background:#3FA34D;border-top:10px solid #000;"></div>
+    <div style="position:absolute;left:30px;top:560px;width:260px;height:364px;transform:rotate(-4deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="trex">
+<path d="M210 300 Q284 300 292 236 Q300 320 214 352 Z" fill="#5DBB63" stroke="#111" stroke-width="6" stroke-linejoin="round"/><rect x="96" y="360" width="34" height="48" rx="12" fill="#4FA656" stroke="#111" stroke-width="6" stroke-linejoin="round"/><rect x="170" y="360" width="34" height="48" rx="12" fill="#4FA656" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<ellipse cx="150" cy="306" rx="78" ry="74" fill="#5DBB63" stroke="#111" stroke-width="6" stroke-linejoin="round"/><ellipse cx="150" cy="320" rx="46" ry="50" fill="#BDEBB0"/>
+<path d="M92 262 q-26 4 -24 22 M208 262 q26 4 24 22" stroke="#111" stroke-width="16" stroke-linecap="round" fill="none"/><path d="M92 262 q-26 4 -24 22 M208 262 q26 4 24 22" stroke="#5DBB63" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M98 70 L110 40 L128 62 L146 30 L162 60 L182 38 L194 66 Z" fill="#3E8E45" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<rect x="62" y="62" width="176" height="166" rx="80" fill="#5DBB63" stroke="#111" stroke-width="6" stroke-linejoin="round"/><circle cx="90" cy="110" r="8" fill="#3E8E45"/><circle cx="210" cy="104" r="7" fill="#3E8E45"/><circle cx="226" cy="140" r="5" fill="#3E8E45"/><g transform="translate(0 0)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="182" r="11" fill="#FE90E8" opacity=".55"/><circle cx="200" cy="182" r="11" fill="#FE90E8" opacity=".55"/><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+<path d="M128 206 l6 10 l6 -10 M160 206 l6 10 l6 -10" fill="#fff" stroke="#111" stroke-width="3"/>
+</svg>
+</div>
+    <div style="position:absolute;left:250px;top:640px;width:200px;height:280px;transform:rotate(6deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="thoc">
+<ellipse cx="112" cy="400" rx="26" ry="12" fill="#8A5A1E" stroke="#111" stroke-width="6"/><ellipse cx="188" cy="400" rx="26" ry="12" fill="#8A5A1E" stroke="#111" stroke-width="6"/>
+<path d="M150 30 Q250 120 246 250 Q240 380 150 392 Q60 380 54 250 Q50 120 150 30 Z" fill="#F2B632" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<path d="M150 34 L150 74 M110 80 Q86 200 108 340 M190 80 Q214 200 192 340" stroke="#C98A12" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M150 30 L146 4" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="90" cy="180" rx="9" ry="24" fill="#FFE08A"/>
+<g transform="translate(0 92)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="182" r="11" fill="#FE90E8" opacity=".55"/><circle cx="200" cy="182" r="11" fill="#FE90E8" opacity=".55"/><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+</svg>
+</div>
+    <div style="position:absolute;left:400px;top:560px;width:140px;height:196px;transform:rotate(-8deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="giot">
+<ellipse cx="112" cy="400" rx="26" ry="12" fill="#2F7FD8" stroke="#111" stroke-width="6" stroke-linejoin="round"/><ellipse cx="188" cy="400" rx="26" ry="12" fill="#2F7FD8" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<path d="M150 28 Q246 196 244 290 A94 94 0 0 1 56 290 Q54 196 150 28 Z" fill="#7CC8FF" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<ellipse cx="96" cy="240" rx="12" ry="32" transform="rotate(18 96 240)" fill="#E6F6FF"/><circle cx="118" cy="190" r="7" fill="#E6F6FF"/>
+<g transform="translate(0 124)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="182" r="11" fill="#FE90E8" opacity=".55"/><circle cx="200" cy="182" r="11" fill="#FE90E8" opacity=".55"/><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+</svg>
+</div>
+    <div style="position:absolute;left:2040px;top:540px;width:170px;height:238px;transform:rotate(8deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="ongtho">
+<ellipse cx="66" cy="246" rx="60" ry="34" transform="rotate(-28 66 246)" fill="#DFF4FF" stroke="#111" stroke-width="6" stroke-linejoin="round"/><ellipse cx="234" cy="246" rx="60" ry="34" transform="rotate(28 234 246)" fill="#DFF4FF" stroke="#111" stroke-width="6" stroke-linejoin="round"/><clipPath id="cl"><ellipse cx="150" cy="318" rx="78" ry="86"/></clipPath><ellipse cx="150" cy="318" rx="78" ry="86" fill="#FFC93C"/><g clip-path="url(#cl)" fill="#111"><rect x="40" y="278" width="220" height="24"/><rect x="40" y="324" width="220" height="24"/><rect x="40" y="370" width="220" height="24"/></g><ellipse cx="150" cy="318" rx="78" ry="86" fill="none" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="92" cy="388" r="15" fill="#F08A24" stroke="#111" stroke-width="6" stroke-linejoin="round"/><circle cx="208" cy="388" r="15" fill="#F08A24" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<path d="M122 72 Q106 34 84 24 M178 72 Q194 34 216 24" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="84" cy="24" r="11" fill="#111"/><circle cx="216" cy="24" r="11" fill="#111"/><circle cx="150" cy="145" r="84" fill="#FFC93C" stroke="#111" stroke-width="6" stroke-linejoin="round"/><g transform="translate(0 0)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="182" r="11" fill="#FE90E8" opacity=".55"/><circle cx="200" cy="182" r="11" fill="#FE90E8" opacity=".55"/><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+</svg>
+</div>
+    <div style="position:absolute;left:2160px;top:630px;width:220px;height:308px;transform:rotate(-5deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="trau">
+<path d="M70 250 Q60 400 110 404 L190 404 Q240 400 230 250 Z" fill="#5E6670" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<path d="M84 96 Q8 86 16 22 Q42 64 96 70 Z M216 96 Q292 86 284 22 Q258 64 204 70 Z" fill="#F4ECD8" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<ellipse cx="44" cy="150" rx="34" ry="18" fill="#5E6670" stroke="#111" stroke-width="6"/><ellipse cx="256" cy="150" rx="34" ry="18" fill="#5E6670" stroke="#111" stroke-width="6"/>
+<path d="M150 56 Q244 60 240 170 Q240 270 150 276 Q60 270 60 170 Q56 60 150 56 Z" fill="#7B848F" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<ellipse cx="150" cy="234" rx="66" ry="40" fill="#B7BEC6" stroke="#111" stroke-width="6"/><ellipse cx="126" cy="222" rx="7" ry="10" fill="#111"/><ellipse cx="174" cy="222" rx="7" ry="10" fill="#111"/>
+<g transform="translate(0 -10)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="90" cy="180" r="11" fill="#FE90E8" opacity=".55"/><circle cx="210" cy="180" r="11" fill="#FE90E8" opacity=".55"/></g>
+<g transform="translate(0 52)"><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+</svg>
+</div>
+    <div style="position:absolute;left:2340px;top:530px;width:200px;height:280px;transform:rotate(6deg);"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" data-char="mattroi">
+<g fill="#FF9F1C" stroke="#111" stroke-width="6" stroke-linejoin="round"><path d="M150 18 L170 66 L130 66 Z"/><path d="M150 410 L130 362 L170 362 Z"/><path d="M14 214 L62 194 L62 234 Z"/><path d="M286 214 L238 234 L238 194 Z"/><path d="M54 118 L102 136 L76 162 Z"/><path d="M246 118 L224 162 L198 136 Z"/><path d="M54 310 L76 266 L102 292 Z"/><path d="M246 310 L198 292 L224 266 Z"/></g>
+<circle cx="150" cy="214" r="112" fill="#FFD43B" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+<g transform="translate(0 64)"><circle cx="120" cy="150" r="9" fill="#111"/><circle cx="180" cy="150" r="9" fill="#111"/><circle cx="123" cy="146" r="3" fill="#fff"/><circle cx="183" cy="146" r="3" fill="#fff"/><path d="M104 128 Q120 122 136 128 M164 128 Q180 122 196 128" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="100" cy="182" r="11" fill="#FE90E8" opacity=".55"/><circle cx="200" cy="182" r="11" fill="#FE90E8" opacity=".55"/><g id="mouth-closed"><path d="M132 194 Q150 208 168 194" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g><g id="mouth-open" opacity="0"><ellipse cx="150" cy="200" rx="15" ry="12" fill="#7A1626" stroke="#111" stroke-width="5"/></g></g>
+</svg>
+</div>
+    <div style="position:absolute;left:560px;top:520px;width:356px;height:520px;"><svg preserveAspectRatio="xMidYMax meet" style="width:100%;height:100%;display:block;overflow:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 760" data-pose="talk">
+  <!-- legs -->
+  <rect x="140" y="540" width="54" height="180" rx="10" fill="#2B2D42" stroke="#111" stroke-width="6"/>
+  <rect x="206" y="540" width="54" height="180" rx="10" fill="#2B2D42" stroke="#111" stroke-width="6"/>
+  <ellipse cx="160" cy="728" rx="40" ry="17" fill="#111"/><ellipse cx="240" cy="728" rx="40" ry="17" fill="#111"/>
+  <path d="M128 305 L108 420 L118 515" fill="none" stroke="#111" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 305 L108 420 L118 515" fill="none" stroke="#5B8DEF" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="118" cy="528" r="19" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <!-- torso -->
+  <path d="M120 300 Q200 272 280 300 L290 560 L110 560 Z" fill="#5B8DEF" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M168 288 L232 288 L226 560 L174 560 Z" fill="#FFFFFF" stroke="#111" stroke-width="4"/>
+  <text x="200" y="372" text-anchor="middle" font-family="Inter" font-weight="800" font-size="30" fill="#111">T</text>
+  <path d="M168 288 L150 360 L178 420 M232 288 L250 360 L222 420" fill="none" stroke="#111" stroke-width="4" stroke-linejoin="round"/>
+  <!-- neck + head -->
+  <rect x="182" y="244" width="36" height="44" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <ellipse cx="120" cy="188" rx="14" ry="20" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <ellipse cx="280" cy="188" rx="14" ry="20" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <path d="M124 180 Q122 262 200 266 Q278 262 276 180 Q276 104 200 100 Q124 104 124 180 Z" fill="#FFD9B8" stroke="#111" stroke-width="6"/>
+  <path d="M118 176 Q108 92 168 72 Q204 52 246 70 Q296 88 284 168 Q270 128 246 118 Q236 138 200 132 Q218 116 210 104 Q176 136 132 130 Q124 150 118 176 Z" fill="#5A3825" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M150 140 L192 136 M208 136 L250 140" stroke="#111" stroke-width="6" stroke-linecap="round"/><circle cx="172" cy="178" r="6" fill="#111"/><circle cx="228" cy="178" r="6" fill="#111"/><g id="mouth-closed"><path d="M182 228 Q200 242 218 228" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/></g>
+  <g id="mouth-open" opacity="0"><path d="M180 224 Q200 222 220 224 Q216 252 200 252 Q184 252 180 224 Z" fill="#B3263A" stroke="#111" stroke-width="5" stroke-linejoin="round"/></g>
+  <!-- glasses -->
+  <circle cx="172" cy="180" r="27" fill="none" stroke="#111" stroke-width="5"/>
+  <circle cx="228" cy="180" r="27" fill="none" stroke="#111" stroke-width="5"/>
+  <path d="M199 178 Q200 172 201 178 M145 176 L126 170 M255 176 L274 170" stroke="#111" stroke-width="5" fill="none"/>
+  <path d="M272 305 L318 410 L348 345" fill="none" stroke="#111" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M272 305 L318 410 L348 345" fill="none" stroke="#5B8DEF" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="352" cy="330" r="19" fill="#FFD9B8" stroke="#111" stroke-width="6"/></svg>
+</div>
+    <div style="position:absolute;left:900px;top:548px;width:1150px;">
+      <div style="display:inline-block;padding:10px 26px 6px;background:#000;color:#fff;font-size:40px;font-weight:700;text-transform:uppercase;border:5px solid #fff;transform:rotate(-2deg);">Kênh của Tèo</div>
+      <div style="margin-top:20px;font-size:100px;line-height:1;font-weight:700;color:#fff;text-transform:uppercase;-webkit-text-stroke:6px #000;paint-order:stroke fill;text-shadow:10px 10px 0 #000;">Cùng Tèo <span style="color:#FF4D8D">khám phá!</span></div>
+      <div style="margin-top:40px;white-space:nowrap;"><span style="display:inline-block;padding:10px 20px 7px;margin-right:14px;background:#9EE6FF;border:5px solid #000;box-shadow:6px 6px 0 #000;font-size:34px;font-weight:700;">Khoa học</span><span style="display:inline-block;padding:10px 20px 7px;margin-right:14px;background:#FF9EE0;border:5px solid #000;box-shadow:6px 6px 0 #000;font-size:34px;font-weight:700;">Lịch sử</span><span style="display:inline-block;padding:10px 20px 7px;margin-right:14px;background:#A6F28A;border:5px solid #000;box-shadow:6px 6px 0 #000;font-size:34px;font-weight:700;">Truyện kể</span><span style="display:inline-block;padding:10px 20px 7px;margin-right:14px;background:#fff;border:5px solid #000;box-shadow:6px 6px 0 #000;font-size:34px;font-weight:700;">Video mới mỗi ngày</span></div>
+    </div>
+  </div>
+</div>
+<script>window.__timelines = window.__timelines || {}; window.__timelines["banner"] = gsap.timeline({ paused: true }); window.__timelines["banner"].set({}, {}, 1);</script>
+</body></html>

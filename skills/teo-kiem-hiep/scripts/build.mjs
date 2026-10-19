@@ -1,0 +1,426 @@
+// Dựng một tập Tèo kiếm hiệp từ <dir>/tap.json → <dir>/index.html (HyperFrames) + <dir>/thumb/ (thumbnail 1280×720).
+//   node <SKILL>/scripts/build.mjs <dir> [--replan] [--seed N]
+// Không dùng ffmpeg; chỉ HTML/SVG + GSAP. Render: cd <dir> && npx --yes hyperframes@0.8.172 render --output renders/final.mp4 --quality standard
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, readdirSync } from "fs";
+import { join, resolve, basename } from "path";
+import { pathToFileURL } from "url";
+import { teo, npc, PRESETS, HATS, WEAPONS } from "../engine/rig.mjs";
+import { SETS, GROUND } from "../engine/sets.mjs";
+import { loadLibrary, SKILL } from "../engine/library.mjs";
+import { makePlan, printPlan } from "./plan.mjs";
+import { PLANNED } from "../engine/slots.mjs";
+import { loadVoice } from "../engine/voice.mjs";
+
+const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
+const SFX_LEN = { chime: 2.5, click: 0.37, error: 1.62, "glitch-1": 2.64, "impact-bass-1": 2.12, "impact-bass-2": 2.59, pop: 0.72, riser: 10.03, sparkle: 1.8, "whoosh-cinematic": 5.54, "whoosh-short": 0.57, whoosh: 0.57 };
+const BGM = { file: "playful-pizzicato.mp3", len: 67 };
+// GSAP: có bản trong engine/vendor thì chép vào tập (render không cần mạng), không thì dùng CDN
+const GSAP_CDN = "https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js";
+const GSAP_LOCAL = join(SKILL, "engine/vendor/gsap.min.js");
+const GSAP_SRC = existsSync(GSAP_LOCAL) ? "assets/gsap.min.js" : GSAP_CDN;
+const copyGsap = (d) => { if (GSAP_SRC !== GSAP_CDN) { mkdirSync(join(d, "assets"), { recursive: true }); copyFileSync(GSAP_LOCAL, join(d, "assets/gsap.min.js")); } };
+const LEAD = 0.6, TAIL = 0.7; // đầu/cuối mỗi cảnh (chừa chỗ cho chuyển cảnh che 0.45 s / mở 0.55 s)
+const f2 = (x) => (Math.round(x * 100) / 100).toString();
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const die = (m) => { console.error("build: " + m); process.exit(1); };
+const mulberry = (a) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+
+// ---------------------------------------------------------------- cast
+function castOf(tap) {
+  const cast = {};
+  for (const [id, c] of Object.entries(tap.cast || {})) {
+    const kind = c.kind || (id === "teo" ? "teo" : "npc");
+    const look = kind === "teo" ? { band: c.band ?? "#D7263D", weapon: c.weapon || "kiem", jacket: c.jacket || "#5B8DEF" } : { ...(PRESETS[c.preset] || {}), ...Object.fromEntries(Object.entries(c).filter(([k]) => ["robe", "hat", "beard", "weapon", "skin", "belt", "patch", "sash"].includes(k))) };
+    if (c.preset && !PRESETS[c.preset]) die(`cast.${id}: preset "${c.preset}" không có (có: ${Object.keys(PRESETS).join(", ")})`);
+    if (kind !== "teo" && look.hat && !HATS.includes(look.hat)) die(`cast.${id}: hat "${look.hat}" không có (có: ${HATS.join(", ")})`);
+    if (look.weapon && !WEAPONS.includes(look.weapon)) die(`cast.${id}: weapon "${look.weapon}" không có (có: ${WEAPONS.join(", ")})`);
+    cast[id] = { id, kind, look, name: c.name || id, w: c.w || (kind === "teo" ? 250 : 190), side: c.side || (kind === "teo" ? "hero" : "foe") };
+  }
+  return cast;
+}
+const rigSvg = (type, p, w, look) => (type === "teo" ? teo(p, w, look) : npc(p, w, look));
+const rigH = (type, w) => (type === "teo" ? Math.round((w * 760) / 500) : Math.round(w * 1.5));
+const HEAD = { teo: 0.24, npc: 0.33 };
+
+// ---------------------------------------------------------------- built-in beats (không phải "hiệu ứng" xoay vòng)
+const BUILTIN = {
+  wait: (ctx, b) => ({ dur: b.dur ?? 0.6 }),
+  pose(ctx, b, t) {
+    const a = ctx.actor(b.who);
+    ctx.js(`POSE("${a.p}", "${b.pose || "rest"}", ${f2(t)}, ${b.dur ?? 0.3});${b.brow ? ` BROW("${a.p}", ${f2(t)}, ${b.brow === "angry"});` : ""}`);
+    return { dur: b.hold ?? 0.4 };
+  },
+  move(ctx, b, t) {
+    const a = ctx.actor(b.who), dest = Math.max(20, Math.min(1900 - a.w, b.to - a.w / 2)), d = b.dur ?? Math.max(0.5, Math.abs(dest - a.x) / 700);
+    ctx.moveTo(b.who, dest, t, d, "sine.inOut");
+    ctx.js(`RUN("${a.p}", ${f2(t)}, ${f2(t + d)}, "#${a.body}", ${a.type === "teo"}, 22, 0.16);`);
+    if (b.face) ctx.face(b.who, b.face, t);
+    return { dur: d };
+  },
+  face(ctx, b, t) { ctx.face(b.who, b.dir, t); return { dur: 0.15 }; },
+  say(ctx, b, t) {
+    const a = ctx.actor(b.who), text = String(b.text), n = [...text].length, tone = b.tone || "normal";
+    const v = ctx.voice?.(text); // giọng Tèo (scripts/voice.mjs) → bong bóng hiện đúng bằng thời gian đọc
+    if (ctx.voice && !v) ctx.voiceMiss.push(text);
+    const dur = (v ? Math.max(1.5, v.dur + 0.35) : Math.min(5.5, Math.max(1.5, 1.0 + n * 0.055))) + (b.hold || 0);
+    if (v) ctx.voiceList.push({ file: v.file, t: t + 0.08, dur: v.dur });
+    const fs = tone === "shout" ? 50 : tone === "whisper" ? 38 : 44, cw = fs * 0.56;
+    const bw = Math.min(780, n * cw + 80), lines = Math.ceil((n * cw) / (bw - 80)), bh = lines * fs * 1.22 + 48;
+    let left = Math.max(30, Math.min(1890 - bw, a.cx - bw / 2)), top = a.top - bh - 46, tail = "down";
+    if (top < 30) { top = Math.max(30, a.top); left = a.cx > 960 ? a.x - bw - 30 : a.x + a.w + 30; left = Math.max(30, Math.min(1890 - bw, left)); tail = a.cx > 960 ? "right" : "left"; }
+    const tx = Math.max(40, Math.min(bw - 60, a.cx - left - 20));
+    const u = ctx.uid("say");
+    const style = {
+      normal: "background:#fff;border:6px solid #111;border-radius:40px",
+      shout: "background:#FFE45C;border:7px solid #111;border-radius:16px",
+      whisper: "background:rgba(255,255,255,.92);border:5px dashed #555;border-radius:40px;font-style:italic",
+      think: "background:#fff;border:6px solid #111;border-radius:60px",
+    }[tone];
+    const tailSvg = tone === "think"
+      ? `<i style="position:absolute;left:${f2(tx)}px;top:${f2(bh + 4)}px;width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid #111"></i><i style="position:absolute;left:${f2(tx + 14)}px;top:${f2(bh + 36)}px;width:14px;height:14px;border-radius:50%;background:#fff;border:4px solid #111"></i>`
+      : tail === "down" ? `<i style="position:absolute;left:${f2(tx)}px;top:${f2(bh - 6)}px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:40px solid #111"></i>`
+      : `<i style="position:absolute;${tail === "left" ? "left:-36px" : "right:-36px"};top:40px;width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;${tail === "left" ? "border-right" : "border-left"}:40px solid #111"></i>`;
+    ctx.add("fx", `<div id="${u}" style="position:absolute;left:${f2(left)}px;top:${f2(top)}px;width:${f2(bw)}px;height:${f2(bh)}px;opacity:0;${style};box-shadow:8px 8px 0 rgba(0,0,0,.3);padding:20px 36px 0;font:700 ${fs}px/1.22 'Space Grotesk';color:#111;text-align:center">${esc(text)}${tailSvg}</div>`);
+    ctx.js(`POP("#${u}", ${f2(t)}); HIDE("#${u}", ${f2(t + dur - 0.2)}, 0.15);`);
+    if (tone !== "think") ctx.js(`FLAP("${a.p}", ${f2(t + 0.1)}, ${f2(v ? t + 0.08 + v.dur : t + Math.min(dur - 0.3, 0.4 + n * 0.05))});`);
+    if (tone === "shout") { ctx.js(`BROW("${a.p}", ${f2(t)}, true); SHAKE("#${u}", ${f2(t + 0.3)}, 0.3, 6);`); ctx.sfx("pop", t, 0.35); }
+    else ctx.sfx("pop", t, 0.2);
+    if (b.brow) ctx.js(`BROW("${a.p}", ${f2(t)}, ${b.brow === "angry"});`);
+    if (b.pose) ctx.js(`POSE("${a.p}", "${b.pose}", ${f2(t)}, 0.3);`);
+    return { dur };
+  },
+  emote(ctx, b, t) {
+    const a = ctx.actor(b.who), u = ctx.uid("em"), hx = a.cx + a.w * 0.32, hy = a.top + a.h * 0.06, kind = b.kind || "sweat";
+    const D = 1.2;
+    const art = {
+      sweat: `<svg width="50" height="70" viewBox="0 0 50 70" style="overflow:visible"><path d="M25 0 Q50 40 25 68 Q0 40 25 0 Z" fill="#7FD3FF" stroke="#111" stroke-width="5"/></svg>`,
+      anger: `<svg width="80" height="80" viewBox="-40 -40 80 80" style="overflow:visible">${[0, 90, 180, 270].map((r) => `<path transform="rotate(${r})" d="M6 -30 Q8 -10 30 -6" fill="none" stroke="#E8452E" stroke-width="10" stroke-linecap="round"/>`).join("")}</svg>`,
+      "?": `<div style="font:700 110px 'Space Grotesk';color:#fff;-webkit-text-stroke:6px #111;paint-order:stroke fill">?</div>`,
+      "!": `<div style="font:700 120px 'Space Grotesk';color:#FFD23F;-webkit-text-stroke:6px #111;paint-order:stroke fill">!</div>`,
+      sparkle: `<svg width="90" height="90" viewBox="-45 -45 90 90" style="overflow:visible"><path d="M0 -42 L9 -9 L42 0 L9 9 L0 42 L-9 9 L-42 0 L-9 -9 Z" fill="#FFF3A0" stroke="#111" stroke-width="5"/></svg>`,
+      sigh: `<svg width="120" height="60" viewBox="0 0 120 60" style="overflow:visible"><path d="M10 40 Q30 0 60 30 Q90 0 110 34 Q80 60 50 50 Q20 62 10 40 Z" fill="#EEE" stroke="#111" stroke-width="5"/></svg>`,
+      drop: `<svg width="60" height="80" viewBox="0 0 60 80" style="overflow:visible"><path d="M8 6 L8 70 M28 0 L28 76 M48 6 L48 70" stroke="#5A6B9A" stroke-width="7" stroke-linecap="round"/></svg>`,
+    }[kind];
+    if (!art) die(`emote kind "${kind}" không có (sweat|anger|?|!|sparkle|sigh|drop)`);
+    const x = kind === "sigh" ? a.cx - 60 : kind === "drop" ? a.cx - 30 : hx, y = kind === "drop" ? a.top + a.h * 0.02 : kind === "sigh" ? a.top + a.h * 0.32 : hy - 60;
+    ctx.add("fx", `<div id="${u}" style="position:absolute;left:${f2(x)}px;top:${f2(y)}px;opacity:0">${art}</div>`);
+    const anim = { sweat: `tl.to("#${u}", { y: 60, duration: ${D}, ease: "power1.in" }, ${f2(t + 0.2)});`, anger: `tl.to("#${u}", { scale: 1.25, duration: 0.15, yoyo: true, repeat: 5 }, ${f2(t + 0.2)});`, "?": `tl.to("#${u}", { rotation: 12, duration: 0.2, yoyo: true, repeat: 3 }, ${f2(t + 0.3)});`, "!": `tl.to("#${u}", { y: -20, duration: 0.12, yoyo: true, repeat: 3 }, ${f2(t + 0.3)});`, sparkle: `tl.to("#${u}", { rotation: 180, duration: ${D}, ease: "none" }, ${f2(t)});`, sigh: `tl.to("#${u}", { x: ${a.cx > 960 ? -80 : 80}, opacity: 0, duration: ${D}, ease: "power1.out" }, ${f2(t + 0.3)});`, drop: "" }[kind];
+    ctx.js(`POP("#${u}", ${f2(t)}); ${anim} HIDE("#${u}", ${f2(t + D + 0.1)});${kind === "anger" ? ` BROW("${a.p}", ${f2(t)}, true);` : ""}${kind === "sparkle" ? ` BLINK("${a.p}", ${f2(t + 0.2)});` : ""}`);
+    ctx.sfx(kind === "anger" || kind === "!" ? "click" : kind === "sparkle" ? "sparkle" : "pop", t, 0.3);
+    return { dur: b.dur ?? D + 0.2 };
+  },
+};
+
+// ---------------------------------------------------------------- scene builder
+function makeCtx(base, S, t0) {
+  const L = { bg: [], behind: [], act: [], fx: [], hud: [] };
+  const ctx = {
+    ...base, S, t0, t1: t0, L, actors: {}, lastAttacker: null, curKey: S,
+    add(layer, html) { if (layer === "over") base.over.push(html); else (L[layer] || die(`layer "${layer}" không có`)).push(html); },
+    js(code) { base.code.push(code); },
+    uid(p) { return `${S}${p}${base.n++}`; },
+    rig(type, p, w, look = {}, flip = false) { base.RIG[p] = type; const s = rigSvg(type, p, w, look); return flip ? `<div style="transform:scaleX(-1)">${s}</div>` : s; },
+    rigType(p, type) { base.RIG[p] = type; },
+    actor(id) {
+      const s = ctx.actors[id];
+      if (!s) die(`${ctx.curKey}: diễn viên "${id}" không có trong cảnh`);
+      const top = s.foot - s.h, cx = s.x + s.w / 2, d = s.h * (1 - HEAD[s.type]);
+      return {
+        id, type: s.type, look: s.look, flip: s.flip, p: s.p, wrap: `${S}-a-${id}`, body: `${S}-ab-${id}`, inner: `${S}-ai-${id}`,
+        x: s.x, ox: s.x - s.L0, w: s.w, h: s.h, cx, top, cy: top + s.h / 2, foot: s.foot,
+        koHead: s.down ? { x: cx + s.downSide * d, y: s.foot - s.w * 0.25 } : { x: cx, y: top + s.h * HEAD[s.type] },
+      };
+    },
+    others(who) {
+      const me = ctx.actors[who];
+      const live = Object.values(ctx.actors).filter((s) => s.id !== who && !s.gone && !s.down && s.visible);
+      const foes = live.filter((s) => s.side !== me?.side);
+      const r = (foes.length ? foes : live).map((s) => s.id);
+      if (!r.length) die(`${ctx.curKey}: "${who}" tấn công nhưng không còn ai đứng trong cảnh — ghi "target"`);
+      return r;
+    },
+    moveTo(id, left, t, dur, ease = "power2.inOut") { const s = ctx.actors[id]; ctx.js(`tl.to("#${S}-a-${id}", { x: ${f2(left - s.L0)}, duration: ${f2(dur)}, ease: "${ease}" }, ${f2(t)});`); s.x = left; },
+    face(id, dir, t) { const s = ctx.actors[id], flip = dir === "left"; if (flip !== s.flip) { ctx.js(`tl.set("#${S}-ai-${id}", { scaleX: ${flip ? -1 : 1} }, ${f2(t)});`); s.flip = flip; } },
+    knock(id, dx, side) { const s = ctx.actors[id]; s.x += dx; if (side) { s.down = true; s.downSide = side; } },
+    gone(id) { ctx.actors[id].gone = true; },
+    // hướng ngã/văng = ra xa người đánh; nếu sát mép khung (đầu sẽ ra ngoài màn hình) thì ngã ngược lại
+    attackerSide(a) {
+      const att = ctx.lastAttacker ? ctx.actor(ctx.lastAttacker) : null;
+      const s = !att ? (a.cx > 960 ? 1 : -1) : a.cx >= att.cx ? 1 : -1;
+      return a.cx + s * a.h * 0.9 > 1900 || a.cx + s * a.h * 0.9 < 20 ? -s : s;
+    },
+    sub(cat, payload, t) {
+      const key = `${ctx.curKey}.${cat}`, id = base.plan.pick[key];
+      const e = base.lib.byId[id] || die(`${key}: plan thiếu hiệu ứng (chạy lại với --replan)`);
+      base.used.push({ key, id, t });
+      return e.run(ctx, payload, t);
+    },
+  };
+  return ctx;
+}
+
+function runFx(ctx, key, cat, payload, t) {
+  const id = ctx.plan.pick[key];
+  const e = ctx.lib.byId[id] || die(`${key}: không tìm thấy hiệu ứng "${id}" (chạy lại với --replan)`);
+  if (e.cat !== cat && !(cat === "local")) console.warn(`build: ${key} dùng ${id} (nhóm ${e.cat}) cho slot nhóm ${cat}`);
+  ctx.used.push({ key, id, t });
+  return e.run(ctx, payload, t) || { dur: 1 };
+}
+
+function sceneClip(ctx, start, dur, track, z, extraBg = "") {
+  const L = ctx.L, S = ctx.S;
+  return `<div id="${S}" class="clip fill" data-start="${f2(start)}" data-duration="${f2(dur)}" data-track-index="${track}" style="z-index:${z};overflow:hidden">
+<div id="${S}-shake" class="fill"><div id="${S}-cam" class="fill">
+<div id="${S}-bg" class="fill">${extraBg}${L.bg.join("\n")}</div>
+<div id="${S}-behind" class="fill">${L.behind.join("\n")}</div>
+<div id="${S}-act" class="fill">${L.act.join("\n")}</div>
+<div id="${S}-fx" class="fill">${L.fx.join("\n")}</div>
+</div><div id="${S}-hud" class="fill">${L.hud.join("\n")}</div></div></div>`;
+}
+
+function buildScene(base, sc, i, t0) {
+  const S = `s${i}`, ctx = makeCtx(base, S, t0);
+  if (!SETS[sc.set]) die(`scenes[${i}].set "${sc.set}" không có (có: ${Object.keys(SETS).join(", ")})`);
+  // diễn viên
+  for (const a of sc.actors || []) {
+    const c = base.cast[a.id] || die(`scenes[${i}]: "${a.id}" chưa khai báo trong cast`);
+    const w = a.w || c.w, h = rigH(c.kind, w), foot = a.foot || GROUND + 20, L0 = Math.round(a.x - w / 2);
+    const flip = a.face ? a.face === "left" : a.x > 960;
+    const p = `${S}${a.id.replace(/[^a-zA-Z0-9]/g, "")}`;
+    base.RIG[p] = c.kind;
+    ctx.actors[a.id] = { id: a.id, type: c.kind, look: c.look, side: c.side, p, w, h, foot, L0, x: L0, flip, visible: !a.hidden, down: false, gone: false };
+    ctx.add("act", `<div id="${S}-a-${a.id}" style="position:absolute;left:${L0}px;top:${foot - h}px;width:${w}px;height:${h}px;opacity:${a.hidden ? 0 : 1}"><div id="${S}-ab-${a.id}" style="position:absolute;left:0;top:0;width:${w}px;height:${h}px"><div id="${S}-ai-${a.id}" style="width:${w}px;height:${h}px;transform:scaleX(${flip ? -1 : 1})">${rigSvg(c.kind, p, w, c.look)}</div></div></div>`);
+    if (a.pose) ctx.js(`POSE("${p}", "${a.pose}", ${f2(t0)}, 0.01);`);
+    if (a.down) { ctx.js(`KO("${p}", ${f2(t0)}); tl.set("#${S}-ab-${a.id}", { rotation: ${flip ? -90 : 90}, y: ${-w * 0.18}, transformOrigin: "50% 100%" }, ${f2(t0)});`); ctx.actors[a.id].down = true; ctx.actors[a.id].downSide = flip ? -1 : 1; }
+  }
+  // beats
+  let t = t0 + LEAD, lastHit = null, lastEnd = t, prevStart = t;
+  sc.beats.forEach((b, j) => {
+    const key = `${S}.b${j}`;
+    ctx.curKey = key;
+    let start = b.with ? prevStart : lastHit != null && b.do === "react" ? lastHit + 0.02 : lastEnd;
+    start += b.delay || 0;
+    // diễn viên đang nằm mà còn diễn tiếp → tự bật dậy (0.45 s)
+    for (const id of [].concat(b.do === "react" ? [] : b.who || [])) {
+      const s = ctx.actors[id];
+      if (!s?.down) continue;
+      ctx.js(`KO("${s.p}", ${f2(start)}, false); tl.to("#${S}-ab-${id}", { rotation: 0, y: 0, scaleX: 1, scaleY: 1, transformOrigin: "50% 100%", duration: 0.4, ease: "back.out(2)" }, ${f2(start)}); BLINK("${s.p}", ${f2(start + 0.45)});`);
+      s.down = false;
+      start += 0.45;
+    }
+    let r;
+    if (b.do === "enter") { ctx.actors[b.who] || die(`${key}: "${b.who}" không có trong cảnh`); ctx.actors[b.who].visible = true; }
+    if (b.do === "attack") {
+      ctx.lastAttacker = b.who;
+      if (sc.beats[j + 1]?.do !== "react") console.warn(`build: CẢNH BÁO ${key}: attack không có react ngay sau → nạn nhân đứng im, không ngã`);
+    }
+    if (BUILTIN[b.do]) r = BUILTIN[b.do](ctx, b, start);
+    else if (String(b.do).startsWith("local:")) r = runFx(ctx, key, "local", b, start);
+    else if (PLANNED.includes(b.do)) r = runFx(ctx, key, b.do, b, start);
+    else die(`${key}: beat "${b.do}" không có (say|wait|pose|move|face|emote|${PLANNED.join("|")}|local:<tên>)`);
+    r ||= { dur: 1 };
+    if (b.vo && ctx.voice) {
+      const v = ctx.voice(b.vo);
+      if (v) { base.voiceList.push({ file: v.file, t: start + 0.1, dur: v.dur }); r = { ...r, dur: Math.max(r.dur || 0, v.dur + 0.4) }; }
+      else base.voiceMiss.push(b.vo);
+    }
+    lastHit = b.do === "attack" ? r.hit ?? start + r.dur * 0.6 : null;
+    prevStart = start;
+    lastEnd = Math.max(lastEnd, start + (r.dur || 0));
+    base.beatsLog.push({ key, do: b.do, t: start, dur: r.dur });
+  });
+  ctx.t1 = lastEnd + TAIL;
+  ctx.curKey = `${S}.cam`;
+  // bối cảnh + máy quay + diễn viên thở/chớp mắt
+  const set = SETS[sc.set](ctx, { time: sc.time || undefined });
+  ctx.L.bg.unshift(set.html);
+  ctx.js(set.js);
+  runFx(ctx, `${S}.cam`, "camera", {}, t0);
+  for (const s of Object.values(ctx.actors)) {
+    const per = 1.1 + ctx.rnd() * 0.6;
+    ctx.js(`tl.to("#${s.p}-all", { scaleY: 1.018, svgOrigin: PIV.${s.type}.all, duration: ${f2(per)}, yoyo: true, repeat: ${Math.ceil((ctx.t1 - t0) / per)}, ease: "sine.inOut" }, ${f2(t0)});`);
+    for (let bt = t0 + ctx.range(0.8, 2); bt < ctx.t1 - 0.3; bt += ctx.range(2.2, 3.8)) ctx.js(`BLINK("${s.p}", ${f2(bt)});`);
+  }
+  return { ctx, dur: ctx.t1 - t0 };
+}
+
+function buildSpecial(base, S, key, cat, payload, t0) {
+  const ctx = makeCtx(base, S, t0);
+  ctx.curKey = key;
+  const r = runFx(ctx, key, cat, payload, t0);
+  ctx.t1 = t0 + r.dur;
+  return { ctx, dur: r.dur };
+}
+
+// ---------------------------------------------------------------- page shell
+const CSS = `@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Variable.ttf") format("truetype"); font-weight: 100 900; font-display: block; }
+@font-face { font-family: "Space Grotesk"; src: url("assets/fonts/Space_Grotesk-Variable.ttf") format("truetype"); font-weight: 300 700; font-display: block; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow: hidden; background: #000; }
+#root { position: relative; overflow: hidden; background: #000; font-family: "Space Grotesk", sans-serif; }
+.fill { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+.chip { display: inline-block; background: #fff; border: 5px solid #111; box-shadow: 8px 8px 0 #111; padding: 14px 34px 10px; font: 700 46px "Space Grotesk"; color: #111; }
+.paper { background-color: #F1E3C6; background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,.35), transparent 40%), radial-gradient(rgba(120,80,30,.08) 1.5px, transparent 1.5px); background-size: auto, 22px 22px; }
+.plq { display: inline-block; background: #8A2A1E; color: #fff; font: 700 58px "Space Grotesk"; padding: 16px 34px 10px; border: 6px solid #3B2A1A; border-radius: 12px; box-shadow: 0 0 0 5px #E3A21A, 10px 10px 0 5px rgba(0,0,0,.35); white-space: nowrap; }
+.nameplate { display: inline-block; background: #111; color: #FFD23F; font: 700 54px "Space Grotesk"; padding: 12px 30px 8px; border: 5px solid #FFD23F; border-radius: 10px; white-space: nowrap; }
+.nametag { display: inline-block; margin-top: 10px; background: #FFFAF0; color: #8A2A1E; font: 700 32px "Space Grotesk"; padding: 8px 20px 4px; border: 4px solid #111; border-radius: 8px; white-space: nowrap; }`;
+
+function page({ id, w, h, dur, body, code, RIG, seed }) {
+  return `<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=${w}, height=${h}" />
+<script src="${GSAP_SRC}"></script>
+<style>${CSS}
+html, body, #root { width: ${w}px; height: ${h}px; }</style></head>
+<body>
+<div id="root" data-composition-id="${id}" data-start="0" data-duration="${f2(dur)}" data-width="${w}" data-height="${h}">
+${body}
+</div>
+<script>
+const RIG = ${JSON.stringify(RIG)}; const SEED = ${seed};
+${readFileSync(join(SKILL, "engine/runtime.js"), "utf8")}
+${code}
+</script>
+</body></html>`;
+}
+
+function copyAssets(dir) {
+  for (const sub of ["fonts", "sfx", "bgm"]) mkdirSync(join(dir, "assets", sub), { recursive: true });
+  for (const f of ["Inter-Variable.ttf", "Space_Grotesk-Variable.ttf"]) copyFileSync(join(KIT, "fonts", f), join(dir, "assets/fonts", f));
+  for (const n of Object.keys(SFX_LEN)) copyFileSync(join(KIT, "sfx", `lib-${n}.mp3`), join(dir, "assets/sfx", `lib-${n}.mp3`));
+  copyFileSync(join(KIT, "bgm", BGM.file), join(dir, "assets/bgm", BGM.file));
+  copyGsap(dir);
+  const slug = basename(dir);
+  if (!existsSync(join(dir, "package.json"))) writeFileSync(join(dir, "package.json"), JSON.stringify({ name: slug, private: true, type: "module" }, null, 2));
+  if (!existsSync(join(dir, "hyperframes.json"))) writeFileSync(join(dir, "hyperframes.json"), JSON.stringify({ $schema: "https://hyperframes.heygen.com/schema/hyperframes.json", paths: { blocks: "compositions", components: "compositions/components", assets: "assets" }, media: { autoProxy: true } }, null, 2));
+}
+
+// giọng Tèo: wav trong <dir>/voice/, 2 track xen kẽ (14/15) cho khỏi chồng nhau
+function voiceTags(list, total) {
+  return list.filter((v) => v.t < total - 0.05).map((v, i) => `<audio id="vo${i}" src="${v.file}" data-start="${f2(v.t)}" data-duration="${f2(Math.min(v.dur, total - v.t))}" data-track-index="${14 + (i % 2)}" data-volume="1"></audio>`).join("\n");
+}
+
+function audioTags(sfx, total, bgmVol) {
+  const tracks = []; // greedy: không cho 2 âm thanh chồng nhau trên cùng một track
+  const out = [];
+  sfx.filter((s) => s.t < total - 0.05).sort((a, b) => a.t - b.t).forEach((s, i) => {
+    const len = SFX_LEN[s.name] || die(`sfx "${s.name}" không có`);
+    const d = Math.min(s.dur ?? len, len, total - s.t);
+    let k = tracks.findIndex((end) => end <= s.t);
+    if (k < 0) { k = tracks.length; tracks.push(0); }
+    tracks[k] = s.t + d + 0.01;
+    out.push(`<audio id="sx${i}" src="assets/sfx/lib-${s.name}.mp3" data-start="${f2(Math.max(0, s.t))}" data-duration="${f2(d)}" data-track-index="${20 + k}" data-volume="${f2(s.vol)}"></audio>`);
+  });
+  for (let k = 0, t = 0; t < total - 0.1; k++, t += BGM.len) out.push(`<audio id="bgm${k}" src="assets/bgm/${BGM.file}" data-start="${f2(t)}" data-duration="${f2(Math.min(BGM.len, total - t))}" data-track-index="${12 + (k % 2)}" data-volume="${bgmVol}"></audio>`);
+  return out.join("\n");
+}
+
+// ---------------------------------------------------------------- thumbnail (1280×720, chụp bằng hyperframes snapshot)
+function buildThumb(dir, tap, cast, theme, seed) {
+  const td = join(dir, "thumb");
+  mkdirSync(td, { recursive: true });
+  const rnd = mulberry(seed + 99);
+  // thumb.vs: [idTrái, idPhải] → ảnh đối đầu hai nhân vật + huy hiệu VS; không có thì Tèo + đối thủ
+  const vs = tap.thumb?.vs;
+  if (vs && (vs.length !== 2 || !vs.every((id) => cast[id]))) die(`thumb.vs phải là 2 id có trong cast (đang là ${JSON.stringify(vs)})`);
+  const sc = (vs && tap.scenes.find((s) => vs.every((id) => (s.actors || []).some((a) => a.id === id)))) || tap.scenes.find((s) => (s.actors || []).some((a) => cast[a.id]?.side === "foe")) || tap.scenes[0];
+  const ctx = { S: "th", t0: 0, t1: 1, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)] };
+  const set = SETS[sc.set](ctx, { time: sc.time || undefined });
+  const hero = vs ? cast[vs[0]] : Object.values(cast).find((c) => c.kind === "teo") || Object.values(cast)[0];
+  const foe = vs ? cast[vs[1]] : (sc.actors || []).map((a) => cast[a.id]).find((c) => c && c.side === "foe") || Object.values(cast).find((c) => c.side === "foe");
+  const RIG = { thH: hero.kind, thF: foe?.kind || "npc" };
+  const hook = tap.thumb?.text || tap.hook || tap.title;
+  const heroW = vs ? (hero.kind === "teo" ? 470 : 430) : hero.kind === "teo" ? 560 : 460, foeW = foe ? (vs ? (foe.kind === "teo" ? 470 : 430) : foe.kind === "teo" ? 470 : 400) : 0;
+  const heroX = vs ? 400 : 640, foeX = vs ? 1520 : 1480, glow = vs ? "50% 55%" : "34% 62%";
+  const body = `<div id="th" class="clip" data-start="0" data-duration="1" data-track-index="0" style="position:absolute;left:0;top:0;width:1280px;height:720px;overflow:hidden">
+<div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform:scale(.6667);transform-origin:0 0">${set.html}
+<div class="fill" style="background:radial-gradient(circle at ${glow}, ${theme.qi}cc 0%, ${theme.qi}55 22%, transparent 45%), linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,0) 40%)"></div>
+<div style="position:absolute;left:-540px;top:-960px;width:3000px;height:3000px;background:repeating-conic-gradient(from 0deg at ${glow}, rgba(255,255,255,.18) 0deg 1.5deg, transparent 1.5deg 9deg)"></div>
+${foe ? `<div style="position:absolute;left:${foeX - foeW / 2}px;top:${1080 + 30 - rigH(foe.kind, foeW)}px"><div style="transform:scaleX(-1)">${rigSvg(foe.kind, "thF", foeW, foe.look)}</div></div>` : ""}
+<div style="position:absolute;left:${heroX - heroW / 2}px;top:${1080 + (vs ? 30 : 60) - rigH(hero.kind, heroW)}px;filter:drop-shadow(0 0 30px ${theme.qi})">${rigSvg(hero.kind, "thH", heroW, hero.look)}</div>
+</div>
+<div style="position:absolute;left:36px;top:26px;width:1000px;font:700 ${[...hook].length > 14 ? 92 : 118}px/1.0 'Space Grotesk';color:${theme.title === "#FFFFFF" ? "#FFE45C" : theme.title};-webkit-text-stroke:12px #111;paint-order:stroke fill;text-shadow:8px 8px 0 #111;text-transform:uppercase">${esc(hook)}</div>
+<div style="position:absolute;right:30px;top:30px;background:#C8372D;color:#F6EFE0;border:6px solid #F6EFE0;border-radius:14px;padding:10px 20px 4px;font:700 46px 'Space Grotesk';box-shadow:6px 6px 0 #111">TẬP ${esc(tap.ep ?? 1)}</div>
+<div style="position:absolute;right:30px;${vs ? "top:112px" : "bottom:26px"};background:#FFD23F;color:#111;border:5px solid #111;border-radius:40px;padding:8px 22px 4px;font:700 34px 'Space Grotesk'">Tèo Kể · Kiếm Hiệp</div>
+${vs ? `<div style="position:absolute;left:540px;top:330px;width:200px;height:200px;border-radius:50%;background:#C8372D;border:9px solid #FFE45C;box-shadow:0 0 0 7px #111,0 0 50px ${theme.qi};text-align:center;font:700 112px/182px 'Space Grotesk';color:#FFE45C;-webkit-text-stroke:7px #111;paint-order:stroke fill;transform:rotate(-8deg)">VS</div>
+${[[hero, 267], [foe, 1013]].map(([c, x]) => `<div style="position:absolute;left:${x - 250}px;bottom:24px;width:500px;text-align:center"><span style="display:inline-block;background:#111;color:#FFD23F;font:700 46px 'Space Grotesk';padding:8px 24px 4px;border:5px solid #FFD23F;border-radius:10px;white-space:nowrap">${esc(c.name)}</span></div>`).join("")}` : ""}
+</div>`;
+  const code = `POSE("thH", "${tap.thumb?.pose || (vs ? "palm" : "raise")}", 0, 0.01); BROW("thH", 0, true);${foe ? ` POSE("thF", "${vs ? tap.thumb?.pose2 || "guard" : "guard"}", 0, 0.01); BROW("thF", 0, true);` : ""} tl.set({}, {}, 1);`;
+  // snapshot chỉ phục vụ file bên trong thư mục dự án → thumb/ có bản font riêng
+  mkdirSync(join(td, "assets/fonts"), { recursive: true });
+  for (const f of ["Inter-Variable.ttf", "Space_Grotesk-Variable.ttf"]) copyFileSync(join(KIT, "fonts", f), join(td, "assets/fonts", f));
+  copyGsap(td);
+  writeFileSync(join(td, "index.html"), page({ id: "thumb", w: 1280, h: 720, dur: 1, body, code, RIG, seed }));
+  writeFileSync(join(td, "package.json"), JSON.stringify({ name: basename(dir) + "-thumb", private: true, type: "module" }, null, 2));
+  writeFileSync(join(td, "hyperframes.json"), JSON.stringify({ $schema: "https://hyperframes.heygen.com/schema/hyperframes.json", paths: { blocks: "compositions", components: "compositions/components", assets: "assets" }, media: { autoProxy: true } }, null, 2));
+}
+
+// ---------------------------------------------------------------- main
+export async function build(dir, opts = {}) {
+  dir = resolve(dir);
+  if (!existsSync(join(dir, "tap.json"))) die(`${dir}: thiếu tap.json`);
+  const tap = JSON.parse(readFileSync(join(dir, "tap.json"), "utf8"));
+  if (!Array.isArray(tap.scenes) || !tap.scenes.length) die("tap.json: cần ít nhất 1 cảnh trong scenes");
+  const lib = await loadLibrary(dir);
+  const plan = await makePlan(dir, opts);
+  const theme = lib.THEMES[plan.theme] || die(`theme "${plan.theme}" không có`);
+  const rnd = mulberry(plan.seed);
+  const cast = castOf(tap);
+  const base = {
+    plan, lib, theme, cast, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)],
+    RIG: {}, code: [], over: [], sfxList: [], used: [], beatsLog: [], n: 0,
+    voice: loadVoice(dir, tap.voice), voiceList: [], voiceMiss: [],
+  };
+  base.sfx = (name, t, vol = 0.4, dur) => base.sfxList.push({ name, t, vol, dur });
+
+  const clips = [];
+  let t = 0, track = 0, z = 1;
+  const op = buildSpecial(base, "op", "op", "opener", { title: tap.opener?.title || "TÈO KIẾM HIỆP", sub: tap.opener?.sub || `Tập ${tap.ep ?? 1}: ${tap.title}` }, t);
+  clips.push(sceneClip(op.ctx, t, op.dur, track++, z++));
+  const cuts = [];
+  t += op.dur;
+  tap.scenes.forEach((sc, i) => {
+    cuts.push(t);
+    const s = buildScene(base, sc, i, t);
+    clips.push(sceneClip(s.ctx, t, s.dur, track++, z++));
+    t += s.dur;
+  });
+  cuts.push(t);
+  const ed = buildSpecial(base, "ed", "ed", "ender", { ep: tap.ep ?? 1, next: tap.ender?.next || tap.next || "Còn tiếp…" }, t);
+  clips.push(sceneClip(ed.ctx, t, ed.dur, track++, z++));
+  t += ed.dur;
+  const total = t;
+  // chuyển cảnh (lớp phủ toàn cục)
+  cuts.forEach((c, k) => { const ctx = makeCtx(base, `tr${k}`, c); ctx.curKey = `tr${k}`; runFx(ctx, `tr${k}`, "transition", {}, c); });
+
+  const local = base.used.filter((u) => u.id.startsWith("local:"));
+  const body = `${clips.join("\n")}
+<div id="T" class="clip fill" data-start="0" data-duration="${f2(total)}" data-track-index="${track++}" style="z-index:90;pointer-events:none">${base.over.join("\n")}</div>
+<div id="X" class="clip fill" data-start="0" data-duration="${f2(total)}" data-track-index="${track++}" style="z-index:99;pointer-events:none"><div id="X-flash" class="fill" style="background:#fff;opacity:0"></div><div id="X-black" class="fill" style="background:#000;opacity:0"></div></div>
+${audioTags(base.sfxList, total, tap.bgm_volume ?? (base.voice ? 0.06 : 0.1))}
+${voiceTags(base.voiceList, total)}`;
+  copyAssets(dir);
+  writeFileSync(join(dir, "index.html"), page({ id: "main", w: 1920, h: 1080, dur: total, body, code: base.code.join("\n"), RIG: base.RIG, seed: plan.seed }));
+  buildThumb(dir, tap, cast, theme, plan.seed);
+  const timeline = { total, cuts, beats: base.beatsLog, used: base.used, theme: plan.theme,
+    voice: base.voice ? { name: base.voice.voice, lines: base.voiceList.length, sec: Math.round(base.voiceList.reduce((x, v) => x + v.dur, 0)), missing: base.voiceMiss.length } : null };
+  mkdirSync(join(dir, "work"), { recursive: true });
+  writeFileSync(join(dir, "work/timeline.json"), JSON.stringify(timeline, null, 1));
+  if (!opts.quiet) {
+    printPlan(plan, lib);
+    console.log(`build: ${basename(dir)}/index.html · ${f2(total)} s · ${tap.scenes.length} cảnh · ${base.sfxList.length} sfx · hiệu ứng tự chế: ${local.length ? [...new Set(local.map((u) => u.id))].join(", ") : "KHÔNG CÓ"}`);
+    if (base.voice) console.log(`build: giọng ${base.voice.voice} · ${base.voiceList.length} câu · ${f2(base.voiceList.reduce((a, v) => a + v.dur, 0))} s`);
+    else console.warn("build: CẢNH BÁO chưa có giọng đọc — chạy scripts/voice.mjs <dir> trước rồi build lại");
+    if (base.voiceMiss.length) console.warn(`build: CẢNH BÁO ${base.voiceMiss.length} câu chưa có giọng (sửa chữ sau khi chạy voice.mjs) — chạy lại voice.mjs: ${base.voiceMiss.slice(0, 3).map((x) => JSON.stringify(x)).join(", ")}`);
+    if (total < 1200) console.warn(`build: CẢNH BÁO tổng ${(total / 60).toFixed(1)} phút < 20 phút — pack.mjs sẽ từ chối (examples/tap-01 là mẫu ngắn, được phép)`);
+    if (!local.length) console.warn("build: CẢNH BÁO — tập này chưa có hiệu ứng tự chế (fx/*.mjs + beat \"local:<tên>\" hoặc \"fx\":\"local:<tên>\"). pack.mjs sẽ từ chối đóng gói.");
+  }
+  return { total, plan, timeline };
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const args = process.argv.slice(2);
+  const dir = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a)) || die("dùng: node build.mjs <dir> [--replan] [--seed N]");
+  const si = args.indexOf("--seed");
+  await build(dir, { replan: args.includes("--replan"), quiet: args.includes("--quiet"), seed: si >= 0 ? Number(args[si + 1]) : null });
+}
