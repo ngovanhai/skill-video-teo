@@ -120,6 +120,7 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
    - GSAP: nếu có `SKILL/engine/vendor/gsap.min.js` (bản 3.14.2) thì build chép vào tập, render không cần mạng. Không có thì tải từ CDN jsdelivr lúc render.
    - Plan được giữ nguyên khi build lại, trừ khi đổi cấu trúc beat **hoặc** lịch sử có tập khác mới pack. Khi đó build tự lập plan mới.
 6. Viết `seo` trong tap.json rồi chạy `node SKILL/scripts/pack.mjs <dir>`. Lệnh này chụp thumbnail và tạo `youtube/`: mp4, thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, DANG-YOUTUBE.md. Nó cũng ghi lịch sử (kể cả khối story). Nếu chỉ chạy thử thì thêm `--no-history`.
+   - **Tải lên Google Drive:** Thêm cờ `--drive` (hoặc đặt biến môi trường `AUTO_UPLOAD_DRIVE=1`) để tự động sao chép gói `youtube/` vào Google Drive (qua Google Drive Desktop hoặc rclone) ngay khi đóng gói xong không có lỗi.
 7. Read `youtube/thumbnail.png` để kiểm tra: mặt không bị che, chữ hook đọc được.
 8. Ghi một dòng vào `__MUSE_ROOT__/ideas/DA-LAM.md`, mảng "Tèo kiếm hiệp": tập, tiêu đề, đường dẫn, hiệu ứng local.
 

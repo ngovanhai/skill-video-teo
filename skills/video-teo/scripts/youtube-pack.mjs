@@ -6,7 +6,10 @@
 // Chỉ đọc video.json / chapters / words / work/timeline.json; không ghi gì ngoài thư mục youtube/.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, linkSync, rmSync, statSync, readdirSync } from "fs";
 import { execFileSync } from "child_process";
-import { join, resolve, basename } from "path";
+import { join, resolve, basename, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 const BRAND = "Tèo Kể"; // dấu ấn kênh: đuôi mọi tiêu đề + hashtag đầu tiên
 const SUFFIX = ` | ${BRAND}`;
@@ -134,10 +137,23 @@ ${problems.length ? `\n## ⚠ Cần sửa\n${problems.map((x) => `- ${x}`).join(
 }
 
 const args = process.argv.slice(2);
-if (!args.length) die("cần đường dẫn videos/<slug> hoặc --all");
-const dirs = args[0] === "--all"
+const withDrive = args.includes("--drive") || process.env.AUTO_UPLOAD_DRIVE === "1";
+const cleanArgs = args.filter((a) => a !== "--drive");
+if (!cleanArgs.length) die("cần đường dẫn videos/<slug> hoặc --all");
+const dirs = cleanArgs[0] === "--all"
   ? readdirSync(resolve("videos")).filter((d) => d !== "_pilot" && existsSync(join("videos", d, "youtube/seo.json"))).map((d) => resolve("videos", d))
-  : args.map((a) => resolve(a));
+  : cleanArgs.map((a) => resolve(a));
 let bad = 0;
-for (const d of dirs) bad += pack(d) ? 1 : 0;
+for (const d of dirs) {
+  const err = pack(d);
+  bad += err ? 1 : 0;
+  if (!err && withDrive) {
+    const uploadScript = join(HERE, "upload-drive.mjs");
+    const kitUpload = join(resolve("kit"), "upload-drive.mjs");
+    const scriptToRun = existsSync(uploadScript) ? uploadScript : (existsSync(kitUpload) ? kitUpload : null);
+    if (scriptToRun) {
+      execFileSync("node", [scriptToRun, d], { stdio: "inherit" });
+    }
+  }
+}
 if (bad) { console.error(`${bad} video còn lỗi — xem mục "Cần sửa" trong DANG-YOUTUBE.md`); process.exit(1); }

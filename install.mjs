@@ -15,7 +15,10 @@ const flag = (k) => args.includes("--" + k);
 const fwd = (p) => resolve(p).replace(/\\/g, "/");
 const MUSE = fwd(opt("muse-root", join(homedir(), "MuseStudio")));
 const VIENEU = fwd(opt("vieneu-dir", join(dirname(MUSE), "VieNeu-TTS")));
-const SKILLS = join(homedir(), ".claude", "skills");
+const SKILL_DIRS = [
+  join(homedir(), ".claude", "skills"),
+  join(homedir(), ".gemini", "config", "skills"),
+];
 const PY = WIN ? "python" : "python3";
 const venvPy = (d) => join(d, WIN ? ".venv/Scripts/python.exe" : ".venv/bin/python");
 const stamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 15);
@@ -43,12 +46,14 @@ for (const d of ["kit", "avatar"]) cpSync(join(HERE, "MuseStudio", d), join(MUSE
 for (const d of ["ideas", "videos", "kiem-hiep"]) mkdirSync(join(MUSE, d), { recursive: true });
 if (!existsSync(join(MUSE, "ideas/DA-LAM.md"))) copyFileSync(join(HERE, "MuseStudio/ideas/DA-LAM.md"), join(MUSE, "ideas/DA-LAM.md"));
 
-step(`Cài skill vào ${SKILLS}`);
-mkdirSync(SKILLS, { recursive: true });
-for (const s of ["video-teo", "teo-kiem-hiep"]) {
-  const dst = join(SKILLS, s);
-  if (existsSync(dst)) { renameSync(dst, `${dst}.bak-${stamp}`); console.log(`  bản cũ -> ${s}.bak-${stamp}`); }
-  cpSync(join(HERE, "skills", s), dst, { recursive: true });
+for (const skillsRoot of SKILL_DIRS) {
+  step(`Cài skill vào ${skillsRoot}`);
+  mkdirSync(skillsRoot, { recursive: true });
+  for (const s of ["video-teo", "teo-kiem-hiep"]) {
+    const dst = join(skillsRoot, s);
+    if (existsSync(dst)) { renameSync(dst, `${dst}.bak-${stamp}`); console.log(`  bản cũ -> ${s}.bak-${stamp}`); }
+    cpSync(join(HERE, "skills", s), dst, { recursive: true });
+  }
 }
 
 if (!flag("skip-vieneu")) {
@@ -87,7 +92,8 @@ step("Điền đường dẫn vào skill + kit");
 const TEXT = new Set([".md", ".mjs", ".js", ".py", ".json", ".txt", ".sh"]);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 let n = 0;
-for (const root of [join(SKILLS, "video-teo"), join(SKILLS, "teo-kiem-hiep"), join(MUSE, "kit"), join(MUSE, "avatar")])
+const skillRoots = SKILL_DIRS.flatMap((dir) => [join(dir, "video-teo"), join(dir, "teo-kiem-hiep")]).filter(existsSync);
+for (const root of [...skillRoots, join(MUSE, "kit"), join(MUSE, "avatar")])
   for (const f of walk(root)) {
     if (!TEXT.has(extname(f))) continue;
     const s = readFileSync(f, "utf8");

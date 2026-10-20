@@ -247,8 +247,9 @@ Yêu cầu: > 20 phút, có cả stream video lẫn audio. Xem lại `thumbnail.
    ```
 2. Chạy từ `__MUSE_ROOT__`:
    ```bash
-   node <SKILL_DIR>/scripts/youtube-pack.mjs videos/<slug>      # hoặc --all cho mọi video có seo.json
+   node <SKILL_DIR>/scripts/youtube-pack.mjs videos/<slug> [--drive]     # hoặc --all cho mọi video có seo.json
    ```
+   - Thêm cờ `--drive` (hoặc đặt biến môi trường `AUTO_UPLOAD_DRIVE=1`) để tự động sao chép gói `youtube/` vào Google Drive (qua Google Drive Desktop hoặc rclone) ngay khi đóng gói xong thành công.
 3. Script tạo trong `youtube/`, mọi thứ chủ kênh cần để đăng:
    - `<slug>.mp4`: hardlink tới `renders/final.mp4` (không tốn thêm ổ đĩa).
    - `thumbnail.png`: PNG 1280×720 < 2 MB (khác chuẩn thì ffmpeg đổi lại).

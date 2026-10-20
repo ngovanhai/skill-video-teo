@@ -4,8 +4,11 @@
 // Đầu ra: <slug>.mp4 (hardlink), thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, DANG-YOUTUBE.md
 // Không dùng ffmpeg: thumbnail chụp bằng hyperframes snapshot; thời lượng lấy từ work/timeline.json.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, linkSync, rmSync, statSync, readdirSync } from "fs";
-import { execSync } from "child_process";
-import { join, resolve, basename } from "path";
+import { execSync, spawnSync } from "child_process";
+import { join, resolve, basename, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 import { loadLibrary } from "../engine/library.mjs";
 import { HISTORY, readHistory } from "./plan.mjs";
 import { storyOf, MIN_TOTAL } from "./story-check.mjs";
@@ -120,4 +123,14 @@ if (!args.includes("--no-history")) {
   writeFileSync(HISTORY, JSON.stringify(hist, null, 1));
 }
 console.log(`${problems.length ? "⚠" : "ok"} ${slug}: ${titles[0]} · ${ts(dur)} · tags ${used}/500 · history ${args.includes("--no-history") ? "bỏ qua" : "đã ghi"}${problems.length ? "\n   " + problems.join("\n   ") : ""}`);
+
+if (!problems.length && (args.includes("--drive") || process.env.AUTO_UPLOAD_DRIVE === "1")) {
+  const uploadScript = join(HERE, "upload-drive.mjs");
+  const kitUpload = join(resolve("..", "kit"), "upload-drive.mjs");
+  const scriptToRun = existsSync(uploadScript) ? uploadScript : (existsSync(kitUpload) ? kitUpload : null);
+  if (scriptToRun) {
+    spawnSync("node", [scriptToRun, dir], { stdio: "inherit" });
+  }
+}
+
 if (problems.length) process.exit(1);
