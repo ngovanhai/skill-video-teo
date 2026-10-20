@@ -18,6 +18,8 @@ const VIENEU = fwd(opt("vieneu-dir", join(dirname(MUSE), "VieNeu-TTS")));
 const SKILL_DIRS = [
   join(homedir(), ".claude", "skills"),
   join(homedir(), ".gemini", "config", "skills"),
+  join(homedir(), ".config", "opencode", "skills"),
+  join(homedir(), ".agents", "skills"),
 ];
 const PY = WIN ? "python" : "python3";
 const venvPy = (d) => join(d, WIN ? ".venv/Scripts/python.exe" : ".venv/bin/python");
@@ -115,4 +117,29 @@ else {
 
 step("Kiểm tra");
 run("node", [join(MUSE, "kit/fx-list.mjs")], { stdio: ["ignore", "ignore", "inherit"] });
-console.log(`\nXONG. Mở terminal MỚI, cd "${MUSE}", chạy 'claude' rồi gõ /video-teo hoặc /teo-kiem-hiep.`);
+const opencodeCmds = join(homedir(), ".config", "opencode", "commands");
+if (existsSync(dirname(opencodeCmds))) {
+  mkdirSync(opencodeCmds, { recursive: true });
+  writeFileSync(join(opencodeCmds, "video-teo.md"), `---
+description: Sản xuất video YouTube hoạt hình 2D tiếng Việt dài >20 phút do Tèo dẫn (| Tèo Kể)
+---
+
+Sản xuất video Tèo theo yêu cầu sau:
+
+$ARGUMENTS
+
+Thực hiện theo đúng quy trình và nguyên tắc trong skill \`video-teo\` tại kit \`${MUSE}/kit\`.
+`);
+  writeFileSync(join(opencodeCmds, "teo-kiem-hiep.md"), `---
+description: Sản xuất video hoạt hình 2D dài (≥20 phút) về kiếm hiệp Kim Dung, Cổ Long... do Tèo dẫn
+---
+
+Sản xuất video Tèo Kiếm Hiệp theo yêu cầu sau:
+
+$ARGUMENTS
+
+Thực hiện theo đúng quy trình và nguyên tắc trong skill \`teo-kiem-hiep\` tại \`${MUSE}\`.
+`);
+}
+
+console.log(`\nXONG. Mở terminal MỚI, cd "${MUSE}", chạy Claude, Antigravity hoặc OpenCode rồi gõ /video-teo hoặc /teo-kiem-hiep.`);
