@@ -1,15 +1,15 @@
 // Giọng đọc Tèo (VieNeu "Lóng", giống kênh Tèo Kể) cho một tập: <dir>/tap.json → <dir>/voice/*.wav + <dir>/voice/voice.json
 //   node <SKILL>/scripts/voice.mjs <dir> [--voice Lóng] [--dry]
-// Đọc mọi beat `say` (lời trong bong bóng) và mọi beat có `vo` (lời kể của Tèo, không hiện bong bóng).
+// Đọc mọi beat `say` (lời trong bong bóng), mọi beat có `vo` (lời kể của Tèo, không hiện bong bóng) và mọi `card` (không có vo thì đọc chữ trên thẻ).
 // Có cache: dòng nào chưa đổi chữ thì không đọc lại. Sau đó chạy build.mjs, build tự lấy độ dài thật của giọng.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, openSync, readSync, closeSync } from "fs";
 import { join, resolve } from "path";
 import { spawnSync } from "child_process";
-import { spoken, keyOf, DEFAULT_VOICE } from "../engine/voice.mjs";
+import { spoken, keyOf, voOf, DEFAULT_VOICE } from "../engine/voice.mjs";
 
-const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
-const VIENEU = process.env.VIENEU_DIR || "__VIENEU_DIR__";
-const VIENEU_PY = join(VIENEU, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
+const KIT = "E:/tool/MuseStudio/kit";
+const VIENEU = "E:/tool/VieNeu-TTS";
+const VIENEU_PY = join(VIENEU, ".venv/Scripts/python.exe");
 const argv = process.argv.slice(2);
 const dir = resolve(argv.find((a) => !a.startsWith("--")) || die("thiếu <dir>"));
 const opt = (k, d) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : d; };
@@ -20,7 +20,7 @@ const voice = opt("voice", tap.voice || DEFAULT_VOICE);
 
 const lines = [], seen = new Set(), warns = [];
 tap.scenes.forEach((sc, i) => (sc.beats || []).forEach((b, j) => {
-  for (const text of [b.do === "say" ? b.text : null, b.vo].filter(Boolean)) {
+  for (const text of [b.do === "say" ? b.text : null, voOf(b)].filter(Boolean)) {
     const t = spoken(text), id = keyOf(voice, text);
     if (!t) continue;
     const words = t.split(" ").length;

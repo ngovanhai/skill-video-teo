@@ -5,15 +5,25 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, readd
 import { join, resolve, basename } from "path";
 import { pathToFileURL } from "url";
 import { teo, npc, PRESETS, HATS, WEAPONS } from "../engine/rig.mjs";
-import { SETS, GROUND } from "../engine/sets.mjs";
+import { SETS, GROUND, WEATHER, STAGES } from "../engine/sets.mjs";
+import { execFileSync } from "child_process";
 import { loadLibrary, SKILL } from "../engine/library.mjs";
 import { makePlan, printPlan } from "./plan.mjs";
 import { PLANNED } from "../engine/slots.mjs";
-import { loadVoice } from "../engine/voice.mjs";
+import { loadVoice, voOf } from "../engine/voice.mjs";
+import { printSlow } from "../engine/slow.mjs";
 
-const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
+const KIT = "E:/tool/MuseStudio/kit";
 const SFX_LEN = { chime: 2.5, click: 0.37, error: 1.62, "glitch-1": 2.64, "impact-bass-1": 2.12, "impact-bass-2": 2.59, pop: 0.72, riser: 10.03, sparkle: 1.8, "whoosh-cinematic": 5.54, "whoosh-short": 0.57, whoosh: 0.57 };
 const BGM = { file: "playful-pizzicato.mp3", len: 67 };
+// mức nhạc nền theo cảnh (scene.music); "on" = như cũ
+const MUSIC = { on: 1, low: 0.4, off: 0, up: 1.7 };
+// kiểu bong bóng thoại cả tập (tap.bubble); "tron" = như cũ
+const BUBBLE = {
+  giay: { normal: "background:#F6EBD0;border:5px solid #5A3B1C;border-radius:8px", think: "background:#F6EBD0;border:5px dashed #5A3B1C;border-radius:8px", color: "#3B2410", tail: "#5A3B1C" },
+  muc: { normal: "background:#141414;border:5px solid #F3E6C8;border-radius:6px", think: "background:#141414;border:5px dashed #F3E6C8;border-radius:30px", color: "#F7F1E3", tail: "#F3E6C8" },
+  vuong: { normal: "background:#fff;border:7px solid #111;border-radius:0", think: "background:#fff;border:6px dotted #111;border-radius:0", color: "#111", tail: "#111" },
+};
 // GSAP: có bản trong engine/vendor thì chép vào tập (render không cần mạng), không thì dùng CDN
 const GSAP_CDN = "https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js";
 const GSAP_LOCAL = join(SKILL, "engine/vendor/gsap.min.js");
@@ -45,6 +55,8 @@ const HEAD = { teo: 0.24, npc: 0.33 };
 // ---------------------------------------------------------------- built-in beats (không phải "hiệu ứng" xoay vòng)
 const BUILTIN = {
   wait: (ctx, b) => ({ dur: b.dur ?? 0.6 }),
+  // âm thanh điểm xuyết đặt tay: {"do":"sfx","name":"chime","vol":0.4,"dur":1}
+  sfx(ctx, b, t) { if (!SFX_LEN[b.name]) die(`${ctx.curKey}: sfx "${b.name}" không có (có: ${Object.keys(SFX_LEN).join(", ")})`); ctx.sfx(b.name, t, b.vol ?? 0.4, b.len); return { dur: b.dur ?? 0.1 }; },
   pose(ctx, b, t) {
     const a = ctx.actor(b.who);
     ctx.js(`POSE("${a.p}", "${b.pose || "rest"}", ${f2(t)}, ${b.dur ?? 0.3});${b.brow ? ` BROW("${a.p}", ${f2(t)}, ${b.brow === "angry"});` : ""}`);
@@ -70,17 +82,21 @@ const BUILTIN = {
     if (top < 30) { top = Math.max(30, a.top); left = a.cx > 960 ? a.x - bw - 30 : a.x + a.w + 30; left = Math.max(30, Math.min(1890 - bw, left)); tail = a.cx > 960 ? "right" : "left"; }
     const tx = Math.max(40, Math.min(bw - 60, a.cx - left - 20));
     const u = ctx.uid("say");
-    const style = {
+    let style = {
       normal: "background:#fff;border:6px solid #111;border-radius:40px",
       shout: "background:#FFE45C;border:7px solid #111;border-radius:16px",
       whisper: "background:rgba(255,255,255,.92);border:5px dashed #555;border-radius:40px;font-style:italic",
       think: "background:#fff;border:6px solid #111;border-radius:60px",
     }[tone];
+    const BB = BUBBLE[ctx.bubble];
+    const bbOn = BB && (tone === "normal" || tone === "think");
+    if (bbOn) style = BB[tone];
+    const ink = bbOn ? BB.color : "#111", tc = bbOn ? BB.tail : "#111";
     const tailSvg = tone === "think"
       ? `<i style="position:absolute;left:${f2(tx)}px;top:${f2(bh + 4)}px;width:26px;height:26px;border-radius:50%;background:#fff;border:5px solid #111"></i><i style="position:absolute;left:${f2(tx + 14)}px;top:${f2(bh + 36)}px;width:14px;height:14px;border-radius:50%;background:#fff;border:4px solid #111"></i>`
-      : tail === "down" ? `<i style="position:absolute;left:${f2(tx)}px;top:${f2(bh - 6)}px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:40px solid #111"></i>`
-      : `<i style="position:absolute;${tail === "left" ? "left:-36px" : "right:-36px"};top:40px;width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;${tail === "left" ? "border-right" : "border-left"}:40px solid #111"></i>`;
-    ctx.add("fx", `<div id="${u}" style="position:absolute;left:${f2(left)}px;top:${f2(top)}px;width:${f2(bw)}px;height:${f2(bh)}px;opacity:0;${style};box-shadow:8px 8px 0 rgba(0,0,0,.3);padding:20px 36px 0;font:700 ${fs}px/1.22 'Space Grotesk';color:#111;text-align:center">${esc(text)}${tailSvg}</div>`);
+      : tail === "down" ? `<i style="position:absolute;left:${f2(tx)}px;top:${f2(bh - 6)}px;width:0;height:0;border-left:20px solid transparent;border-right:20px solid transparent;border-top:40px solid ${tc}"></i>`
+      : `<i style="position:absolute;${tail === "left" ? "left:-36px" : "right:-36px"};top:40px;width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;${tail === "left" ? "border-right" : "border-left"}:40px solid ${tc}"></i>`;
+    ctx.add("fx", `<div id="${u}" style="position:absolute;left:${f2(left)}px;top:${f2(top)}px;width:${f2(bw)}px;height:${f2(bh)}px;opacity:0;${style};box-shadow:8px 8px 0 rgba(0,0,0,.3);padding:20px 36px 0;font:700 ${fs}px/1.22 'Space Grotesk';color:${ink};text-align:center">${esc(text)}${tailSvg}</div>`);
     ctx.js(`POP("#${u}", ${f2(t)}); HIDE("#${u}", ${f2(t + dur - 0.2)}, 0.15);`);
     if (tone !== "think") ctx.js(`FLAP("${a.p}", ${f2(t + 0.1)}, ${f2(v ? t + 0.08 + v.dur : t + Math.min(dur - 0.3, 0.4 + n * 0.05))});`);
     if (tone === "shout") { ctx.js(`BROW("${a.p}", ${f2(t)}, true); SHAKE("#${u}", ${f2(t + 0.3)}, 0.3, 6);`); ctx.sfx("pop", t, 0.35); }
@@ -168,18 +184,20 @@ function runFx(ctx, key, cat, payload, t) {
 }
 
 function sceneClip(ctx, start, dur, track, z, extraBg = "") {
-  const L = ctx.L, S = ctx.S;
+  const L = ctx.L, S = ctx.S, st = ctx.stage || {};
+  const flt = (k) => (st[k] ? ` style="filter:${st[k]}"` : "");
   return `<div id="${S}" class="clip fill" data-start="${f2(start)}" data-duration="${f2(dur)}" data-track-index="${track}" style="z-index:${z};overflow:hidden">
-<div id="${S}-shake" class="fill"><div id="${S}-cam" class="fill">
-<div id="${S}-bg" class="fill">${extraBg}${L.bg.join("\n")}</div>
+<div id="${S}-shake" class="fill"><div id="${S}-cam" class="fill"${flt("cam")}>
+<div id="${S}-bg" class="fill"${flt("bg")}>${extraBg}${L.bg.join("\n")}</div>
 <div id="${S}-behind" class="fill">${L.behind.join("\n")}</div>
-<div id="${S}-act" class="fill">${L.act.join("\n")}</div>
+<div id="${S}-act" class="fill"${flt("act")}>${L.act.join("\n")}</div>
 <div id="${S}-fx" class="fill">${L.fx.join("\n")}</div>
 </div><div id="${S}-hud" class="fill">${L.hud.join("\n")}</div></div></div>`;
 }
 
 function buildScene(base, sc, i, t0) {
   const S = `s${i}`, ctx = makeCtx(base, S, t0);
+  if (sc.music && !(sc.music in MUSIC)) die(`scenes[${i}].music "${sc.music}" không có (có: ${Object.keys(MUSIC).join(", ")})`);
   if (!SETS[sc.set]) die(`scenes[${i}].set "${sc.set}" không có (có: ${Object.keys(SETS).join(", ")})`);
   // diễn viên
   for (const a of sc.actors || []) {
@@ -214,15 +232,17 @@ function buildScene(base, sc, i, t0) {
       ctx.lastAttacker = b.who;
       if (sc.beats[j + 1]?.do !== "react") console.warn(`build: CẢNH BÁO ${key}: attack không có react ngay sau → nạn nhân đứng im, không ngã`);
     }
-    if (BUILTIN[b.do]) r = BUILTIN[b.do](ctx, b, start);
-    else if (String(b.do).startsWith("local:")) r = runFx(ctx, key, "local", b, start);
-    else if (PLANNED.includes(b.do)) r = runFx(ctx, key, b.do, b, start);
+    // lời đọc của beat (vo; card không có vo thì đọc chữ trên thẻ). Card giữ trên màn hình đủ lâu theo giọng (voDur).
+    const vo = voOf(b), v = vo && ctx.voice ? ctx.voice(vo) : null;
+    const bx = v && b.do === "card" ? { ...b, voDur: v.dur } : b;
+    if (BUILTIN[b.do]) r = BUILTIN[b.do](ctx, bx, start);
+    else if (String(b.do).startsWith("local:")) r = runFx(ctx, key, "local", bx, start);
+    else if (PLANNED.includes(b.do)) r = runFx(ctx, key, b.do, bx, start);
     else die(`${key}: beat "${b.do}" không có (say|wait|pose|move|face|emote|${PLANNED.join("|")}|local:<tên>)`);
     r ||= { dur: 1 };
-    if (b.vo && ctx.voice) {
-      const v = ctx.voice(b.vo);
+    if (vo && ctx.voice) {
       if (v) { base.voiceList.push({ file: v.file, t: start + 0.1, dur: v.dur }); r = { ...r, dur: Math.max(r.dur || 0, v.dur + 0.4) }; }
-      else base.voiceMiss.push(b.vo);
+      else base.voiceMiss.push(vo);
     }
     lastHit = b.do === "attack" ? r.hit ?? start + r.dur * 0.6 : null;
     prevStart = start;
@@ -235,6 +255,16 @@ function buildScene(base, sc, i, t0) {
   const set = SETS[sc.set](ctx, { time: sc.time || undefined });
   ctx.L.bg.unshift(set.html);
   ctx.js(set.js);
+  if (sc.weather) {
+    const w = (WEATHER[sc.weather] || die(`scenes[${i}].weather "${sc.weather}" không có (có: ${Object.keys(WEATHER).join(", ")})`))(ctx);
+    ctx.L.fx.unshift(w.html);
+    ctx.js(w.js);
+  }
+  if (sc.stage) {
+    const st = (STAGES[sc.stage] || die(`scenes[${i}].stage "${sc.stage}" không có (có: ${Object.keys(STAGES).join(", ")})`))(ctx);
+    ctx.stage = st;
+    if (st.hud) ctx.L.hud.unshift(st.hud);
+  }
   runFx(ctx, `${S}.cam`, "camera", {}, t0);
   for (const s of Object.values(ctx.actors)) {
     const per = 1.1 + ctx.rnd() * 0.6;
@@ -284,11 +314,22 @@ ${code}
 </body></html>`;
 }
 
-function copyAssets(dir) {
+// tap.bgm: tên file trong <dir>/, <dir>/assets/bgm/ hoặc kit/bgm/ (không đặt = nhạc mặc định)
+function resolveBgm(dir, tap) {
+  if (!tap.bgm) return { ...BGM, src: join(KIT, "bgm", BGM.file) };
+  const src = [join(dir, tap.bgm), join(dir, "assets/bgm", tap.bgm), join(KIT, "bgm", tap.bgm)].find((p) => existsSync(p));
+  if (!src) die(`bgm "${tap.bgm}" không thấy trong ${dir}, ${dir}/assets/bgm hay kit/bgm (có: ${readdirSync(join(KIT, "bgm")).join(", ")})`);
+  let len;
+  try { len = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", src], { encoding: "utf8" })); } catch { die(`bgm: ffprobe không đọc được ${src}`); }
+  if (!(len > 1)) die(`bgm: ${src} dài ${len}s?`);
+  return { file: basename(src), src, len: Math.floor(len * 100) / 100 };
+}
+
+function copyAssets(dir, bgm = { ...BGM, src: join(KIT, "bgm", BGM.file) }) {
   for (const sub of ["fonts", "sfx", "bgm"]) mkdirSync(join(dir, "assets", sub), { recursive: true });
   for (const f of ["Inter-Variable.ttf", "Space_Grotesk-Variable.ttf"]) copyFileSync(join(KIT, "fonts", f), join(dir, "assets/fonts", f));
   for (const n of Object.keys(SFX_LEN)) copyFileSync(join(KIT, "sfx", `lib-${n}.mp3`), join(dir, "assets/sfx", `lib-${n}.mp3`));
-  copyFileSync(join(KIT, "bgm", BGM.file), join(dir, "assets/bgm", BGM.file));
+  if (resolve(bgm.src) !== resolve(join(dir, "assets/bgm", bgm.file))) copyFileSync(bgm.src, join(dir, "assets/bgm", bgm.file));
   copyGsap(dir);
   const slug = basename(dir);
   if (!existsSync(join(dir, "package.json"))) writeFileSync(join(dir, "package.json"), JSON.stringify({ name: slug, private: true, type: "module" }, null, 2));
@@ -300,7 +341,7 @@ function voiceTags(list, total) {
   return list.filter((v) => v.t < total - 0.05).map((v, i) => `<audio id="vo${i}" src="${v.file}" data-start="${f2(v.t)}" data-duration="${f2(Math.min(v.dur, total - v.t))}" data-track-index="${14 + (i % 2)}" data-volume="1"></audio>`).join("\n");
 }
 
-function audioTags(sfx, total, bgmVol) {
+function audioTags(sfx, total, bgmVol, bgm = BGM, segs = null) {
   const tracks = []; // greedy: không cho 2 âm thanh chồng nhau trên cùng một track
   const out = [];
   sfx.filter((s) => s.t < total - 0.05).sort((a, b) => a.t - b.t).forEach((s, i) => {
@@ -311,7 +352,19 @@ function audioTags(sfx, total, bgmVol) {
     tracks[k] = s.t + d + 0.01;
     out.push(`<audio id="sx${i}" src="assets/sfx/lib-${s.name}.mp3" data-start="${f2(Math.max(0, s.t))}" data-duration="${f2(d)}" data-track-index="${20 + k}" data-volume="${f2(s.vol)}"></audio>`);
   });
-  for (let k = 0, t = 0; t < total - 0.1; k++, t += BGM.len) out.push(`<audio id="bgm${k}" src="assets/bgm/${BGM.file}" data-start="${f2(t)}" data-duration="${f2(Math.min(BGM.len, total - t))}" data-track-index="${12 + (k % 2)}" data-volume="${bgmVol}"></audio>`);
+  if (!segs) for (let k = 0, t = 0; t < total - 0.1; k++, t += bgm.len) out.push(`<audio id="bgm${k}" src="assets/bgm/${bgm.file}" data-start="${f2(t)}" data-duration="${f2(Math.min(bgm.len, total - t))}" data-track-index="${12 + (k % 2)}" data-volume="${bgmVol}"></audio>`);
+  else {
+    // nhạc liền mạch theo đồng hồ tổng (vị trí trong bài = t % len), chỉ đổi âm lượng theo cảnh; "off" = im hẳn
+    let k = 0;
+    for (const g of segs) {
+      const vol = bgmVol * MUSIC[g.level];
+      for (let t = g.t0; vol > 0 && t < Math.min(g.t1, total) - 0.05; ) {
+        const p = t % bgm.len, d = Math.min(bgm.len - p, g.t1 - t, total - t);
+        out.push(`<audio id="bgm${k}" src="assets/bgm/${bgm.file}" data-start="${f2(t)}" data-duration="${f2(d)}"${p > 0.01 ? ` data-media-start="${f2(p)}"` : ""} data-track-index="${12 + (k % 2)}" data-volume="${f2(vol)}"></audio>`);
+        k++; t += d;
+      }
+    }
+  }
   return out.join("\n");
 }
 
@@ -321,27 +374,35 @@ function buildThumb(dir, tap, cast, theme, seed) {
   mkdirSync(td, { recursive: true });
   const rnd = mulberry(seed + 99);
   // thumb.vs: [idTrái, idPhải] → ảnh đối đầu hai nhân vật + huy hiệu VS; không có thì Tèo + đối thủ
-  const vs = tap.thumb?.vs;
+  // thumb.layout: "vs" (mặc định, đối đầu) | "solo" (1 nhân vật thumb.who to bên phải, chữ trái) | "center" (nhân vật giữa, chữ trên căn giữa)
+  const lay = tap.thumb?.layout || "vs", one = lay !== "vs";
+  if (!["vs", "solo", "center"].includes(lay)) die(`thumb.layout "${lay}" không có (vs | solo | center)`);
+  if (tap.thumb?.who && !cast[tap.thumb.who]) die(`thumb.who "${tap.thumb.who}" không có trong cast`);
+  if (tap.thumb?.set && !SETS[tap.thumb.set]) die(`thumb.set "${tap.thumb.set}" không có (có: ${Object.keys(SETS).join(", ")})`);
+  const vs = one ? null : tap.thumb?.vs;
   if (vs && (vs.length !== 2 || !vs.every((id) => cast[id]))) die(`thumb.vs phải là 2 id có trong cast (đang là ${JSON.stringify(vs)})`);
   const sc = (vs && tap.scenes.find((s) => vs.every((id) => (s.actors || []).some((a) => a.id === id)))) || tap.scenes.find((s) => (s.actors || []).some((a) => cast[a.id]?.side === "foe")) || tap.scenes[0];
   const ctx = { S: "th", t0: 0, t1: 1, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)] };
-  const set = SETS[sc.set](ctx, { time: sc.time || undefined });
-  const hero = vs ? cast[vs[0]] : Object.values(cast).find((c) => c.kind === "teo") || Object.values(cast)[0];
-  const foe = vs ? cast[vs[1]] : (sc.actors || []).map((a) => cast[a.id]).find((c) => c && c.side === "foe") || Object.values(cast).find((c) => c.side === "foe");
+  const set = SETS[tap.thumb?.set || sc.set](ctx, { time: tap.thumb?.time || sc.time || undefined });
+  const hero = one && tap.thumb?.who ? cast[tap.thumb.who] : vs ? cast[vs[0]] : Object.values(cast).find((c) => c.kind === "teo") || Object.values(cast)[0];
+  const foe = one ? null : vs ? cast[vs[1]] : (sc.actors || []).map((a) => cast[a.id]).find((c) => c && c.side === "foe") || Object.values(cast).find((c) => c.side === "foe");
   const RIG = { thH: hero.kind, thF: foe?.kind || "npc" };
   const hook = tap.thumb?.text || tap.hook || tap.title;
   const heroW = vs ? (hero.kind === "teo" ? 470 : 430) : hero.kind === "teo" ? 560 : 460, foeW = foe ? (vs ? (foe.kind === "teo" ? 470 : 430) : foe.kind === "teo" ? 470 : 400) : 0;
-  const heroX = vs ? 400 : 640, foeX = vs ? 1520 : 1480, glow = vs ? "50% 55%" : "34% 62%";
+  let heroX = vs ? 400 : 640, foeX = vs ? 1520 : 1480, glow = vs ? "50% 55%" : "34% 62%", heroW2 = heroW;
+  if (lay === "solo") { heroX = 1490; heroW2 = hero.kind === "teo" ? 640 : 560; glow = "76% 60%"; }
+  if (lay === "center") { heroX = 960; heroW2 = hero.kind === "teo" ? 600 : 520; glow = "50% 66%"; }
+  const txt = lay === "solo" ? `left:36px;top:150px;width:700px;font:700 ${[...hook].length > 14 ? 96 : 124}px/1.02 'Space Grotesk'` : lay === "center" ? `left:40px;top:96px;width:1200px;text-align:center;font:700 ${[...hook].length > 18 ? 84 : 104}px/1.0 'Space Grotesk'` : `left:36px;top:26px;width:1000px;font:700 ${[...hook].length > 14 ? 92 : 118}px/1.0 'Space Grotesk'`;
   const body = `<div id="th" class="clip" data-start="0" data-duration="1" data-track-index="0" style="position:absolute;left:0;top:0;width:1280px;height:720px;overflow:hidden">
 <div style="position:absolute;left:0;top:0;width:1920px;height:1080px;transform:scale(.6667);transform-origin:0 0">${set.html}
 <div class="fill" style="background:radial-gradient(circle at ${glow}, ${theme.qi}cc 0%, ${theme.qi}55 22%, transparent 45%), linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,0) 40%)"></div>
 <div style="position:absolute;left:-540px;top:-960px;width:3000px;height:3000px;background:repeating-conic-gradient(from 0deg at ${glow}, rgba(255,255,255,.18) 0deg 1.5deg, transparent 1.5deg 9deg)"></div>
 ${foe ? `<div style="position:absolute;left:${foeX - foeW / 2}px;top:${1080 + 30 - rigH(foe.kind, foeW)}px"><div style="transform:scaleX(-1)">${rigSvg(foe.kind, "thF", foeW, foe.look)}</div></div>` : ""}
-<div style="position:absolute;left:${heroX - heroW / 2}px;top:${1080 + (vs ? 30 : 60) - rigH(hero.kind, heroW)}px;filter:drop-shadow(0 0 30px ${theme.qi})">${rigSvg(hero.kind, "thH", heroW, hero.look)}</div>
+<div style="position:absolute;left:${heroX - heroW2 / 2}px;top:${1080 + (vs ? 30 : 60) - rigH(hero.kind, heroW2)}px;filter:drop-shadow(0 0 30px ${theme.qi})">${rigSvg(hero.kind, "thH", heroW2, hero.look)}</div>
 </div>
-<div style="position:absolute;left:36px;top:26px;width:1000px;font:700 ${[...hook].length > 14 ? 92 : 118}px/1.0 'Space Grotesk';color:${theme.title === "#FFFFFF" ? "#FFE45C" : theme.title};-webkit-text-stroke:12px #111;paint-order:stroke fill;text-shadow:8px 8px 0 #111;text-transform:uppercase">${esc(hook)}</div>
-<div style="position:absolute;right:30px;top:30px;background:#C8372D;color:#F6EFE0;border:6px solid #F6EFE0;border-radius:14px;padding:10px 20px 4px;font:700 46px 'Space Grotesk';box-shadow:6px 6px 0 #111">TẬP ${esc(tap.ep ?? 1)}</div>
-<div style="position:absolute;right:30px;${vs ? "top:112px" : "bottom:26px"};background:#FFD23F;color:#111;border:5px solid #111;border-radius:40px;padding:8px 22px 4px;font:700 34px 'Space Grotesk'">Tèo Kể · Kiếm Hiệp</div>
+<div style="position:absolute;${txt};color:${theme.title === "#FFFFFF" ? "#FFE45C" : theme.title};-webkit-text-stroke:12px #111;paint-order:stroke fill;text-shadow:8px 8px 0 #111;text-transform:uppercase">${esc(hook)}</div>
+<div style="position:absolute;${lay === "center" ? "left:30px" : "right:30px"};top:${lay === "center" ? 600 : 30}px;background:#C8372D;color:#F6EFE0;border:6px solid #F6EFE0;border-radius:14px;padding:10px 20px 4px;font:700 46px 'Space Grotesk';box-shadow:6px 6px 0 #111">TẬP ${esc(tap.ep ?? 1)}</div>
+<div style="position:absolute;${lay === "vs" ? "right" : "left"}:30px;${vs ? "top:112px" : lay === "center" ? "top:24px" : "bottom:26px"};background:#FFD23F;color:#111;border:5px solid #111;border-radius:40px;padding:8px 22px 4px;font:700 34px 'Space Grotesk'">Tèo Kể · Kiếm Hiệp</div>
 ${vs ? `<div style="position:absolute;left:540px;top:330px;width:200px;height:200px;border-radius:50%;background:#C8372D;border:9px solid #FFE45C;box-shadow:0 0 0 7px #111,0 0 50px ${theme.qi};text-align:center;font:700 112px/182px 'Space Grotesk';color:#FFE45C;-webkit-text-stroke:7px #111;paint-order:stroke fill;transform:rotate(-8deg)">VS</div>
 ${[[hero, 267], [foe, 1013]].map(([c, x]) => `<div style="position:absolute;left:${x - 250}px;bottom:24px;width:500px;text-align:center"><span style="display:inline-block;background:#111;color:#FFD23F;font:700 46px 'Space Grotesk';padding:8px 24px 4px;border:5px solid #FFD23F;border-radius:10px;white-space:nowrap">${esc(c.name)}</span></div>`).join("")}` : ""}
 </div>`;
@@ -353,6 +414,15 @@ ${[[hero, 267], [foe, 1013]].map(([c, x]) => `<div style="position:absolute;left
   writeFileSync(join(td, "index.html"), page({ id: "thumb", w: 1280, h: 720, dur: 1, body, code, RIG, seed }));
   writeFileSync(join(td, "package.json"), JSON.stringify({ name: basename(dir) + "-thumb", private: true, type: "module" }, null, 2));
   writeFileSync(join(td, "hyperframes.json"), JSON.stringify({ $schema: "https://hyperframes.heygen.com/schema/hyperframes.json", paths: { blocks: "compositions", components: "compositions/components", assets: "assets" }, media: { autoProxy: true } }, null, 2));
+}
+
+// scenes[].music: on | low | up | off → đoạn nhạc [t0,t1,level]; opener/ender luôn "on". null = kiểu cũ (lặp nguyên bài)
+function musicSegs(tap, cuts, total) {
+  if (!tap.scenes.some((sc) => sc.music && sc.music !== "on")) return null;
+  const raw = [{ t0: 0, t1: cuts[0], level: "on" }, ...tap.scenes.map((sc, i) => ({ t0: cuts[i], t1: cuts[i + 1], level: sc.music || "on" })), { t0: cuts[cuts.length - 1], t1: total, level: "on" }];
+  const out = [];
+  for (const g of raw) { const last = out[out.length - 1]; if (last && last.level === g.level) last.t1 = g.t1; else out.push({ ...g }); }
+  return out;
 }
 
 // ---------------------------------------------------------------- main
@@ -371,6 +441,8 @@ export async function build(dir, opts = {}) {
     RIG: {}, code: [], over: [], sfxList: [], used: [], beatsLog: [], n: 0,
     voice: loadVoice(dir, tap.voice), voiceList: [], voiceMiss: [],
   };
+  if (tap.bubble) { if (!BUBBLE[tap.bubble]) die(`bubble "${tap.bubble}" không có (có: ${Object.keys(BUBBLE).join(", ")})`); base.bubble = tap.bubble; }
+  const bgm = resolveBgm(dir, tap);
   base.sfx = (name, t, vol = 0.4, dur) => base.sfxList.push({ name, t, vol, dur });
 
   const clips = [];
@@ -397,12 +469,13 @@ export async function build(dir, opts = {}) {
   const body = `${clips.join("\n")}
 <div id="T" class="clip fill" data-start="0" data-duration="${f2(total)}" data-track-index="${track++}" style="z-index:90;pointer-events:none">${base.over.join("\n")}</div>
 <div id="X" class="clip fill" data-start="0" data-duration="${f2(total)}" data-track-index="${track++}" style="z-index:99;pointer-events:none"><div id="X-flash" class="fill" style="background:#fff;opacity:0"></div><div id="X-black" class="fill" style="background:#000;opacity:0"></div></div>
-${audioTags(base.sfxList, total, tap.bgm_volume ?? (base.voice ? 0.06 : 0.1))}
+${audioTags(base.sfxList, total, tap.bgm_volume ?? (base.voice ? 0.06 : 0.1), bgm, musicSegs(tap, cuts, total))}
 ${voiceTags(base.voiceList, total)}`;
-  copyAssets(dir);
+  copyAssets(dir, bgm);
   writeFileSync(join(dir, "index.html"), page({ id: "main", w: 1920, h: 1080, dur: total, body, code: base.code.join("\n"), RIG: base.RIG, seed: plan.seed }));
   buildThumb(dir, tap, cast, theme, plan.seed);
   const timeline = { total, cuts, beats: base.beatsLog, used: base.used, theme: plan.theme,
+    ...(tap.bgm || tap.bubble || tap.scenes.some((x) => x.stage || x.weather || x.music) ? { look: { bgm: bgm.file, bubble: tap.bubble || null, scenes: tap.scenes.map((x) => [x.set, x.time || "", x.stage || "", x.weather || "", x.music || "on"].join("|")) } } : {}),
     voice: base.voice ? { name: base.voice.voice, lines: base.voiceList.length, sec: Math.round(base.voiceList.reduce((x, v) => x + v.dur, 0)), missing: base.voiceMiss.length } : null };
   mkdirSync(join(dir, "work"), { recursive: true });
   writeFileSync(join(dir, "work/timeline.json"), JSON.stringify(timeline, null, 1));
@@ -413,6 +486,7 @@ ${voiceTags(base.voiceList, total)}`;
     else console.warn("build: CẢNH BÁO chưa có giọng đọc — chạy scripts/voice.mjs <dir> trước rồi build lại");
     if (base.voiceMiss.length) console.warn(`build: CẢNH BÁO ${base.voiceMiss.length} câu chưa có giọng (sửa chữ sau khi chạy voice.mjs) — chạy lại voice.mjs: ${base.voiceMiss.slice(0, 3).map((x) => JSON.stringify(x)).join(", ")}`);
     if (total < 1200) console.warn(`build: CẢNH BÁO tổng ${(total / 60).toFixed(1)} phút < 20 phút — pack.mjs sẽ từ chối (examples/tap-01 là mẫu ngắn, được phép)`);
+    if (printSlow(readFileSync(join(dir, "index.html"), "utf8"), (m) => console.warn("build: " + m))) console.warn("build: CẢNH BÁO — có mẫu làm hyperframes bỏ chụp nhanh, render chậm gấp đôi. Sửa fx/*.mjs của tập theo SKILL.md \"Tốc độ render\"");
     if (!local.length) console.warn("build: CẢNH BÁO — tập này chưa có hiệu ứng tự chế (fx/*.mjs + beat \"local:<tên>\" hoặc \"fx\":\"local:<tên>\"). pack.mjs sẽ từ chối đóng gói.");
   }
   return { total, plan, timeline };

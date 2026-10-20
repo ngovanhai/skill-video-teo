@@ -4,15 +4,16 @@ description: >
   Làm video hoạt hình 2D DÀI (mỗi video ≥20 phút, tiếng Việt) về KIẾM HIỆP TRUNG QUỐC KINH ĐIỂN: tác giả nổi tiếng (Kim Dung, Cổ Long, Lương Vũ Sinh…),
   tác phẩm kinh điển, so sánh nhân vật ("ai mạnh hơn"), so sánh võ công, môn phái, thần binh. Tèo làm MC/trọng tài, nhân vật dựng chibi
   đấu minh hoạ + thẻ thông tin + bảng chỉ số (HyperFrames + GSAP, không ffmpeg). Quy trình: TỰ RESEARCH chủ đề (web + kho chu-de.md,
-  dữ kiện ≥2 nguồn, chống trùng chủ đề) → tap.json + ≥1 hiệu ứng tự chế → build.mjs tự chọn hiệu ứng CHỐNG TRÙNG LẶP → snapshot soi
-  → render MP4 → thumbnail VS 1280×720 + gói youtube/. Dùng khi người dùng nói "Tèo kiếm hiệp", "tập kiếm hiệp mới",
+  dữ kiện ≥2 nguồn, chống trùng chủ đề) → chọn KHUNG DỰNG + vai Tèo + bối cảnh/stage/thời tiết/nhạc/bố cục khác 5 tập trước
+  → tap.json + ≥1 hiệu ứng tự chế → build.mjs tự chọn hiệu ứng CHỐNG TRÙNG LẶP → snapshot soi
+  → render MP4 → thumbnail 1280×720 (vs / solo / center) + gói youtube/. Dùng khi người dùng nói "Tèo kiếm hiệp", "tập kiếm hiệp mới",
   "video kiếm hiệp của Tèo", "Tèo so sánh võ công", "ai mạnh hơn", "so sánh nhân vật Kim Dung".
 ---
 
 # Tèo Kiếm Hiệp: video chủ đề kiếm hiệp kinh điển, chống trùng lặp
 
 `SKILL = thư mục chứa file này` · Engine: `SKILL/engine/` · Script: `SKILL/scripts/` · Lịch sử: `SKILL/data/history.json` · Kho chủ đề: `SKILL/data/chu-de.md`.
-Font, sfx và bgm lấy từ `__MUSE_ROOT__/kit` (chỉ đọc, build tự copy vào tập).
+Font, sfx và bgm lấy từ `E:\tool\MuseStudio\kit\assets` (chỉ đọc, build tự copy vào tập).
 
 Mỗi tập là một **chủ đề có thật** trong kiếm hiệp Trung Quốc, theo một trong 18 `format` (9 format chính dưới đây + 9 format mở rộng):
 
@@ -30,13 +31,15 @@ Mỗi tập là một **chủ đề có thật** trong kiếm hiệp Trung Quố
 
 Format mở rộng (chi tiết và kho chủ đề ở `chu-de.md` mục 1.9–1.17): `cuoc-doi` (cuộc đời một nhân vật), `su-that` (người thật, chuyện thật trong truyện), `neu-nhu` (what-if, cần `verdict`), `cap-doi` (tình yêu giang hồ), `su-do` (thầy trò), `phan-dien` (hồ sơ phản diện), `phim-vs-truyen` (phim khác nguyên tác: chỉ kể bằng lời, không dùng hình/nhạc phim), `dong-thoi-gian` (vũ trụ, dòng thời gian Kim Dung), `chieu-thuc` (giải nghĩa tên chiêu, tên võ công).
 
-Tèo là MC kiêm trọng tài: dẫn bằng bong bóng thoại, nhân vật kinh điển đấu minh hoạ bằng rig chibi, dữ kiện hiện trên `card`, điểm so sánh hiện trên `stat`. **Có giọng Tèo** (VieNeu "Lóng", giống kênh Tèo Kể): mọi `say` và mọi trường `vo` được đọc thành tiếng.
+Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo đổi theo từng tập** (`story.teo_role`, tự đặt theo khung của tập) Nhân vật kinh điển diễn minh hoạ bằng rig chibi, dữ kiện hiện trên `card`, điểm so sánh hiện trên `stat`. **Có giọng Tèo**: luôn là VieNeu "Lóng", giống kênh Tèo Kể. Vai chỉ đổi cách xưng hô và câu chữ, không đổi giọng. Mọi `say`, mọi trường `vo` và **mọi `card`** được đọc thành tiếng. Card nên có `vo` viết thành câu nói tự nhiên, phủ hết các dòng trên thẻ; không có `vo` thì Tèo đọc nguyên chữ trên thẻ (tiêu đề, dòng phụ, từng dòng).
+
+**Mỗi tập phải khác hẳn tập trước về hình thức, không chỉ khác chủ đề.** Cụ thể là khác về: cấu trúc (khung dựng, tự thiết kế từ kịch bản của tập), vai Tèo, câu mở và câu kết, bối cảnh, stage (cách dựng khung hình), thời tiết, nhạc nền và nhịp nhạc, kiểu bong bóng, vị trí Tèo, layout thumbnail. 9 tập đầu đều chung một khuôn: chào "Chào các bạn, lại là Tèo đây", Tèo đứng góc trái, thumbnail VS, nhạc phẳng, kết "Đăng ký kênh, hẹn tập sau nha!". Khuôn này giờ bị story-check chặn.
 
 ## Luật cứng
 
 - KHÔNG đăng gì lên mạng. KHÔNG gửi tin nhắn cho ai.
-- Chỉ sửa thư mục tập đang làm, `__MUSE_ROOT__/ideas/DA-LAM.md` và dấu `(tập N)` trong `SKILL/data/chu-de.md`. KHÔNG sửa `kit/`.
-- Không dùng `videos/_pilot` hay `khoi-nguyen-vu-tru-hy-lap` để thử nghiệm.
+- Chỉ sửa thư mục tập đang làm, `E:\tool\MuseStudio\ideas\DA-LAM.md` và dấu `(tập N)` trong `SKILL/data/chu-de.md`. KHÔNG sửa `kit/`.
+- Không dùng `videos\_pilot` hay `khoi-nguyen-vu-tru-hy-lap` để thử nghiệm.
 - Không tự sản xuất tập mới khi người dùng chưa yêu cầu.
 - Không chia chương, không nói "Chương X".
 - **Thời lượng: mỗi video dài ít nhất 20 phút** (tổng timeline ≥1200 s, nhắm 20–24 phút). story-check báo ✗ khi bản build ngắn hơn, build in cảnh báo, pack.mjs từ chối đóng gói.
@@ -74,10 +77,29 @@ Tèo là MC kiêm trọng tài: dẫn bằng bong bóng thoại, nhân vật kin
    - Đừng chép lại hiệu ứng của tập trước.
 4. Lịch sử chỉ được ghi khi `pack.mjs` chạy, tức là tập đã render xong. Build thử bao nhiêu lần cũng không làm bẩn lịch sử.
 5. Trước khi viết tập mới, chạy `node SKILL/scripts/fx-list.mjs` để xem nhóm nào đang bị dùng nhiều. Nên viết hiệu ứng local thuộc nhóm đó, hoặc thuộc nhóm còn ít lựa chọn.
+6. **Hình thức:** story-check (`lookCheck`) so "dấu vân tay hình thức" của tập với các tập trước. Tập cũ chưa có trường này thì nó đọc lại tap.json của tập đó.
+   - **✗ (phải sửa):**
+     - thiếu `story.frame` (name, analysis ≥25 chữ, axis, open, close, 6–8 segments) hoặc `story.teo_role`
+     - tên khung, trục sắp xếp hoặc dàn khung gần giống 1 trong 3 tập gần nhất; vai Tèo gần giống 1 trong 2 tập gần nhất
+     - dùng câu công thức cũ ("chào các bạn lại là Tèo đây", "đăng ký kênh hẹn tập sau nha"…)
+     - 3 câu mở hoặc 3 câu kết giống tập nào trong 5 tập gần nhất (trigram ≥0,5)
+     - 8 beat mở đầu y hệt 1 trong 3 tập gần nhất
+     - âm thanh y hệt tập trước: cùng bgm và nhạc phẳng
+     - dùng ít hơn 2 kiểu stage
+     - chữ thumbnail trùng một tập cũ
+   - **! (nên sửa):**
+     - dãy beat chính giống >80%
+     - bộ stage trùng tập trước
+     - không cảnh nào có thời tiết
+     - cảnh mở cùng bối cảnh với 1 trong 3 tập gần nhất
+     - bộ bối cảnh giống tập trước >60%
+     - Tèo đứng góc trái ở ≥70% số cảnh
+     - thumb.layout giống 2 tập liền trước
+   - pack.mjs ghi `look` vào history.
 
 ## Quy trình một tập
 
-Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu, gạch nối, ví dụ `tap-01-tieu-phong-vs-quach-tinh`).
+Thư mục tập: `E:\tool\MuseStudio\kiem-hiep\tap-<NN>-<slug>\` (slug không dấu, gạch nối, ví dụ `tap-01-tieu-phong-vs-quach-tinh`).
 
 0. **Research & chọn chủ đề** (bắt buộc, không hỏi người dùng, tự chọn rồi đi tiếp):
    1. `node SKILL/scripts/story-check.mjs`: xem các tập trước (format, subjects, tác giả), lời hẹn `next`, thống kê format/tác giả/tác phẩm/set.
@@ -92,11 +114,27 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
       - đủ nguồn chính xác
       - dựng được bằng set/preset/beat đang có
       - có chỗ cho hiệu ứng local đẹp
-   5. Tự chọn ý có tổng điểm cao nhất. Viết dàn ý theo mẫu của format trong chu-de.md.
-   6. Ghi `<dir>/y-tuong.md`: các truy vấn, bảng 3 ý và điểm, lý do chọn, dàn ý, **bảng dữ kiện** (claim | nguồn 1 | nguồn 2 | bản truyện), và điểm `stat` kèm lý do mỗi điểm. Đánh dấu chủ đề đã dùng trong `data/chu-de.md` bằng `(tập N)`.
+   5. Tự chọn ý có tổng điểm cao nhất.
+   6. **Phá khuôn** (bắt buộc, làm trước khi viết dàn ý). Đọc bảng "CHỐNG LẶP HÌNH THỨC" mà story-check in ra, rồi chốt các mục sau:
+      - **Kịch bản thô → phân tích → khung dựng:** làm đúng 4 bước ở mục "Khung dựng" bên dưới. Không chọn khung từ danh sách nào. Format (chủ đề) và frame (hình thức) là hai trục độc lập.
+      - **Vai Tèo** (`teo_role`): rút ra từ khung, khác 2 tập gần nhất.
+      - **Câu mở và câu kết:** viết bằng giọng của vai Tèo, không chép công thức.
+      - **Bảng dựng cảnh:** với mỗi cảnh ghi set, time, stage, weather, music và vị trí Tèo.
+      - **Âm thanh:** chọn bgm, và nhịp nhạc lên xuống theo cảnh.
+      - **Bong bóng:** chọn kiểu `bubble`.
+      - **Thumbnail:** chọn layout và chữ.
+   7. Viết dàn ý theo `frame.segments` (mẫu đoạn theo format ở chu-de.md mục 4 chỉ để tham khảo nội dung; thứ tự và cách mở/kết theo khung).
+   8. Ghi `<dir>/y-tuong.md` gồm:
+      - các truy vấn, bảng 3 ý và điểm, lý do chọn
+      - mục **"Phân tích"** (6 câu hỏi ở mục Khung dựng) và khung đã thiết kế, rồi dàn ý
+      - **bảng dữ kiện** (claim | nguồn 1 | nguồn 2 | bản truyện)
+      - điểm `stat` kèm lý do mỗi điểm
+      - **bảng "Tập này khác 5 tập trước ở đâu"**, ≥6 điểm: khung, vai Tèo, câu mở, bối cảnh/stage/thời tiết, âm thanh, bố cục/vị trí Tèo, thumbnail
+      
+      Đánh dấu chủ đề đã dùng trong `data/chu-de.md` bằng `(tập N)`.
 1. Chạy `fx-list.mjs` để biết nhóm hiệu ứng nào đang bị dùng nhiều.
 2. Viết `tap.json` (định dạng ở dưới, **có khối `story`**) và `fx/<tên>.mjs` (≥1 file). Chạy `node SKILL/scripts/story-check.mjs <dir>`, sửa tới khi hết mọi dòng ✗; dòng ! thì cân nhắc.
-3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` bằng VieNeu (`E:	oolVieNeu-TTS`), ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. Đổi giọng bằng `"voice"` trong tap.json, độ ngẫu nhiên bằng `"voice_temperature"` (mặc định 0,8).
+3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` bằng VieNeu (`E:\tool\VieNeu-TTS`), giọng mặc định "Lóng", ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. Đổi giọng bằng `"voice"` trong tap.json, độ ngẫu nhiên bằng `"voice_temperature"` (mặc định 0,8).
    - Câu dưới 6 từ VieNeu dễ đọc vội/méo; nên viết câu ≥10 từ. Sửa chữ sau khi đọc thì phải chạy lại voice.mjs (build sẽ cảnh báo câu chưa có giọng).
    - Giọng là nguồn thời lượng chính: ~4,1 từ/giây, nên 20 phút cần khoảng 4.500–5.000 từ lời đọc.
 
@@ -117,59 +155,129 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
    - Hiệu ứng local trông đúng ý.
    - Thumbnail (`thumb/`): snapshot `npx --yes hyperframes@0.8.172 snapshot <dir>/thumb --at 0.5 --no-end -o <dir>/work/tsnap --describe false`.
 5. Render: `cd <dir> && npx --yes hyperframes@0.8.172 render --output renders/final.mp4 --quality standard` (chạy nền).
+   - Tìm trong log render dòng "falls back to screenshot" / "self-verify": có thì tập bị chụp chậm, sửa theo mục "Tốc độ render".
    - GSAP: nếu có `SKILL/engine/vendor/gsap.min.js` (bản 3.14.2) thì build chép vào tập, render không cần mạng. Không có thì tải từ CDN jsdelivr lúc render.
    - Plan được giữ nguyên khi build lại, trừ khi đổi cấu trúc beat **hoặc** lịch sử có tập khác mới pack. Khi đó build tự lập plan mới.
 6. Viết `seo` trong tap.json rồi chạy `node SKILL/scripts/pack.mjs <dir>`. Lệnh này chụp thumbnail và tạo `youtube/`: mp4, thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, DANG-YOUTUBE.md. Nó cũng ghi lịch sử (kể cả khối story). Nếu chỉ chạy thử thì thêm `--no-history`.
-   - **Tải lên Google Drive:** Thêm cờ `--drive` (hoặc đặt biến môi trường `AUTO_UPLOAD_DRIVE=1`) để tự động sao chép gói `youtube/` vào Google Drive (qua Google Drive Desktop hoặc rclone) ngay khi đóng gói xong không có lỗi.
+   - **Đồng bộ Google Drive (tự động, bắt buộc):** đóng gói không lỗi xong, pack.mjs chép cả `youtube/` sang `G:\My Drive\TeoKenhYoutube\<slug>\` qua ứng dụng Google Drive for desktop (ứng dụng tự tải lên mây). Chép qua file `.part` rồi đổi tên; file đã có cùng kích thước và không cũ hơn thì bỏ qua.
+   - Không thấy `G:\My Drive` thì pack báo "CHƯA lên Drive" và thoát mã 1 (gói `youtube/` và lịch sử đã ghi xong). Mở ứng dụng Google Drive rồi chạy `node SKILL/scripts/drive-sync.mjs <dir>`.
+   - Sửa thumbnail hay seo sau bước 7 thì chạy lại pack để Drive nhận bản mới. `--no-drive` chỉ dùng khi chạy thử; đổi đích bằng biến môi trường `TEO_DRIVE_DIR`.
 7. Read `youtube/thumbnail.png` để kiểm tra: mặt không bị che, chữ hook đọc được.
-8. Ghi một dòng vào `__MUSE_ROOT__/ideas/DA-LAM.md`, mảng "Tèo kiếm hiệp": tập, tiêu đề, đường dẫn, hiệu ứng local.
+8. Ghi một dòng vào `E:\tool\MuseStudio\ideas\DA-LAM.md`, mảng "Tèo kiếm hiệp": tập, tiêu đề, đường dẫn, hiệu ứng local. Khi báo cáo cho người dùng, ghi kèm đường dẫn trên Drive (hoặc nói rõ là chưa lên Drive).
 
-## Dàn ý chuẩn cho video ≥20 phút (doi-dau; các format khác xem chu-de.md mục 4)
+## Khung dựng: phân tích kịch bản rồi mới tạo khung (bắt buộc `story.frame`)
 
-Một video = 1 chủ đề chính + 4–6 chủ đề phụ (lấy từ **gói chủ đề** ở chu-de.md mục 5), chia **6–8 đoạn**, mỗi đoạn 2,5–4 phút và mở bằng một mini-hook (câu hỏi nhỏ giữ người xem). Đoạn nối nhau liền mạch, không thẻ chương. Cả video có **≥3 hiệu ứng local** (rải ở các đoạn cao trào), caption ≤12 chữ, CTA đăng ký ở khoảng phút 9–12 (40–60% video) và ở cuối. Khung một đoạn đối đầu:
+Một video gồm 1 chủ đề chính + 4–6 chủ đề phụ (lấy từ **gói chủ đề** ở chu-de.md mục 5), chia **6–8 đoạn**, mỗi đoạn 2,5–4 phút. Các đoạn nối liền mạch, không có thẻ chương. Cả video có **≥3 hiệu ứng local** đặt ở các chỗ cao trào. Caption ≤12 chữ. Mời đăng ký 2 lần: một lần ở khoảng 25–75% video, một lần ở cuối, nói bằng giọng của khung.
 
-1. **Hook** ≤5 s: câu hỏi gây tranh luận, khớp chữ thumbnail.
-2. **Chào:** "Chào các bạn, lại là Tèo đây…" (mỗi tập đổi vế sau).
-3. `card` giới thiệu bên A (enter + intro trước), rồi `card` bên B.
-4. **Hiệp 1–3:** attack minh hoạ + react (chỉ choáng). Tèo nói "điểm Tèo chấm cho vui" rồi `stat` (gộp 3–4 tiêu chí, hoặc mỗi hiệp một dòng).
-5. **Giữa video:** caption kêu gọi đăng ký.
-6. **Chi tiết ít người biết:** đặt hiệu ứng local ở đây.
-7. **Kết luận:** Tèo nghiêng về bên nào, nói rõ là ý kiến, kèm "Bạn nghĩ ai mạnh hơn? Bình luận nhé".
-8. **Cuối:** kêu gọi đăng ký, móc `ender.next` (chủ đề tập sau).
+**KHÔNG có danh sách khung để chọn.** Mỗi tập, khung sinh ra từ chính kịch bản của tập đó. Làm theo thứ tự:
 
-Bước 3–6 lặp lại cho từng đoạn/chủ đề phụ (mỗi đoạn một góc: một hiệp, một tiêu chí, một chi tiết bản truyện…). Kết luận + câu hỏi bình luận + CTA cuối chỉ đặt một lần ở đoạn cuối.
+1. **Kịch bản thô trước.** Gom hết chất liệu đã research thành `<dir>/kich-ban-tho.md`, chưa cần thứ tự:
+   - các sự kiện và cảnh truyện
+   - lời thoại nổi tiếng (tối đa 1 câu trích nguyên văn)
+   - dữ kiện sẽ lên `card` và `stat`
+   - các khoảnh khắc mạnh nhất
+   - các tranh cãi của người xem
+2. **Phân tích kịch bản**, ghi vào `y-tuong.md` mục "Phân tích". Trả lời từng câu:
+   - Lõi của chuyện này là gì: một cuộc đối đầu, một bí ẩn, một mối tình, một lời hẹn, một món đồ, một hành trình, một sự hiểu lầm, hay một bảng xếp hạng?
+   - Cảm xúc chủ đạo là gì, và nó đổi thế nào từ đầu tới cuối?
+   - Khoảnh khắc mạnh nhất nằm ở đâu? Có nên mở bằng chính nó không?
+   - Ai trong truyện là người đứng gần nhất để kể chuyện này? Có thể là một nhân vật phụ, một món đồ, một nơi chốn.
+   - Người xem đang muốn biết gì, và đang cãi nhau về điều gì?
+   - Chất liệu này tự nhiên chia thành những khối nào: theo thời gian, theo từng người, theo từng chiêu, theo từng nơi, theo từng câu hỏi, hay theo từng bằng chứng?
+3. **Thiết kế khung** từ câu trả lời, ghi vào `story.frame`:
+   - `name`: tên khung tự đặt riêng cho tập, ví dụ "sổ tay của con điêu".
+   - `analysis`: tóm tắt phân tích ở bước 2 và vì sao khung này hợp với kịch bản (≥25 chữ).
+   - `axis`: trục sắp xếp các đoạn. Đây là thứ quyết định thứ tự.
+   - `open` / `close`: cách mở và cách kết, rút ra từ khoảnh khắc mạnh nhất và cảm xúc cuối.
+   - `segments`: 6–8 đoạn, mỗi đoạn một câu.
 
-## Dàn ý an-so (ngôi sao + cái bóng, ≥20 phút, 6–8 đoạn)
+   Sau đó chọn **vai Tèo** (`story.teo_role`, chữ tự do) hợp với khung. Tèo có thể là người trong cuộc, người hỏi, người ghi chép, hoặc vắng mặt và chỉ lồng tiếng.
+4. **Khung kéo theo phần dựng.** Từ khung mới chọn:
+   - set, stage, weather và nhạc cho từng đoạn
+   - vị trí Tèo
+   - nhịp beat (không phải tập nào cũng mở bằng `say > say > pose > pose…`)
+   - kiểu bong bóng
+   - layout thumbnail
 
-Kiểu chủ đề "Ngộ Không 72 phép, Bát Giới 36 phép mà vẫn lợi hại", áp vào kiếm hiệp. Kho ý tưởng ở chu-de.md mục 1.18. `story.subjects` = [ngôi sao, cái bóng].
+**Kiểm tra trước khi viết tap.json.** Dàn khung này có dựng lại được cho tập khác bằng cách chỉ thay tên nhân vật không? Nếu được thì khung còn quá chung chung, phải bám sát chất liệu hơn.
 
-1. **Hook đảo kỳ vọng:** "Ai cũng nhớ Hàng Long, nhưng bang chủ Cái Bang còn giữ một thứ khác…".
-2. **Chào:** "Chào các bạn, lại là Tèo đây…" (đổi vế sau).
-3. `card` ngôi sao, rồi `card` cái bóng.
-4. **So thẳng** bằng `stat`: cái bóng thua ở tiêu chí nào (nói thật, kiểu "36 so với 72").
-5. **Lật lại:** 3–5 đoạn, mỗi đoạn một "chiến tích bị quên" (dữ kiện ≥2 nguồn + một trận minh hoạ + hiệu ứng local ở đoạn hay nhất).
-6. **Giữa video:** CTA đăng ký.
-7. **Vì sao bị lãng quên:** cách tác giả kể, phim cắt bớt, chi tiết khác nhau giữa các bản.
-8. **Kết luận "đừng xem thường"** (nói rõ là ý kiến, không hạ thấp ngôi sao) → "Bạn còn biết cái bóng nào?" → CTA cuối, móc `ender.next`.
+story-check chặn các trường hợp sau, so với 3 tập gần nhất:
+- tên khung gần giống
+- trục sắp xếp gần giống
+- dàn khung (axis/open/close/segments) giống ≥45%
+- vai Tèo gần giống 2 tập gần nhất
+
+Lệnh `story-check` không có `<dir>` sẽ in khung của 5 tập gần nhất để tránh.
+
+**Mở đầu:**
+- Câu đầu là hook ≤5 s, khớp chữ thumbnail.
+- **CẤM** dùng "Chào các bạn, lại là Tèo đây, hôm nay Tèo…" làm câu thứ 2 như 9 tập đầu.
+- Tèo tự giới thiệu theo vai, trong khoảng 60 s đầu. Ví dụ ý (không chép): tiểu nhị lau bàn chào khách; phóng viên giơ micro; quan toà gõ búa; hoặc nhân vật khác giới thiệu Tèo.
+- Khung nào kể bằng nhân vật khác hoặc mở bằng cái kết thì có thể vào thẳng chuyện, Tèo xuất hiện sau.
+
+**Kết:**
+- Kết theo khung: phán quyết, quay về cảnh mở, câu hỏi để ngỏ, nhân vật nói lời cuối, hoặc bảng xếp hạng chốt.
+- **CẤM** caption "Đăng ký kênh, hẹn tập sau nha!" và cấm chép câu kết của 5 tập trước.
+- Vẫn móc `ender.next` (chủ đề tập sau) và vẫn mời đăng ký, bình luận, nhưng diễn đạt mới.
+
+**Tôn trọng và chính xác** vẫn như luật cứng. "Ai mạnh hơn", phán quyết, xếp hạng đều là ý kiến của Tèo, phải nói rõ. Format `an-so` (ngôi sao + cái bóng, kho ý tưởng ở chu-de.md mục 1.18) có `subjects` = [ngôi sao, cái bóng]: nói thật cái bóng thua ở đâu, rồi lật lại những chiến tích bị quên. Format này ghép được với khung nào cũng được.
+
+## Dựng cảnh, bố cục, âm thanh: các nút để mỗi tập trông khác
+
+- **Bối cảnh `set`** (12 cái): san-tap, rung-truc, mai-ngoi, quan-tro, nui-tuyet, ben-song, cau-go, **thao-nguyen** (lều, cỏ lay, chim bay), **hang-dong** (thạch nhũ, chùm sáng, chữ khắc phát sáng), **tang-kinh-cac** (kệ sách cuộn, đèn đung đưa), **dinh-nui** (đỉnh trên biển mây, tùng nghiêng), **pho-cho** (sạp hàng, cờ 酒茶藥, dây lồng đèn).
+  - `time`: ngay / chieu / dem.
+  - 9 tập đầu dùng nui-tuyet, san-tap, mai-ngoi, quan-tro rất nhiều. story-check in số lần dùng, nên ưu tiên set ít dùng.
+- **`weather`** theo cảnh: mua, tuyet, suong, la-phong, hoa-dao, dom-dom. Thời tiết phải hợp nghĩa: mưa cho chia ly, hoa đào cho tình, đom đóm cho đêm kể chuyện.
+- **`stage`** theo cảnh, là cách đóng khung hình. Mỗi tập dùng ≥2 kiểu:
+
+  | stage | tác dụng | hợp với |
+  |---|---|---|
+  | `letterbox` | viền đen điện ảnh | cảnh mở, trận lớn |
+  | `panel` | khung truyện tranh trắng + chấm halftone | câu đố, xét xử |
+  | `scroll` | cuộn giấy gỗ + nền sepia | bi-kip, nhật ký |
+  | `silhouette` | nhân vật thành bóng đen | bí ẩn, giao nhau |
+  | `thuy-mac` | nền thuỷ mặc xám | đỉnh núi, triết lý |
+  | `spotlight` | tối quanh vùng giữa | độc thoại, tuyên án |
+  | `hoi-uc` | sepia + vignette + vạch phim | quá khứ, ngược thời gian |
+
+- **Vị trí Tèo:** đừng mặc định đứng góc trái (x ≈ 250) ở mọi cảnh như 9 tập đầu. Đổi theo khung:
+  - đứng giữa khi phỏng vấn
+  - lệch phải (x 1500–1700) khi hai nhân vật đấu bên trái
+  - nhỏ và đứng cao (`w` 140, `foot` 520) như đang ngồi trên mái
+  - vắng mặt, chỉ có `vo`
+  - `enter` muộn giữa cảnh
+- **`bubble`** (cả tập): mặc định trắng viền đen; `giay` (giấy dó nâu), `muc` (nền mực đen chữ kem), `vuong` (khung vuông truyện tranh). Áp cho tone normal và think.
+- **Nhạc:**
+  - `tap.bgm`: tên file mp3 trong `<dir>/`, `<dir>/assets/bgm/` hoặc `kit/bgm/`. Build đo độ dài bằng ffprobe rồi tự lặp.
+  - Hiện kit/bgm chỉ có `playful-pizzicato.mp3`. Muốn thêm nhạc thì **người dùng tự bỏ file vào kit/bgm**. KHÔNG tải nhạc từ nguồn lạ, KHÔNG dùng nhạc phim.
+  - **`scenes[].music`**: `on` (mặc định), `low` (×0,4), `up` (×1,7), `off` (im hẳn). Nhạc chạy liền theo đồng hồ tổng, chỉ đổi âm lượng.
+  - Dùng để tạo nhịp: im lặng trước cú twist, nhỏ lúc kể buồn, to ở hạng 1. Một tập có ≥2 cảnh khác `on`, hoặc dùng bgm khác tập trước.
+- **beat `sfx`**: `{ "do": "sfx", "name": "chime", "vol": 0.5, "len": 1, "dur": 0.1 }`. Đặt sfx chủ động: chime báo tin, riser trước twist, pop khi lật đáp án.
+- **Thumbnail `thumb.layout`:**
+  - `vs`: mặc định, hai nhân vật + huy hiệu VS. 8/9 tập đầu dùng kiểu này.
+  - `solo`: một nhân vật `thumb.who` to bên phải, chữ to bên trái.
+  - `center`: nhân vật giữa, chữ căn giữa phía trên.
+  - `thumb.set` / `thumb.time` đổi nền thumbnail.
+  - Chữ thumbnail tránh lặp kiểu "AI … ?" của các tập trước.
 
 ## tap.json
 
-Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Quách Tĩnh). **Mẫu này chỉ dài ~1,5 phút để minh hoạ cú pháp beat** (tương đương một đoạn); tập thật phải nhân lên 6–8 đoạn để đủ ≥20 phút. Rút gọn:
+Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Quách Tĩnh). **Mẫu này chỉ dài ~1,5 phút để minh hoạ cú pháp beat** (tương đương một đoạn); tập thật phải nhân lên 6–8 đoạn để đủ ≥20 phút. Rút gọn. Mẫu cũ dựng theo khuôn võ đài cũ; các trường mới (frame, teo_role, bgm, bubble, stage, weather, music, thumb.layout) được thêm vào để minh hoạ. **Lời thoại trong `examples/tap-01/tap.json` là khuôn cũ (có câu chào công thức), chỉ xem cú pháp, không chép lời:**
 
 ```json
 {
   "ep": 1, "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?", "hook": "AI MẠNH HƠN?",
-  "theme": "auto",
+  "theme": "auto", "bgm": "playful-pizzicato.mp3", "bubble": "giay",
   "opener": { "title": "TÈO KỂ KIẾM HIỆP", "sub": "Tiêu Phong vs Quách Tĩnh" },
   "ender": { "next": "Lệnh Hồ Xung vs Dương Quá: kiếm ai nhanh hơn" },
-  "thumb": { "text": "AI MẠNH HƠN?", "vs": ["tieu", "quach"], "pose": "palm", "pose2": "palm" },
+  "thumb": { "text": "CHƯỞNG AI NẶNG HƠN", "layout": "solo", "who": "tieu", "set": "dinh-nui", "time": "chieu" },
   "cast": {
     "teo": { "kind": "teo", "name": "Tèo", "band": "#D7263D", "weapon": "kiem" },
     "tieu": { "preset": "hiep-khach", "name": "Tiêu Phong", "robe": "#5A3A22", "hat": "none", "weapon": "none" },
     "quach": { "preset": "hiep-khach", "name": "Quách Tĩnh", "robe": "#2E6FB7", "hat": "khan", "weapon": "none" }
   },
-  "scenes": [ { "set": "nui-tuyet", "time": "ngay",
-    "actors": [ { "id": "teo", "x": 250 }, { "id": "tieu", "x": 760 }, { "id": "quach", "x": 1500, "hidden": true } ],
+  "scenes": [ { "set": "nui-tuyet", "time": "ngay", "stage": "letterbox", "weather": "tuyet", "music": "low",
+    "actors": [ { "id": "teo", "x": 1650 }, { "id": "tieu", "x": 760 }, { "id": "quach", "x": 1500, "hidden": true } ],
     "beats": [
       { "do": "card", "side": "right", "title": "Quách Tĩnh", "sub": "Xạ Điêu Anh Hùng Truyện · Kim Dung", "lines": ["…", "…"] },
       { "do": "attack", "who": "tieu", "target": "quach", "name": "Hàng Long Thập Bát Chưởng" },
@@ -179,7 +287,8 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
       { "do": "local:rong-chuong", "who": "tieu", "target": "quach" }
     ] } ],
   "story": {
-    "format": "doi-dau",
+    "format": "doi-dau", "teo_role": "lão ăn mày Cái Bang giữ sổ của hai đời bang chủ",
+    "frame": { "name": "hai trang trong sổ Cái Bang", "analysis": "Lõi chuyện là một môn võ truyền qua hai người khác hẳn số phận: một người bị đuổi khỏi bang, một người được cả thiên hạ nhớ. Cảm xúc đi từ tự hào tới tiếc nuối, nên kể qua cuốn sổ ghi chép của Cái Bang thay vì chấm điểm.", "axis": "mỗi đoạn là một trang sổ, lật xen kẽ giữa hai đời chưởng pháp", "open": "trang cuối sổ, dòng chữ về trận Thiếu Thất Sơn", "close": "để trống trang so sánh, mời người xem tự ghi", "segments": ["…6–8 câu…"] },
     "logline": "Tiêu Phong và Quách Tĩnh cùng dùng Hàng Long Thập Bát Chưởng, Tèo làm trọng tài so ai mạnh hơn",
     "subjects": ["Tiêu Phong", "Quách Tĩnh"], "works": ["Thiên Long Bát Bộ", "Xạ Điêu Anh Hùng Truyện"], "authors": ["Kim Dung"],
     "edition": "bản tân tu",
@@ -197,22 +306,24 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
   - Tags gồm tên nhân vật, võ công, tác phẩm, tác giả, "ai mạnh hơn". Hashtag mặc định đã có #TeoKe và #KiemHiep; thêm tên tác giả (#KimDung, #CoLong…).
   - Mô tả nêu rõ tác phẩm/tác giả và câu "so sánh là ý kiến riêng".
 - **story:** bắt buộc.
-  - `format` thuộc 8 format ở trên. `subjects`: nhân vật / võ công / tác giả / tác phẩm mà tập bàn tới (format đối đầu cần ≥2).
+  - `format` thuộc 18 format ở trên (chủ đề). `frame` là khung tự thiết kế {name, analysis, axis, open, close, segments}, xem mục Khung dựng. `teo_role`: vai Tèo bằng chữ tự do. `subjects`: nhân vật / võ công / tác giả / tác phẩm mà tập bàn tới (format đối đầu cần ≥2).
   - `works`, `authors`, `edition`, `verdict` (doi-dau/so-vo nên có), `facts[{claim, src[≥2]}]`, `sources` (nguồn tham khảo thêm).
-  - pack.mjs ghi story, title, next, sets, chars, moves vào history để các tập sau tránh trùng.
+  - pack.mjs ghi story, title, next, sets, chars, moves và `look` (dấu vân tay hình thức) vào history để các tập sau tránh trùng.
 - **thumb:**
   - `text`: chữ lớn (≤3–4 từ).
   - `vs: [idTrái, idPhải]`: thumbnail đối đầu (2 nhân vật + huy hiệu VS + biển tên). Hai id phải cùng có mặt trong một cảnh.
   - `pose` (bên trái hoặc Tèo), `pose2` (bên phải). Không có `vs` thì vẽ Tèo + một đối thủ như kiểu cũ.
+  - `layout`: vs (mặc định) | solo | center; `who`: nhân vật chính của solo/center; `set`, `time`: nền riêng cho thumbnail. Xem mục Dựng cảnh.
+- **Cả tập:** `bgm` (file nhạc), `bgm_volume`, `bubble` (giay / muc / vuong).
 - **cast:**
   - `kind:"teo"` hoặc `preset` thuộc: linh, linh-do, cao-thu, hiep-khach, thu-sinh, chuong-quy, su-phu, nu-hiep, **cai-bang** (áo vá nâu, gậy), **tang** (cà sa vàng, đầu trọc), **dao-si** (áo lam, búi đạo sĩ, kiếm), **cong-tu** (áo trắng, kiếm), **lao-quai** (áo tím sẫm, râu, gậy).
   - Ghi đè được: `robe`, `hat` (linh/bui/non/khan/none/troc/dao), `beard`, `weapon` (kiem/dao/giao/quat/gay/none), `belt`, `patch` (áo vá), `sash` (mã màu cà sa chéo).
   - Gợi ý ngoại hình cho ~20 nhân vật nổi tiếng nằm trong chu-de.md. Không vẽ giống diễn viên.
   - `w`: bề rộng; mặc định teo 250, npc 190. `side:"hero"`: đồng minh của Tèo.
 - **scenes[]:**
-  - `set` thuộc: san-tap, rung-truc, mai-ngoi, quan-tro, nui-tuyet, ben-song, cau-go (bảng quy đổi địa danh trong truyện → set nằm ở chu-de.md).
-  - `time`: ngay hoặc dem.
-  - `actors[]`: {id, x (tâm, px trên khung 1920), hidden?, w?, foot?}. Ba người trong cảnh thì Tèo đứng góc (x ≈ 250, w 190), hai bên đấu ở giữa và bên phải.
+  - `set` thuộc: san-tap, rung-truc, mai-ngoi, quan-tro, nui-tuyet, ben-song, cau-go, thao-nguyen, hang-dong, tang-kinh-cac, dinh-nui, pho-cho (bảng quy đổi địa danh trong truyện → set nằm ở chu-de.md).
+  - `time`: ngay, chieu hoặc dem. `stage`, `weather`, `music`: xem mục Dựng cảnh.
+  - `actors[]`: {id, x (tâm, px trên khung 1920), hidden?, w?, foot?}. Vị trí Tèo đổi theo khung (giữa, phải, nhỏ trên cao bằng `w`+`foot`, vắng mặt); không đứng góc trái mọi cảnh.
   - `transition`, `camera`: ép một hiệu ứng cụ thể (không nên dùng).
 - **Beat** (mọi beat đều nhận thêm `with: true` để chạy cùng lúc với beat trước, `delay`, và `vo`: lời kể của Tèo đọc thành tiếng nhưng không hiện bong bóng. Beat có `vo` kéo dài ít nhất bằng câu đọc + 0,4 s):
 
@@ -229,8 +340,9 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
 | `power` | who | vận công |
 | `attack` | who, target (id hoặc mảng), name (có thì hiện caption tên chiêu), finisher, impact | không ghi finisher thì chiêu cuối là kết liễu. Attack có thể đổi chỗ hai người (xuyên qua) |
 | `react` | who (id hoặc mảng) | luôn đặt ngay sau attack; tập chủ đề chỉ ra choáng/lùi |
-| `caption` | text | chữ dẫn chuyện, kêu gọi đăng ký |
-| `card` | title, sub?, lines[≤4], side left/right/center | thẻ thông tin ở dải trên khung; thời lượng tự tính theo số chữ (≤10 s đọc). Biến thể: cd-scroll, cd-board, cd-bamboo |
+| `caption` | text | chữ dẫn chuyện, kêu gọi đăng ký (không dùng câu công thức cũ) |
+| `sfx` | name, vol?, len?, dur? | đặt một tiếng sfx chủ động (chime, riser, pop…) |
+| `card` | title, sub?, lines[≤4], side left/right/center, vo? | thẻ thông tin ở dải trên khung. **Luôn được đọc**: `vo` nếu có, không thì đọc chữ trên thẻ. Thẻ ở lại tới hết câu đọc, các dòng hiện dần theo nhịp đọc. Biến thể: cd-scroll, cd-board, cd-bamboo |
 | `stat` | left (id), right (id), rows[{label, l, r}] (0–10, ≤4 dòng), total? | bảng so điểm; tên lấy từ cast. Biến thể: st-bars, st-scale, st-tally |
 | `local:<tên>` | tuỳ hiệu ứng | hiệu ứng tự chế của tập |
 | (bất kỳ) | fx: "<id>" | ép hiệu ứng cụ thể, bỏ qua planner (hạn chế dùng) |
@@ -263,10 +375,20 @@ export default { cat: "power", label: "Mô tả ngắn", run(ctx, b, t) { /* …
 - Mỗi beat trả về `{dur}`.
 - Hiệu ứng react mới: thêm `down: true` nếu nạn nhân nằm gục, `removes: true` nếu rời khung (trường của object export; trong `engine/fx.mjs` là tham số thứ 5 của `def`).
 
+### Tốc độ render (bắt buộc với fx local)
+
+hyperframes chụp nhanh bằng drawElement; gặp các mẫu dưới đây nó rớt về chụp màn hình cho **cả tập**, chậm gấp đôi. build.mjs in "⚠ render chậm: …" khi gặp:
+- CSS `filter: blur()` / `drop-shadow()` (tĩnh hay tween đều cấm), `mix-blend-mode`, `backdrop-filter`, `@keyframes`/`animation`, CSS 3D (`perspective`, `preserve-3d`, `backface-visibility`).
+- Tween `rotationX/Y`, `z`, `clipPath`, `mask`. clip-path tĩnh thì được.
+- Callback GSAP (`onUpdate/onComplete/onStart`, `tl.call`): hyperframes tua nhảy không gọi callback, self-verify lệch.
+- Filter màu `brightness/grayscale/sepia/saturate/hue-rotate/contrast` vẫn được.
+
+Thay thế: quầng sáng = vẽ thêm 1–2 bản nét to, opacity thấp phía sau (xem `glowStroke` trong `engine/fx.mjs`) hoặc div `radial-gradient` tween opacity; lộ dần = tween `width` của khung `overflow:hidden` (bên trong đặt width cố định); lật = `scaleX`. Vẽ nét dần cho nhóm nhiều nét: đặt `stroke-dashoffset` trên `<g>` và DRAW cái `g`.
+
 Hiệu ứng local nào đẹp và dùng lại được thì chép vào `SKILL/engine/fx-extra/<id>.mjs` (bỏ tiền tố local). Từ tập sau, planner sẽ tự xếp nó vào kho. Không có `id` thì lấy tên file làm id. Id không được trùng.
 
 ## Âm thanh
 
 - **Giọng Tèo:** wav từ `voice.mjs`, build đặt vào track 14/15 (xen kẽ cho khỏi chồng), âm lượng 1. Thiếu `voice/voice.json` thì build vẫn chạy nhưng không giọng và in CẢNH BÁO; tập thật bắt buộc có giọng.
-- **BGM** pizzicato lặp: 0,06 khi có giọng, 0,1 khi không (ghi đè bằng `bgm_volume`).
-- **sfx** theo hiệu ứng.
+- **BGM:** `tap.bgm` (mặc định pizzicato) lặp, 0,06 khi có giọng, 0,1 khi không (ghi đè bằng `bgm_volume`). `scenes[].music` on/low/up/off đổi âm lượng theo cảnh (build tách đoạn nhạc bằng `data-media-start`, nhạc liền mạch). Thêm nhạc: người dùng bỏ file vào `kit/bgm`, không tải từ nguồn lạ.
+- **sfx** theo hiệu ứng + beat `sfx` đặt tay.

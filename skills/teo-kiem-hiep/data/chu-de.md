@@ -120,7 +120,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
-| Thiếu Lâm vs Võ Đang: "Bắc Thiếu Lâm, Nam Võ Đang"? | Kim Dung | san-tap | tang (hat troc) vs dao-si (hat dao) | chuông chùa ngân vs vòng Thái Cực xoay |
+| Thiếu Lâm vs Võ Đang: "Bắc Thiếu Lâm, Nam Võ Đang"? (tập 8) | Kim Dung | san-tap | tang (hat troc) vs dao-si (hat dao) | chuông chùa ngân vs vòng Thái Cực xoay |
 | Toàn Chân giáo vs Cổ Mộ phái | Thần Điêu Hiệp Lữ | mai-ngoi (dem) | dao-si (hat dao) vs nu-hiep (robe #ffffff) | ong ngọc bay vo ve quanh đạo sĩ |
 | Hoa Sơn Khí tông vs Kiếm tông | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) vs hiep-khach (weapon kiem) | đồng hồ cát: khí chảy chậm vs kiếm nhanh |
 | Nhật Nguyệt Thần Giáo vs Ngũ Nhạc Kiếm Phái | Tiếu Ngạo Giang Hồ | nui-tuyet | lao-quai (robe #8b0000) vs 5× hiep-khach | mặt trời và mặt trăng ghép thành chữ 明 |
@@ -138,7 +138,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
-| Ỷ Thiên Kiếm vs Đồ Long Đao | Ỷ Thiên Đồ Long Ký | nui-tuyet | nu-hiep (weapon kiem) vs hiep-khach (weapon dao) | hai thứ chém nhau, gãy, rơi ra cuộn giấy ⚠ (nội dung bên trong khác theo bản) |
+| Ỷ Thiên Kiếm vs Đồ Long Đao | Ỷ Thiên Đồ Long Ký | nui-tuyet | nu-hiep (weapon kiem) vs hiep-khach (weapon dao) | hai thứ chém nhau, gãy, rơi ra cuộn giấy ⚠ (nội dung bên trong khác theo bản) | (tập 7)
 | Huyền Thiết Trọng Kiếm: kiếm không cần sắc | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach (robe #3d4a5c, weapon kiem) | mặt đất lún xuống khi kiếm cắm xuống |
 | Bốn thanh kiếm trong Kiếm Trủng của Độc Cô Cầu Bại (tập 2) | Thần Điêu Hiệp Lữ | nui-tuyet | cao-thu (beard) | bốn thanh kiếm hiện lần lượt: lợi kiếm, nhuyễn kiếm, trọng kiếm, mộc kiếm |
 | Đả Cẩu Bổng: cây gậy trúc làm tín vật bang chủ | Xạ Điêu / Thiên Long | quan-tro | cai-bang (weapon gay) | gậy xanh biếc phát sáng, mấy con chó chibi chạy tán loạn |
@@ -156,7 +156,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
-| Vì sao lão tăng quét lá Tảo Địa Tăng mạnh nhất Thiên Long? | Thiên Long Bát Bộ | san-tap | tang (robe #7a6a4f, hat troc, weapon gay, beard) | lá rơi đứng lại giữa không trung khi ông quét |
+| Vì sao lão tăng quét lá Tảo Địa Tăng mạnh nhất Thiên Long? (tập 6) | Thiên Long Bát Bộ | san-tap | tang (robe #7a6a4f, hat troc, weapon gay, beard) | lá rơi đứng lại giữa không trung khi ông quét |
 | Tịch Tà Kiếm Phổ và Quỳ Hoa Bảo Điển có chung gốc? | Tiếu Ngạo Giang Hồ | mai-ngoi (dem) | cong-tu (robe #c2185b) | hai cuốn sách bay chồng lên nhau, khớp từng trang |
 | Bên trong Ỷ Thiên Kiếm và Đồ Long Đao giấu gì? | Ỷ Thiên Đồ Long Ký ⚠ ghi bản | nui-tuyet | hiep-khach | cuộn giấy mở ra, chữ mờ trên màn hình (không ghi nội dung) |
 | Vì sao Lục Mạch Thần Kiếm của Đoàn Dự lúc được lúc không? | Thiên Long Bát Bộ | rung-truc | thu-sinh (weapon none) | sáu ngón tay chập chờn như bóng đèn sắp hỏng |
@@ -194,7 +194,7 @@ Kể đời nhân vật qua 5–6 mốc, mỗi mốc là một cảnh ngắn. Ch
 | Đông Phương Bất Bại: từ phó giáo chủ đến kẻ ẩn mình thêu hoa | Tiếu Ngạo Giang Hồ | mai-ngoi (dem) | cong-tu (robe #c2185b) | kim chỉ thêu dần thành bức tranh hoa |
 | Lý Tầm Hoan: thám hoa nhường người yêu cho bạn | Đa Tình Kiếm Khách Vô Tình Kiếm | quan-tro (dem) | thu-sinh (robe #6d5a4a, beard) | tượng gỗ khắc mãi vẫn là cùng một khuôn mặt | (tập 5)
 | Tiểu Ngư Nhi: lớn lên giữa mười ác nhân mà vẫn tốt bụng | Tuyệt Đại Song Kiêu | rung-truc (dem) | cong-tu (robe #e07a2f) | mười cái bóng ác nhân lần lượt dạy một "chiêu" xấu, cậu bé lại dùng vào việc tốt |
-| Trương Tam Phong: từ chú tiểu Thiếu Lâm đến tổ sư Võ Đang | Thần Điêu / Ỷ Thiên | san-tap | dao-si (robe #e0e0e0, hat dao, beard) | tóc chuyển đen sang trắng, vòng Thái Cực lớn dần |
+| Trương Tam Phong: từ chú tiểu Thiếu Lâm đến tổ sư Võ Đang (tập 8) | Thần Điêu / Ỷ Thiên | san-tap | dao-si (robe #e0e0e0, hat dao, beard) | tóc chuyển đen sang trắng, vòng Thái Cực lớn dần |
 
 ### 1.10 `su-that`: người thật, chuyện thật trong truyện (tạm dùng: `giai-ma`)
 
@@ -235,7 +235,7 @@ Luôn ghi "giả tưởng" trên màn hình. Mỗi tập chỉ đổi đúng **m
 
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
-| Dương Quá – Tiểu Long Nữ: chờ nhau 16 năm | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach + nu-hiep (robe #ffffff) | đáy vực đầy hoa trắng, hai bóng gặp nhau |
+| Dương Quá – Tiểu Long Nữ: chờ nhau 16 năm (tập 9) | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach + nu-hiep (robe #ffffff) | đáy vực đầy hoa trắng, hai bóng gặp nhau |
 | Quách Tĩnh – Hoàng Dung: chàng ngốc và cô gái thông minh nhất | Xạ Điêu Anh Hùng Truyện | ben-song | hiep-khach + nu-hiep (robe #6fa86f) | bóng đèn ý tưởng bật trên đầu Hoàng Dung, dấu chấm hỏi trên đầu Quách Tĩnh |
 | Lệnh Hồ Xung – Nhậm Doanh Doanh: khúc nhạc kết duyên | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep (robe #2b2b4b) | nốt nhạc cầm và tiêu thành hình trái tim |
 | Tiêu Phong – A Châu: lời hẹn ngoài quan ải | Thiên Long Bát Bộ | nui-tuyet | cai-bang + nu-hiep (robe #f8c8a0) | hai con ngựa đi về phía hoàng hôn (không vẽ cảnh buồn) |
@@ -251,7 +251,7 @@ Luôn ghi "giả tưởng" trên màn hình. Mỗi tập chỉ đổi đúng **m
 |---|---|---|---|---|
 | Hồng Thất Công dạy Quách Tĩnh: học võ để đổi lấy món ngon (tập 1) | Xạ Điêu | quan-tro | cai-bang + hiep-khach | mỗi món Hoàng Dung nấu đổi được một con rồng |
 | Phong Thanh Dương dạy Lệnh Hồ Xung: học để quên chiêu (tập 2) | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (beard) + hiep-khach | chiêu thức hiện ra rồi bị cục tẩy xoá dần |
-| Trương Tam Phong dạy Trương Vô Kỵ Thái Cực: "quên hết chưa?" | Ỷ Thiên Đồ Long Ký | san-tap | dao-si + hiep-khach | chữ trên bảng mờ dần, vòng Thái Cực hiện rõ hơn |
+| Trương Tam Phong dạy Trương Vô Kỵ Thái Cực: "quên hết chưa?" (tập 8) | Ỷ Thiên Đồ Long Ký | san-tap | dao-si + hiep-khach | chữ trên bảng mờ dần, vòng Thái Cực hiện rõ hơn |
 | Giang Nam Thất Quái: bảy ông thầy, một học trò chậm hiểu | Xạ Điêu | san-tap | 7 preset khác nhau + hiep-khach | bảy bóng thầy chen nhau nói, bong bóng thoại chồng lên nhau |
 | Nhạc Bất Quần và Lệnh Hồ Xung: thầy tốt hay nguỵ quân tử? | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) + hiep-khach | mặt nạ hiền rơi ra để lộ cái cau mày |
 | Vô Nhai Tử truyền 70 năm công lực cho Hư Trúc | Thiên Long Bát Bộ | rung-truc | lao-quai (robe #f0f0f0, beard) + tang | dòng sáng chảy từ đầu sang đầu, đồng hồ đếm 70 năm |
@@ -331,7 +331,7 @@ Dữ kiện dưới đây đã đối chiếu qua kết quả tìm kiếm (≥2 
 | Lục Mạch Thần Kiếm → Lăng Ba Vi Bộ: bộ pháp Tiêu Dao phái học trong hang Vô Lượng Sơn, cứu Đoàn Dự chạy thoát nhiều lần | Thiên Long Bát Bộ | ben-song | thu-sinh (weapon none) | dấu chân phát sáng theo hình quẻ Kinh Dịch trên mặt nước |
 | Hàng Long của Quách Tĩnh → Song Thủ Hỗ Bác của Chu Bá Thông: tự nghĩ ra lúc bị giam ở Đào Hoa Đảo, hai tay đánh hai chiêu khác nhau ⚠ chi tiết "Hàng Long bằng hai tay" chưa xác minh (tập 1) | Xạ Điêu Anh Hùng Truyện | ben-song | lao-quai (Chu Bá Thông, beard) + hiep-khach | hai bàn tay vẽ hai hình khác nhau cùng lúc (tròn và vuông) |
 | Hàng Long → Không Minh Quyền: Chu Bá Thông dạy Quách Tĩnh, quyền "rỗng" mà mạnh | Xạ Điêu Anh Hùng Truyện | ben-song | lao-quai + hiep-khach | nắm đấm trong suốt như bong bóng, chạm vào thì nổ |
-| Cửu Dương, Càn Khôn Đại Na Di → Thái Cực Quyền / Thái Cực Kiếm: Trương Tam Phong truyền cho Trương Vô Kỵ trên Võ Đang ⚠ cảnh "quên hết chiêu mới dùng được" cần đọc lại truyện | Ỷ Thiên Đồ Long Ký | san-tap | dao-si (Trương Tam Phong, beard) + hiep-khach | vòng âm dương xoay, chiêu thức tan thành sương |
+| Cửu Dương, Càn Khôn Đại Na Di → Thái Cực Quyền / Thái Cực Kiếm: Trương Tam Phong truyền cho Trương Vô Kỵ trên Võ Đang ⚠ cảnh "quên hết chiêu mới dùng được" cần đọc lại truyện (tập 8) | Ỷ Thiên Đồ Long Ký | san-tap | dao-si (Trương Tam Phong, beard) + hiep-khach | vòng âm dương xoay, chiêu thức tan thành sương |
 | Võ công Trung Nguyên → Thánh Hoả Lệnh võ công: võ của Minh Giáo Ba Tư, Trương Vô Kỵ học nhờ Tiểu Chiêu dịch chữ Ba Tư ⚠ trận dùng nó đánh ba sứ giả cần kiểm | Ỷ Thiên Đồ Long Ký | nui-tuyet | hiep-khach + nu-hiep | sáu lệnh bài lửa bay vòng tròn |
 | Lạc Anh Thần Kiếm Chưởng → Ngọc Tiêu Kiếm Pháp, Đàn Chỉ Thần Thông, Bích Hải Triều Sinh Khúc: kho tuyệt kỹ của Hoàng Dược Sư ngoài chưởng (tập 3) | Xạ Điêu Anh Hùng Truyện | ben-song | thu-sinh (robe #2e7d5a, weapon quat) | sóng biển nhạc phổ cuộn ra từ ống tiêu |
 | Độc Cô Cửu Kiếm → Dịch Cân Kinh: thứ thật sự chữa nội thương cho Lệnh Hồ Xung là Dịch Cân Kinh của phương trượng Phương Chứng; Bất Giới, Đào Cốc Lục Tiên truyền nội lực đều thất bại ⚠ có thể khác giữa các bản | Tiếu Ngạo Giang Hồ | san-tap | tang + hiep-khach | sáu luồng khí lộn xộn trong người được duỗi thẳng ra |
@@ -431,8 +431,8 @@ Dùng làm mặc định cho chibi. Nét nhận diện nên vẽ bằng hiệu �
 - Một chủ đề trong bảng ở phần 1 chỉ đủ khoảng 2–4 phút. Vì vậy một tập gồm **1 chủ đề chính** và **4–6 chủ đề phụ liên quan** ghép lại; xem phần 5. Các dòng đã dùng làm chủ đề phụ cũng phải ghi `(tập N)`.
 - Video phải liền một mạch: **không có chapter card**, không nói "Chương X" hay "chương sau". Giữa các đoạn chuyển bằng "Tiếp theo…", "Nhưng chưa hết…", "Lúc nãy Tèo có nhắc…".
 - Video chia thành **6–8 đoạn, mỗi đoạn 2,5–4 phút**. Mỗi đoạn mở bằng một **mini-hook**, là một câu hỏi nhỏ hoặc lời hứa ("Lát nữa sẽ có một chi tiết làm bạn bất ngờ…"), để giữ người xem khoảng 3 phút một lần.
-- Hook ≤5 s, sau đó Tèo chào "Chào các bạn, lại là Tèo đây…" (vế sau đổi theo chủ đề) và giới thiệu nhanh 3 điều sẽ có trong tập.
-- **Kêu gọi đăng ký** ở khoảng 40–60% video (phút 9–12) và ở cuối. Có thể thêm một lời nhắc nhẹ ở khoảng phút 4–5.
+- Hook ≤5 s. Sau đó Tèo xuất hiện **theo vai của khung dựng** (SKILL.md "Khung dựng": khung tự thiết kế sau khi phân tích kịch bản). Không dùng câu chào công thức cũ, không chép lời mở của 5 tập trước. Không bắt buộc hứa "3 điều".
+- **Kêu gọi đăng ký** một lần ở khoảng 25–75% video và một lần ở cuối, nói bằng giọng của khung (giờ nghỉ phiên toà, quảng cáo giữa bản tin…).
 - Mỗi đoạn có ít nhất 1 beat hình động (attack/react, `card`, `stat`, hoặc hiệu ứng local). Không có cảnh tĩnh nào dài quá 20 s. Cả video có **≥3 hiệu ứng local** khác nhau.
 - Chữ trên màn hình vẫn phải ngắn: mỗi caption ≤12 chữ, hiện ≥2 giây, mỗi beat một ý. Nếu chưa có giọng đọc thì dùng thêm `card`/`stat` cho đủ nhịp, và không dồn chữ.
 - Kết luận phải ghi "ý kiến của Tèo". Dữ kiện nào phụ thuộc bản Kim Dung thì ghi rõ bản. Bên thua chỉ choáng hoặc lùi, không bị hạ nhục.
@@ -482,7 +482,7 @@ Ghi chú `stat` cho format tình cảm, thầy trò, phản diện:
 | thời điểm | đoạn | ý chính và hiệu ứng |
 |---|---|---|
 | 0:00 | Hook | "Hai người cùng đánh Hàng Long Thập Bát Chưởng. Ai mạnh hơn?" |
-| 0:05 | Chào | "Chào các bạn, lại là Tèo đây… hôm nay hai con rồng sẽ đụng nhau!" |
+| 0:05 | Tèo theo vai | Tèo xuất hiện theo vai của khung tập này (khung tự thiết kế từ kịch bản, không chọn từ danh sách) |
 | 0:35 | Tiêu Phong | `card`; tuổi thơ ở núi Thiếu Thất; làm bang chủ Cái Bang; bị lộ thân thế |
 | 3:30 | Quách Tĩnh | `card`; lớn lên ở thảo nguyên; Giang Nam Thất Quái; học Hàng Long từ Hồng Thất Công |
 | 6:30 | So chiêu | Hàng Long của mỗi người khác nhau ở đâu; nói thêm chuyện 28 chưởng ⚠ theo bản tân tu |
@@ -512,7 +512,7 @@ Mỗi gói gồm 1 chủ đề chính và các chủ đề phụ lấy từ các
 | Kim Dung và lịch sử thật | su-that | Khâu Xứ Cơ, Thành Cát Tư Hãn (1.10) | Đoàn Dự vua Đại Lý · Nhất Đăng · Khang Hi – Vi Tiểu Bảo · Hốt Tất Liệt (đều ở 1.10) |
 | Vũ trụ Kim Dung theo dòng thời gian | dong-thoi-gian | 15 bộ theo lịch sử (1.16) | Xạ Điêu tam bộ khúc · Đả Cẩu Bổng qua các đời · Cửu Âm qua tay ai · hậu duệ Quách Tĩnh (đều ở 1.16) |
 | Phản diện Kim Dung: vì sao họ thành ác? | phan-dien | Top 5 phản diện đáng thương (1.14) | Nhạc Bất Quần · Mộ Dung Phục · Âu Dương Phong · Thành Côn (đều ở 1.14) |
-| Thiếu Lâm vs Võ Đang | mon-phai | Thiếu Lâm vs Võ Đang (1.6) | Tảo Địa Tăng (1.8) · Trương Tam Phong (1.9) · Thái Cực Quyền vs Thất Thương Quyền (1.2) · 72 tuyệt kỹ (1.2) |
+| Thiếu Lâm vs Võ Đang (tập 8) | mon-phai | Thiếu Lâm vs Võ Đang (1.6) | Tảo Địa Tăng (1.8) · Trương Tam Phong (1.9) · Thái Cực Quyền vs Thất Thương Quyền (1.2) · 72 tuyệt kỹ (1.2) |
 | Ngũ đại tông sư võ hiệp | tac-gia | Ngũ đại tông sư (1.3) | Lương Vũ Sinh · Ôn Thuỵ An · Ngoạ Long Sinh · trận tỷ võ Ma Cao 1954 (đều ở 1.3) |
 | Những cặp đôi giang hồ | cap-doi | Top 5 cặp đôi khổ nhất (1.12) | Dương Quá – Tiểu Long Nữ · Quách Tĩnh – Hoàng Dung · Lệnh Hồ Xung – Doanh Doanh · Trác Nhất Hàng – Luyện Nghê Thường (đều ở 1.12) |
 | Những người đứng sau Quách Tĩnh | an-so | Quách Tĩnh → Hoàng Dung (1.18) | Kha Trấn Ác (1.18) · Song Thủ Hỗ Bác, Không Minh Quyền của Chu Bá Thông (1.18) · Hồng Thất Công dạy Quách Tĩnh (1.13) · Nhất Đăng (1.18) |
@@ -558,7 +558,7 @@ Một chủ đề lớn chia thành nhiều tập, mỗi tập là một phần.
 | mốc | đoạn | nội dung |
 |---|---|---|
 | 0:00 | Hook | thả kết quả gây tranh cãi nhất của phần này ("Kiều Phong chỉ hạng A!") |
-| 0:15 | Lời chào | "Chào các bạn, lại là Tèo đây…" (nửa sau đổi theo chủ đề) |
+| 0:15 | Tèo theo vai | Tèo xuất hiện bằng vai của khung, không dùng câu chào cũ |
 | 0:40 | Tóm tắt phần trước | 30–60 giây, bảng tier của phần trước hiện lại (phần 1 thì công bố tiêu chí) |
 | 1:40 | 5 người đầu | mỗi người 1,5–2 phút: giới thiệu, chiến tích lớn nhất, điểm yếu, thẻ bay vào hàng |
 | ~10:00 | CTA giữa | gắn với nội dung ("đăng ký đi, sắp tới người Tèo cãi nhau nhiều nhất…") |

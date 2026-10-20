@@ -1,15 +1,14 @@
 // Gói đăng YouTube cho một video Tèo đã render: videos/<slug>/youtube/
 //   node <SKILL_DIR>/scripts/youtube-pack.mjs videos/<slug> [videos/<slug2> …]
 //   node <SKILL_DIR>/scripts/youtube-pack.mjs --all          (mọi video có renders/final.mp4 + youtube/seo.json, trừ _pilot)
+//   Thêm --no-drive để KHÔNG chép lên Google Drive (mặc định: video đóng gói không lỗi được chép youtube/ sang G:/My Drive/TeoKenhYoutube/<slug>/ qua drive-sync.mjs).
 // Đầu vào do người viết: youtube/seo.json = { "title": "...", "alts": ["...", "..."] }   (KHÔNG ghi đuôi "| Tèo Kể", script tự gắn)
 // Đầu ra: <slug>.mp4 (hardlink tới renders/final.mp4), thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, phu-de.vi.srt, DANG-YOUTUBE.md
 // Chỉ đọc video.json / chapters / words / work/timeline.json; không ghi gì ngoài thư mục youtube/.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, linkSync, rmSync, statSync, readdirSync } from "fs";
 import { execFileSync } from "child_process";
-import { join, resolve, basename, dirname } from "path";
-import { fileURLToPath } from "url";
-
-const HERE = dirname(fileURLToPath(import.meta.url));
+import { join, resolve, basename } from "path";
+import { syncToDrive } from "./drive-sync.mjs";
 
 const BRAND = "Tèo Kể"; // dấu ấn kênh: đuôi mọi tiêu đề + hashtag đầu tiên
 const SUFFIX = ` | ${BRAND}`;
@@ -136,24 +135,17 @@ ${problems.length ? `\n## ⚠ Cần sửa\n${problems.map((x) => `- ${x}`).join(
   return problems.length;
 }
 
-const args = process.argv.slice(2);
-const withDrive = args.includes("--drive") || process.env.AUTO_UPLOAD_DRIVE === "1";
-const cleanArgs = args.filter((a) => a !== "--drive");
-if (!cleanArgs.length) die("cần đường dẫn videos/<slug> hoặc --all");
-const dirs = cleanArgs[0] === "--all"
+const argv = process.argv.slice(2), noDrive = argv.includes("--no-drive");
+const args = argv.filter((a) => a !== "--no-drive");
+if (!args.length) die("cần đường dẫn videos/<slug> hoặc --all");
+const dirs = args[0] === "--all"
   ? readdirSync(resolve("videos")).filter((d) => d !== "_pilot" && existsSync(join("videos", d, "youtube/seo.json"))).map((d) => resolve("videos", d))
-  : cleanArgs.map((a) => resolve(a));
+  : args.map((a) => resolve(a));
 let bad = 0;
 for (const d of dirs) {
-  const err = pack(d);
-  bad += err ? 1 : 0;
-  if (!err && withDrive) {
-    const uploadScript = join(HERE, "upload-drive.mjs");
-    const kitUpload = join(resolve("kit"), "upload-drive.mjs");
-    const scriptToRun = existsSync(uploadScript) ? uploadScript : (existsSync(kitUpload) ? kitUpload : null);
-    if (scriptToRun) {
-      execFileSync("node", [scriptToRun, d], { stdio: "inherit" });
-    }
-  }
+  if (pack(d)) { bad++; continue; }
+  if (noDrive) continue;
+  try { const r = syncToDrive(d); console.log(`   drive: → ${r.dest} · chép ${r.copied}, bỏ qua ${r.skipped} (đã có)${r.newer.length ? ` · ⚠ trên Drive mới hơn, không đè: ${r.newer.join(", ")}` : ""}`); }
+  catch (e) { console.error(`   drive: CHƯA lên Drive — ${e.message}`); bad++; }
 }
 if (bad) { console.error(`${bad} video còn lỗi — xem mục "Cần sửa" trong DANG-YOUTUBE.md`); process.exit(1); }

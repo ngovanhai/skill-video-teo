@@ -1,6 +1,6 @@
 # Tra cứu nhanh — cảnh, hiệu ứng, mẫu
 
-Nguồn chuẩn vẫn là `__MUSE_ROOT__/kit/README.md`. File này chỉ để tra nhanh.
+Nguồn chuẩn vẫn là `E:\tool\MuseStudio\kit\README.md`. File này chỉ để tra nhanh.
 
 ## Khung video.json
 
@@ -10,9 +10,9 @@ Nguồn chuẩn vẫn là `__MUSE_ROOT__/kit/README.md`. File này chỉ để t
   "names": "Tên riêng 1, Tên riêng 2",          // giúp Whisper căn chữ tên nước ngoài
   "bgm": "playful-pizzicato.mp3", "bgm_volume": 0.09,
   "cast": { "key": { "svg": "chars/key.svg", "name": "Tên hiển thị" } },   // "teo" có sẵn, không cần khai
-  "thumbnail": { "text": "3–7 từ", "highlight": "từ đắt", "who": ["chinh", "teo"], "pose": "shock", "pose2": "shock",
-                 "prop": "dovat", "circle_x": 320, "circle_y": 345, "circle_r": 240, "arrow": false,
-                 "badge": "?", "bg": "red", "sub": "Nhãn dưới", "series": "Lịch sử Việt" },
+  "thumbnail": { "text": "3–7 từ", "highlight": "từ đắt", "who": ["chinh", "teo"], "pose": "<khác tập trước>",
+                 "prop": "dovat", "circle_x": "<chỗ trống thật>", "circle_y": "…", "circle_r": "…", "arrow": "<true|false>",
+                 "badge": "?", "bg": "<khác tập trước>", "sub": "Nhãn dưới", "series": "…" },
   "publish": { "titles": ["…≤60 ký tự…", "…", "…"], "description": "…", "hashtags": [], "tags": [], "notes": "…" },
   "chapters": ["chapters/01.json", "…"]
 }
@@ -47,8 +47,8 @@ Nguồn chuẩn vẫn là `__MUSE_ROOT__/kit/README.md`. File này chỉ để t
 - `"fx": ["dust", {"id": "punch", "at": "nổ tung"}, {"id": "mark", "shape": "circle", "x": 1300, "y": 300, "t": 2}]`: `at` = cụm trong `say`, `t` = giây từ đầu cảnh, `d` = kéo dài (mặc định tới hết cảnh). Mỗi cảnh chỉ 1 fx camera liên tục (push-in, pull-out, pan, handheld).
 - `"cta": true`: tự gắn fx `subscribe` (nút ĐĂNG KÝ đỏ + chuông + con trỏ bấm, hiện ở chữ "đăng ký"). `say` phải có "đăng ký".
 - `{"type": "custom", "file": "scenes/<ten>.mjs", ...}`: cảnh tự vẽ, mẫu `kit/examples/custom-scene.mjs`.
-- `video.json` → `"creative": {"style", "motif", "hook", "palette", "signature_fx", "gag"}`.
-- Kho fx + lịch sử dùng: `node __MUSE_ROOT__/kit/fx-list.mjs`.
+- `video.json` → `"creative": {"frame": {name, analysis, axis, open, close, segments}, "voice_role", "style", "motif", "hook", "palette", "signature_fx", "gag"}` (SKILL.md mục 2b).
+- Kho fx + lịch sử dùng: `node E:/tool/MuseStudio/kit/fx-list.mjs`.
 
 | nhóm | fx (tham số) |
 |---|---|
@@ -58,43 +58,27 @@ Nguồn chuẩn vẫn là `__MUSE_ROOT__/kit/README.md`. File này chỉ để t
 | accent | `ink-splash` (x,y,r,color,out), `shockwave`, `speedlines`, `confetti`, `glitch`, `wipe`, `mark` (shape circle/underline/arrow, x,y,w,h), `lightning`, `pow` (text,x,y) |
 | cta | `subscribe` (x,y) |
 
-Gợi ý ghép: cú sốc = `punch` + `speedlines`/`shockwave`/`pow`; hồi tưởng = `old-film` hoặc `light-leak`; bí ẩn = `fog` + `vignette` hoặc `spotlight`; chiến công = `rays` + `embers`/`confetti`; giông bão = `rain` + `lightning` + `flash`; chuyển ý = `wipe` hoặc `whip`; nhấn chữ = `mark`.
+Chọn fx theo nghĩa của cảnh, nhưng đừng dùng mãi một cặp cố định cho một cảm xúc: xem cột "dùng gần đây" trong `fx-list.mjs` và ưu tiên fx ít dùng.
 
-## Kiểu hook (đổi kiểu mỗi video)
+## Kiểu hook (khác 2 tập gần nhất; tự viết câu, không có câu mẫu)
 
-| kiểu | ví dụ câu đầu (≤12 từ) |
-|---|---|
-| nghịch lý sốc | "Có một cái hang to đến mức bên trong có mây." |
-| con số gây sốc | "240 người ra đi. Chỉ 18 người trở về." |
-| in medias res | "Năm 1990, một người thợ rừng nghe gió thổi ra từ vách đá." |
-| câu hỏi trực diện | "Nếu được chọn, các bạn có dám bước vào không?" |
-| lời hứa bí mật | "Có một chi tiết sách giáo khoa không bao giờ kể." |
-| đếm ngược / thách đố | "Ba giây nữa, các bạn sẽ không nhìn bát cơm như cũ." |
+Hook mặc định là cảnh `custom` vẽ riêng quanh hình ảnh đắt nhất của kịch bản (SKILL.md mục 3 › Mở đầu): hình ≥40% khung, mỗi nhịp lời một biến đổi hình, cú chốt cuối, `creative.hook_visual` khác 3 tập trước. Template `type: "hook"` chỉ khi không có hình, không 2 tập liền.
 
-## Mẫu lời chào (giữ ý, đổi lời; đừng chép nguyên)
+Gợi ý: nghịch lý sốc · con số gây sốc · in medias res · câu hỏi trực diện · lời hứa bí mật · cold open bằng thoại nhân vật · âm thanh / im lặng rồi một câu · trailer giả · "lời đồn sai" rồi gạch đi · người xem đóng vai · đếm ngược · chi tiết nhỏ xíu phóng to.
 
-- "Chào các bạn, lại là Tèo đây, và hôm nay mình sẽ cùng các bạn lần theo dấu vết của…"
-- "Chào các bạn, lại là Tèo đây! Cầm chắc đèn pin nhé, vì chuyến này mình đi xuống lòng đất."
-- "Chào các bạn, lại là Tèo đây. Câu hỏi lúc nãy nghe vô lý đúng không? Vậy thì mình cùng đi tìm câu trả lời."
+## Khung kể, vai Tèo, kiểu kết
 
-## Mẫu CTA (gắn với nội dung; đừng chép nguyên)
-
-- Giữa video: "Nếu thấy chuyện này hay thì bấm đăng ký kênh Tèo Kể giúp mình nhé, vì đoạn sau còn gắt hơn nhiều." / "Mới nửa đường thôi mà đã thế này rồi. Bạn nào chưa đăng ký kênh thì bấm luôn đi, kẻo lỡ cái kết."
-- Cuối video: "Nếu video này cho các bạn thêm một điều thú vị, hãy đăng ký kênh, bật chuông, và kể mình nghe trong phần bình luận: nếu là các bạn, các bạn sẽ chọn gì?"
-
-## Nhịp mẫu (chỉ tham khảo, mỗi video phải đổi thứ tự)
-
-- Mở đầu: hook (≥2 fx) → narrator chào "lại là Tèo đây…" → moment/stat hé lộ → narrator hứa hẹn.
-- Một đoạn thân (~15 cảnh): intro → place(+fog/rays) → moment(+fx) → narrator(points) → talk → **custom** → stat → moment(+fx) → quote(+old-film) → versus → list(+mark) → narrator(bubble, vòng mở).
-- Giữa video (40–60%): narrator `cta: true`, ngay trước một bước ngoặt.
-- Kết: tóm tắt → câu hỏi bình luận → narrator `cta: true` (đăng ký + chuông) → outro.
+- Khung kể (`creative.frame`) **không chọn từ danh sách**: viết kịch bản thô → phân tích → tự thiết kế `{name, analysis, axis, open, close, segments}` (SKILL.md mục 2b). Validate so độ giống tên/trục/dàn khung với 3 tập gần nhất; `voice_role` là chữ tự do, so với 2 tập gần nhất.
+- Kiểu kết: phán quyết · twist · vòng tròn về cảnh mở · câu hỏi để ngỏ · nhân vật nói lời cuối · đồ vật về chỗ cũ · bảng điểm.
+- Câu chào, câu CTA, câu kết của 5 tập gần nhất: `node E:/tool/MuseStudio/kit/fx-list.mjs`. **Không có câu mẫu**: mỗi tập tự viết theo giọng khung và `voice_role`.
+- Cấm công thức: "ba câu hỏi. Một… Hai… Và ba" · "đoạn sau còn gắt hơn" · "Mỗi lượt đăng ký là thêm một…" (nếu 5 tập trước đã dùng) · "điểm lại ba điều đã hứa" làm kết mặc định · "một … nổi tiếng khác, với một cách kể hoàn toàn mới".
 
 ## Kho gợi ý chủ đề có neo (chưa làm; dùng rồi thì xoá khỏi đây)
 
 | mảng | ứng viên (neo: góc kể gợi ý) |
 |---|---|
-| nhân vật lịch sử VN | Trần Hưng Đạo: ba lần đánh Nguyên · Quang Trung: hành quân thần tốc Tết Kỷ Dậu · Lý Thường Kiệt: "Nam quốc sơn hà" và trận Như Nguyệt · Ngô Quyền sau Bạch Đằng · Nguyễn Trãi và vụ án Lệ Chi Viên |
-| nhân vật lịch sử thế giới | Napoleon: từ đảo Corse tới Saint Helena · Cleopatra: nữ hoàng cuối cùng của Ai Cập · Thành Cát Tư Hãn: đế chế lớn nhất lịch sử · Tần Thủy Hoàng: vua đi tìm thuốc trường sinh · Alexander Đại đế |
+| nhân vật lịch sử VN | Quang Trung: hành quân thần tốc Tết Kỷ Dậu · Lý Thường Kiệt: "Nam quốc sơn hà" và trận Như Nguyệt · Ngô Quyền sau Bạch Đằng · Nguyễn Trãi và vụ án Lệ Chi Viên |
+| nhân vật lịch sử thế giới | Cleopatra: nữ hoàng cuối cùng của Ai Cập · Thành Cát Tư Hãn: đế chế lớn nhất lịch sử · Tần Thủy Hoàng: vua đi tìm thuốc trường sinh · Alexander Đại đế |
 | trận đánh / sự kiện | Điện Biên Phủ: 56 ngày đêm · Xích Bích: trận hoả công · Thermopylae: 300 chiến binh Sparta · Bức tường Berlin sụp đổ |
 | nhà khoa học / phát minh | Einstein và E=mc² · Newton: quả táo và lăng kính · Galileo: "Dù sao Trái Đất vẫn quay" |
 | thảm hoạ / bí ẩn | Titanic: đêm cuối cùng · Chernobyl: 1 giờ 23 phút · Pompeii: thành phố bị chôn sống · Tam giác Bermuda · Atlantis: lục địa biến mất |

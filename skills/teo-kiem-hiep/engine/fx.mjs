@@ -5,11 +5,13 @@
 
 const css = (o) => Object.entries(o).map(([k, v]) => `${k.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}:${typeof v === "number" && !/opacity|zIndex/.test(k) ? v + "px" : v}`).join(";");
 const div = (id, style, inner = "") => `<div${id ? ` id="${id}"` : ""} style="position:absolute;${css(style)}">${inner}</div>`;
+// quầng sáng không dùng filter: 2 bản nét to, mờ dần phía sau nét chính. geo = thuộc tính hình (d=…, x1=…, pathLength…)
+const glowStroke = (tag, geo, w, color, glow, px, extra = "") => `<${tag} ${geo} fill="none" stroke="${glow}" stroke-width="${w + px * 2}" opacity=".25" ${extra}/><${tag} ${geo} fill="none" stroke="${glow}" stroke-width="${w + px}" opacity=".45" ${extra}/><${tag} ${geo} fill="none" stroke="${color}" stroke-width="${w}" ${extra}/>`;
 const f2 = (x) => (Math.round(x * 100) / 100).toString();
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const star4 = (fill, stroke) => `<svg viewBox="-60 -60 120 120" width="120" height="120" style="position:absolute;left:-60px;top:-60px;overflow:visible"><path d="M0 -58 L10 -10 L58 0 L10 10 L0 58 L-10 10 L-58 0 L-10 -10 Z" fill="${fill}" stroke="${stroke}" stroke-width="4"/></svg>`;
 const star5 = (c) => `<svg viewBox="-20 -20 40 40" width="40" height="40"><path d="M0 -18 L5 -5 L18 -5 L8 3 L12 17 L0 9 L-12 17 L-8 3 L-18 -5 L-5 -5 Z" fill="${c}" stroke="#111" stroke-width="3" stroke-linejoin="round"/></svg>`;
-const bigSword = (glow) => `<svg viewBox="0 0 120 700" width="120" height="700" style="display:block;overflow:visible;filter:drop-shadow(0 0 22px ${glow})"><path d="M48 520 L48 46 L60 0 L72 46 L72 520 Z" fill="#EEF3F8" stroke="#111" stroke-width="6" stroke-linejoin="round"/><path d="M60 40 L60 510" stroke="#AFC0D0" stroke-width="5"/><rect x="8" y="516" width="104" height="26" rx="10" fill="#E3A21A" stroke="#111" stroke-width="6"/><rect x="49" y="540" width="22" height="118" rx="6" fill="#6B3E1F" stroke="#111" stroke-width="5"/><circle cx="60" cy="670" r="17" fill="#E3A21A" stroke="#111" stroke-width="5"/></svg>`;
+const bigSword = (glow) => `<svg viewBox="0 0 120 700" width="120" height="700" style="display:block;overflow:visible"><path d="M48 520 L48 46 L60 0 L72 46 L72 520 Z M8 516 H112 V542 H8 Z" fill="none" stroke="${glow}" stroke-width="44" stroke-linejoin="round" opacity=".22"/><path d="M48 520 L48 46 L60 0 L72 46 L72 520 Z M8 516 H112 V542 H8 Z" fill="none" stroke="${glow}" stroke-width="22" stroke-linejoin="round" opacity=".4"/><path class="hl" d="M48 520 L48 46 L60 0 L72 46 L72 520 Z" fill="none" stroke="#fff" stroke-width="60" stroke-linejoin="round" opacity="0"/><path d="M48 520 L48 46 L60 0 L72 46 L72 520 Z" fill="#EEF3F8" stroke="#111" stroke-width="6" stroke-linejoin="round"/><path d="M60 40 L60 510" stroke="#AFC0D0" stroke-width="5"/><rect x="8" y="516" width="104" height="26" rx="10" fill="#E3A21A" stroke="#111" stroke-width="6"/><rect x="49" y="540" width="22" height="118" rx="6" fill="#6B3E1F" stroke="#111" stroke-width="5"/><circle cx="60" cy="670" r="17" fill="#E3A21A" stroke="#111" stroke-width="5"/></svg>`;
 const titleCss = (size, color, stroke = "#111") => `font:700 ${size}px/1.05 'Space Grotesk';color:${color};-webkit-text-stroke:${Math.round(size / 24)}px ${stroke};paint-order:stroke fill;text-shadow:${Math.round(size / 24)}px ${Math.round(size / 24)}px 0 ${stroke};text-align:center`;
 // particles flying from a ring of radius r0 into (cx, cy) between t0..t1
 function converge(ctx, layer, cx, cy, n, color, t0, t1, r0 = [500, 900], size = 12) {
@@ -60,11 +62,11 @@ def("opener", "op-ink", "Nét mực viết tên + ấn đỏ", (ctx, b, t) => {
   const u = ctx.uid("op"), th = ctx.theme, y0 = ctx.range(380, 520);
   const strokes = [0, 1, 2].map((i) => `<path id="${u}-k${i}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M${-100 + i * 40} ${f2(y0 + (i - 1) * 140 + ctx.range(-30, 30))} C ${f2(ctx.range(400, 700))} ${f2(y0 - 200 + i * 60)}, ${f2(ctx.range(1100, 1500))} ${f2(y0 + 220 - i * 80)}, 2020 ${f2(y0 + (i - 1) * 120)}" fill="none" stroke="${i === 1 ? th.qi : "#2A1E22"}" stroke-width="${[150, 60, 110][i]}" stroke-linecap="round" opacity="${i === 1 ? 0.8 : 1}"/>`).join("");
   ctx.add("fx", `<div class="fill" style="background:radial-gradient(circle at 50% 45%, #2B1D22 0%, #0E0A0C 70%)"></div><svg class="fill" viewBox="0 0 1920 1080" width="1920" height="1080" style="overflow:visible">${strokes}</svg>
-${div(u + "-t", { left: 0, top: 360, width: 1920, clipPath: "inset(0 100% 0 0)" }, `<div style="${titleCss(190, "#F6EFE0", "#000")}">${esc(b.title)}</div>`)}
+${div(u + "-t", { left: 0, top: 360, width: 0, overflow: "hidden" }, `<div style="width:1920px;${titleCss(190, "#F6EFE0", "#000")}">${esc(b.title)}</div>`)}
 ${div(u + "-seal", { left: ctx.pick([180, 1560]), top: 160, width: 190, height: 190, borderRadius: 18, background: "#C8372D", border: "6px solid #F6EFE0", font: "700 70px/176px 'Space Grotesk'", color: "#F6EFE0", textAlign: "center", opacity: 0 }, "TÈO")}
 ${div(u + "-s", { left: 0, top: 640, width: 1920, textAlign: "center", opacity: 0, font: "600 52px 'Space Grotesk'", color: th.light, letterSpacing: "6px" }, esc(b.sub))}`);
   ctx.js(`[0,1,2].forEach(i => DRAW("#${u}-k" + i, ${t + 0.2} + i * 0.25, 0.7, "power2.inOut"));
-tl.to("#${u}-t", { clipPath: "inset(0 0% 0 0)", duration: 1.0, ease: "power2.inOut" }, ${t + 1.2});
+tl.to("#${u}-t", { width: 1920, duration: 1.0, ease: "power2.inOut" }, ${t + 1.2});
 STAMP("#${u}-seal", ${t + 2.3}, ${f2(ctx.range(-12, 8))}); SHAKE("#${ctx.S}-shake", ${t + 2.56}, 0.3, 18);
 SHOW("#${u}-s", ${t + 2.7}, 0.5, { y: 20 });`);
   ctx.sfx("whoosh-cinematic", t + 0.2, 0.4, 1.6); ctx.sfx("impact-bass-1", t + 2.5, 0.55); ctx.sfx("chime", t + 2.8, 0.25, 1.4);
@@ -84,7 +86,7 @@ tl.fromTo("#${u}-sp", { opacity: 1, scale: 0.3 }, { scale: 1.6, rotation: 25, du
 FLASH(${t + 0.75}, 0.8, 0.35); SHAKE("#${ctx.S}-shake", ${t + 0.75}, 0.4, 30);
 tl.fromTo("#${u}-t", { y: -300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out", ...NF }, ${t + 1.3});
 POP("#${u}-s", ${t + 2.1});
-tl.to(["#${u}-a", "#${u}-b"], { filter: "drop-shadow(0 0 40px #fff)", duration: 0.4, yoyo: true, repeat: 3 }, ${t + 1.6});`);
+tl.to(["#${u}-a .hl", "#${u}-b .hl"], { opacity: 0.55, duration: 0.4, yoyo: true, repeat: 3 }, ${t + 1.6});`);
   burst(ctx, "fx", 960, 470, 26, "#FFE08A", t + 0.75, [200, 600], 10, 0.6);
   ctx.sfx("whoosh", t + 0.3, 0.5); ctx.sfx("impact-bass-2", t + 0.75, 0.65); ctx.sfx("pop", t + 2.1, 0.3);
   return { dur: 4.3 };
@@ -152,7 +154,7 @@ def("transition", "tr-slash", "Nhát chém cắt đôi màn hình", (ctx, b, c) 
   ctx.add("over", `<svg class="fill" viewBox="0 0 1920 1080" width="1920" height="1080" style="overflow:visible">
 <polygon id="${u}-p" points="${A} ${B} ${flip ? "-2200,1180 -2200,-100" : "2200,1180 2200,-100"}" fill="#0B0B10" transform="translate(${flip ? -2400 : 2400} 0)"/>
 <polygon id="${u}-q" points="${A} ${B} ${flip ? "4200,1180 4200,-100" : "-2400,1180 -2400,-100"}" fill="#0B0B10" transform="translate(${flip ? 2400 : -2400} 0)"/>
-<line id="${u}-l" x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" stroke="#fff" stroke-width="22" stroke-linecap="round" style="filter:drop-shadow(0 0 18px ${ctx.theme.qi})"/></svg>`);
+<g id="${u}-l" stroke-dashoffset="1">${glowStroke("line", `x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" pathLength="1" stroke-dasharray="1" stroke-linecap="round"`, 22, "#fff", ctx.theme.qi, 18)}</g></svg>`);
   ctx.js(`DRAW("#${u}-l", ${f2(c - COVER)}, 0.15, "power4.out"); tl.to(["#${u}-p", "#${u}-q"], { x: 0, duration: 0.28, ease: "power3.in" }, ${f2(c - 0.3)}); tl.to("#${u}-l", { opacity: 0, duration: 0.1 }, ${f2(c - 0.1)});
 tl.to("#${u}-p", { x: ${flip ? -2400 : 2400}, duration: 0.5, ease: "power3.in" }, ${f2(c + 0.05)}); tl.to("#${u}-q", { x: ${flip ? 2400 : -2400}, duration: 0.5, ease: "power3.in" }, ${f2(c + 0.05)});`);
   ctx.sfx("whoosh", c - COVER, 0.5); ctx.sfx("impact-bass-1", c - 0.05, 0.35);
@@ -306,17 +308,18 @@ def("power", "pw-vortex", "Xoáy khí hút vào người", (ctx, b, t) => {
   const a = ctx.actor(b.who), u = ctx.uid("pw"), th = ctx.theme, size = a.h * 1.5, d = 2.6, dir = ctx.pick([1, -1]);
   const spiral = [0, 1, 2, 3].map((k) => `<path transform="rotate(${k * 90} 350 350)" d="M350 350 C 430 300, 500 370, 460 460 C 420 560, 250 570, 190 470" fill="none" stroke="${th.light}" stroke-width="16" stroke-linecap="round" opacity=".85"/>`).join("");
   ctx.add("behind", div(u, { left: a.cx - size / 2, top: a.cy - size / 2, width: size, height: size, opacity: 0 }, `<svg viewBox="0 0 700 700" width="${f2(size)}" height="${f2(size)}"><defs><radialGradient id="${u}-g"><stop offset="0" stop-color="#fff"/><stop offset=".25" stop-color="${th.qi}"/><stop offset=".7" stop-color="${th.dark}" stop-opacity=".85"/><stop offset="1" stop-color="${th.dark}" stop-opacity="0"/></radialGradient></defs><circle cx="350" cy="350" r="345" fill="url(#${u}-g)"/>${spiral}</svg>`));
+  ctx.add("behind", div(u + "-au", { left: a.cx - a.w * 0.8, top: a.top - a.h * 0.25, width: a.w * 1.6, height: a.h * 1.4, borderRadius: "50%", background: `radial-gradient(ellipse at 50% 50%, ${th.qi}cc 0%, ${th.qi}66 38%, ${th.qi}00 70%)`, opacity: 0 }));
   converge(ctx, "fx", a.cx, a.cy, 24, th.light, t + 0.3, t + d);
   ctx.js(`tl.fromTo("#${u}", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)", ...NF }, ${t}); tl.to("#${u}", { rotation: ${dir * -900}, duration: ${d}, ease: "none" }, ${t}); tl.to("#${u}", { opacity: 0, scale: 0.4, duration: 0.3 }, ${f2(t + d)});
 tl.to("#${a.body}", { y: -50, duration: 0.8, ease: "power2.out" }, ${t + 0.1}); tl.to("#${a.body}", { y: 0, duration: 0.3, ease: "power2.in" }, ${f2(t + d)});
-tl.set("#${a.inner}", { filter: "drop-shadow(0px 0px 0px ${th.qi})" }, ${t}); tl.to("#${a.inner}", { filter: "drop-shadow(0px 0px 34px ${th.qi})", duration: 0.5 }, ${t}); tl.to("#${a.inner}", { filter: "drop-shadow(0px 0px 0px ${th.qi})", duration: 0.4 }, ${f2(t + d)});
+tl.to("#${u}-au", { opacity: 1, duration: 0.5 }, ${t}); tl.to("#${u}-au", { opacity: 0, duration: 0.4 }, ${f2(t + d)});
 POSE("${a.p}", "up", ${t + 0.1}, 0.5); POSE("${a.p}", "rest", ${f2(t + d)}, 0.3);`);
   ctx.sfx("riser", t, 0.4, d);
   return { dur: d + 0.3 };
 });
 def("power", "pw-aura", "Hào quang bốc lửa", (ctx, b, t) => {
   const a = ctx.actor(b.who), u = ctx.uid("pw"), th = ctx.theme, d = 2.2, n = 7;
-  ctx.add("behind", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: a.cx - a.w * 0.6 + ctx.range(-30, 30), top: a.top - 40 + ctx.range(-20, 40), width: a.w * 1.2, height: a.h * 1.1, borderRadius: "50% 50% 45% 45% / 70% 70% 30% 30%", background: `radial-gradient(ellipse at 50% 70%, ${i % 2 ? th.qi : th.qi2}cc, transparent 70%)`, opacity: 0, filter: "blur(6px)" })).join(""));
+  ctx.add("behind", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: a.cx - a.w * 0.6 + ctx.range(-30, 30), top: a.top - 40 + ctx.range(-20, 40), width: a.w * 1.2, height: a.h * 1.1, borderRadius: "50% 50% 45% 45% / 70% 70% 30% 30%", background: `radial-gradient(ellipse at 50% 70%, ${i % 2 ? th.qi : th.qi2}cc, transparent 70%)`, opacity: 0 })).join(""));
   const sp = ctx.uid("sk");
   ctx.add("fx", Array.from({ length: 16 }, (_, i) => div(`${sp}-${i}`, { left: a.cx + ctx.range(-a.w * 0.5, a.w * 0.5), top: a.foot - 40, width: 10, height: 26, borderRadius: 5, background: th.light, boxShadow: `0 0 10px ${th.qi}`, opacity: 0 })).join(""));
   ctx.js(`for (let i = 0; i < ${n}; i++) { tl.fromTo("#${u}-" + i, { opacity: 0, scaleY: 0.5, transformOrigin: "50% 100%" }, { opacity: 0.9, scaleY: 1.1, duration: 0.3, ...NF }, ${t} + i * 0.05); tl.to("#${u}-" + i, { scaleY: 0.85, scaleX: 1.08, duration: ${f2(ctx.range(0.12, 0.2))}, yoyo: true, repeat: 11, ease: "sine.inOut" }, ${t + 0.3} + i * 0.03); tl.to("#${u}-" + i, { opacity: 0, duration: 0.3 }, ${f2(t + d)}); }
@@ -360,7 +363,7 @@ tl.set("#${u}-g", { opacity: 0 }, ${f2(t + d - 0.25)}); tl.to("#${u}-t", { heigh
 });
 def("power", "pw-ground", "Đất nứt, đá bay lơ lửng", (ctx, b, t) => {
   const a = ctx.actor(b.who), u = ctx.uid("pw"), th = ctx.theme, d = 2.2, n = 8;
-  const crack = Array.from({ length: 5 }, (_, i) => { const dir = i % 2 ? 1 : -1; let x = 0, y = 0, p = "M0 0"; for (let k = 0; k < 4; k++) { x += dir * ctx.range(40, 90); y += ctx.range(-14, 22); p += ` L${f2(x)} ${f2(y)}`; } return `<path id="${u}-c${i}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="${p}" fill="none" stroke="${th.qi}" stroke-width="7" style="filter:drop-shadow(0 0 8px ${th.qi})"/>`; }).join("");
+  const crack = Array.from({ length: 5 }, (_, i) => { const dir = i % 2 ? 1 : -1; let x = 0, y = 0, p = "M0 0"; for (let k = 0; k < 4; k++) { x += dir * ctx.range(40, 90); y += ctx.range(-14, 22); p += ` L${f2(x)} ${f2(y)}`; } return `<g id="${u}-c${i}" stroke-dashoffset="1">${glowStroke("path", `d="${p}" pathLength="1" stroke-dasharray="1"`, 7, th.qi, th.qi, 8)}</g>`; }).join("");
   ctx.add("fx", `<svg style="position:absolute;left:${f2(a.cx)}px;top:${f2(a.foot - 6)}px;overflow:visible" width="1" height="1">${crack}</svg>` + Array.from({ length: n }, (_, i) => div(`${u}-r${i}`, { left: a.cx + ctx.range(-a.w * 1.2, a.w * 1.2), top: a.foot - 30, width: ctx.range(24, 54), height: ctx.range(20, 40), borderRadius: "30% 40% 35% 45%", background: "#8A7A66", border: "4px solid #3B2A1A", opacity: 0 })).join(""));
   ctx.js(`for (let i = 0; i < 5; i++) DRAW("#${u}-c" + i, ${t} + i * 0.06, 0.35);
 for (let i = 0; i < ${n}; i++) { tl.set("#${u}-r" + i, { opacity: 1 }, ${t + 0.15}); tl.to("#${u}-r" + i, { y: -${f2(a.h * 0.6)} - i * 22, rotation: 40 + i * 30, duration: 0.9, ease: "power2.out" }, ${t + 0.2} + i * 0.05); tl.to("#${u}-r" + i, { y: "+=16", duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, ${t + 1.1}); tl.to("#${u}-r" + i, { y: 0, opacity: 0, duration: 0.3, ease: "power2.in" }, ${f2(t + d - 0.2)}); }
@@ -433,7 +436,7 @@ def("attack", "at-dash", "Lao tới + bóng mờ + vệt chém cung", (ctx, b, t
 def("attack", "at-cross", "Hai nhát chém chữ X", (ctx, b, t) => {
   const a = ctx.actor(b.who), T = defaultTarget(ctx, b), c = centroid(T), u = ctx.uid("at"), th = ctx.theme, r = ctx.range(260, 380);
   attackName(ctx, b, t);
-  const line = (id, x1, y1, x2, y2) => `<path id="${id}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M${f2(x1)} ${f2(y1)} L${f2(x2)} ${f2(y2)}" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round" style="filter:drop-shadow(0 0 16px ${th.qi})"/>`;
+  const line = (id, x1, y1, x2, y2) => `<g id="${id}" stroke-dashoffset="1">${glowStroke("path", `d="M${f2(x1)} ${f2(y1)} L${f2(x2)} ${f2(y2)}" pathLength="1" stroke-dasharray="1" stroke-linecap="round"`, 26, "#fff", th.qi, 16)}</g>`;
   ctx.add("fx", `<svg class="fill" viewBox="0 0 1920 1080" width="1920" height="1080" style="overflow:visible;position:absolute;left:0;top:0">${line(u + "-1", c.x - r, c.y - r, c.x + r, c.y + r)}${line(u + "-2", c.x + r, c.y - r, c.x - r, c.y + r)}</svg>`);
   ctx.js(`BROW("${a.p}", ${t}, true); POSE("${a.p}", "windup", ${t}, 0.3); POSE("${a.p}", "slash", ${t + 0.4}, 0.12, "power4.out"); POSE("${a.p}", "windup", ${t + 0.6}, 0.12, "power4.out"); POSE("${a.p}", "slash", ${t + 0.75}, 0.12, "power4.out");
 tl.to("#${a.body}", { x: ${s2(c.x > a.cx)}, duration: 0.1, yoyo: true, repeat: 3 }, ${t + 0.4});
@@ -460,7 +463,7 @@ def("attack", "at-rain", "Mưa kiếm khí từ trời", (ctx, b, t) => {
   const a = ctx.actor(b.who), T = defaultTarget(ctx, b), c = centroid(T), u = ctx.uid("at"), th = ctx.theme, n = 14;
   attackName(ctx, b, t);
   const spread = Math.max(300, Math.abs(T[T.length - 1].cx - T[0].cx) + 300);
-  ctx.add("fx", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: c.x - spread / 2 + ctx.range(0, spread), top: -400, width: 30, height: 300, transform: `rotate(${f2(ctx.range(-12, 12))}deg)` }, `<svg viewBox="0 0 30 300" width="30" height="300" style="overflow:visible;filter:drop-shadow(0 0 12px ${th.qi})"><path d="M15 300 L4 40 L15 0 L26 40 Z" fill="${th.light}" stroke="#fff" stroke-width="4"/></svg>`)).join(""));
+  ctx.add("fx", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: c.x - spread / 2 + ctx.range(0, spread), top: -400, width: 30, height: 300, transform: `rotate(${f2(ctx.range(-12, 12))}deg)` }, `<svg viewBox="0 0 30 300" width="30" height="300" style="overflow:visible"><path d="M15 300 L4 40 L15 0 L26 40 Z" fill="none" stroke="${th.qi}" stroke-width="22" stroke-linejoin="round" opacity=".3"/><path d="M15 300 L4 40 L15 0 L26 40 Z" fill="${th.light}" stroke="#fff" stroke-width="4"/></svg>`)).join(""));
   ctx.js(`POSE("${a.p}", "up", ${t}, 0.3); BROW("${a.p}", ${t}, true); tl.to("#${ctx.S}-bg", { filter: "brightness(0.6)", duration: 0.3 }, ${t}); tl.to("#${ctx.S}-bg", { filter: "brightness(1)", duration: 0.4 }, ${t + 1.6});
 for (let i = 0; i < ${n}; i++) { tl.to("#${u}-" + i, { y: ${f2(c.y + 160)} + rand() * 120, duration: 0.3, ease: "power3.in" }, ${t + 0.4} + i * 0.05); tl.to("#${u}-" + i, { opacity: 0, duration: 0.3 }, ${t + 1.3} + i * 0.02); }
 SHAKE("#${ctx.S}-shake", ${t + 0.7}, 0.8, 14); POSE("${a.p}", "rest", ${t + 1.5}, 0.3);`);
@@ -472,7 +475,7 @@ def("attack", "at-palm", "Chưởng phong sóng lưỡi liềm", (ctx, b, t) => 
   const a = ctx.actor(b.who), T = defaultTarget(ctx, b), c = centroid(T), u = ctx.uid("at"), th = ctx.theme, s = c.x > a.cx ? 1 : -1, n = 3;
   attackName(ctx, b, t);
   const x0 = a.cx + s * a.w * 0.4, dist = c.x - x0;
-  ctx.add("fx", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: x0 - 80, top: a.cy - 160, width: 160, height: 320, opacity: 0 }, `<svg viewBox="0 0 160 320" width="160" height="320" style="overflow:visible;transform:scaleX(${s})"><path d="M40 0 Q170 160 40 320 Q110 160 40 0 Z" fill="${i % 2 ? "#fff" : th.qi}" stroke="${th.light}" stroke-width="5" style="filter:drop-shadow(0 0 16px ${th.qi})"/></svg>`)).join(""));
+  ctx.add("fx", Array.from({ length: n }, (_, i) => div(`${u}-${i}`, { left: x0 - 80, top: a.cy - 160, width: 160, height: 320, opacity: 0 }, `<svg viewBox="0 0 160 320" width="160" height="320" style="overflow:visible;transform:scaleX(${s})"><path d="M40 0 Q170 160 40 320 Q110 160 40 0 Z" fill="none" stroke="${th.qi}" stroke-width="30" stroke-linejoin="round" opacity=".3"/><path d="M40 0 Q170 160 40 320 Q110 160 40 0 Z" fill="${i % 2 ? "#fff" : th.qi}" stroke="${th.light}" stroke-width="5"/></svg>`)).join(""));
   ctx.js(`BROW("${a.p}", ${t}, true); POSE("${a.p}", "guard", ${t}, 0.25); POSE("${a.p}", "palm", ${t + 0.35}, 0.12, "power4.out"); tl.to("#${a.body}", { x: ${-s * 20}, duration: 0.1, yoyo: true, repeat: 1 }, ${t + 0.35});
 for (let i = 0; i < ${n}; i++) { tl.fromTo("#${u}-" + i, { x: 0, opacity: 1, scale: 0.4 }, { x: ${f2(dist)}, scale: 1.3, duration: 0.35, ease: "power2.in", ...NF }, ${t + 0.4} + i * 0.12); tl.to("#${u}-" + i, { opacity: 0, scale: 1.8, duration: 0.2 }, ${t + 0.75} + i * 0.12); }
 POSE("${a.p}", "rest", ${t + 1.3}, 0.3);`);
@@ -630,8 +633,8 @@ def("caption", "cp-stamp", "Biển hiệu đóng dấu", (ctx, b, t) => {
 });
 def("caption", "cp-brush", "Chữ hiện trên vệt cọ", (ctx, b, t) => {
   const u = ctx.uid("cp"), hold = b.short ? 1.3 : 2.2, col = ctx.pick(["#8A2A1E", "#141014", ctx.theme.dark]);
-  ctx.add("hud", div(u, { left: 260, top: b.y || 70, width: 1400, height: 150, clipPath: "inset(0 100% 0 0)" }, `<svg viewBox="0 0 1400 150" width="1400" height="150" style="position:absolute;left:0;top:0"><path d="M20 80 C 300 30, 1100 130, 1380 60 L1370 110 C 1100 150, 300 90, 30 130 Z" fill="${col}" stroke="#F6EFE0" stroke-width="6" stroke-linejoin="round"/></svg><div style="position:relative;line-height:150px;text-align:center;font:700 66px 'Space Grotesk';color:#F6EFE0">${esc(b.text)}</div>`));
-  ctx.js(`tl.to("#${u}", { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power2.out" }, ${f2(t)}); tl.to("#${u}", { clipPath: "inset(0 0 0 100%)", duration: 0.35, ease: "power2.in" }, ${f2(t + hold)});`);
+  ctx.add("hud", div(u, { left: 260, top: b.y || 70, width: 0, height: 150, overflow: "hidden" }, `<div id="${u}-in" style="position:absolute;left:0;top:0;width:1400px;height:150px"><svg viewBox="0 0 1400 150" width="1400" height="150" style="position:absolute;left:0;top:0"><path d="M20 80 C 300 30, 1100 130, 1380 60 L1370 110 C 1100 150, 300 90, 30 130 Z" fill="${col}" stroke="#F6EFE0" stroke-width="6" stroke-linejoin="round"/></svg><div style="position:relative;line-height:150px;text-align:center;font:700 66px 'Space Grotesk';color:#F6EFE0">${esc(b.text)}</div></div>`));
+  ctx.js(`tl.to("#${u}", { width: 1400, duration: 0.5, ease: "power2.out" }, ${f2(t)}); tl.to("#${u}", { left: 1660, width: 0, duration: 0.35, ease: "power2.in" }, ${f2(t + hold)}); tl.to("#${u}-in", { left: -1400, duration: 0.35, ease: "power2.in" }, ${f2(t + hold)});`);
   ctx.sfx("whoosh-short", t, 0.4);
   return { dur: hold + 0.3 };
 });
@@ -668,9 +671,12 @@ def("caption", "cp-ribbon", "Dải lụa bay vào", (ctx, b, t) => {
 
 // ============================ CARD (beat: {title, sub?, lines[], side?: left|right|center}) ============================
 // Thẻ thông tin (tác giả, tác phẩm, nhân vật). Nằm ở dải trên khung (đầu nhân vật ≈ y 540+) nên không che mặt.
-// Chưa có giọng đọc → thời lượng theo số chữ, đủ để đọc.
+// Thẻ luôn được Tèo đọc (build truyền b.voDur = độ dài giọng): thẻ ở lại tới hết câu, các dòng hiện dần theo nhịp đọc.
+// Chưa có giọng → thời lượng theo số chữ, đủ để đọc.
 const cardText = (b) => [b.title, b.sub, ...(b.lines || [])].filter(Boolean).join(" ");
 const readHold = (s, min = 2.6) => Math.min(10, Math.max(min, 1.4 + [...s].length * 0.055));
+const cardHold = (b) => (b.voDur ? Math.max(readHold(cardText(b)), b.voDur + 0.5) : readHold(cardText(b)));
+const lineGap = (b) => (b.voDur && b.lines?.length ? Math.min(2.5, Math.max(0.35, (b.voDur - 1) / (b.lines.length + 1))) : 0.35);
 function cardBox(ctx, b, w) {
   const lines = b.lines || [];
   if (lines.length > 4) console.warn(`fx card: ${ctx.curKey} có ${lines.length} dòng (nên ≤4)`);
@@ -682,10 +688,10 @@ function cardBox(ctx, b, w) {
 }
 const cardInner = (b, color, sub) => `<div style="${titleCss(60, color)};text-align:left;-webkit-text-stroke:0;text-shadow:none;color:${color}">${esc(b.title)}</div>${b.sub ? `<div style="font:600 36px 'Space Grotesk';color:${sub};margin-top:6px">${esc(b.sub)}</div>` : ""}`;
 const cardLines = (b, u, color) => (b.lines || []).map((l, i) => `<div id="${u}-l${i}" style="font:500 38px/1.3 'Space Grotesk';color:${color};margin-top:10px;opacity:0">• ${esc(l)}</div>`).join("");
-const revealLines = (u, b, t0, gap = 0.35) => (b.lines || []).map((_, i) => `SHOW("#${u}-l${i}", ${f2(t0 + i * gap)}, 0.3, { x: -30 });`).join(" ");
+const revealLines = (u, b, t0, gap = lineGap(b)) => (b.lines || []).map((_, i) => `SHOW("#${u}-l${i}", ${f2(t0 + i * gap)}, 0.3, { x: -30 });`).join(" ");
 
 def("card", "cd-scroll", "Cuộn giấy dó mở ngang", (ctx, b, t) => {
-  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1100), hold = readHold(cardText(b));
+  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1100), hold = cardHold(b);
   ctx.add("hud", div(u, { left: x, top: y, width: w, height: h }, `<div id="${u}-p" style="position:absolute;left:0;top:0;width:${w}px;height:${h}px;background:#F3E6C8;border:6px solid #3B2A1A;box-shadow:10px 10px 0 rgba(0,0,0,.35);padding:28px 48px;transform:scaleX(0)">${cardInner(b, "#8A2A1E", "#3B2A1A")}${cardLines(b, u, "#2A1E14")}</div>
 ${[0, 1].map((i) => `<div id="${u}-r${i}" style="position:absolute;left:${w / 2 - 22}px;top:-18px;width:44px;height:${h + 36}px;border-radius:14px;background:linear-gradient(90deg,#5A3825,#8A5A34,#5A3825);border:5px solid #111;opacity:0"></div>`).join("")}`));
   ctx.js(`tl.set(["#${u}-r0", "#${u}-r1"], { opacity: 1 }, ${f2(t)}); tl.to("#${u}-p", { scaleX: 1, duration: 0.6, ease: "power2.out" }, ${f2(t)}); tl.to("#${u}-r0", { x: ${-w / 2}, duration: 0.6, ease: "power2.out" }, ${f2(t)}); tl.to("#${u}-r1", { x: ${w / 2}, duration: 0.6, ease: "power2.out" }, ${f2(t)});
@@ -695,7 +701,7 @@ tl.to("#${u}-p", { scaleX: 0, duration: 0.4, ease: "power2.in" }, ${f2(t + hold)
   return { dur: hold + 0.5 };
 });
 def("card", "cd-board", "Bảng gỗ treo dây thả xuống", (ctx, b, t) => {
-  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1060), hold = readHold(cardText(b));
+  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1060), hold = cardHold(b);
   ctx.add("hud", div(u, { left: x, top: y - 700, width: w, height: h + 40 }, `<div style="position:absolute;left:${w * 0.18}px;top:-400px;width:6px;height:420px;background:#3B2A1A"></div><div style="position:absolute;left:${w * 0.82}px;top:-400px;width:6px;height:420px;background:#3B2A1A"></div>
 <div style="position:absolute;left:0;top:10px;width:${w}px;height:${h}px;border-radius:14px;background:repeating-linear-gradient(0deg,#8A5A34 0 26px,#7A4E2C 26px 30px);border:7px solid #3B2A1A;box-shadow:0 0 0 5px #E3A21A,10px 10px 0 5px rgba(0,0,0,.35);padding:26px 46px">${cardInner(b, "#FFE45C", "#F6EFE0")}${cardLines(b, u, "#FFFAF0")}</div>`));
   ctx.js(`tl.to("#${u}", { y: 700, duration: 0.7, ease: "bounce.out" }, ${f2(t)}); tl.to("#${u}", { rotation: ${f2(ctx.pick([2, -2]))}, transformOrigin: "50% 0%", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, ${f2(t + 0.7)});
@@ -705,7 +711,7 @@ tl.to("#${u}", { y: -40, duration: 0.45, ease: "power2.in" }, ${f2(t + hold)});`
   return { dur: hold + 0.5 };
 });
 def("card", "cd-bamboo", "Thẻ tre xoè ra từng thanh", (ctx, b, t) => {
-  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1100), hold = readHold(cardText(b)), n = Math.ceil(w / 70);
+  const u = ctx.uid("cd"), { x, y, w, h } = cardBox(ctx, b, b.side && b.side !== "center" ? 820 : 1100), hold = cardHold(b), n = Math.ceil(w / 70);
   const slats = Array.from({ length: n }, (_, i) => `<div id="${u}-s${i}" style="position:absolute;left:${i * (w / n)}px;top:0;width:${w / n - 4}px;height:${h}px;border-radius:10px;background:linear-gradient(90deg,#C9A45C,#E8CF8E 45%,#B98F44);border:3px solid #5A3825;transform:scaleY(0);transform-origin:50% 0%"></div>`).join("");
   ctx.add("hud", div(u, { left: x, top: y, width: w, height: h }, `${slats}<div id="${u}-c" style="position:absolute;left:14px;top:14px;width:${w - 28}px;height:${h - 28}px;box-sizing:border-box;padding:12px 32px;border-radius:10px;background:rgba(250,241,216,.93);border:3px solid #5A3825;opacity:0">${cardInner(b, "#8A2A1E", "#3B2A1A")}${cardLines(b, u, "#2A1E14")}</div>`));
   ctx.js(`for (let i = 0; i < ${n}; i++) tl.to("#${u}-s" + i, { scaleY: 1, duration: 0.3, ease: "back.out(1.6)" }, ${f2(t)} + i * 0.03); SHOW("#${u}-c", ${f2(t + 0.35 + n * 0.03)}, 0.25);

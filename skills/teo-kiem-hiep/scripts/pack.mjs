@@ -1,17 +1,16 @@
 // Gói đăng YouTube cho một tập Tèo kiếm hiệp đã render: <dir>/youtube/   + ghi tập vào data/history.json
-//   node <SKILL>/scripts/pack.mjs <dir> [--no-history]
+//   node <SKILL>/scripts/pack.mjs <dir> [--no-history] [--no-drive]
+//   Đóng gói xong (không lỗi) thì tự chép youtube/ lên Google Drive qua drive-sync.mjs (G:/My Drive/TeoKenhYoutube/<slug>/); --no-drive để bỏ qua.
 // Đầu vào: renders/final.mp4, tap.json (seo), work/plan.json, work/timeline.json, thumb/ (build.mjs dựng sẵn)
 // Đầu ra: <slug>.mp4 (hardlink), thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, DANG-YOUTUBE.md
 // Không dùng ffmpeg: thumbnail chụp bằng hyperframes snapshot; thời lượng lấy từ work/timeline.json.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, linkSync, rmSync, statSync, readdirSync } from "fs";
-import { execSync, spawnSync } from "child_process";
-import { join, resolve, basename, dirname } from "path";
-import { fileURLToPath } from "url";
-
-const HERE = dirname(fileURLToPath(import.meta.url));
+import { execSync } from "child_process";
+import { join, resolve, basename } from "path";
 import { loadLibrary } from "../engine/library.mjs";
 import { HISTORY, readHistory } from "./plan.mjs";
 import { storyOf, MIN_TOTAL } from "./story-check.mjs";
+import { syncToDrive } from "./drive-sync.mjs";
 
 const BRAND = "Tèo Kể", SUFFIX = ` | ${BRAND}`, TAG_BRAND = "#TeoKe";
 const MAX_TITLE = 60, MAX_TAGS = 500, MAX_DESC = 5000;
@@ -28,7 +27,7 @@ const FOOTER = `━━━━━━━━━━━━━━━
 
 const args = process.argv.slice(2);
 const dirArg = args.find((a) => !a.startsWith("--"));
-if (!dirArg) die("dùng: node pack.mjs <dir> [--no-history]");
+if (!dirArg) die("dùng: node pack.mjs <dir> [--no-history] [--no-drive]");
 const dir = resolve(dirArg);
 const slug = basename(dir);
 const yt = join(dir, "youtube");
@@ -123,14 +122,8 @@ if (!args.includes("--no-history")) {
   writeFileSync(HISTORY, JSON.stringify(hist, null, 1));
 }
 console.log(`${problems.length ? "⚠" : "ok"} ${slug}: ${titles[0]} · ${ts(dur)} · tags ${used}/500 · history ${args.includes("--no-history") ? "bỏ qua" : "đã ghi"}${problems.length ? "\n   " + problems.join("\n   ") : ""}`);
-
-if (!problems.length && (args.includes("--drive") || process.env.AUTO_UPLOAD_DRIVE === "1")) {
-  const uploadScript = join(HERE, "upload-drive.mjs");
-  const kitUpload = join(resolve("..", "kit"), "upload-drive.mjs");
-  const scriptToRun = existsSync(uploadScript) ? uploadScript : (existsSync(kitUpload) ? kitUpload : null);
-  if (scriptToRun) {
-    spawnSync("node", [scriptToRun, dir], { stdio: "inherit" });
-  }
-}
-
 if (problems.length) process.exit(1);
+if (!args.includes("--no-drive")) {
+  try { const r = syncToDrive(dir); console.log(`drive: → ${r.dest} · chép ${r.copied}, bỏ qua ${r.skipped} (đã có)${r.newer.length ? ` · ⚠ trên Drive mới hơn, không đè: ${r.newer.join(", ")}` : ""}`); }
+  catch (e) { die(`đóng gói xong nhưng CHƯA lên Drive: ${e.message}`); }
+}

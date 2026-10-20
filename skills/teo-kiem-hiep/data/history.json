@@ -1,1 +1,3295 @@
-[]
+[
+ {
+  "slug": "tap-01-tieu-phong-vs-quach-tinh",
+  "ep": 1,
+  "date": "2026-10-19",
+  "theme": "hoa",
+  "seq": [
+   "op-swords",
+   "tr-paper",
+   "cam-tilt",
+   "en-slide",
+   "in-scroll",
+   "en-leap",
+   "in-plate",
+   "tr-shards",
+   "cam-push",
+   "local:vach-khiet-dan",
+   "cd-board",
+   "pw-ground",
+   "tr-slash",
+   "cam-pull",
+   "cp-vertical",
+   "at-dash",
+   "im-text",
+   "af-blow",
+   "cp-ribbon",
+   "at-beam",
+   "im-shards",
+   "af-stagger",
+   "tr-ink",
+   "cam-rise",
+   "cd-scroll",
+   "pw-charge",
+   "tr-flash",
+   "cam-drift-l",
+   "in-stamp",
+   "local:mon-an-rong",
+   "tr-scroll",
+   "cam-drift-r",
+   "local:que-kinh-dich",
+   "local:que-kinh-dich",
+   "cd-bamboo",
+   "cp-brush",
+   "tr-blinds",
+   "cam-drift-l",
+   "pw-lightning",
+   "cp-stamp",
+   "at-whirl",
+   "im-ring",
+   "af-dizzy",
+   "pw-aura",
+   "cp-type",
+   "at-cross",
+   "im-hitstop",
+   "af-stagger",
+   "cp-burst",
+   "at-rain",
+   "im-radial",
+   "af-blow",
+   "cp-type",
+   "at-leap",
+   "im-flash",
+   "af-dizzy",
+   "st-tally",
+   "tr-iris",
+   "cam-push",
+   "en-smoke",
+   "local:song-thu-ho-bac",
+   "cp-vertical",
+   "at-palm",
+   "im-ring",
+   "af-blow",
+   "cp-stamp",
+   "at-flurry",
+   "im-radial",
+   "af-stagger",
+   "cp-brush",
+   "at-dash",
+   "im-flash",
+   "af-dizzy",
+   "st-bars",
+   "tr-paper",
+   "cam-rise",
+   "in-freeze",
+   "cp-burst",
+   "at-whirl",
+   "im-hitstop",
+   "af-blow",
+   "cp-ribbon",
+   "at-beam",
+   "im-shards",
+   "af-stagger",
+   "tr-shards",
+   "cam-pull",
+   "cd-scroll",
+   "tr-iris",
+   "cam-drift-r",
+   "pw-vortex",
+   "pw-eyes",
+   "cp-vertical",
+   "at-leap",
+   "im-text",
+   "af-dizzy",
+   "cp-type",
+   "tr-slash",
+   "ed-sunset"
+  ],
+  "opener": "op-swords",
+  "ender": "ed-sunset",
+  "finisher": "at-leap",
+  "seed": 929305,
+  "local": [
+   "local:mon-an-rong",
+   "local:que-kinh-dich",
+   "local:song-thu-ho-bac",
+   "local:vach-khiet-dan"
+  ],
+  "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?",
+  "hook": "AI MẠNH HƠN?",
+  "next": "Dương Quá vs Lệnh Hồ Xung: trọng kiếm hay vô chiêu",
+  "sets": [
+   "quan-tro",
+   "nui-tuyet",
+   "quan-tro",
+   "san-tap",
+   "quan-tro",
+   "nui-tuyet",
+   "nui-tuyet",
+   "san-tap",
+   "rung-truc",
+   "mai-ngoi",
+   "nui-tuyet"
+  ],
+  "chars": [
+   "Tiêu Phong",
+   "Quách Tĩnh",
+   "Hồng Thất Công",
+   "Hoàng Dung",
+   "Hào kiệt",
+   "Chu Bá Thông",
+   "Mộ Dung Phục"
+  ],
+  "moves": [
+   "Thái Tổ Trường Quyền",
+   "Một quyền như sấm",
+   "Kháng Long Hữu Hối",
+   "Phi Long Tại Thiên",
+   "Kiến Long Tại Điền",
+   "Song Long Thủ Thuỷ",
+   "Song Thủ Hỗ Bác",
+   "Chấn Kinh Bách Lý",
+   "Long Chiến Ư Dã",
+   "Hàng Long Thập Bát Chưởng",
+   "Thần Long Bãi Vĩ",
+   "Hàng Long Thập Bát Chưởng"
+  ],
+  "story": {
+   "format": "doi-dau",
+   "logline": "Cùng một bộ Hàng Long Thập Bát Chưởng: Tiêu Phong sắc bén và Quách Tĩnh bền bỉ, bốn hiệp đấu trong mơ và chuyện 28 chưởng rút còn 18",
+   "subjects": [
+    "Tiêu Phong",
+    "Quách Tĩnh"
+   ],
+   "works": [
+    "Thiên Long Bát Bộ",
+    "Xạ Điêu Anh Hùng Truyện"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "bản tân tu — chi tiết 28 chưởng rút còn 18 chỉ có ở bản này; các chi tiết khác giống nhau giữa các bản",
+   "verdict": "Ý kiến của Tèo: trận ngắn nghiêng Tiêu Phong (uy lực, thực chiến), trận dài nghiêng Quách Tĩnh (nội lực, biến hoá). Truyện không có trận nào giữa hai người.",
+   "facts": [
+    {
+     "claim": "Tiêu Phong là người Khiết Đan, con Tiêu Viễn Sơn, được vợ chồng Kiều Tam Hoè nuôi, học võ với Huyền Khổ và Uông Kiếm Thông, làm bang chủ Cái Bang rồi bị phế khi lộ thân thế",
+     "src": [
+      "https://en.wikipedia.org/wiki/Qiao_Feng",
+      "https://vi.wikipedia.org/wiki/Kiều_Phong"
+     ]
+    },
+    {
+     "claim": "Danh xưng Bắc Kiều Phong, Nam Mộ Dung",
+     "src": [
+      "https://en.wikipedia.org/wiki/Qiao_Feng",
+      "https://vi.wikipedia.org/wiki/Kiều_Phong"
+     ]
+    },
+    {
+     "claim": "Tiêu Phong kết nghĩa với Đoàn Dự, Hư Trúc, Gia Luật Hồng Cơ; được phong Nam Viện đại vương; kết thúc ở Nhạn Môn Quan để giữ hoà bình Tống–Liêu",
+     "src": [
+      "https://en.wikipedia.org/wiki/Qiao_Feng",
+      "https://vi.wikipedia.org/wiki/Kiều_Phong"
+     ]
+    },
+    {
+     "claim": "Ở Tụ Hiền Trang Tiêu Phong dùng Thái Tổ Trường Quyền, bộ quyền gắn với Tống Thái Tổ Triệu Khuông Dận",
+     "src": [
+      "https://danviet.vn/tuyet-hoc-giup-tieu-phong-ap-che-quan-hung-tai-tu-hien-trang-77771021846-d758069.html",
+      "https://soha.vn/tuyet-hoc-co-that-giup-kieu-phong-ap-che-quan-hung-trong-dai-chien-tu-hien-trang-20181031061926326.htm"
+     ]
+    },
+    {
+     "claim": "Bản tân tu: Tiêu Phong cùng Hư Trúc rút Hàng Long từ 28 chưởng còn 18",
+     "src": [
+      "https://zh.wikipedia.org/wiki/降龍十八掌",
+      "https://cafef.vn/28-chieu-tinh-gian-con-18-hang-long-thap-bat-chuong-188250722064107481.chn",
+      "https://soha.vn/hang-long-thap-bat-chuong-198251129231249088.htm"
+     ]
+    },
+    {
+     "claim": "Kháng Long Hữu Hối của Tiêu Phong khiến Vô Danh lão tăng phải chú ý/khen chưởng lực",
+     "src": [
+      "https://cafef.vn/28-chieu-tinh-gian-con-18-hang-long-thap-bat-chuong-188250722064107481.chn",
+      "https://soha.vn/hang-long-thap-bat-chuong-198251129231249088.htm"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh: cha Quách Khiếu Thiên, mẹ Lý Bình, lớn lên ở Mông Cổ, được Thành Cát Tư Hãn che chở, kết nghĩa Đà Lôi, hứa hôn Hoa Tranh",
+     "src": [
+      "https://en.wikipedia.org/wiki/Guo_Jing",
+      "https://vi.wikipedia.org/wiki/Quách_Tĩnh"
+     ]
+    },
+    {
+     "claim": "Thầy của Quách Tĩnh: Giang Nam Thất Quái, Triết Biệt, Mã Ngọc (nội công), Hồng Thất Công; Chu Bá Thông dạy Song Thủ Hỗ Bác và Không Minh Quyền; hiểu Cửu Âm Chân Kinh",
+     "src": [
+      "https://en.wikipedia.org/wiki/Guo_Jing",
+      "https://vi.wikipedia.org/wiki/Quách_Tĩnh"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh là Bắc Hiệp, giữ Tương Dương nhiều năm; ở Hoa Sơn luận kiếm lần 2 đấu hơn trăm chiêu với Hoàng Dược Sư và Hồng Thất Công",
+     "src": [
+      "https://en.wikipedia.org/wiki/Guo_Jing",
+      "https://vi.wikipedia.org/wiki/Quách_Tĩnh"
+     ]
+    },
+    {
+     "claim": "Hoàng Dung nấu ăn để Hồng Thất Công dạy Quách Tĩnh 15 chưởng (Kháng Long Hữu Hối đến Long Chiến Ư Dã), 3 chưởng còn lại dạy sau vụ Âu Dương Khắc; đệ tử Cái Bang lập công lớn chỉ được dạy 1 chiêu",
+     "src": [
+      "https://danviet.vn/ly-do-hong-that-cong-truyen-hang-long-thap-bat-chuong-cho-quach-tinh-1067783-d148010.html",
+      "https://m.baophapluat.vn/chuyen-ve-hong-that-cong-bang-chu-tham-an-nhat-cai-bang-post390979.html"
+     ]
+    },
+    {
+     "claim": "Hồng Thất Công tự chặt một ngón tay vì tham ăn lỡ việc, biệt danh Cửu Chỉ Thần Cái",
+     "src": [
+      "https://m.baophapluat.vn/chuyen-ve-hong-that-cong-bang-chu-tham-an-nhat-cai-bang-post390979.html",
+      "https://en.wikipedia.org/wiki/Hong_Qigong"
+     ]
+    },
+    {
+     "claim": "Tên chiêu lấy từ Kinh Dịch: Kháng Long Hữu Hối (hào thượng quẻ Kiền), Long Chiến Ư Dã (quẻ Khôn)",
+     "src": [
+      "https://zh.wikipedia.org/wiki/降龍十八掌",
+      "https://kiemhiepkimdung.vn/2014/03/hang-long-thap-bat-chuong.html"
+     ]
+    },
+    {
+     "claim": "Hoàng Dung không học Hàng Long vì chưởng quá dương cương; về sau học Đả Cẩu Bổng Pháp và làm bang chủ Cái Bang",
+     "src": [
+      "https://zh.wikipedia.org/wiki/降龍十八掌",
+      "https://vi.wikipedia.org/wiki/Hoàng_Dung"
+     ]
+    },
+    {
+     "claim": "Thời Ỷ Thiên Đồ Long Ký, bang chủ Sử Hoả Long chỉ còn nắm 12 chưởng Hàng Long",
+     "src": [
+      "https://zh.wikipedia.org/wiki/降龍十八掌",
+      "https://kiemhiepkimdung.vn/2014/03/hang-long-thap-bat-chuong.html"
+     ]
+    },
+    {
+     "claim": "Chu Bá Thông bị nhốt ở đảo Đào Hoa 15 năm, tự nghĩ ra Song Thủ Hỗ Bác",
+     "src": [
+      "https://en.wikipedia.org/wiki/Zhou_Botong",
+      "https://vi.wikipedia.org/wiki/Chu_Bá_Thông"
+     ]
+    },
+    {
+     "claim": "Nguyên mẫu Tiêu Phong trong Liêu sử: đại thần nhà Liêu (1030–1065), Nam Viện đại vương, mất vì bệnh, được truy phong vương, từng đánh Tống",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Kiều_Phong",
+      "https://danviet.vn/nhan-vat-tieu-phong-co-that-trong-lich-su-la-nguoi-nhu-the-nao-20220518230236359-d1020023.html"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh lấy cảm hứng từ tướng Quách Bảo Ngọc thời Thành Cát Tư Hãn",
+     "src": [
+      "https://en.wikipedia.org/wiki/Guo_Jing",
+      "https://vi.wikipedia.org/wiki/Quách_Tĩnh"
+     ]
+    },
+    {
+     "claim": "Fan tranh luận: Tiêu Phong mạnh trong ~100 hiệp đầu, Quách Tĩnh bền hơn khi trận kéo dài",
+     "src": [
+      "https://soha.vn/hang-long-thap-bat-chuong-198251129231249088.htm",
+      "https://cafef.vn/28-chieu-tinh-gian-con-18-hang-long-thap-bat-chuong-188250722064107481.chn"
+     ]
+    }
+   ],
+   "sources": [
+    "https://zh.wikipedia.org/wiki/降龍十八掌",
+    "https://en.wikipedia.org/wiki/Qiao_Feng",
+    "https://en.wikipedia.org/wiki/Guo_Jing"
+   ]
+  }
+ },
+ {
+  "slug": "tap-05-co-long",
+  "ep": 5,
+  "date": "2026-10-19",
+  "theme": "hoa",
+  "seq": [
+   "op-swords",
+   "tr-flash",
+   "cam-push",
+   "en-leap",
+   "in-plate",
+   "tr-slash",
+   "cam-pull",
+   "cd-bamboo",
+   "local:cau-van-ngan",
+   "pw-aura",
+   "tr-iris",
+   "cam-tilt",
+   "cd-board",
+   "cp-type",
+   "at-whirl",
+   "im-radial",
+   "af-dizzy",
+   "cd-scroll",
+   "tr-shards",
+   "cam-drift-r",
+   "in-scroll",
+   "cd-bamboo",
+   "local:binh-khi-pho",
+   "en-slide",
+   "in-stamp",
+   "pw-vortex",
+   "cp-brush",
+   "at-cross",
+   "im-text",
+   "af-stagger",
+   "local:phi-dao",
+   "af-blow",
+   "en-leap",
+   "cp-stamp",
+   "tr-scroll",
+   "cam-drift-l",
+   "in-silhouette",
+   "cd-scroll",
+   "pw-eyes",
+   "local:linh-te-chi",
+   "cp-ribbon",
+   "at-dash",
+   "im-flash",
+   "af-stagger",
+   "en-run",
+   "tr-paper",
+   "cam-rise",
+   "in-stamp",
+   "in-silhouette",
+   "cd-board",
+   "local:thien-ngoai-phi-tien",
+   "pw-charge",
+   "cp-vertical",
+   "at-leap",
+   "im-hitstop",
+   "af-dizzy",
+   "st-bars",
+   "tr-blinds",
+   "cam-pull",
+   "in-plate",
+   "cd-bamboo",
+   "local:uat-kim-huong",
+   "cp-burst",
+   "at-rain",
+   "im-shards",
+   "af-blow",
+   "tr-ink",
+   "cam-drift-l",
+   "en-smoke",
+   "in-scroll",
+   "local:cau-van-ngan",
+   "st-bars",
+   "cd-board",
+   "tr-flash",
+   "cam-drift-r",
+   "pw-aura",
+   "local:phi-dao",
+   "cp-brush",
+   "tr-shards",
+   "ed-sunset"
+  ],
+  "opener": "op-swords",
+  "ender": "ed-sunset",
+  "finisher": "at-whirl",
+  "seed": 925786,
+  "local": [
+   "local:binh-khi-pho",
+   "local:cau-van-ngan",
+   "local:linh-te-chi",
+   "local:phi-dao",
+   "local:thien-ngoai-phi-tien",
+   "local:uat-kim-huong"
+  ],
+  "title": "Cổ Long: người viết kiếm hiệp như thơ",
+  "hook": "VIẾT KIẾM NHƯ THƠ",
+  "next": "Vì sao Tảo Địa Tăng mạnh nhất Kim Dung?",
+  "sets": [
+   "quan-tro",
+   "mai-ngoi",
+   "quan-tro",
+   "quan-tro",
+   "ben-song",
+   "mai-ngoi",
+   "ben-song",
+   "san-tap",
+   "quan-tro"
+  ],
+  "chars": [
+   "Cổ Long",
+   "Kim Dung",
+   "Lý Tầm Hoan",
+   "Thượng Quan Kim Hồng",
+   "A Phi",
+   "Lục Tiểu Phụng",
+   "Hoa Mãn Lâu",
+   "Tây Môn Xuy Tuyết",
+   "Diệp Cô Thành",
+   "Sở Lưu Hương",
+   "Kiếm khách áo xám",
+   "Kiếm khách áo lam"
+  ],
+  "moves": [
+   "Một kiếm",
+   "Long Phượng Song Hoàn",
+   "Trả kiếm",
+   "Kiếm của Tây Môn",
+   "Quạt khinh công"
+  ],
+  "story": {
+   "format": "tac-gia",
+   "logline": "Chân dung Cổ Long, người viết kiếm hiệp bằng câu ngắn như thơ, qua bốn huyền thoại Lý Tầm Hoan, Lục Tiểu Phụng, Tây Môn Xuy Tuyết với Diệp Cô Thành và Sở Lưu Hương, rồi so phong cách với Kim Dung",
+   "subjects": [
+    "Cổ Long",
+    "Lý Tầm Hoan",
+    "Lục Tiểu Phụng",
+    "Tây Môn Xuy Tuyết",
+    "Diệp Cô Thành",
+    "Sở Lưu Hương"
+   ],
+   "works": [
+    "Đa Tình Kiếm Khách Vô Tình Kiếm",
+    "Lục Tiểu Phụng truyền kỳ",
+    "Sở Lưu Hương truyền kỳ",
+    "Thất Chủng Vũ Khí",
+    "Tuyệt Đại Song Kiêu"
+   ],
+   "authors": [
+    "Cổ Long"
+   ],
+   "edition": "Cổ Long không có các lớp bản sửa như Kim Dung; năm ra đời từng bộ lệch giữa các nguồn nên video nói 'khoảng'. Câu trích nguyên văn duy nhất: 'Tiểu Lý phi đao, lệ bất hư phát' (Đa Tình Kiếm Khách Vô Tình Kiếm).",
+   "verdict": "Ý kiến của Tèo: Cổ Long xứng danh 'viết kiếm hiệp như thơ'; Kim Dung hay Cổ Long hơn là chuyện khẩu vị. Tây Môn vs Diệp Tèo chấm hoà 27–27 cho vui, trong truyện Tây Môn thắng.",
+   "facts": [
+    {
+     "claim": "Tên thật Hùng Diệu Hoa, sinh 7/6/1938",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Long",
+      "https://en.wikipedia.org/wiki/Gu_Long"
+     ]
+    },
+    {
+     "claim": "Thường ghi sinh ở Hồng Kông, quê gốc Giang Tây, thuở nhỏ sống ở Hán Khẩu",
+     "src": [
+      "https://zh.wikipedia.org/wiki/古龙",
+      "https://en.wikipedia.org/wiki/Gu_Long"
+     ]
+    },
+    {
+     "claim": "Theo cha mẹ sang Đài Loan đầu thập niên 1950",
+     "src": [
+      "https://zh.wikipedia.org/wiki/古龙",
+      "https://en.wikipedia.org/wiki/Gu_Long"
+     ]
+    },
+    {
+     "claim": "Tiểu thuyết võ hiệp đầu tay Thương Khung Thần Kiếm, 1960",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Long",
+      "https://en.wikipedia.org/wiki/Gu_Long"
+     ]
+    },
+    {
+     "claim": "Khoảng 70 (69) bộ võ hiệp",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Long",
+      "https://danviet.vn/chat-doi-cua-lang-tu-co-long-nha-tieu-thuyet-vo-hiep-uu-tu-7777918693-d660184.html"
+     ]
+    },
+    {
+     "claim": "Văn phong câu ngắn, đoạn ngắn, nhiều đối thoại, nhịp nhanh hợp điện ảnh",
+     "src": [
+      "https://en.wikipedia.org/wiki/Gu_Long",
+      "https://tuoitre.vn/vi-sao-phim-vo-hiep-kim-dung-chiem-uu-the-hon-co-long-1313214.htm",
+      "https://tidenews.com.cn/news.html?id=3301189"
+     ]
+    },
+    {
+     "claim": "Thường được cho là chịu ảnh hưởng Hemingway; ảnh hưởng tiểu thuyết thời đại Nhật (Miyamoto Musashi)",
+     "src": [
+      "https://tidenews.com.cn/news.html?id=3301189",
+      "https://m.gulongbbs.com/jiedu/zppl/76.html",
+      "https://zh.wikipedia.org/wiki/古龙"
+     ]
+    },
+    {
+     "claim": "Nghê Khuông là bạn thân, từng viết hộ một đoạn Tuyệt Đại Song Kiêu",
+     "src": [
+      "https://danviet.vn/chat-doi-cua-lang-tu-co-long-nha-tieu-thuyet-vo-hiep-uu-tu-7777918693-d660184.html",
+      "https://zh.wikipedia.org/wiki/古龙",
+      "https://zh.wikipedia.org/wiki/绝代双骄"
+     ]
+    },
+    {
+     "claim": "Tuyệt Đại Song Kiêu ra đời khoảng 1966",
+     "src": [
+      "https://zh.wikipedia.org/wiki/绝代双骄",
+      "https://zh.wikipedia.org/wiki/古龙"
+     ]
+    },
+    {
+     "claim": "Nghê Khuông viết hộ Kim Dung một đoạn Thiên Long Bát Bộ năm 1965 khi Kim Dung đi châu Âu; Cổ Long không liên quan",
+     "src": [
+      "https://en.wikipedia.org/wiki/Ni_Kuang",
+      "https://www.chinanews.com.cn/cul/2014/07-19/6403625.shtml"
+     ]
+    },
+    {
+     "claim": "Đa Tình Kiếm Khách Vô Tình Kiếm đăng khoảng 1968–1970",
+     "src": [
+      "https://en.wikipedia.org/wiki/Xiaoli_Feidao",
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑"
+     ]
+    },
+    {
+     "claim": "Tiểu Lý phi đao, lệ bất hư phát",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Đa_tình_kiếm_khách_vô_tình_kiếm",
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑"
+     ]
+    },
+    {
+     "claim": "Binh Khí Phổ (Bách Hiểu Sinh): 1 Thiên Cơ lão nhân - Thiên Cơ Bổng, 2 Thượng Quan Kim Hồng - Long Phượng Song Hoàn, 3 Lý Tầm Hoan",
+     "src": [
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑",
+      "https://vi.wikipedia.org/wiki/Đa_tình_kiếm_khách_vô_tình_kiếm",
+      "https://www.sohu.com/a/559424392_120609581"
+     ]
+    },
+    {
+     "claim": "Lý Tầm Hoan đánh bại Thượng Quan Kim Hồng (bang chủ Kim Tiền Bang), sau đó rời giang hồ cùng Tôn Tiểu Hồng",
+     "src": [
+      "https://en.wikipedia.org/wiki/Xiaoli_Feidao",
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑"
+     ]
+    },
+    {
+     "claim": "Lâm Thi Âm, người yêu từ nhỏ của Lý Tầm Hoan, lấy Long Tiêu Vân, huynh đệ kết nghĩa của ông",
+     "src": [
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑",
+      "https://vi.wikipedia.org/wiki/Đa_tình_kiếm_khách_vô_tình_kiếm"
+     ]
+    },
+    {
+     "claim": "A Phi là kiếm khách trẻ, bạn của Lý Tầm Hoan",
+     "src": [
+      "https://zh.wikipedia.org/wiki/多情剑客无情剑",
+      "https://vi.wikipedia.org/wiki/Đa_tình_kiếm_khách_vô_tình_kiếm"
+     ]
+    },
+    {
+     "claim": "Lục Tiểu Phụng được gọi là bốn hàng lông mày vì ria mép",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Lục_Tiểu_Phụng",
+      "https://en.wikipedia.org/wiki/Lu_Xiaofeng"
+     ]
+    },
+    {
+     "claim": "Theo lời kể, khoảng 1972 Kim Dung mời Cổ Long viết cho Minh Báo, dẫn tới Lục Tiểu Phụng",
+     "src": [
+      "https://zh.wikipedia.org/wiki/陆小凤",
+      "https://zh.wikipedia.org/wiki/古龙"
+     ]
+    },
+    {
+     "claim": "Linh Tê Nhất Chỉ kẹp binh khí bằng hai ngón, từng dùng đỡ Thiên Ngoại Phi Tiên",
+     "src": [
+      "https://zh.wikipedia.org/wiki/陆小凤",
+      "https://zh.wikipedia.org/wiki/陆小凤传奇"
+     ]
+    },
+    {
+     "claim": "Hoa Mãn Lâu mù, bạn Lục Tiểu Phụng; Tây Môn Xuy Tuyết là bạn kiếm khách",
+     "src": [
+      "https://en.wikipedia.org/wiki/Lu_Xiaofeng",
+      "https://zh.wikipedia.org/wiki/陆小凤传奇"
+     ]
+    },
+    {
+     "claim": "Hệ liệt Lục Tiểu Phụng 7 quyển, quyển đầu khoảng 1973",
+     "src": [
+      "https://en.wikipedia.org/wiki/Lu_Xiaofeng",
+      "https://zh.wikipedia.org/wiki/陆小凤传奇"
+     ]
+    },
+    {
+     "claim": "Tây Môn Xuy Tuyết đấu Diệp Cô Thành trên đỉnh Tử Cấm Thành đêm trăng tròn, trong Quyết Chiến Tiền Hậu",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Tây_Môn_Xuy_Tuyết",
+      "https://vi.wikipedia.org/wiki/Diệp_Cô_Thành",
+      "https://zh.wikipedia.org/wiki/叶孤城"
+     ]
+    },
+    {
+     "claim": "Diệp Cô Thành có chiêu Thiên Ngoại Phi Tiên; Tây Môn Xuy Tuyết thắng",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Diệp_Cô_Thành",
+      "https://zh.wikipedia.org/wiki/叶孤城",
+      "https://zh.wikipedia.org/wiki/西门吹雪"
+     ]
+    },
+    {
+     "claim": "Sở Lưu Hương: Đạo Soái / Hương Soái, hiệp đạo kiểu Robin Hood",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Sở_Lưu_Hương",
+      "https://zh.wikipedia.org/wiki/楚留香",
+      "https://en.wikipedia.org/wiki/Chu_Liuxiang"
+     ]
+    },
+    {
+     "claim": "Sở Lưu Hương không giết người",
+     "src": [
+      "https://zh.wikipedia.org/wiki/楚留香",
+      "https://www.saostar.vn/dien-anh/nam-chinh-hao-hoa-duy-nhat-khong-co-ke-thu-trong-the-gioi-kiem-hiep-202605281143259166.html"
+     ]
+    },
+    {
+     "claim": "Khinh công Sở Lưu Hương được coi là đệ nhất",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Sở_Lưu_Hương",
+      "https://en.wikipedia.org/wiki/Chu_Liuxiang"
+     ]
+    },
+    {
+     "claim": "Hương uất kim hương; Sở Lưu Hương lại không ngửi được mùi",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Sở_Lưu_Hương",
+      "https://www.saostar.vn/dien-anh/nam-chinh-hao-hoa-duy-nhat-khong-co-ke-thu-trong-the-gioi-kiem-hiep-202605281143259166.html",
+      "https://www.chimenviolet.com/kiem-hiep/so-luu-huong-hiep-khach-hoan-my-the-gian-kho-thay.html"
+     ]
+    },
+    {
+     "claim": "Sở Lưu Hương hệ liệt ra đời cuối thập niên 1960",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Sở_Lưu_Hương",
+      "https://zh.wikipedia.org/wiki/古龙"
+     ]
+    },
+    {
+     "claim": "Thất Chủng Vũ Khí đầu thập niên 1970: Trường Sinh Kiếm, Khổng Tước Linh, Bích Ngọc Đao, Đa Tình Hoàn…",
+     "src": [
+      "https://zh.wikipedia.org/wiki/七种武器",
+      "https://vi.wikipedia.org/wiki/Cổ_Long"
+     ]
+    },
+    {
+     "claim": "Kim Dung nền lịch sử, dài hơi, hợp phim truyền hình; Cổ Long nội tâm, câu ngắn, hợp điện ảnh; độc giả đánh giá Cổ Long cao về văn chương, Kim Dung thắng về phổ biến (ý kiến)",
+     "src": [
+      "https://tuoitre.vn/vi-sao-phim-vo-hiep-kim-dung-chiem-uu-the-hon-co-long-1313214.htm",
+      "https://tidenews.com.cn/news.html?id=3301189"
+     ]
+    },
+    {
+     "claim": "Cổ Long mất năm 1985, ở tuổi ngoài bốn mươi",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Long",
+      "https://danviet.vn/chat-doi-cua-lang-tu-co-long-nha-tieu-thuyet-vo-hiep-uu-tu-7777918693-d660184.html"
+     ]
+    }
+   ],
+   "sources": [
+    "https://en.wikipedia.org/wiki/Gu_Long",
+    "https://zh.wikipedia.org/wiki/古龙",
+    "https://vi.wikipedia.org/wiki/Cổ_Long",
+    "https://tuoitre.vn/vi-sao-phim-vo-hiep-kim-dung-chiem-uu-the-hon-co-long-1313214.htm"
+   ]
+  }
+ },
+ {
+  "slug": "tap-04-cuu-duong-vs-cuu-am",
+  "ep": 4,
+  "date": "2026-10-19",
+  "theme": "bang",
+  "seq": [
+   "op-ink",
+   "tr-scroll",
+   "cam-push",
+   "en-spin",
+   "in-scroll",
+   "cd-scroll",
+   "en-run",
+   "in-freeze",
+   "cd-board",
+   "tr-shards",
+   "cam-tilt",
+   "in-stamp",
+   "local:dao-tang-chu",
+   "cd-bamboo",
+   "tr-blinds",
+   "cam-rise",
+   "in-silhouette",
+   "local:trao-khoi-tim",
+   "cp-ribbon",
+   "at-cross",
+   "im-flash",
+   "af-dizzy",
+   "en-leap",
+   "tr-paper",
+   "cam-drift-l",
+   "local:kinh-giua-dong",
+   "cd-board",
+   "tr-flash",
+   "cam-drift-r",
+   "in-plate",
+   "en-drop",
+   "local:ba-nhanh-duong",
+   "cd-bamboo",
+   "cp-stamp",
+   "tr-iris",
+   "cam-pull",
+   "in-scroll",
+   "pw-lightning",
+   "local:lua-tan-bang",
+   "cd-scroll",
+   "tr-ink",
+   "cam-drift-r",
+   "cd-bamboo",
+   "in-freeze",
+   "en-smoke",
+   "in-silhouette",
+   "cp-type",
+   "at-palm",
+   "im-shards",
+   "af-blow",
+   "tr-slash",
+   "cam-pull",
+   "pw-eyes",
+   "cp-burst",
+   "at-whirl",
+   "im-text",
+   "af-stagger",
+   "pw-ground",
+   "cp-vertical",
+   "at-leap",
+   "im-hitstop",
+   "af-blow",
+   "st-scale",
+   "cp-brush",
+   "at-dash",
+   "im-ring",
+   "af-stagger",
+   "cp-type",
+   "at-rain",
+   "im-radial",
+   "af-dizzy",
+   "st-tally",
+   "local:am-duong-hoi",
+   "tr-paper",
+   "cam-tilt",
+   "pw-aura",
+   "pw-vortex",
+   "cp-stamp",
+   "at-flurry",
+   "im-text",
+   "af-stagger",
+   "cp-brush",
+   "tr-blinds",
+   "ed-wave"
+  ],
+  "opener": "op-ink",
+  "ender": "ed-wave",
+  "finisher": "at-flurry",
+  "seed": 2766,
+  "local": [
+   "local:am-duong-hoi",
+   "local:ba-nhanh-duong",
+   "local:dao-tang-chu",
+   "local:kinh-giua-dong",
+   "local:lua-tan-bang",
+   "local:trao-khoi-tim"
+  ],
+  "title": "Cửu Dương vs Cửu Âm: bí kíp nào mạnh hơn?",
+  "hook": "BÍ KÍP NÀO MẠNH?",
+  "next": "Cổ Long: người viết kiếm hiệp như thơ",
+  "sets": [
+   "quan-tro",
+   "mai-ngoi",
+   "ben-song",
+   "rung-truc",
+   "san-tap",
+   "nui-tuyet",
+   "cau-go",
+   "nui-tuyet",
+   "san-tap"
+  ],
+  "chars": [
+   "Cửu Âm",
+   "Cửu Dương",
+   "Hoàng Thường",
+   "Mai Siêu Phong",
+   "Chu Bá Thông",
+   "Quách Tĩnh",
+   "Âu Dương Phong",
+   "Giác Viễn",
+   "Trương Tam Phong",
+   "Trương Vô Kỵ",
+   "Chu Chỉ Nhược",
+   "Cô gái áo vàng"
+  ],
+  "moves": [
+   "Cửu Âm Bạch Cốt Trảo",
+   "Tồi Kiên Thần Trảo",
+   "Cửu Âm Thần Trảo",
+   "Cửu Dương Thần Công",
+   "Dương khí hộ thể",
+   "Cửu Âm Bạch Mãng Tiên",
+   "Cửu Âm hợp Hàng Long"
+  ],
+  "story": {
+   "format": "so-vo",
+   "logline": "Cửu Âm Chân Kinh của ông quan Hoàng Thường và Cửu Dương chép giữa dòng Lăng Già Kinh: ai viết, ai luyện đúng, ai luyện sai, rồi bốn hiệp Tèo chấm xem bí kíp nào mạnh hơn",
+   "subjects": [
+    "Cửu Dương Thần Công",
+    "Cửu Âm Chân Kinh"
+   ],
+   "works": [
+    "Xạ Điêu Anh Hùng Truyện",
+    "Thần Điêu Hiệp Lữ",
+    "Ỷ Thiên Đồ Long Ký"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "Theo bản sửa quen thuộc với độc giả Việt; khác bản được nói trong video: tác giả Cửu Âm (bản đầu Đạt Ma), tác giả Cửu Dương (Đạt Ma / bị nghi / kỳ nhân thắng Vương Trùng Dương uống rượu ở bản tân tu), tổng cương chuyển sang hạ quyển và bí mật trong Ỷ Thiên kiếm thành mảnh sắt bản đồ ở bản tân tu",
+   "verdict": "Ý kiến của Tèo: làm nền thì Cửu Dương (an toàn, hộ thể, nội lực), ra chiêu thì Cửu Âm; có cả hai mới là đỉnh. Điểm Tèo chấm 35–31 nghiêng Cửu Dương. Truyện không so trực tiếp hai bộ.",
+   "facts": [
+    {
+     "claim": "Hoàng Thường, quan thời Tống Huy Tông, biên Vạn Thọ Đạo Tạng, tự ngộ võ công từ đạo thư (bản đầu ghi tác giả là Đạt Ma)",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-chuyen-it-biet-ve-cao-thu-tao-ra-bi-kip-cuu-am-chan-kinh-khien-vo-lam-day-song-204447023.htm",
+      "https://doisongphapluat.com.vn/cuu-am-chan-kinh-hay-cuu-duong-chan-kinh-moi-la-thien-ha-vo-hoc-chi-cao-a341463.html"
+     ]
+    },
+    {
+     "claim": "Hoàng Thường đánh Minh Giáo theo lệnh triều đình, bị trả thù, trốn vào núi, mất vài chục năm (có nguồn ghi hơn 40 năm) nghĩ cách phá chiêu rồi viết kinh",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-chuyen-it-biet-ve-cao-thu-tao-ra-bi-kip-cuu-am-chan-kinh-khien-vo-lam-day-song-204447023.htm",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Cửu Âm có thượng quyển (nội công) và hạ quyển (chiêu thức, phá tà công)",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://doisongphapluat.com.vn/cuu-am-chan-kinh-hay-cuu-duong-chan-kinh-moi-la-thien-ha-vo-hoc-chi-cao-a341463.html",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Hoa Sơn luận kiếm lần 1 gồm Vương Trùng Dương, Hoàng Dược Sư, Âu Dương Phong, Đoàn Trí Hưng, Hồng Thất Công; Vương Trùng Dương thắng, giữ kinh và cấm môn đồ luyện",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://en.wikipedia.org/wiki/Nine_Yin_Manual"
+     ]
+    },
+    {
+     "claim": "Hắc Phong Song Sát (Trần Huyền Phong, Mai Siêu Phong), học trò Hoàng Dược Sư, trộm hạ quyển, thiếu thượng quyển nên luyện lệch",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://danviet.vn/cuu-am-bach-cot-trao-bi-mang-tieng-oan-la-mon-vo-cong-am-doc-nhat-d1383450.html",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Cửu Âm Bạch Cốt Trảo sinh ra do hiểu sai chữ trong kinh; chiêu gốc là Tồi Kiên Thần Trảo / Cửu Âm Thần Trảo; Mai Siêu Phong luyện cả Tồi Tâm Chưởng",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://danviet.vn/cuu-am-bach-cot-trao-bi-mang-tieng-oan-la-mon-vo-cong-am-doc-nhat-d1383450.html",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Chu Bá Thông lừa Quách Tĩnh học thuộc Cửu Âm như võ công khác (bản tân tu đổi chi tiết)",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Anh_hùng_xạ_điêu",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh",
+      "https://zh.wikipedia.org/wiki/九陰真經"
+     ]
+    },
+    {
+     "claim": "Tổng cương viết bằng Phạn ngữ phiên âm, Nhất Đăng dịch; bản tân tu chuyển tổng cương sang hạ quyển",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh gần như là người duy nhất ngoài Hoàng Thường luyện trọn bộ Cửu Âm",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://www.saostar.vn/dien-anh/so-sanh-cuu-am-chan-kinh-va-cuu-duong-than-cong-trong-kim-dung-202608131432022773.html"
+     ]
+    },
+    {
+     "claim": "Theo kế Hồng Thất Công, Quách Tĩnh viết bản Cửu Âm bị sửa (câu đảo ngược) cho Âu Dương Phong; ông luyện, nội lực tăng nhưng tẩu hoả nhập ma, mất trí",
+     "src": [
+      "https://en.wikipedia.org/wiki/Ouyang_Feng",
+      "https://zh.wikipedia.org/wiki/九陰真經"
+     ]
+    },
+    {
+     "claim": "Cửu Dương chép giữa các dòng Lăng Già Kinh, cất ở Tàng Kinh Các Thiếu Lâm",
+     "src": [
+      "https://en.wikipedia.org/wiki/Nine_Yang_Manual",
+      "https://danviet.vn/giai-ma-bi-an-cuu-duong-than-cong-ky-1-an-dut-cuu-am-chan-kinh-20211118230305284-d987483.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-mon-vo-cong-ky-la-duoc-giau-trong-bung-vuon-c731a1586673.html"
+     ]
+    },
+    {
+     "claim": "Tác giả Cửu Dương: bản đầu Đạt Ma; bản sửa Trương Quân Bảo nghi vì văn Hán quá trôi chảy; bản tân tu: kỳ nhân thắng Vương Trùng Dương thi uống rượu, mượn đọc Cửu Âm rồi viết Cửu Dương để cân bằng âm dương",
+     "src": [
+      "https://en.wikipedia.org/wiki/Nine_Yang_Manual",
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Tiêu Tương Tử và Doãn Khắc Tây trộm Lăng Già Kinh, giấu kinh trong bụng con vượn, vượn tới vùng Côn Lôn",
+     "src": [
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh",
+      "https://danviet.vn/giai-ma-bi-an-cuu-duong-than-cong-ky-1-an-dut-cuu-am-chan-kinh-20211118230305284-d987483.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-mon-vo-cong-ky-la-duoc-giau-trong-bung-vuon-c731a1586673.html"
+     ]
+    },
+    {
+     "claim": "Giác Viễn trông Tàng Kinh Các, thuộc Cửu Dương; đọc kinh cho Trương Quân Bảo, Quách Tương, Vô Sắc nghe → Cửu Dương công Võ Đang, Nga Mi, Thiếu Lâm",
+     "src": [
+      "https://en.wikipedia.org/wiki/Nine_Yang_Manual",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-cuu-duong-than-cong-co-phai-mon-noi-cong-manh-nhat-c731a1052246.html"
+     ]
+    },
+    {
+     "claim": "Ba nhánh được tóm tắt: Võ Đang thuần, Thiếu Lâm cao, Nga Mi rộng (bác)",
+     "src": [
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-cuu-duong-than-cong-co-phai-mon-noi-cong-manh-nhat-c731a1052246.html",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Trương Vô Kỵ trúng Huyền Minh Thần Chưởng, lấy kinh từ bụng vượn ở Côn Lôn, luyện hơn năm năm, Cửu Dương hoá giải hàn độc",
+     "src": [
+      "https://truyenkimdung.net/y-thien-do-long-ky/hoi-16-tu-luyen-thanh-thuc-cuu-duong-than-cong",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+      "https://danviet.vn/giai-ma-bi-an-cuu-duong-than-cong-ky-1-an-dut-cuu-am-chan-kinh-20211118230305284-d987483.html"
+     ]
+    },
+    {
+     "claim": "Cửu Dương làm nền cho Vô Kỵ học Càn Khôn Đại Na Di và Thái Cực Quyền",
+     "src": [
+      "https://en.wikipedia.org/wiki/Nine_Yang_Manual",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh, Hoàng Dung giấu Cửu Âm trong Ỷ Thiên kiếm (bản tân tu: mảnh sắt khắc bản đồ); kiếm truyền cho Quách Tương, phái Nga Mi",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Âm_Chân_Kinh",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký"
+     ]
+    },
+    {
+     "claim": "Chu Chỉ Nhược luyện vội Cửu Âm (Bạch Cốt Trảo, roi), nổi bật ở đại hội Thiếu Lâm; cô gái áo vàng dùng Cửu Âm chính tông (Tồi Kiên Thần Trảo) chặn lại; thua vì nền nông",
+     "src": [
+      "https://zh.wikipedia.org/wiki/九陰真經",
+      "https://danviet.vn/cuu-am-bach-cot-trao-bi-mang-tieng-oan-la-mon-vo-cong-am-doc-nhat-d1383450.html"
+     ]
+    },
+    {
+     "claim": "Tranh luận: Cửu Dương nền nội lực / hộ thể, Cửu Âm kho chiêu thức; khó phân cao thấp, người luyện quyết định",
+     "src": [
+      "https://doisongphapluat.com.vn/cuu-am-chan-kinh-hay-cuu-duong-chan-kinh-moi-la-thien-ha-vo-hoc-chi-cao-a341463.html",
+      "https://www.saostar.vn/dien-anh/so-sanh-cuu-am-chan-kinh-va-cuu-duong-than-cong-trong-kim-dung-202608131432022773.html",
+      "https://danviet.vn/giai-ma-bi-an-cuu-duong-than-cong-ky-1-an-dut-cuu-am-chan-kinh-20211118230305284-d987483.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-cuu-duong-than-cong-co-phai-mon-noi-cong-manh-nhat-c731a1052246.html"
+     ]
+    }
+   ],
+   "sources": [
+    "https://zh.wikipedia.org/wiki/九陰真經",
+    "https://zh.wikipedia.org/wiki/九陽真經",
+    "https://en.wikipedia.org/wiki/Nine_Yin_Manual",
+    "https://en.wikipedia.org/wiki/Nine_Yang_Manual",
+    "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+    "https://vi.wikipedia.org/wiki/Anh_hùng_xạ_điêu"
+   ]
+  }
+ },
+ {
+  "slug": "tap-02-duong-qua-vs-lenh-ho-xung",
+  "ep": 2,
+  "date": "2026-10-19",
+  "theme": "phong",
+  "seq": [
+   "op-moon",
+   "tr-blinds",
+   "cam-pull",
+   "en-run",
+   "in-silhouette",
+   "en-drop",
+   "in-stamp",
+   "tr-slash",
+   "cam-rise",
+   "en-slide",
+   "in-freeze",
+   "cd-board",
+   "tr-iris",
+   "cam-tilt",
+   "local:kiem-trung",
+   "pw-lightning",
+   "cd-scroll",
+   "tr-scroll",
+   "cam-drift-r",
+   "cd-bamboo",
+   "en-smoke",
+   "in-plate",
+   "local:xoa-chieu",
+   "tr-paper",
+   "cam-push",
+   "in-scroll",
+   "cp-burst",
+   "at-rain",
+   "im-shards",
+   "af-blow",
+   "local:cuu-kiem",
+   "tr-ink",
+   "cam-drift-l",
+   "en-spin",
+   "in-freeze",
+   "cp-brush",
+   "tr-shards",
+   "cam-drift-r",
+   "cd-board",
+   "in-plate",
+   "cp-ribbon",
+   "at-whirl",
+   "im-flash",
+   "af-dizzy",
+   "tr-flash",
+   "cam-rise",
+   "cp-stamp",
+   "at-beam",
+   "im-text",
+   "af-stagger",
+   "cp-vertical",
+   "at-dash",
+   "im-radial",
+   "af-dizzy",
+   "tr-iris",
+   "cam-tilt",
+   "pw-vortex",
+   "local:trong-kiem-song",
+   "cp-type",
+   "at-flurry",
+   "im-ring",
+   "af-stagger",
+   "cp-vertical",
+   "at-cross",
+   "im-hitstop",
+   "af-blow",
+   "cp-ribbon",
+   "at-leap",
+   "im-flash",
+   "af-stagger",
+   "st-scale",
+   "tr-ink",
+   "cam-pull",
+   "cp-brush",
+   "at-palm",
+   "im-text",
+   "af-blow",
+   "cp-type",
+   "at-dash",
+   "im-shards",
+   "af-dizzy",
+   "cp-burst",
+   "at-whirl",
+   "im-ring",
+   "af-blow",
+   "st-bars",
+   "tr-flash",
+   "cam-drift-l",
+   "cd-scroll",
+   "tr-slash",
+   "cam-push",
+   "pw-ground",
+   "pw-eyes",
+   "cp-stamp",
+   "at-cross",
+   "im-radial",
+   "af-stagger",
+   "cp-vertical",
+   "tr-paper",
+   "ed-sunset"
+  ],
+  "opener": "op-moon",
+  "ender": "ed-sunset",
+  "finisher": "at-cross",
+  "seed": 688411,
+  "local": [
+   "local:cuu-kiem",
+   "local:kiem-trung",
+   "local:trong-kiem-song",
+   "local:xoa-chieu"
+  ],
+  "title": "Dương Quá vs Lệnh Hồ Xung: trọng kiếm hay vô chiêu?",
+  "hook": "TRỌNG KIẾM HAY VÔ CHIÊU?",
+  "next": "Ngũ Tuyệt Hoa Sơn: ai mạnh nhất?",
+  "sets": [
+   "quan-tro",
+   "nui-tuyet",
+   "nui-tuyet",
+   "rung-truc",
+   "san-tap",
+   "ben-song",
+   "nui-tuyet",
+   "quan-tro",
+   "nui-tuyet",
+   "cau-go",
+   "mai-ngoi",
+   "nui-tuyet"
+  ],
+  "chars": [
+   "Dương Quá",
+   "Lệnh Hồ Xung",
+   "Phong Thanh Dương",
+   "Điền Bá Quang",
+   "Kim Luân Pháp Vương",
+   "Tiểu Long Nữ",
+   "Nhậm Doanh Doanh"
+  ],
+  "moves": [
+   "Phá Đao Thức",
+   "Ảm Nhiên Tiêu Hồn Chưởng",
+   "Huyền Thiết Kiếm Pháp",
+   "Độc Cô Cửu Kiếm",
+   "Hấp Tinh Đại Pháp",
+   "Phá Kiếm Thức",
+   "Huyền Thiết Kiếm Pháp",
+   "Ảm Nhiên Tiêu Hồn Chưởng",
+   "Phá Chưởng Thức",
+   "Trọng kiếm vô phong",
+   "Huyền Thiết Trọng Kiếm"
+  ],
+  "story": {
+   "format": "doi-dau",
+   "logline": "Trọng kiếm của Dương Quá đấu vô chiêu của Lệnh Hồ Xung: hai học trò gián tiếp của Độc Cô Cầu Bại, bốn hiệp đấu trong mơ",
+   "subjects": [
+    "Dương Quá",
+    "Lệnh Hồ Xung"
+   ],
+   "works": [
+    "Thần Điêu Hiệp Lữ",
+    "Tiếu Ngạo Giang Hồ"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "trọng kiếm 64 cân (bản cũ) / 81 cân (bản tân tu, theo Wikipedia); nguồn gốc Ỷ Thiên kiếm khác giữa bản cũ và tân tu; tên/thứ tự chiêu Ảm Nhiên khác tuỳ bản",
+   "verdict": "Ý kiến của Tèo: nhỉnh về Dương Quá (nội lực, Ảm Nhiên Tiêu Hồn Chưởng, không phụ thuộc kiếm); riêng kiếm thuật Lệnh Hồ Xung hơn. Truyện không có trận nào giữa hai người.",
+   "facts": [
+    {
+     "claim": "Dương Quá là con Dương Khang, nhận Âu Dương Phong làm nghĩa phụ, học ở Toàn Chân rồi vào Cổ Mộ gặp Tiểu Long Nữ",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/杨过",
+      "https://en.wikipedia.org/wiki/Yang_Guo"
+     ]
+    },
+    {
+     "claim": "Quách Phù làm Dương Quá mất cánh tay phải trong một lần nóng giận; nguyên do kể khác nhau",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/神雕侠侣",
+      "https://zh.wikipedia.org/wiki/郭芙"
+     ]
+    },
+    {
+     "claim": "Lời hẹn 16 năm ở Tuyệt Tình Cốc; danh hiệu Thần Điêu Đại Hiệp",
+     "src": [
+      "https://zh.wikipedia.org/wiki/神雕侠侣",
+      "https://zh.wikipedia.org/wiki/杨过",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Thần điêu vốn là bạn đồng hành của Độc Cô Cầu Bại, cho Dương Quá ăn mật rắn và dẫn tới Kiếm Trủng",
+     "src": [
+      "https://www.vothuat.vn/vo-thuat-cuoc-song/y-nghia-kiem-mo-cua-doc-co-cau-bai.html",
+      "https://en.wikipedia.org/wiki/Dugu_Qiubai",
+      "https://zh.wikipedia.org/wiki/杨过",
+      "https://danviet.vn/ly-do-doc-co-cau-bai-cua-than-dieu-dai-hiep-luyen-kiem-nhung-khong-dung-kiem-7777968528-d707580.html"
+     ]
+    },
+    {
+     "claim": "Kiếm Trủng có bốn giai đoạn kiếm: kiếm sắc, Tử Vi nhuyễn kiếm (quăng xuống vực vì lỡ làm bị thương người chính nghĩa), Huyền Thiết trọng kiếm (trước 40 tuổi), kiếm gỗ (sau 40)",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Độc_Cô_Cầu_Bại",
+      "https://zh.wikipedia.org/wiki/独孤求败",
+      "https://www.vothuat.vn/vo-thuat-cuoc-song/y-nghia-kiem-mo-cua-doc-co-cau-bai.html"
+     ]
+    },
+    {
+     "claim": "Huyền Thiết trọng kiếm đen, ánh đỏ, dài trên 3 thước, hai mép cùn, mũi tròn",
+     "src": [
+      "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/独孤求败",
+      "https://k.sina.cn/article_6332153684_1796cff5400100n0y7.html"
+     ]
+    },
+    {
+     "claim": "Trọng kiếm 64 cân bản cũ, 81 cân bản tân tu",
+     "src": [
+      "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/独孤求败"
+     ]
+    },
+    {
+     "claim": "Triết lý kiếm nặng không cần sắc, đại xảo bất công",
+     "src": [
+      "https://www.163.com/dy/article/JR497JTJ05249S0A.html",
+      "https://k.sina.cn/article_6332153684_1796cff5400100n0y7.html"
+     ]
+    },
+    {
+     "claim": "Lệnh Hồ Xung là đại đệ tử Hoa Sơn, học trò Nhạc Bất Quần, được Phong Thanh Dương truyền Độc Cô Cửu Kiếm ở Tư Quá Nhai",
+     "src": [
+      "https://zh.wikipedia.org/wiki/令狐冲",
+      "https://en.wikipedia.org/wiki/Linghu_Chong",
+      "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung"
+     ]
+    },
+    {
+     "claim": "Nguyên lý vô chiêu thắng hữu chiêu",
+     "src": [
+      "https://danviet.vn/vo-cong-cua-phong-thanh-duong-cao-toi-dau-77771015336.htm",
+      "https://vnexpress.net/cac-bo-vo-cong-lung-lay-trong-truyen-kim-dung-3832244.html",
+      "https://truyenkimdung.net/truyen/tieu-ngao-giang-ho/hoi-52-lenh-ho-xung-dai-trien-doc-co-kiem-phap"
+     ]
+    },
+    {
+     "claim": "Lệnh Hồ Xung thắng Điền Bá Quang sau khi được Phong Thanh Dương chỉ điểm phần chiêu thức",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung",
+      "https://www.24h.com.vn/giai-tri/ly-do-lenh-ho-xung-co-doc-co-cuu-kiem-van-khong-danh-lai-dong-phuong-bat-bai-c731a1047344.html",
+      "https://danviet.vn/vi-sao-lenh-ho-xung-co-doc-co-cuu-kiem-van-bai-truoc-dong-phuong-bat-bai-20220721183413809-d1032427.html"
+     ]
+    },
+    {
+     "claim": "Chín thức Độc Cô Cửu Kiếm: Tổng quyết, Phá kiếm, Phá đao, Phá thương, Phá tiên, Phá sách, Phá chưởng, Phá tiễn, Phá khí",
+     "src": [
+      "https://zh.wikipedia.org/wiki/独孤九剑",
+      "https://danviet.vn/vi-sao-lenh-ho-xung-co-doc-co-cuu-kiem-van-bai-truoc-dong-phuong-bat-bai-20220721183413809-d1032427.html",
+      "https://en.wikipedia.org/wiki/Dugu_Qiubai"
+     ]
+    },
+    {
+     "claim": "Thức Phá khí Lệnh Hồ Xung chưa luyện thành, chỉ được truyền tâm pháp",
+     "src": [
+      "https://zh.wikipedia.org/wiki/独孤九剑",
+      "https://gamek.vn/vo-cong-toan-hang-hot-lenh-ho-xung-van-la-main-yeu-duoi-nhat-truyen-kim-dung-vi-4-ly-do-nay-20211220103044351.chn"
+     ]
+    },
+    {
+     "claim": "Lệnh Hồ Xung học Hấp Tinh Đại Pháp dưới ngục Tây Hồ, gây loạn chân khí",
+     "src": [
+      "https://zh.wikipedia.org/wiki/令狐冲",
+      "https://zh.wikipedia.org/wiki/吸星大法",
+      "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung"
+     ]
+    },
+    {
+     "claim": "Nhậm Doanh Doanh ở lại Thiếu Lâm để Phương Chứng truyền Dịch Cân Kinh cho Lệnh Hồ Xung",
+     "src": [
+      "https://zh.wikipedia.org/wiki/令狐冲",
+      "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung",
+      "https://en.wikipedia.org/wiki/Linghu_Chong"
+     ]
+    },
+    {
+     "claim": "Trên Hắc Mộc Nhai, Lệnh Hồ Xung cùng Nhậm Ngã Hành, Hướng Vấn Thiên đánh Đông Phương Bất Bại (kim thêu) vẫn chưa thắng, nhờ kế Doanh Doanh",
+     "src": [
+      "https://www.24h.com.vn/giai-tri/ly-do-lenh-ho-xung-co-doc-co-cuu-kiem-van-khong-danh-lai-dong-phuong-bat-bai-c731a1047344.html",
+      "https://danviet.vn/vi-sao-lenh-ho-xung-co-doc-co-cuu-kiem-van-bai-truoc-dong-phuong-bat-bai-20220721183413809-d1032427.html",
+      "https://en.wikipedia.org/wiki/Linghu_Chong"
+     ]
+    },
+    {
+     "claim": "Ảm Nhiên Tiêu Hồn Chưởng 17 chiêu, Dương Quá tự sáng tạo trong lúc chờ Tiểu Long Nữ; buồn thì mạnh, vui thì yếu",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/杨过",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-am-nhien-tieu-hon-chuong-bo-chuong-phap-ky-la-nhat-vo-lam-204434762.htm",
+      "https://kenh14.vn/duong-qua-cuoi-doi-kho-ai-dich-noi-nhung-van-khong-duoc-xem-la-thien-ha-de-nhat-do-2-diem-yeu-chi-mang-215251028084802949.chn"
+     ]
+    },
+    {
+     "claim": "Dương Quá dùng ~4 chiêu Ảm Nhiên với Chu Bá Thông, hơn 10 chiêu với Hoàng Dược Sư (hoà, Đạn Chỉ Thần Thông hoá giải)",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://www.163.com/dy/article/JR497JTJ05249S0A.html"
+     ]
+    },
+    {
+     "claim": "Dương Quá đánh bại Kim Luân Pháp Vương bằng Ảm Nhiên Tiêu Hồn Chưởng",
+     "src": [
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-am-nhien-tieu-hon-chuong-bo-chuong-phap-ky-la-nhat-vo-lam-204434762.htm",
+      "https://vnexpress.net/cac-bo-vo-cong-lung-lay-trong-truyen-kim-dung-3832244.html",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Ảm Nhiên được coi là chỉ Hàng Long mới sánh ngang",
+     "src": [
+      "https://kenh14.vn/duong-qua-cuoi-doi-kho-ai-dich-noi-nhung-van-khong-duoc-xem-la-thien-ha-de-nhat-do-2-diem-yeu-chi-mang-215251028084802949.chn",
+      "https://zh.wikipedia.org/wiki/黯然銷魂掌"
+     ]
+    },
+    {
+     "claim": "Dương Quá được phong Tây Cuồng ở Hoa Sơn luận kiếm lần ba, thay chỗ Âu Dương Phong; lần này trao đổi võ học",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/杨过",
+      "https://vi.wikipedia.org/wiki/Thần_điêu_hiệp_lữ"
+     ]
+    },
+    {
+     "claim": "Bản cũ: trọng kiếm đúc Ỷ Thiên kiếm + Đồ Long đao; bản tân tu: chỉ Đồ Long đao",
+     "src": [
+      "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/独孤求败"
+     ]
+    },
+    {
+     "claim": "Lệnh Hồ Xung từng bị Á bà bà khống chế vì chưa kịp rút kiếm (bình luận báo)",
+     "src": [
+      "https://gamek.vn/vo-cong-toan-hang-hot-lenh-ho-xung-van-la-main-yeu-duoi-nhat-truyen-kim-dung-vi-4-ly-do-nay-20211220103044351.chn",
+      "https://danviet.vn/vi-sao-lenh-ho-xung-co-doc-co-cuu-kiem-van-bai-truoc-dong-phuong-bat-bai-20220721183413809-d1032427.html"
+     ]
+    },
+    {
+     "claim": "Dương Quá dùng trọng kiếm đánh lui cao thủ Mông Cổ ở Trùng Dương cung; danh sách cao thủ thua trọng kiếm gồm Kim Luân",
+     "src": [
+      "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/杨过"
+     ]
+    },
+    {
+     "claim": "Lệnh Hồ Xung thắng Nhạc Bất Quần (Tịch Tà Kiếm Phổ)",
+     "src": [
+      "https://tuoitre.vn/ai-la-de-nhat-cao-thu-cua-kim-dung-vo-lam-20181031155943582.htm",
+      "https://cafef.vn/danh-xung-vo-dich-cua-doc-co-cau-bai-lung-lay-khi-xuat-hien-4-cao-thu-co-the-ha-guc-huyen-thoai-nay-188251003062822444.chn",
+      "https://danviet.vn/vo-cong-cua-phong-thanh-duong-cao-toi-dau-77771015336.htm"
+     ]
+    },
+    {
+     "claim": "Điền Bá Quang bị Bất Giới bắt sửa mình, sau theo Hằng Sơn; chi tiết khác tuỳ bản",
+     "src": [
+      "https://en.wikipedia.org/wiki/Linghu_Chong",
+      "https://zh.wikipedia.org/wiki/笑傲江湖"
+     ]
+    },
+    {
+     "claim": "Hấp Tinh Đại Pháp giống Bắc Minh Thần Công, gây loạn chân khí",
+     "src": [
+      "https://zh.wikipedia.org/wiki/吸星大法",
+      "https://vnexpress.net/cac-bo-vo-cong-lung-lay-trong-truyen-kim-dung-3832244.html",
+      "https://gamek.vn/vo-cong-toan-hang-hot-lenh-ho-xung-van-la-main-yeu-duoi-nhat-truyen-kim-dung-vi-4-ly-do-nay-20211220103044351.chn"
+     ]
+    },
+    {
+     "claim": "Nơi Dương Quá luyện kiếm sau khi mất tay: các nguồn kể khác nhau",
+     "src": [
+      "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/杨过"
+     ]
+    },
+    {
+     "claim": "Fan Việt nghiêng nhẹ về Dương Quá nhờ nội lực, chưởng, trọng kiếm; một số cho Độc Cô Cầu Bại mới đỉnh nhất",
+     "src": [
+      "https://kenh14.vn/duong-qua-cuoi-doi-kho-ai-dich-noi-nhung-van-khong-duoc-xem-la-thien-ha-de-nhat-do-2-diem-yeu-chi-mang-215251028084802949.chn",
+      "https://tuoitre.vn/ai-la-de-nhat-cao-thu-cua-kim-dung-vo-lam-20181031155943582.htm",
+      "https://cafef.vn/danh-xung-vo-dich-cua-doc-co-cau-bai-lung-lay-khi-xuat-hien-4-cao-thu-co-the-ha-guc-huyen-thoai-nay-188251003062822444.chn"
+     ]
+    }
+   ],
+   "sources": [
+    "https://vi.wikipedia.org/wiki/Dương_Quá",
+    "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung",
+    "https://zh.wikipedia.org/zh-hans/玄鐵重劍",
+    "https://zh.wikipedia.org/wiki/独孤九剑"
+   ]
+  }
+ },
+ {
+  "slug": "tap-03-ngu-tuyet-hoa-son",
+  "ep": 3,
+  "date": "2026-10-19",
+  "theme": "moc",
+  "seq": [
+   "op-moon",
+   "tr-scroll",
+   "cam-tilt",
+   "en-spin",
+   "in-stamp",
+   "en-slide",
+   "in-freeze",
+   "tr-iris",
+   "cam-rise",
+   "cd-board",
+   "local:la-ban-ngu-phuong",
+   "cd-scroll",
+   "tr-slash",
+   "cam-drift-l",
+   "cd-bamboo",
+   "cp-burst",
+   "at-beam",
+   "im-ring",
+   "af-dizzy",
+   "cp-vertical",
+   "at-rain",
+   "im-flash",
+   "af-blow",
+   "tr-flash",
+   "cam-pull",
+   "cd-board",
+   "local:coc-tinh-che-dong",
+   "st-scale",
+   "tr-ink",
+   "cam-push",
+   "cd-scroll",
+   "cp-ribbon",
+   "at-flurry",
+   "im-shards",
+   "af-dizzy",
+   "local:bich-hai-tieu-khuc",
+   "cp-type",
+   "tr-shards",
+   "cam-rise",
+   "cd-bamboo",
+   "cp-burst",
+   "at-palm",
+   "im-radial",
+   "af-stagger",
+   "local:hoan-doi-bi-kip",
+   "tr-blinds",
+   "cam-drift-r",
+   "cd-scroll",
+   "cp-stamp",
+   "at-dash",
+   "im-hitstop",
+   "af-blow",
+   "cp-brush",
+   "at-beam",
+   "im-text",
+   "af-stagger",
+   "tr-paper",
+   "cam-push",
+   "st-tally",
+   "cp-ribbon",
+   "at-leap",
+   "im-ring",
+   "af-blow",
+   "cp-vertical",
+   "at-cross",
+   "im-shards",
+   "af-dizzy",
+   "tr-scroll",
+   "cam-tilt",
+   "cd-bamboo",
+   "cp-type",
+   "at-flurry",
+   "im-flash",
+   "af-blow",
+   "cp-brush",
+   "at-whirl",
+   "im-shards",
+   "af-dizzy",
+   "tr-ink",
+   "cam-pull",
+   "local:bang-vang-ngu-tuyet",
+   "cd-board",
+   "cp-stamp",
+   "tr-slash",
+   "ed-ink"
+  ],
+  "opener": "op-moon",
+  "ender": "ed-ink",
+  "finisher": "at-beam",
+  "seed": 534376,
+  "local": [
+   "local:bang-vang-ngu-tuyet",
+   "local:bich-hai-tieu-khuc",
+   "local:coc-tinh-che-dong",
+   "local:hoan-doi-bi-kip",
+   "local:la-ban-ngu-phuong"
+  ],
+  "title": "Xếp hạng Ngũ Tuyệt Hoa Sơn: ai mạnh nhất?",
+  "hook": "AI SỐ 1?",
+  "next": "Cửu Dương Thần Công vs Cửu Âm Chân Kinh",
+  "sets": [
+   "nui-tuyet",
+   "mai-ngoi",
+   "quan-tro",
+   "nui-tuyet",
+   "ben-song",
+   "mai-ngoi",
+   "san-tap",
+   "san-tap",
+   "nui-tuyet",
+   "nui-tuyet"
+  ],
+  "chars": [
+   "Vương Trùng Dương",
+   "Hoàng Dược Sư",
+   "Âu Dương Phong",
+   "Đoàn Trí Hưng",
+   "Hồng Thất Công",
+   "Quách Tĩnh",
+   "Chu Bá Thông"
+  ],
+  "moves": [
+   "Hàng Long Thập Bát Chưởng",
+   "Linh Xà Trượng Pháp",
+   "Đạn Chỉ Thần Thông",
+   "Nhất Dương Chỉ",
+   "Toàn Chân Kiếm Pháp",
+   "Tiên Thiên Công",
+   "Nhất Dương Chỉ",
+   "Toàn Chân Kiếm Pháp",
+   "Cáp Mô Công",
+   "Hàng Long Thập Bát Chưởng"
+  ],
+  "story": {
+   "format": "top",
+   "logline": "Tèo đếm ngược năm cao thủ của lần Hoa Sơn luận kiếm thứ nhất, từ Bắc Cái tới Trung Thần Thông, kèm Cửu Âm Chân Kinh, Cáp Mô Công, Bích Hải Triều Sinh Khúc và cuộc đổi Tiên Thiên Công lấy Nhất Dương Chỉ",
+   "subjects": [
+    "Vương Trùng Dương",
+    "Hoàng Dược Sư",
+    "Âu Dương Phong",
+    "Đoàn Trí Hưng",
+    "Hồng Thất Công"
+   ],
+   "works": [
+    "Xạ Điêu Anh Hùng Truyện",
+    "Thần Điêu Hiệp Lữ"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "bản sửa / bản tân tu (bản cũ đăng báo đảo chủ nhân Tiên Thiên Công và Nhất Dương Chỉ, đã nói rõ trong video; gia thế Hoàng Dược Sư theo bản tân tu)",
+   "verdict": "Ý kiến của Tèo: 1 Vương Trùng Dương, 2 Đoàn Trí Hưng, 3 Hoàng Dược Sư, 4 Âu Dương Phong, 5 Hồng Thất Công; nguyên tác chỉ nói Vương Trùng Dương hơn bốn người còn lại.",
+   "facts": [
+    {
+     "claim": "Hoa Sơn luận kiếm lần 1 do các cao thủ tranh Cửu Âm Chân Kinh; người thắng là đệ nhất và giữ kinh",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://danviet.vn/vo-cong-doc-mon-nao-giup-vuong-trung-duong-xung-ba-vo-lam-2022032517505278-d828090.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html"
+     ]
+    },
+    {
+     "claim": "Năm người: Vương Trùng Dương, Hoàng Dược Sư, Âu Dương Phong, Đoàn Trí Hưng, Hồng Thất Công; đấu 7 ngày 7 đêm, Vương Trùng Dương thắng, bốn người kia ngang nhau",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://zh.wikipedia.org/wiki/華山論劍",
+      "https://znews.vn/nhung-cuoc-ty-thi-noi-tieng-trong-tieu-thuyet-kim-dung-co-long-post764437.html"
+     ]
+    },
+    {
+     "claim": "Danh xưng Đông Tà, Tây Độc, Nam Đế, Bắc Cái, Trung Thần Thông ra đời sau lần 1",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://zh.wikipedia.org/wiki/天下五絕",
+      "https://danviet.vn/3-lan-hoa-son-luan-kiem-trong-kiem-hiep-kim-dung-nhung-ai-la-so-1-20240827113242372-d1180736.html"
+     ]
+    },
+    {
+     "claim": "Cừu Thiên Nhận (tự thấy công phu chưa đủ) và Lâm Triều Anh không dự lần 1",
+     "src": [
+      "https://giaoducthoidai.vn/su-vang-mat-dang-tiec-cua-2-dai-cao-thu-trong-hoa-son-luan-kiem-post403752.html",
+      "https://cafef.vn/2-cao-thu-gay-tiec-nuoi-trong-truyen-cua-kim-dung-neu-tham-gia-hoa-son-luan-kiem-co-the-da-chien-thang-188240611090700781.chn"
+     ]
+    },
+    {
+     "claim": "Lâm Triều Anh dùng Ngọc Nữ Tâm Kinh khắc chế Toàn Chân kiếm pháp",
+     "src": [
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html",
+      "https://www.24h.com.vn/tin-tuc-quoc-te/vuong-trung-duong-trong-lich-su-lieu-co-vo-cong-khuat-phuc-ca-4-dai-cao-thu-vo-lam-c415a1309304.html"
+     ]
+    },
+    {
+     "claim": "Hồng Thất Công: bang chủ đời 18 Cái Bang, Hàng Long Thập Bát Chưởng và Đả Cẩu Bổng Pháp; biệt danh Cửu Chỉ Thần Cái vì tự chặt ngón tay tự phạt",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Hồng_Thất_Công",
+      "https://zh.wikipedia.org/wiki/洪七公"
+     ]
+    },
+    {
+     "claim": "Hồng Thất Công truyền Hàng Long cho Quách Tĩnh, Đả Cẩu Bổng cho Hoàng Dung",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Hồng_Thất_Công",
+      "https://danviet.vn/3-lan-hoa-son-luan-kiem-trong-kiem-hiep-kim-dung-nhung-ai-la-so-1-20240827113242372-d1180736.html"
+     ]
+    },
+    {
+     "claim": "Hồng Thất Công và Âu Dương Phong đấu nhiều lần bất phân thắng bại",
+     "src": [
+      "https://cafebiz.vn/8-cao-thu-manh-nhat-anh-hung-xa-dieu-bat-ngo-khi-quach-tinh-hang-bet-vuong-trung-duong-khong-lot-top-5-176250827140833898.chn",
+      "https://vi.wikipedia.org/wiki/Hồng_Thất_Công"
+     ]
+    },
+    {
+     "claim": "Âu Dương Phong chủ Bạch Đà Sơn, dùng rắn độc, biệt danh Lão Độc Vật; Linh Xà trượng pháp",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Âu_Dương_Phong",
+      "https://zh.wikipedia.org/wiki/歐陽鋒",
+      "https://danviet.vn/chuyen-it-biet-ve-mon-vo-cong-ky-la-cua-au-duong-phong-1069058.htm"
+     ]
+    },
+    {
+     "claim": "Cáp Mô Công mô phỏng con cóc, nén kình chờ đối thủ ra chiêu rồi phản kích (tĩnh chế động)",
+     "src": [
+      "https://danviet.vn/chuyen-it-biet-ve-mon-vo-cong-ky-la-cua-au-duong-phong-1069058.htm",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-nhan-vat-duy-nhat-nho-tau-hoa-nhap-ma-ma-dung-so-1-c731a1621935.html",
+      "https://vi.wikipedia.org/wiki/Âu_Dương_Phong"
+     ]
+    },
+    {
+     "claim": "Theo Chu Bá Thông, chỉ Tiên Thiên Công và Nhất Dương Chỉ khắc chế được Cáp Mô Công",
+     "src": [
+      "https://www.24h.com.vn/tin-tuc-quoc-te/vuong-trung-duong-trong-lich-su-lieu-co-vo-cong-khuat-phuc-ca-4-dai-cao-thu-vo-lam-c415a1309304.html",
+      "https://danviet.vn/chuyen-it-biet-ve-mon-vo-cong-ky-la-cua-au-duong-phong-1069058.htm"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương dùng mưu đợi Âu Dương Phong, một chiêu Tiên Thiên Công làm Cáp Mô Công suy giảm lâu dài",
+     "src": [
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html",
+      "https://www.nguoiduatin.vn/ly-do-vuong-trung-duong-gianh-duoc-cuu-am-chan-kinh-nhung-khong-luyen-204430945.htm",
+      "https://danviet.vn/chuyen-it-biet-ve-mon-vo-cong-ky-la-cua-au-duong-phong-1069058.htm"
+     ]
+    },
+    {
+     "claim": "Hoàng Dược Sư: Đạn Chỉ Thần Thông, Lạc Anh Thần Kiếm Chưởng, Ngọc Tiêu kiếm pháp, Bích Hải Triều Sinh Khúc; giỏi ngũ hành, kỳ môn",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Hoàng_Dược_Sư",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-dang-sau-vo-cong-than-ky-cua-hoang-duoc-su-204250116120719974.htm",
+      "https://zh.wikipedia.org/wiki/黃藥師"
+     ]
+    },
+    {
+     "claim": "Bích Hải Triều Sinh Khúc là khúc tiêu đấu nội lực, mô phỏng sóng biển, người nội lực yếu dễ rối loạn",
+     "src": [
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-dang-sau-vo-cong-than-ky-cua-hoang-duoc-su-204250116120719974.htm",
+      "https://vnexpress.net/nhung-bi-kip-vo-cong-kinh-dien-trong-phim-kiem-hiep-phan-3-3324690.html",
+      "https://vi.wikipedia.org/wiki/Hoàng_Dược_Sư"
+     ]
+    },
+    {
+     "claim": "Đông Tà thổi tiêu đấu với đàn của Tây Độc trên Đào Hoa đảo",
+     "src": [
+      "https://znews.vn/nhung-cuoc-ty-thi-noi-tieng-trong-tieu-thuyet-kim-dung-co-long-post764437.html",
+      "https://gamek.vn/mobile-social/vo-cong-nao-tren-giang-ho-khac-che-duoc-dong-ta-hoang-duoc-su-20151231105458898.chn"
+     ]
+    },
+    {
+     "claim": "Quách Tĩnh được cho là người hoá giải được Bích Hải Triều Sinh Khúc (theo các bài phân tích)",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Hoàng_Dược_Sư",
+      "https://gamek.vn/mobile-social/vo-cong-nao-tren-giang-ho-khac-che-duoc-dong-ta-hoang-duoc-su-20151231105458898.chn"
+     ]
+    },
+    {
+     "claim": "Truyện không nói Hoàng Dược Sư học võ từ ai; võ công Đào Hoa đảo do ông tự sáng tạo",
+     "src": [
+      "https://cafef.vn/bi-mat-phia-sau-vo-cong-cao-cuong-cua-hoang-duoc-su-hoa-ra-la-de-tu-cua-mon-phai-dung-dau-thien-ha-nay-188240903051121219.chn",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-dang-sau-vo-cong-than-ky-cua-hoang-duoc-su-204250116120719974.htm"
+     ]
+    },
+    {
+     "claim": "Bản tân tu: ông nội Hoàng Dược Sư vì bênh Nhạc Phi mà bị đày",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Hoàng_Dược_Sư",
+      "https://zh.wikipedia.org/wiki/黃藥師"
+     ]
+    },
+    {
+     "claim": "Nam Đế Đoàn Trí Hưng là vua Đại Lý, tuyệt kỹ Nhất Dương Chỉ; Nhất Dương Chỉ chữa được nội thương",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Đoàn_Trí_Hưng",
+      "https://zh.wikipedia.org/wiki/段智興_(金庸)",
+      "https://www.kiemhiepkimdung.vn/2013/10/thien-ha-ngu-tuyet.html"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương tới Đại Lý truyền Tiên Thiên Công cho Nam Đế, đổi lấy Nhất Dương Chỉ, để phòng Âu Dương Phong",
+     "src": [
+      "https://danviet.vn/tien-thien-cong-cua-vuong-trung-duong-cuc-ky-uy-luc-nhung-vi-sao-lai-that-truyen-d1415849.html",
+      "https://zh.wikipedia.org/wiki/王重陽_(金庸)",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html"
+     ]
+    },
+    {
+     "claim": "Bản cũ: Tiên Thiên Công của Nam Đế, Nhất Dương Chỉ của Vương Trùng Dương; khi sửa Kim Dung hoán đổi để khớp Thiên Long Bát Bộ",
+     "src": [
+      "https://www.sohu.com/a/366379723_120459537",
+      "https://zh.wikipedia.org/zh-hans/先天功"
+     ]
+    },
+    {
+     "claim": "Nam Đế chỉ lĩnh hội được một phần Tiên Thiên Công; môn này về sau gần như thất truyền (theo bài phân tích)",
+     "src": [
+      "https://danviet.vn/tien-thien-cong-cua-vuong-trung-duong-cuc-ky-uy-luc-nhung-vi-sao-lai-that-truyen-d1415849.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html"
+     ]
+    },
+    {
+     "claim": "Nam Đế nhường ngôi cho con, xuất gia thành Nhất Đăng; bốn đại thần ngư tiều canh độc theo ông; cuối truyện oán hận được hoá giải",
+     "src": [
+      "https://zh.wikipedia.org/wiki/段智興_(金庸)",
+      "https://vi.wikipedia.org/wiki/Đoàn_Trí_Hưng",
+      "https://www.kiemhiepkimdung.vn/2013/10/thien-ha-ngu-tuyet.html"
+     ]
+    },
+    {
+     "claim": "Đoàn Trí Hưng ngoài đời thoái vị, không xuất gia mà làm cư sĩ, mộ Phật, xây/sửa khoảng 60 chùa",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Đoàn_Trí_Hưng",
+      "https://kenh14.vn/doi-thuc-nam-de-truyen-kim-dung-khong-phai-cao-thu-la-vi-vua-co-toi-voi-dan-21526101508150736.chn"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương có thật (1113–1170), tên Vương Trung Phu, quê Hàm Dương, từng làm quan võ, tu ở Chung Nam, sáng lập Toàn Chân",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Vương_Trùng_Dương",
+      "https://www.24h.com.vn/tin-tuc-quoc-te/vuong-trung-duong-trong-lich-su-lieu-co-vo-cong-khuat-phuc-ca-4-dai-cao-thu-vo-lam-c415a1309304.html"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương thắng nhờ Tiên Thiên Công và Toàn Chân kiếm pháp",
+     "src": [
+      "https://danviet.vn/vo-cong-doc-mon-nao-giup-vuong-trung-duong-xung-ba-vo-lam-2022032517505278-d828090.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-vuong-trung-duong-danh-bai-quan-hung-nho-mon-vo-nay-c731a1382069.html",
+      "https://zh.wikipedia.org/wiki/王重陽_(金庸)"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương giữ Cửu Âm Chân Kinh nhưng không luyện (lý do khác nhau giữa các nguồn)",
+     "src": [
+      "https://danviet.vn/vo-cong-doc-mon-nao-giup-vuong-trung-duong-xung-ba-vo-lam-2022032517505278-d828090.html",
+      "https://www.nguoiduatin.vn/ly-do-vuong-trung-duong-gianh-duoc-cuu-am-chan-kinh-nhung-khong-luyen-204430945.htm",
+      "https://www.24h.com.vn/tin-tuc-quoc-te/vuong-trung-duong-trong-lich-su-lieu-co-vo-cong-khuat-phuc-ca-4-dai-cao-thu-vo-lam-c415a1309304.html"
+     ]
+    },
+    {
+     "claim": "Lần 2 khoảng 25 năm sau, cuối Xạ Điêu; Hoàng Dung đặt luật 300 chiêu cho Quách Tĩnh; Nhất Đăng không đấu",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://danviet.vn/3-lan-hoa-son-luan-kiem-trong-kiem-hiep-kim-dung-nhung-ai-la-so-1-20240827113242372-d1180736.html",
+      "https://znews.vn/nhung-cuoc-ty-thi-noi-tieng-trong-tieu-thuyet-kim-dung-co-long-post764437.html"
+     ]
+    },
+    {
+     "claim": "Lần 2: Âu Dương Phong luyện kinh sai lệch, kinh mạch đảo ngược, võ công vượt bậc, được ngầm công nhận cao nhất nhưng rối trí; không bầu Ngũ Tuyệt mới",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-nhan-vat-duy-nhat-nho-tau-hoa-nhap-ma-ma-dung-so-1-c731a1621935.html",
+      "https://danviet.vn/3-lan-hoa-son-luan-kiem-trong-kiem-hiep-kim-dung-nhung-ai-la-so-1-20240827113242372-d1180736.html"
+     ]
+    },
+    {
+     "claim": "Âu Dương Phong nhận Dương Quá làm con nuôi, truyền Cáp Mô Công",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Âu_Dương_Phong",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ai-la-nguoi-manh-nhat-hoa-son-luan-kiem-lan-thu-ba-204433199.htm"
+     ]
+    },
+    {
+     "claim": "Lần 3 cuối Thần Điêu, chỉ luận không đấu: Đông Tà, Tây Cuồng Dương Quá, Nam Tăng Nhất Đăng, Bắc Hiệp Quách Tĩnh, Trung Ngoan Đồng Chu Bá Thông; Chu Bá Thông giỏi nhất",
+     "src": [
+      "https://zh.wikipedia.org/wiki/天下五絕",
+      "https://zh.wikipedia.org/wiki/華山論劍",
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ai-la-nguoi-manh-nhat-hoa-son-luan-kiem-lan-thu-ba-204433199.htm"
+     ]
+    },
+    {
+     "claim": "Fan tranh luận: phe Vương Trùng Dương, phe Nam Đế (Nhất Dương Chỉ + Tiên Thiên Công), phe Tây Độc lần 2",
+     "src": [
+      "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+      "https://cafebiz.vn/8-cao-thu-manh-nhat-anh-hung-xa-dieu-bat-ngo-khi-quach-tinh-hang-bet-vuong-trung-duong-khong-lot-top-5-176250827140833898.chn",
+      "https://www.163.com/dy/article/K0ESBVBF0556443L.html"
+     ]
+    }
+   ],
+   "sources": [
+    "https://zh.wikipedia.org/wiki/天下五絕",
+    "https://zh.wikipedia.org/wiki/華山論劍",
+    "https://cafebiz.vn/trong-cac-cuoc-hoa-son-luan-kiem-cao-thu-nao-la-nguoi-manh-nhat-trong-ngu-tuyet-thien-ha-17624030107223064.chn",
+    "https://danviet.vn/3-lan-hoa-son-luan-kiem-trong-kiem-hiep-kim-dung-nhung-ai-la-so-1-20240827113242372-d1180736.html",
+    "E:/tool/MuseStudio/kiem-hiep/_research/tap-03-ngu-tuyet-hoa-son.md"
+   ]
+  }
+ },
+ {
+  "slug": "tap-06-tao-dia-tang",
+  "ep": 6,
+  "date": "2026-10-19",
+  "theme": "moc",
+  "seq": [
+   "op-scroll",
+   "tr-shards",
+   "cam-rise",
+   "en-leap",
+   "in-stamp",
+   "cd-board",
+   "en-drop",
+   "in-silhouette",
+   "cd-bamboo",
+   "tr-scroll",
+   "cam-tilt",
+   "pw-charge",
+   "local:la-dung-khong",
+   "cd-scroll",
+   "tr-flash",
+   "cam-pull",
+   "in-freeze",
+   "in-plate",
+   "cp-stamp",
+   "at-palm",
+   "im-hitstop",
+   "af-dizzy",
+   "local:sach-ben-canh",
+   "cd-bamboo",
+   "tr-iris",
+   "cam-drift-l",
+   "local:bay-hai-tuyet-ky",
+   "cd-scroll",
+   "en-slide",
+   "in-silhouette",
+   "pw-aura",
+   "cp-stamp",
+   "tr-ink",
+   "cam-push",
+   "in-stamp",
+   "local:sach-bay-quanh-dau",
+   "cd-board",
+   "en-spin",
+   "in-plate",
+   "st-tally",
+   "tr-blinds",
+   "cam-drift-r",
+   "local:luc-mach-chap-chon",
+   "cp-burst",
+   "at-beam",
+   "im-ring",
+   "af-blow",
+   "cd-scroll",
+   "tr-paper",
+   "cam-pull",
+   "local:tuong-khi-vo-hinh",
+   "cd-bamboo",
+   "tr-slash",
+   "cam-tilt",
+   "cp-ribbon",
+   "at-flurry",
+   "im-shards",
+   "af-stagger",
+   "st-bars",
+   "pw-ground",
+   "cp-type",
+   "at-beam",
+   "im-flash",
+   "af-blow",
+   "tr-scroll",
+   "cam-rise",
+   "cp-vertical",
+   "tr-ink",
+   "ed-ink"
+  ],
+  "opener": "op-scroll",
+  "ender": "ed-ink",
+  "finisher": "at-beam",
+  "seed": 259487,
+  "local": [
+   "local:bay-hai-tuyet-ky",
+   "local:la-dung-khong",
+   "local:luc-mach-chap-chon",
+   "local:sach-bay-quanh-dau",
+   "local:sach-ben-canh",
+   "local:tuong-khi-vo-hinh"
+  ],
+  "title": "Vì sao Tảo Địa Tăng mạnh nhất Thiên Long?",
+  "hook": "MẠNH NHẤT THIÊN LONG?",
+  "next": "Ỷ Thiên kiếm vs Đồ Long đao: thần binh nào mạnh hơn?",
+  "sets": [
+   "quan-tro",
+   "san-tap",
+   "mai-ngoi",
+   "san-tap",
+   "ben-song",
+   "rung-truc",
+   "mai-ngoi",
+   "nui-tuyet",
+   "cau-go"
+  ],
+  "chars": [
+   "Tảo Địa Tăng",
+   "Tiêu Phong",
+   "Tiêu Viễn Sơn",
+   "Mộ Dung Bác",
+   "Cưu Ma Trí",
+   "Vương Ngữ Yên",
+   "Đoàn Dự"
+  ],
+  "moves": [
+   "Chưởng trong bóng tối",
+   "Lục Mạch Thần Kiếm",
+   "Hàng Long Thập Bát Chưởng",
+   "Một chưởng nhẹ như lá"
+  ],
+  "story": {
+   "format": "giai-ma",
+   "logline": "Bốn bí ẩn quanh lão tăng quét lá Thiếu Lâm: ông là ai, ông thấy gì khi hai lão học trộm, bí mật 72 tuyệt kỹ, đêm Tàng Kinh Các; ghép Cưu Ma Trí, Vương Ngữ Yên, Lục Mạch Thần Kiếm để hỏi sức mạnh thật đến từ đâu",
+   "subjects": [
+    "Tảo Địa Tăng",
+    "Tiêu Viễn Sơn",
+    "Mộ Dung Bác",
+    "Cưu Ma Trí",
+    "Vương Ngữ Yên",
+    "Lục Mạch Thần Kiếm"
+   ],
+   "works": [
+    "Thiên Long Bát Bộ"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "Các tình tiết chính giống nhau giữa các bản; khác bản được nói trong video: tên Vương Ngọc Yến (bản cũ) → Vương Ngữ Yên, và bản tân tu đổi người ở bên Đoàn Dự cuối truyện",
+   "verdict": "Ý kiến của Tèo: Tảo Địa Tăng mạnh nhất Thiên Long Bát Bộ (hoá giải tuyệt kỹ của Tiêu Phong, Mộ Dung Phục, Cưu Ma Trí trong một đêm); điểm Tèo chấm 36–35 so với Tiêu Phong, chênh ở tâm cảnh. Mạnh nhất cả Kim Dung thì chưa chắc, Kim Dung không xếp hạng.",
+   "facts": [
+    {
+     "claim": "Lão tăng không tên (Tảo Địa Tăng / Vô Danh thần tăng), quét Tàng Kinh Các Thiếu Lâm hơn 40 năm, không ai biết pháp danh",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html",
+      "https://danviet.vn/nguoi-co-vo-cong-manh-nhat-thien-long-bat-bo-khong-phai-tieu-phong-ma-la-ai-d1343774.html"
+     ]
+    },
+    {
+     "claim": "Ông thường được coi là vị sư Thiếu Lâm duy nhất thông 72 tuyệt kỹ",
+     "src": [
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html",
+      "https://danviet.vn/nguoi-co-vo-cong-manh-nhat-thien-long-bat-bo-khong-phai-tieu-phong-ma-la-ai-d1343774.html"
+     ]
+    },
+    {
+     "claim": "Tiêu Viễn Sơn ẩn trong Thiếu Lâm khoảng 30 năm học trộm võ công; Mộ Dung Bác giấu tung tích lẻn vào học trộm để phục quốc Đại Yên",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Danh_sách_nhân_vật_trong_Thiên_long_bát_bộ",
+      "https://cafebiz.vn/neu-khong-co-su-can-thiep-cua-vo-danh-than-tang-lieu-kieu-phong-co-bo-mang-tai-tang-kinh-cac-176241008091031222.chn",
+      "https://huynhngocchien.com/huyen-nghia-vo-danh-tang/"
+     ]
+    },
+    {
+     "claim": "Lão tăng biết hai người đọc gì; đặt kinh Phật (Pháp Hoa, Tạp A Hàm) cạnh bí kíp mong họ đọc, họ không để ý",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://www.sohu.com/a/411593187_120603730",
+      "https://huynhngocchien.com/huyen-nghia-vo-danh-tang/"
+     ]
+    },
+    {
+     "claim": "Võ Thiếu Lâm mang sát khí, phải có Phật pháp tương ứng hoá giải; thiếu thì tổn kinh mạch, tẩu hoả; tâm từ bi càng lớn càng luyện được nhiều nhưng lại không muốn học thêm",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html",
+      "https://huynhngocchien.com/huyen-nghia-vo-danh-tang/"
+     ]
+    },
+    {
+     "claim": "Ông chỉ ra thương tích ngầm của Tiêu Viễn Sơn và Mộ Dung Bác",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html"
+     ]
+    },
+    {
+     "claim": "Cưu Ma Trí, quốc sư Thổ Phiên (Đại Luân Minh Vương), đổi Hoả Diễm Đao lấy 72 tuyệt kỹ với Mộ Dung Bác",
+     "src": [
+      "https://danviet.vn/cuu-ma-tri-so-huu-mon-vo-cong-thuong-thang-nao-ma-lai-bo-phi-20220425173457697-d1015244.html",
+      "https://gamek.vn/cung-biet-72-tuyet-ky-cua-thieu-lam-tu-nhung-cuu-ma-tri-thua-vo-danh-than-tang-vi-sao-20220502155252296.chn",
+      "https://danviet.vn/cung-biet-72-tuyet-ky-cua-thieu-lam-tu-nhung-cuu-ma-tri-thua-vo-danh-than-tang-vi-sao-20220606000359225-d1023583.html"
+     ]
+    },
+    {
+     "claim": "Cưu Ma Trí dùng Tiểu Vô Tướng Công (phái Tiêu Dao) mô phỏng võ Thiếu Lâm; lão tăng nhìn ra",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://danviet.vn/cung-biet-72-tuyet-ky-cua-thieu-lam-tu-nhung-cuu-ma-tri-thua-vo-danh-than-tang-vi-sao-20220606000359225-d1023583.html",
+      "https://gamek.vn/cung-biet-72-tuyet-ky-cua-thieu-lam-tu-nhung-cuu-ma-tri-thua-vo-danh-than-tang-vi-sao-20220502155252296.chn"
+     ]
+    },
+    {
+     "claim": "Cưu Ma Trí tẩu hoả, rơi giếng cạn, Đoàn Dự dùng Bắc Minh Thần Công hút nội lực; ông mất võ công, ngộ đạo, nhờ trả Dịch Cân Kinh cho Thiếu Lâm",
+     "src": [
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-nhan-vat-duy-nhat-nho-tau-hoa-nhap-ma-ma-ngo-dao-204443894.htm",
+      "https://danviet.vn/cuu-ma-tri-so-huu-mon-vo-cong-thuong-thang-nao-ma-lai-bo-phi-20220425173457697-d1015244.html",
+      "https://danviet.vn/cung-biet-72-tuyet-ky-cua-thieu-lam-tu-nhung-cuu-ma-tri-thua-vo-danh-than-tang-vi-sao-20220606000359225-d1023583.html"
+     ]
+    },
+    {
+     "claim": "Tường khí vô hình hoá giải Hàng Long của Tiêu Phong (ông lùi một bước), chưởng của Mộ Dung Phục và Vô Tướng Kiếp Chỉ của Cưu Ma Trí",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://danviet.vn/nguoi-co-vo-cong-manh-nhat-thien-long-bat-bo-khong-phai-tieu-phong-ma-la-ai-d1343774.html",
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html"
+     ]
+    },
+    {
+     "claim": "Một chiêu nhẹ làm Tiêu Viễn Sơn, Mộ Dung Bác bất động như tắt hơi, bế hai người lướt đi, rồi chữa nội thương; hai người buông thù, quy y",
+     "src": [
+      "https://zh.wikipedia.org/wiki/少林扫地僧",
+      "https://danviet.vn/nguoi-co-vo-cong-manh-nhat-thien-long-bat-bo-khong-phai-tieu-phong-ma-la-ai-d1343774.html",
+      "https://huynhngocchien.com/huyen-nghia-vo-danh-tang/",
+      "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html"
+     ]
+    },
+    {
+     "claim": "Vương Ngữ Yên (bản cũ: Vương Ngọc Yến), em họ Mộ Dung Phục, ở Mạn Đà Sơn Trang, thuộc bí kíp các phái, chỉ điểm phá chiêu, không biết võ, bị nhiều phe muốn bắt",
+     "src": [
+      "https://doisongphapluat.com.vn/my-nhan-khong-biet-vo-cong-nhung-so-huu-tri-nho-sieu-pham-trong-tieu-thuyet-kim-dung-la-ai-a559806.html",
+      "https://www.kiemhiepkimdung.vn/2013/10/ten-cac-nhan-vat-trong-thien-long-bat-bo.html",
+      "https://vi.wikipedia.org/wiki/Danh_sách_nhân_vật_trong_Thiên_long_bát_bộ"
+     ]
+    },
+    {
+     "claim": "Bản tân tu: người ở bên Đoàn Dự cuối truyện không phải Vương Ngữ Yên",
+     "src": [
+      "https://www.saostar.vn/dien-anh/khong-phai-vuong-ngu-yen-day-moi-la-nguoi-doan-du-lay-lam-vo-202607200951566101.html",
+      "https://vi.wikipedia.org/wiki/Thiên_long_bát_bộ"
+     ]
+    },
+    {
+     "claim": "Khô Vinh cho Đoàn Dự đọc Lục Mạch Thần Kiếm rồi huỷ phổ để không lọt vào tay Cưu Ma Trí",
+     "src": [
+      "https://danviet.vn/vi-sao-doan-du-lai-biet-luc-mach-than-kiem-20241015171551705-d1189765.html",
+      "https://vnreview.vn/threads/vi-sao-chi-co-doan-du-hoc-duoc-luc-mach-than-kiem-trong-toan-bo-tieu-thuyet-kim-dung.49963/"
+     ]
+    },
+    {
+     "claim": "Lục Mạch của Đoàn Dự lúc được lúc không; Vương Ngữ Yên hỏi, Đoàn Dự không hiểu; gặp Đinh Xuân Thu chỉ bảy tám cái không ra",
+     "src": [
+      "https://vnexpress.net/luc-mach-than-kiem-hoi-12-2753345.html",
+      "https://vnreview.vn/threads/vi-sao-chi-co-doan-du-hoc-duoc-luc-mach-than-kiem-trong-toan-bo-tieu-thuyet-kim-dung.49963/"
+     ]
+    },
+    {
+     "claim": "Đoàn Dự dùng Lục Mạch Thần Kiếm đánh bại Mộ Dung Phục ở Thiếu Lâm",
+     "src": [
+      "https://vnreview.vn/threads/vi-sao-chi-co-doan-du-hoc-duoc-luc-mach-than-kiem-trong-toan-bo-tieu-thuyet-kim-dung.49963/",
+      "https://danviet.vn/vi-sao-doan-du-lai-biet-luc-mach-than-kiem-20241015171551705-d1189765.html"
+     ]
+    },
+    {
+     "claim": "Ai mạnh nhất là tranh cãi: Tảo Địa Tăng thường đứng đầu; có bảng xếp A Thanh / Tiêu Dao Tử trên; Kim Dung không công bố bảng",
+     "src": [
+      "https://tienphong.vn/de-nhat-cao-thu-vo-lam-truyen-kim-dung-la-ai-post685680.tpo",
+      "https://www.saostar.vn/dien-anh/10-cao-thu-manh-nhat-kim-dung-so-1-la-nu-nhan-202610191453031512.html",
+      "https://mytour.vn/vi/blog/bai-viet/thuong-thu-thien-long-bat-bo-vo-danh-than-tang-guc-nga-thuc-luc-vuot-bac-nhung-chi-dung-o-vi-tri-thu-ba.html"
+     ]
+    }
+   ],
+   "sources": [
+    "https://zh.wikipedia.org/wiki/少林扫地僧",
+    "https://vi.wikipedia.org/wiki/Danh_sách_nhân_vật_trong_Thiên_long_bát_bộ",
+    "https://vi.wikipedia.org/wiki/Thiên_long_bát_bộ",
+    "https://danviet.vn/nguoi-co-vo-cong-manh-nhat-thien-long-bat-bo-khong-phai-tieu-phong-ma-la-ai-d1343774.html",
+    "https://www.saostar.vn/dien-anh/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-202607151027051648.html",
+    "https://huynhngocchien.com/huyen-nghia-vo-danh-tang/"
+   ]
+  }
+ },
+ {
+  "slug": "tap-08-thieu-lam-vo-dang",
+  "ep": 8,
+  "date": "2026-10-20",
+  "theme": "am",
+  "seq": [
+   "op-rings",
+   "tr-iris",
+   "cam-drift-r",
+   "en-run",
+   "in-scroll",
+   "en-smoke",
+   "in-stamp",
+   "tr-blinds",
+   "cam-drift-l",
+   "cd-board",
+   "cd-bamboo",
+   "local:chuong-va-thai-cuc",
+   "tr-flash",
+   "cam-tilt",
+   "cd-scroll",
+   "cp-brush",
+   "at-rain",
+   "im-text",
+   "af-dizzy",
+   "cd-board",
+   "tr-paper",
+   "cam-drift-r",
+   "cd-bamboo",
+   "cp-ribbon",
+   "at-palm",
+   "im-ring",
+   "af-stagger",
+   "local:tu-luong-bat-thien-can",
+   "tr-shards",
+   "cam-push",
+   "cd-board",
+   "local:that-tiet-tran",
+   "cp-burst",
+   "at-cross",
+   "im-radial",
+   "af-blow",
+   "cp-stamp",
+   "tr-blinds",
+   "cam-drift-l",
+   "cd-scroll",
+   "local:kim-cuong-phuc-ma-khuyen",
+   "cp-type",
+   "at-leap",
+   "im-text",
+   "af-dizzy",
+   "tr-slash",
+   "cam-drift-r",
+   "cd-bamboo",
+   "cp-vertical",
+   "at-whirl",
+   "im-hitstop",
+   "af-stagger",
+   "cp-burst",
+   "at-dash",
+   "im-text",
+   "af-dizzy",
+   "tr-shards",
+   "cam-pull",
+   "cd-scroll",
+   "cp-brush",
+   "at-flurry",
+   "im-hitstop",
+   "af-stagger",
+   "cp-ribbon",
+   "at-beam",
+   "im-radial",
+   "af-blow",
+   "tr-iris",
+   "cam-push",
+   "st-scale",
+   "local:chuong-va-thai-cuc",
+   "cp-vertical",
+   "at-palm",
+   "im-flash",
+   "af-stagger",
+   "cp-stamp",
+   "at-rain",
+   "im-ring",
+   "af-blow",
+   "cp-burst",
+   "tr-scroll",
+   "ed-wave"
+  ],
+  "opener": "op-rings",
+  "ender": "ed-wave",
+  "finisher": "at-rain",
+  "seed": 868274,
+  "local": [
+   "local:chuong-va-thai-cuc",
+   "local:kim-cuong-phuc-ma-khuyen",
+   "local:that-tiet-tran",
+   "local:tu-luong-bat-thien-can"
+  ],
+  "title": "Thiếu Lâm vs Võ Đang: môn phái nào mạnh hơn?",
+  "hook": "AI HƠN AI?",
+  "next": "Võ Đang Thất Hiệp: bảy đệ tử, bảy số phận",
+  "sets": [
+   "san-tap",
+   "mai-ngoi",
+   "rung-truc",
+   "nui-tuyet",
+   "san-tap",
+   "mai-ngoi",
+   "cau-go",
+   "quan-tro",
+   "san-tap"
+  ],
+  "chars": [
+   "Thiếu Lâm",
+   "Võ Đang",
+   "Trương Tam Phong",
+   "Trương Quân Bảo",
+   "Giác Viễn",
+   "Hà Túc Đạo",
+   "Tảo Địa Tăng",
+   "Trương Vô Kỵ",
+   "Độ Ách",
+   "Phương Chứng",
+   "Xung Hư",
+   "Lệnh Hồ Xung",
+   "Nhậm Ngã Hành"
+  ],
+  "moves": [
+   "Côn Lôn Kiếm Pháp",
+   "Cửu Dương Thần Công",
+   "Thái Cực Kiếm",
+   "Kim Cương Phục Ma Khuyên",
+   "Thái Cực Kiếm",
+   "Độc Cô Cửu Kiếm",
+   "Hấp Tinh Đại Pháp",
+   "Dịch Cân Kinh",
+   "La Hán Quyền",
+   "Thái Cực Quyền"
+  ],
+  "story": {
+   "format": "mon-phai",
+   "logline": "Tèo đặt Thiếu Lâm và Võ Đang lên bàn cân: chùa và núi ngoài đời, câu Bắc tôn Nam sùng, Trương Quân Bảo rời Thiếu Lâm thành Trương Tam Phong, Thái Cực, Thất Tiệt Trận, Kim Cương Phục Ma Khuyên, Phương Chứng và Xung Hư",
+   "subjects": [
+    "Thiếu Lâm",
+    "Võ Đang",
+    "Trương Tam Phong",
+    "Phương Chứng",
+    "Xung Hư"
+   ],
+   "works": [
+    "Ỷ Thiên Đồ Long Ký",
+    "Thiên Long Bát Bộ",
+    "Tiếu Ngạo Giang Hồ",
+    "Thần Điêu Hiệp Lữ"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "kể theo bản sửa/tân tu; không dùng chi tiết khác biệt giữa các bản (nguồn gốc người viết Cửu Dương khác nhau giữa bản cũ và bản cuối nên không nhắc)",
+   "verdict": "Ý kiến của Tèo: so cả môn phái qua nhiều bộ thì Thiếu Lâm nhỉnh hơn (bề dày, số cao thủ); so một người đứng đầu thì Trương Tam Phong của Võ Đang trên. Kim Dung không xếp hạng; hai phái chung nguồn Cửu Dương và thường cùng phe.",
+   "facts": [
+    {
+     "claim": "Chùa Thiếu Lâm xây khoảng năm 495 thời Bắc Ngụy Hiếu Văn Đế cho nhà sư Bạt Đà",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Chùa_Thiếu_Lâm",
+      "https://en.wikipedia.org/wiki/Shaolin_Monastery"
+     ]
+    },
+    {
+     "claim": "Chuyện Đạt Ma truyền Dịch Cân Kinh/võ công cho Thiếu Lâm là truyền thuyết, sử học không ủng hộ",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Chùa_Thiếu_Lâm",
+      "https://zh.wikipedia.org/wiki/少林七十二绝技"
+     ]
+    },
+    {
+     "claim": "Núi Võ Đang ở Hồ Bắc; quần thể cung quán xây lớn thời Vĩnh Lạc nhà Minh (đầu thế kỷ 15)",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Núi_Võ_Đang",
+      "https://en.wikipedia.org/wiki/Wudang_Mountains"
+     ]
+    },
+    {
+     "claim": "Quần thể kiến trúc cổ núi Võ Đang được UNESCO công nhận di sản thế giới năm 1994",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Núi_Võ_Đang",
+      "https://whc.unesco.org/en/list/705"
+     ]
+    },
+    {
+     "claim": "Hoàng Tông Hy viết văn bia Vương Chinh Nam năm 1669, lần đầu chia nội gia (gắn Trương Tam Phong, Võ Đang) và ngoại gia (Thiếu Lâm)",
+     "src": [
+      "https://baike.baidu.com/item/王征南墓志铭/4304682",
+      "https://zhuanlan.zhihu.com/p/667911139"
+     ]
+    },
+    {
+     "claim": "Câu 'Bắc tôn Thiếu Lâm, Nam sùng Võ Đang' không có trong văn Hoàng Tông Hy; theo nhà nghiên cứu, hình thành khoảng đầu thế kỷ 20",
+     "src": [
+      "https://zhuanlan.zhihu.com/p/667911139",
+      "https://baike.baidu.com/item/王征南墓志铭/4304682"
+     ]
+    },
+    {
+     "claim": "Trương Tam Phong ngoài đời: tung tích mơ hồ, biệt danh Trương Lạp Thát trong Minh Sử, vua Minh sai tìm không gặp, nhiều giả thuyết về tên tuổi quê quán",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://zh.wikipedia.org/zh-hans/張三丰_(金庸)",
+      "https://en.wikipedia.org/wiki/Zhang_Sanfeng"
+     ]
+    },
+    {
+     "claim": "Trong truyện, Trương Quân Bảo là tục gia đệ tử Thiếu Lâm theo hầu Giác Viễn ở Tàng Kinh Các",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://zh.wikipedia.org/zh-hans/張三丰_(金庸)",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm"
+     ]
+    },
+    {
+     "claim": "Tiêu Tương Tử và Doãn Khắc Tây trộm Lăng Già Kinh có chép Cửu Dương Chân Kinh ở Tàng Kinh Các, giấu kinh trong bụng vượn trắng",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh"
+     ]
+    },
+    {
+     "claim": "Hà Túc Đạo (Côn Lôn Tam Thánh) lên Thiếu Lâm thách đấu, làm lộ võ công Giác Viễn và Quân Bảo, rồi rời đi",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm"
+     ]
+    },
+    {
+     "claim": "Phương trượng ra lệnh bắt Quân Bảo vì cho là học trộm võ; Giác Viễn đưa Quân Bảo và Quách Tương trốn",
+     "src": [
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm",
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong"
+     ]
+    },
+    {
+     "claim": "Giác Viễn kiệt sức đọc lại Cửu Dương Chân Kinh; Quân Bảo, Quách Tương, Vô Sắc mỗi người nhớ một phần → Võ Đang, Nga Mi, Thiếu Lâm",
+     "src": [
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm",
+      "https://truyenkiemhiep.wiki/Wiki:Cửu_Dương_Chân_Kinh",
+      "https://zh.wikipedia.org/zh-hans/張三丰_(金庸)"
+     ]
+    },
+    {
+     "claim": "Nguồn không thống nhất việc Quân Bảo rời chùa: có nơi gọi phản đồ, có nơi nói bỏ chạy khi bị truy",
+     "src": [
+      "https://danviet.vn/giua-truong-tam-phong-vo-danh-than-tang-va-khong-kien-ai-la-nguoi-manh-nhat-20220502232338367-d1016756.html",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm",
+      "https://cafef.vn/cung-bi-danh-len-truong-tam-phong-va-vo-danh-than-tang-co-phan-ung-trai-nguoc-ai-moi-thuc-su-cao-cuong-188241228070525042.chn"
+     ]
+    },
+    {
+     "claim": "Quân Bảo lên Võ Đang, ngắm ba ngọn núi lấy hiệu Tam Phong, lập phái Võ Đang với bảy đệ tử",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm"
+     ]
+    },
+    {
+     "claim": "Trương Tam Phong sáng tạo Thái Cực Quyền và Thái Cực Kiếm, lấy nhu chế cương, tĩnh chế động",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-ly-do-truong-tam-phong-roi-thieu-lam-lap-ra-vo-dang-204634070.htm",
+      "https://vi.wikipedia.org/wiki/Môn_phái_trong_tiểu_thuyết_Kim_Dung"
+     ]
+    },
+    {
+     "claim": "Trương Tam Phong truyền Thái Cực Kiếm cho Trương Vô Kỵ trước mặt địch; Vô Kỵ quên dần tới quên hết thì mới là học được (diễn đạt lại)",
+     "src": [
+      "https://voz.vn/t/tai-sao-hoc-truoc-quen-sau-lai-thanh-cong.15857/",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+      "https://danviet.vn/giua-truong-tam-phong-vo-danh-than-tang-va-khong-kien-ai-la-nguoi-manh-nhat-20220502232338367-d1016756.html"
+     ]
+    },
+    {
+     "claim": "Trương Tam Phong ngoài trăm tuổi trong Ỷ Thiên",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+      "https://zh.wikipedia.org/zh-hans/張三丰_(金庸)"
+     ]
+    },
+    {
+     "claim": "Võ Đang Thất Hiệp: Tống Viễn Kiều, Du Liên Châu, Du Đại Nham, Trương Tùng Khê, Trương Thuý Sơn, Ân Lê Đình, Mạc Thanh Cốc; Trương Thuý Sơn là cha Trương Vô Kỵ",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+      "https://www.kiemhiepkimdung.vn/2015/04/vo-ang-that-hiep.html",
+      "https://zh.wikipedia.org/wiki/武当七侠"
+     ]
+    },
+    {
+     "claim": "Du Liên Châu được xem là võ công cao nhất Thất Hiệp",
+     "src": [
+      "https://www.kiemhiepkimdung.vn/2015/04/vo-ang-that-hiep.html",
+      "https://zh.wikipedia.org/wiki/武当七侠"
+     ]
+    },
+    {
+     "claim": "Võ Đang có khinh công Thê Vân Tung",
+     "src": [
+      "https://www.kiemhiepkimdung.vn/2015/04/vo-ang-that-hiep.html",
+      "https://tuhientrang.fandom.com/wiki/Thê_Vân_Tung"
+     ]
+    },
+    {
+     "claim": "Chân Võ Thất Tiệt Trận do Trương Tam Phong nghĩ ra, cần bảy người",
+     "src": [
+      "https://www.kiemhiepkimdung.vn/2015/04/vo-ang-that-hiep.html",
+      "https://tuhientrang.fandom.com/wiki/Thê_Vân_Tung"
+     ]
+    },
+    {
+     "claim": "Thiếu Lâm được gọi là Thái Sơn Bắc Đẩu, kho võ học đồ sộ nhất trong Kim Dung",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Môn_phái_trong_tiểu_thuyết_Kim_Dung",
+      "https://danviet.vn/mon-phai-nao-ba-dao-nhat-trong-kim-dung-den-thieu-lam-cung-phai-ngan-20220311151621456-d1006435.html"
+     ]
+    },
+    {
+     "claim": "Tảo Địa Tăng là người duy nhất trong truyện luyện thông 72 tuyệt kỹ Thiếu Lâm",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Môn_phái_trong_tiểu_thuyết_Kim_Dung",
+      "https://www.dkn.tv/van-hoa/binh-kim-dung-ky-2-bai-giang-tham-ao-cua-than-tang-vo-danh-chua-thieu-lam-trong-thien-long-bat-bo-2.html",
+      "https://baomoi.com/vi-cao-thu-duy-nhat-su-dung-thanh-thao-72-tuyet-ky-thieu-lam-c55619216.epi"
+     ]
+    },
+    {
+     "claim": "Tảo Địa Tăng giảng cho Tiêu Viễn Sơn và Mộ Dung Bác (lén học ở Tàng Kinh Các): luyện tuyệt kỹ mà không tu dưỡng tâm thì hại thân (diễn đạt lại)",
+     "src": [
+      "https://www.sohu.com/a/411593187_120603730",
+      "https://www.dkn.tv/van-hoa/binh-kim-dung-ky-2-bai-giang-tham-ao-cua-than-tang-vo-danh-chua-thieu-lam-trong-thien-long-bat-bo-2.html"
+     ]
+    },
+    {
+     "claim": "Kim Cương Phục Ma Khuyên: ba lão tăng Độ Ách, Độ Kiếp, Độ Nạn ngồi trên núi sau chùa, nối roi dài thành trận, canh giữ Tạ Tốn",
+     "src": [
+      "https://tuhientrang.fandom.com/wiki/Kim_Cương_Phục_Ma_Khuyên",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-tran-phap-vo-cong-khien-giao-chu-minh-giao-truong-vo-ky-cung-phai-bo-tay-204444684.htm"
+     ]
+    },
+    {
+     "claim": "Trương Vô Kỵ phải vào trận Kim Cương Phục Ma Khuyên nhiều lần",
+     "src": [
+      "https://tuhientrang.fandom.com/wiki/Kim_Cương_Phục_Ma_Khuyên",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký"
+     ]
+    },
+    {
+     "claim": "Lục đại môn phái gồm Thiếu Lâm, Võ Đang vây Quang Minh Đỉnh; Trương Vô Kỵ giải vây, đấu cao thủ các phái",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+      "https://www.kiemhiepkimdung.vn/2015/04/vo-ang-that-hiep.html"
+     ]
+    },
+    {
+     "claim": "Tiếu Ngạo: Phương Chứng (phương trượng Thiếu Lâm) và Xung Hư (chưởng môn Võ Đang) cùng chống mưu Tả Lãnh Thiền gộp Ngũ Nhạc",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Nhân_vật_trong_Tiếu_ngạo_giang_hồ",
+      "https://www.163.com/dy/article/JCF53B5L05249S0A.html",
+      "https://vi.wikipedia.org/wiki/Tiếu_ngạo_giang_hồ"
+     ]
+    },
+    {
+     "claim": "Xung Hư giao đấu Lệnh Hồ Xung bằng Thái Cực Kiếm, Lệnh Hồ Xung suýt thua rồi tìm ra sơ hở, Xung Hư nhận thua và ủng hộ chàng",
+     "src": [
+      "https://danviet.vn/kiem-hiep-kim-dung-cao-thu-phai-vo-dang-khien-lenh-ho-xung-suyt-bi-bai-tran-77771059107-d793023.html",
+      "https://vi.wikipedia.org/wiki/Nhân_vật_trong_Tiếu_ngạo_giang_hồ"
+     ]
+    },
+    {
+     "claim": "Phương Chứng mời Lệnh Hồ Xung vào Thiếu Lâm học Dịch Cân Kinh, bị từ chối; về sau ngầm truyền, nói là của Phong Thanh Dương",
+     "src": [
+      "https://kimdunghoi.fandom.com/vi/wiki/Dịch_Cân_Kinh",
+      "https://www.saostar.vn/dien-anh/suc-manh-dang-ne-cua-dich-can-kinh-trong-the-gioi-kim-dung-202608091639089427.html",
+      "https://vi.wikipedia.org/wiki/Lệnh_Hồ_Xung"
+     ]
+    },
+    {
+     "claim": "Nhậm Ngã Hành khâm phục ba người rưỡi: Đông Phương Bất Bại, Phong Thanh Dương, Phương Chứng; Xung Hư là nửa người, về sau nâng lên",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Nhân_vật_trong_Tiếu_ngạo_giang_hồ",
+      "https://www.163.com/dy/article/JCF53B5L05249S0A.html"
+     ]
+    },
+    {
+     "claim": "Phương Chứng đấu Nhậm Ngã Hành tại Thiếu Lâm; Hấp Tinh Đại Pháp không làm gì được; Phương Chứng thua vì mẹo lợi dụng lòng từ bi",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Nhân_vật_trong_Tiếu_ngạo_giang_hồ",
+      "https://www.163.com/dy/article/JCF53B5L05249S0A.html"
+     ]
+    },
+    {
+     "claim": "Fan chia phe: Thiếu Lâm hơn về bề dày, số cao thủ; Võ Đang hơn nhờ Trương Tam Phong sáng tạo võ học; nhánh Cửu Dương Võ Đang được cho là cao hơn; Kim Dung không xếp hạng",
+     "src": [
+      "https://danviet.vn/giua-truong-tam-phong-vo-danh-than-tang-va-khong-kien-ai-la-nguoi-manh-nhat-20220502232338367-d1016756.html",
+      "https://danviet.vn/mon-phai-nao-ba-dao-nhat-trong-kim-dung-den-thieu-lam-cung-phai-ngan-20220311151621456-d1006435.html",
+      "https://cafef.vn/cung-bi-danh-len-truong-tam-phong-va-vo-danh-than-tang-co-phan-ung-trai-nguoc-ai-moi-thuc-su-cao-cuong-188241228070525042.chn",
+      "https://zh.wikipedia.org/zh-hans/張三丰_(金庸)"
+     ]
+    }
+   ],
+   "sources": [
+    "https://vi.wikipedia.org/wiki/Môn_phái_trong_tiểu_thuyết_Kim_Dung",
+    "https://vi.wikipedia.org/wiki/Trương_Tam_Phong",
+    "https://vi.wikipedia.org/wiki/Chùa_Thiếu_Lâm",
+    "https://en.wikipedia.org/wiki/Wudang_Mountains",
+    "E:/tool/MuseStudio/kiem-hiep/_research/tap-08-thieu-lam-vo-dang.md"
+   ]
+  }
+ },
+ {
+  "slug": "tap-07-y-thien-do-long",
+  "ep": 7,
+  "date": "2026-10-20",
+  "theme": "am",
+  "seq": [
+   "op-scroll",
+   "tr-scroll",
+   "cam-rise",
+   "en-leap",
+   "in-plate",
+   "cd-scroll",
+   "en-slide",
+   "in-silhouette",
+   "cd-bamboo",
+   "tr-shards",
+   "cam-drift-l",
+   "in-scroll",
+   "cd-board",
+   "local:lo-ren",
+   "local:lo-ren",
+   "cd-scroll",
+   "tr-blinds",
+   "cam-push",
+   "cd-bamboo",
+   "en-run",
+   "pw-aura",
+   "cp-burst",
+   "at-whirl",
+   "im-shards",
+   "af-dizzy",
+   "tr-ink",
+   "cam-tilt",
+   "in-stamp",
+   "cd-board",
+   "pw-eyes",
+   "en-smoke",
+   "local:dao-kiem-giao",
+   "local:dao-kiem-giao",
+   "cd-scroll",
+   "st-bars",
+   "cp-ribbon",
+   "tr-iris",
+   "cam-drift-l",
+   "in-scroll",
+   "en-run",
+   "in-plate",
+   "cd-board",
+   "pw-charge",
+   "cp-stamp",
+   "at-cross",
+   "im-ring",
+   "af-blow",
+   "cp-brush",
+   "at-dash",
+   "im-hitstop",
+   "af-stagger",
+   "tr-flash",
+   "cam-pull",
+   "en-leap",
+   "in-silhouette",
+   "cd-bamboo",
+   "local:bich-ngoc-bong",
+   "pw-vortex",
+   "cp-type",
+   "at-leap",
+   "im-radial",
+   "af-dizzy",
+   "tr-slash",
+   "cam-drift-r",
+   "in-stamp",
+   "cd-board",
+   "local:kim-xa-uon",
+   "af-stagger",
+   "cp-ribbon",
+   "at-rain",
+   "im-flash",
+   "af-blow",
+   "st-bars",
+   "tr-scroll",
+   "cam-rise",
+   "in-plate",
+   "cd-scroll",
+   "local:thanh-hoa-lenh",
+   "en-smoke",
+   "in-stamp",
+   "pw-vortex",
+   "cp-vertical",
+   "at-dash",
+   "im-hitstop",
+   "af-dizzy",
+   "cp-stamp",
+   "at-whirl",
+   "im-shards",
+   "af-blow",
+   "cd-bamboo",
+   "cp-burst",
+   "tr-paper",
+   "ed-ink"
+  ],
+  "opener": "op-scroll",
+  "ender": "ed-ink",
+  "finisher": "at-whirl",
+  "seed": 394238,
+  "local": [
+   "local:bich-ngoc-bong",
+   "local:dao-kiem-giao",
+   "local:kim-xa-uon",
+   "local:lo-ren",
+   "local:thanh-hoa-lenh"
+  ],
+  "title": "Ỷ Thiên kiếm vs Đồ Long đao: bên trong giấu gì?",
+  "hook": "BÊN TRONG GIẤU GÌ?",
+  "next": "Thiếu Lâm vs Võ Đang: phái nào mạnh hơn?",
+  "sets": [
+   "nui-tuyet",
+   "mai-ngoi",
+   "nui-tuyet",
+   "san-tap",
+   "rung-truc",
+   "ben-song",
+   "quan-tro",
+   "nui-tuyet"
+  ],
+  "chars": [
+   "Tạ Tốn",
+   "Chu Chỉ Nhược",
+   "Quách Tĩnh",
+   "Hoàng Dung",
+   "Bang chủ Hải Sa",
+   "Diệt Tuyệt sư thái",
+   "Triệu Mẫn",
+   "Dương Quá",
+   "Tiểu Long Nữ",
+   "Công Tôn Chỉ",
+   "Hồng Thất Công",
+   "Viên Thừa Chí",
+   "Kiếm khách áo xám",
+   "Trương Vô Kỵ",
+   "Sứ giả Ba Tư"
+  ],
+  "moves": [
+   "Đồ Long đao",
+   "Ngọc Nữ Tố Tâm kiếm pháp",
+   "Song kiếm hợp bích",
+   "Đả Cẩu Bổng Pháp",
+   "Kim Xà kiếm pháp",
+   "Thánh Hoả Lệnh võ công",
+   "Càn Khôn Đại Na Di"
+  ],
+  "story": {
+   "format": "binh-khi",
+   "logline": "Bảy thần binh Kim Dung: Đồ Long đao và Ỷ Thiên kiếm ai rèn, giấu gì bên trong (bản cũ khác bản tân tu), cùng Huyền Thiết Trọng Kiếm, Quân Tử Thục Nữ kiếm, Đả Cẩu Bổng, Kim Xà kiếm và Thánh Hoả Lệnh",
+   "subjects": [
+    "Ỷ Thiên kiếm",
+    "Đồ Long đao",
+    "Huyền Thiết Trọng Kiếm",
+    "Quân Tử kiếm",
+    "Thục Nữ kiếm",
+    "Đả Cẩu Bổng",
+    "Kim Xà kiếm",
+    "Thánh Hoả Lệnh"
+   ],
+   "works": [
+    "Ỷ Thiên Đồ Long Ký",
+    "Thần Điêu Hiệp Lữ",
+    "Xạ Điêu Anh Hùng Truyện",
+    "Bích Huyết Kiếm"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "So sánh bản cũ (bản đăng báo + bản sửa thập niên 1970) với bản tân tu (lần sửa thứ ba, đầu những năm 2000). Bản cũ: Huyền Thiết Trọng Kiếm + tinh kim phương Tây rèn cả đao lẫn kiếm; đao giấu Võ Mục Di Thư, kiếm giấu Cửu Âm Chân Kinh + Hàng Long tinh nghĩa; chém đao kiếm vào nhau cho gãy để lấy. Tân tu: Huyền Thiết chỉ rèn Đồ Long, Quân Tử + Thục Nữ kiếm rèn Ỷ Thiên; bên trong là hai miếng huyền thiết vẽ đường tới Đào Hoa Đảo; cưa ở chỗ sắt mềm cách chuôi bảy tấc. Huyền Thiết nặng 64 cân, tân tu 81 cân. Câu trích nguyên văn duy nhất: khẩu quyết 'Võ lâm chí tôn, bảo đao Đồ Long…'.",
+   "verdict": "Ý kiến của Tèo: Ỷ Thiên sắc hơn, Đồ Long nặng và nổi hơn (Tèo chấm 38–33 cho vui); báu vật thật là tri thức giấu bên trong. Binh khí lạ nhất: Thánh Hoả Lệnh.",
+   "facts": [
+    {
+     "claim": "Quách Tĩnh – Hoàng Dung rèn đao kiếm trước khi Tương Dương thất thủ để giữ võ học và binh pháp",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html"
+     ]
+    },
+    {
+     "claim": "Hai vợ chồng mất hơn một tháng chép tinh yếu lên giấy mỏng",
+     "src": [
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-c731a1058818.html"
+     ]
+    },
+    {
+     "claim": "Bản cũ: cả đao lẫn kiếm rèn từ Huyền Thiết Trọng Kiếm + tinh kim phương Tây",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://zh.wikipedia.org/wiki/玄鐵重劍"
+     ]
+    },
+    {
+     "claim": "Bản tân tu: Huyền Thiết rèn Đồ Long; Quân Tử + Thục Nữ kiếm rèn Ỷ Thiên",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://baike.baidu.com/item/君子剑/31374",
+      "https://baike.baidu.com/item/淑女剑/468208"
+     ]
+    },
+    {
+     "claim": "Bản cũ: đao giấu Võ Mục Di Thư (binh pháp Nhạc Phi), kiếm giấu Cửu Âm Chân Kinh và Hàng Long tinh nghĩa",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+      "https://gamek.vn/combo-huyen-thoai-do-long-dao-y-thien-kiem-va-5-su-that-it-nguoi-biet-20200702174712576.chn"
+     ]
+    },
+    {
+     "claim": "Bản tân tu: hai miếng huyền thiết khắc đường tới Đào Hoa Đảo, nơi cất sách",
+     "src": [
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=8ebf3bd379c58b9084e0da44"
+     ]
+    },
+    {
+     "claim": "Lý do sửa: đao từng bị lửa lớn nung, giấy bên trong lẽ ra phải cháy",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://zh.wikipedia.org/wiki/屠龍刀"
+     ]
+    },
+    {
+     "claim": "Bản cũ: chém đao kiếm vào nhau, cả hai gãy; tân tu: cưa chỗ sắt mềm cách chuôi bảy tấc",
+     "src": [
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://jinyong.fandom.com/zh/wiki/倚天劍",
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=8ebf3bd379c58b9084e0da44"
+     ]
+    },
+    {
+     "claim": "Diệt Tuyệt sư thái giữ bí mật cách mở, dặn một tay đao một tay kiếm chém vào nhau",
+     "src": [
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-c731a1058818.html"
+     ]
+    },
+    {
+     "claim": "Khẩu quyết: Võ lâm chí tôn, bảo đao Đồ Long, hiệu lệnh thiên hạ, mạc cảm bất tòng; Ỷ Thiên bất xuất, thuỳ dữ tranh phong",
+     "src": [
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://vi.wikipedia.org/wiki/Đồ_Long_đao"
+     ]
+    },
+    {
+     "claim": "Đồ Long đao nặng hơn trăm cân",
+     "src": [
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://baike.baidu.com/item/屠龙刀/7844301"
+     ]
+    },
+    {
+     "claim": "Tạ Tốn đánh bại Hải Sa bang, Thần Quyền môn, Cự Kình bang ở Vương Bàn Sơn, đoạt đao",
+     "src": [
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://baike.baidu.com/item/屠龙刀/7844301"
+     ]
+    },
+    {
+     "claim": "Tạ Tốn là một trong tứ đại hộ giáo pháp vương Minh Giáo, ra Băng Hoả Đảo nghiên cứu đao; Trương Vô Kỵ sinh ở đảo",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+      "https://zh.wikipedia.org/wiki/張無忌"
+     ]
+    },
+    {
+     "claim": "Quách Tương mang Ỷ Thiên về Nga Mi, thành tín vật chưởng môn",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://baike.baidu.com/item/倚天剑/2792848"
+     ]
+    },
+    {
+     "claim": "Kiếm từng bị quan phủ thu ban cho Nhữ Dương Vương; Diệt Tuyệt đoạt lại; Triệu Mẫn lấy ở Vạn An Tự",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://baike.baidu.com/item/倚天剑/2792848"
+     ]
+    },
+    {
+     "claim": "Chu Chỉ Nhược lấy cả đao kiếm ở Linh Xà Đảo và lấy bí mật bên trong",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://zh.wikipedia.org/wiki/屠龍刀",
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html"
+     ]
+    },
+    {
+     "claim": "Võ Mục Di Thư về sau giúp Trương Vô Kỵ và quần hùng chống quân Nguyên",
+     "src": [
+      "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+      "https://www.24h.com.vn/giai-tri/kiem-hiep-kim-dung-su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-c731a1058818.html"
+     ]
+    },
+    {
+     "claim": "Ngô Kính Thảo dùng Thánh Hoả Lệnh rèn lại Đồ Long; Ỷ Thiên vẫn hai mảnh",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天剑",
+      "https://zh.wikipedia.org/wiki/屠龍刀"
+     ]
+    },
+    {
+     "claim": "Huyền Thiết Trọng Kiếm của Độc Cô Cầu Bại dùng trước 40 tuổi, Dương Quá tìm được; hai mép cùn, mũi tròn",
+     "src": [
+      "https://zh.wikipedia.org/wiki/玄鐵重劍",
+      "https://baike.baidu.com/item/剑冢/9082962"
+     ]
+    },
+    {
+     "claim": "Huyền Thiết nặng 64 cân, bản tân tu 81 cân",
+     "src": [
+      "https://zh.wikipedia.org/wiki/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/獨孤求敗"
+     ]
+    },
+    {
+     "claim": "Dương Quá để lại kiếm cho nhà họ Quách (tặng Quách Tương)",
+     "src": [
+      "https://zh.wikipedia.org/wiki/玄鐵重劍",
+      "https://zh.wikipedia.org/wiki/倚天剑"
+     ]
+    },
+    {
+     "claim": "Quân Tử – Thục Nữ kiếm của Công Tôn Chỉ, giấu sau bức hoạ trong phòng kiếm Tuyệt Tình Cốc",
+     "src": [
+      "https://baike.baidu.com/item/君子剑/31374",
+      "https://baike.baidu.com/item/淑女剑/468208",
+      "https://zh.wikipedia.org/wiki/君子劍"
+     ]
+    },
+    {
+     "claim": "Thân kiếm đen, mũi tròn mép cùn mà cực sắc, hai kiếm có từ tính hút nhau",
+     "src": [
+      "https://baike.baidu.com/item/淑女剑/468208",
+      "https://zh.wikipedia.org/wiki/君子劍"
+     ]
+    },
+    {
+     "claim": "Dương Quá – Tiểu Long Nữ dùng cặp kiếm đánh Ngọc Nữ Tố Tâm kiếm pháp với Công Tôn Chỉ",
+     "src": [
+      "https://baike.baidu.com/item/君子剑/31374",
+      "https://zh.wikipedia.org/wiki/君子劍"
+     ]
+    },
+    {
+     "claim": "Bản cũ không nói rõ cặp kiếm về đâu, có người đoán ở nhà họ Quách",
+     "src": [
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=8ebf3bd379c58b9084e0da44",
+      "https://zh.wikipedia.org/wiki/君子劍"
+     ]
+    },
+    {
+     "claim": "Đả Cẩu Bổng: gậy trúc xanh biếc, tín vật bang chủ Cái Bang, thấy gậy như thấy bang chủ",
+     "src": [
+      "https://zh.wikipedia.org/wiki/打狗棒法",
+      "https://jinyong.fandom.com/zh/wiki/打狗棒法"
+     ]
+    },
+    {
+     "claim": "Đả Cẩu Bổng Pháp chỉ truyền bang chủ; Hồng Thất Công đời 18 truyền Hoàng Dung đời 19",
+     "src": [
+      "https://baike.baidu.com/item/打狗棒法/2640699",
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=62556134378dbf4116010ea6"
+     ]
+    },
+    {
+     "claim": "Hoàng Dung lật tẩy âm mưu ở đại hội Cái Bang (Quân Sơn)",
+     "src": [
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=62556134378dbf4116010ea6",
+      "https://zh.wikipedia.org/wiki/打狗棒法"
+     ]
+    },
+    {
+     "claim": "Hoàng Dung giao việc bang cho Lỗ Hữu Cước, sau trao gậy cho ông",
+     "src": [
+      "https://wapbaike.baidu.com/tashuo/browse/content?id=62556134378dbf4116010ea6",
+      "https://k.sina.cn/article_7720915262_1cc33d13e0010121t1.html"
+     ]
+    },
+    {
+     "claim": "Kim Xà kiếm: kiếm như con rắn cuộn, đuôi làm chuôi, đầu làm mũi, lưỡi chẻ thành mũi hai chạc, đâm và móc khoá binh khí",
+     "src": [
+      "https://baike.baidu.com/item/金蛇剑/501017",
+      "https://zh.wikipedia.org/wiki/金蛇劍"
+     ]
+    },
+    {
+     "claim": "Của Kim Xà Lang Quân Hạ Tuyết Nghi; Viên Thừa Chí tìm di vật trong hang Hoa Sơn, có kiếm, Kim Xà trùy, bí kíp",
+     "src": [
+      "https://baike.baidu.com/item/夏雪宜/7645585",
+      "https://baike.baidu.com/item/金蛇秘籍/4124138"
+     ]
+    },
+    {
+     "claim": "Chiêu trong bí kíp phải có Kim Xà kiếm mới phát huy",
+     "src": [
+      "https://baike.baidu.com/item/金蛇剑/501017",
+      "https://baike.baidu.com/item/金蛇秘籍/4124138"
+     ]
+    },
+    {
+     "claim": "Viên Thừa Chí kết hợp võ Hoa Sơn phá trận Ngũ Hành Bát Quái của nhà họ Ôn",
+     "src": [
+      "https://baike.baidu.com/item/夏雪宜/7645585",
+      "https://zh.wikipedia.org/wiki/金蛇劍"
+     ]
+    },
+    {
+     "claim": "Thánh Hoả Lệnh: sáu lệnh bài đen dài hai thước, không vàng không ngọc, ánh lửa bên trong là ánh phản chiếu, Ỷ Thiên không chém đứt",
+     "src": [
+      "https://k.sina.cn/article_2532929205_96f96eb5001003wj5.html",
+      "https://www.zhihu.com/question/53161102",
+      "https://baike.baidu.com/item/张无忌/439207"
+     ]
+    },
+    {
+     "claim": "Theo Ngô Kính Thảo, đúc từ bạch kim, huyền thiết, kim cương sa, lửa không nung chảy",
+     "src": [
+      "https://k.sina.cn/article_2532929205_96f96eb5001003wj5.html",
+      "https://www.zhihu.com/question/53161102"
+     ]
+    },
+    {
+     "claim": "Lệnh bài khắc võ công Ba Tư; sứ giả Ba Tư làm Trương Vô Kỵ lúng túng; Tiểu Chiêu dịch",
+     "src": [
+      "https://zh.wikipedia.org/wiki/張無忌",
+      "https://www.163.com/dy/article/GVKCJT5H0552YYDA.html"
+     ]
+    },
+    {
+     "claim": "Cuối truyện nói võ công Thánh Hoả Lệnh có phần tà, Vô Kỵ chưa biết",
+     "src": [
+      "https://zh.wikipedia.org/wiki/張無忌",
+      "https://www.zhihu.com/question/53161102"
+     ]
+    },
+    {
+     "claim": "Bản tân tu là lần sửa thứ ba của Kim Dung, đầu những năm 2000",
+     "src": [
+      "https://zh.wikipedia.org/wiki/倚天屠龍記",
+      "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký"
+     ]
+    }
+   ],
+   "sources": [
+    "https://zh.wikipedia.org/wiki/倚天剑",
+    "https://zh.wikipedia.org/wiki/屠龍刀",
+    "https://vi.wikipedia.org/wiki/Ỷ_Thiên_Đồ_Long_ký",
+    "https://danviet.vn/su-that-trong-do-long-dao-va-y-thien-kiem-khong-he-co-binh-thu-va-bi-kip-vo-cong-7777995397-d721488.html",
+    "https://gamek.vn/combo-huyen-thoai-do-long-dao-y-thien-kiem-va-5-su-that-it-nguoi-biet-20200702174712576.chn"
+   ]
+  }
+ },
+ {
+  "slug": "tap-09-duong-qua-tieu-long-nu",
+  "ep": 9,
+  "date": "2026-10-20",
+  "theme": "phong",
+  "seq": [
+   "op-ink",
+   "tr-flash",
+   "cam-push",
+   "en-drop",
+   "in-freeze",
+   "cd-bamboo",
+   "en-leap",
+   "in-scroll",
+   "cd-board",
+   "tr-scroll",
+   "cam-drift-l",
+   "in-silhouette",
+   "en-smoke",
+   "in-scroll",
+   "cp-brush",
+   "at-cross",
+   "im-text",
+   "af-dizzy",
+   "cd-scroll",
+   "tr-blinds",
+   "cam-tilt",
+   "cd-board",
+   "local:day-thung-ngu",
+   "cp-type",
+   "at-whirl",
+   "im-radial",
+   "af-stagger",
+   "cd-bamboo",
+   "tr-paper",
+   "cam-rise",
+   "local:tinh-hoa-doan-truong",
+   "cd-scroll",
+   "cp-stamp",
+   "tr-shards",
+   "cam-drift-l",
+   "local:vach-hen-16-nam",
+   "en-run",
+   "in-plate",
+   "cd-board",
+   "st-tally",
+   "tr-ink",
+   "cam-rise",
+   "pw-lightning",
+   "cp-ribbon",
+   "at-dash",
+   "im-flash",
+   "af-blow",
+   "cd-bamboo",
+   "en-spin",
+   "in-silhouette",
+   "tr-slash",
+   "cam-pull",
+   "local:ong-ngoc-chu",
+   "cd-scroll",
+   "en-drop",
+   "in-freeze",
+   "tr-flash",
+   "cam-push",
+   "en-slide",
+   "local:hoa-trang-day-vuc",
+   "cd-board",
+   "tr-ink",
+   "cam-tilt",
+   "st-scale",
+   "cp-vertical",
+   "tr-iris",
+   "ed-scroll"
+  ],
+  "opener": "op-ink",
+  "ender": "ed-scroll",
+  "finisher": "at-dash",
+  "seed": 935840,
+  "local": [
+   "local:day-thung-ngu",
+   "local:hoa-trang-day-vuc",
+   "local:ong-ngoc-chu",
+   "local:tinh-hoa-doan-truong",
+   "local:vach-hen-16-nam"
+  ],
+  "title": "Dương Quá và Tiểu Long Nữ: lời hẹn 16 năm",
+  "hook": "CHỜ NHAU 16 NĂM?",
+  "next": "Quách Tĩnh và Hoàng Dung: chàng ngốc và cô gái thông minh nhất",
+  "sets": [
+   "cau-go",
+   "mai-ngoi",
+   "san-tap",
+   "rung-truc",
+   "cau-go",
+   "nui-tuyet",
+   "ben-song",
+   "ben-song",
+   "mai-ngoi"
+  ],
+  "chars": [
+   "Dương Quá",
+   "Tiểu Long Nữ",
+   "Lâm Triều Anh",
+   "Vương Trùng Dương",
+   "Hoàng Dung",
+   "Quách Tương",
+   "Chu Bá Thông"
+  ],
+  "moves": [
+   "Ngọc Nữ Tâm Kinh",
+   "Thiên La Địa Võng",
+   "Huyền Thiết Trọng Kiếm"
+  ],
+  "story": {
+   "format": "cap-doi",
+   "logline": "Lời hẹn 16 năm của Dương Quá và Tiểu Long Nữ qua ba khoảnh khắc: gặp nhau ở Cổ Mộ, thử thách ở Tuyệt Tình Cốc, chờ đợi và đoàn tụ dưới đáy vực; đặt cạnh Lâm Triều Anh – Vương Trùng Dương và Quách Tĩnh – Hoàng Dung",
+   "subjects": [
+    "Dương Quá",
+    "Tiểu Long Nữ",
+    "Lâm Triều Anh",
+    "Vương Trùng Dương",
+    "Cổ Mộ phái",
+    "Tuyệt Tình Cốc"
+   ],
+   "works": [
+    "Thần Điêu Hiệp Lữ"
+   ],
+   "authors": [
+    "Kim Dung"
+   ],
+   "edition": "Lời hẹn 16 năm giống nhau ở mọi bản. Khác bản (nói trong video): bản sửa cho Tiểu Long Nữ bày tỏ tình cảm nhiều hơn; bản tân tu đổi Kim Luân Pháp Vương thành Kim Luân Quốc Sư. Bỏ chi tiết nguồn gốc tên Long Nhi của bản tân tu vì chỉ có một nguồn.",
+   "verdict": "Ý kiến của Tèo: cặp có lời hẹn đẹp nhất kiếm hiệp; điểm Tèo chấm cho vui 28–17 so với Lâm Triều Anh – Vương Trùng Dương và 28–26 so với Quách Tĩnh – Hoàng Dung (độ khổ cao không có nghĩa là tốt hơn).",
+   "facts": [
+    {
+     "claim": "Cổ Mộ phái do Lâm Triều Anh lập, người yêu không thành của Vương Trùng Dương; ở núi Chung Nam gần Toàn Chân giáo; không nhận nam, thề không rời Cổ Mộ, có nghi thức tỏ thái độ với Vương Trùng Dương",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Mộ_phái",
+      "https://gamek.vn/co-mo-phai-mon-phai-duoc-sang-lap-chi-nho-vao-chu-tinh-20170510121621354.chn",
+      "https://www.nguoiduatin.vn/kiem-hiep-kim-dung-chuyen-it-biet-ve-phai-co-mo-20425111916300484.htm"
+     ]
+    },
+    {
+     "claim": "Lâm Triều Anh sáng tạo Ngọc Nữ Tâm Kinh để khắc chế (và bổ trợ) võ công Toàn Chân",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Mộ_phái",
+      "https://gamek.vn/co-mo-phai-mon-phai-duoc-sang-lap-chi-nho-vao-chu-tinh-20170510121621354.chn",
+      "https://www.saostar.vn/dien-anh/nu-cao-thu-kim-dung-manh-ngang-vuong-trung-duong-khong-mang-cuu-am-202607101132142432.html"
+     ]
+    },
+    {
+     "claim": "Vương Trùng Dương không thành thân với Lâm Triều Anh, phần vì việc chống quân Kim",
+     "src": [
+      "https://www.saostar.vn/dien-anh/nu-cao-thu-kim-dung-manh-ngang-vuong-trung-duong-khong-mang-cuu-am-202607101132142432.html",
+      "http://tuongduongthanh.blogspot.com/2015/03/lam-trieu-anh.html",
+      "https://gamek.vn/co-mo-phai-mon-phai-duoc-sang-lap-chi-nho-vao-chu-tinh-20170510121621354.chn"
+     ]
+    },
+    {
+     "claim": "Truyền nhân Cổ Mộ: người hầu của Lâm Triều Anh, rồi Tiểu Long Nữ và Lý Mạc Sầu",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Cổ_Mộ_phái",
+      "https://zh.wikipedia.org/wiki/小龙女"
+     ]
+    },
+    {
+     "claim": "Dương Quá học ở Toàn Chân bị bắt nạt, trốn tới Cổ Mộ; khoảng 14 tuổi gặp Tiểu Long Nữ khoảng 18 tuổi, làm đệ tử, gọi cô cô",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://vi.wikipedia.org/wiki/Tiểu_Long_Nữ"
+     ]
+    },
+    {
+     "claim": "Tiểu Long Nữ ngủ trên dây thừng; hàn ngọc sàng giúp luyện nội công; luyện Thiên La Địa Võng bằng chim sẻ",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Ngọc Nữ Tâm Kinh cần hai người cùng luyện hộ pháp cho nhau (Lâm Triều Anh với người hầu, Tiểu Long Nữ với Dương Quá)",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Tình thầy trò bị giang hồ cho là trái lễ giáo, Dương Quá không từ bỏ",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/小龙女"
+     ]
+    },
+    {
+     "claim": "Tuyệt Tình Cốc của Công Tôn Chỉ; gai tình hoa có độc, nghĩ tới người thương thì đau; đoạn trường thảo mọc cạnh, độc trị độc, Thiên Trúc thần tăng tìm ra; chỉ còn đủ một người",
+     "src": [
+      "https://danviet.vn/bi-an-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-7777749989-d502481.html",
+      "https://truyenkimdung.net/truyen/than-dieu-hiep-lu/hoi-17-tuyet-tinh-coc",
+      "https://kienthuc.net.vn/kho-tri-thuc/giai-ma-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-834332.html",
+      "https://www.24h.com.vn/giai-tri/bi-an-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-c731a858007.html"
+     ]
+    },
+    {
+     "claim": "Tiểu Long Nữ trúng độc nặng, để thuốc lại cho Dương Quá, khắc lời hẹn 16 năm ở Đoạn Trường Nhai rồi xuống đáy vực",
+     "src": [
+      "https://danviet.vn/bi-an-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-7777749989-d502481.html",
+      "https://kenh14.vn/vi-sao-duong-qua-phai-doi-tieu-long-nu-16-nam-moi-co-the-gap-lai-215250421160213989.chn",
+      "https://soha.vn/su-that-canh-tieu-long-nu-duong-qua-trung-phung-sau-16-nam-xa-cach-20190311203844539.htm",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Hoàng Dung bịa chuyện Nam Hải Thần Ni (16 năm mới trở lại) để Dương Quá có hy vọng",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://soha.vn/su-that-canh-tieu-long-nu-duong-qua-trung-phung-sau-16-nam-xa-cach-20190311203844539.htm",
+      "http://tuongduongthanh.blogspot.com/2013/11/tieu-long-nu-hen-gap-duong-qua-sau-16.html"
+     ]
+    },
+    {
+     "claim": "Dương Quá gặp thần điêu, luyện Huyền Thiết Trọng Kiếm nơi Độc Cô Cầu Bại; được gọi Thần Điêu Đại Hiệp; sáng tạo Ám Nhiên Tiêu Hồn Chưởng; mỗi năm quay lại Tuyệt Tình Cốc",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://soha.vn/su-that-canh-tieu-long-nu-duong-qua-trung-phung-sau-16-nam-xa-cach-20190311203844539.htm",
+      "https://zh.wikipedia.org/wiki/小龙女"
+     ]
+    },
+    {
+     "claim": "Dương Quá mất cánh tay phải",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/小龙女"
+     ]
+    },
+    {
+     "claim": "Dương Quá chuẩn bị sinh nhật 16 tuổi cho Quách Tương ở Tương Dương; Quách Tương về sau lập phái Nga My",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Quách_Tương",
+      "https://www.kiemhiepkimdung.vn/2013/10/quach-tuong.html",
+      "https://www.saostar.vn/dien-anh/my-nhan-kim-dung-di-khap-giang-ho-vi-yeu-don-phuong-duong-qua-202605111119577844.html"
+     ]
+    },
+    {
+     "claim": "Dưới đáy cốc có hàn đàm, cá trắng; Tiểu Long Nữ trục độc dần, vẫn trẻ, nói ngập ngừng khi gặp lại",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://kenh14.vn/tieu-long-nu-rot-cuoc-da-trai-qua-chuyen-gi-trong-16-nam-o-duoi-day-tuyet-tinh-coc-21526041723344731.chn",
+      "https://www.sohu.com/a/373720855_483111"
+     ]
+    },
+    {
+     "claim": "Tiểu Long Nữ khắc chữ 'Ta ở đáy Tuyệt Tình Cốc' lên cánh ngọc phong; ong tới Bách Hoa Cốc của Chu Bá Thông; Hoàng Dung đọc được nhưng nghĩ tới Quách Tương; Dương Quá không bắt ong, chữ rất nhỏ",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://www.zhwuxia.com/book/shendiaoxialu/47806.html",
+      "https://www.sohu.com/a/373720855_483111"
+     ]
+    },
+    {
+     "claim": "Đúng hẹn Dương Quá chờ không thấy, xuống vực, rơi vào hồ nước lạnh, gặp Tiểu Long Nữ; hai người lên nhờ dây của nhóm Hoàng Dung",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://danviet.vn/bi-an-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-7777749989-d502481.html",
+      "https://soha.vn/su-that-canh-tieu-long-nu-duong-qua-trung-phung-sau-16-nam-xa-cach-20190311203844539.htm",
+      "https://zh.wikipedia.org/zh-hans/絕情谷"
+     ]
+    },
+    {
+     "claim": "Bản sửa: Tiểu Long Nữ bộc lộ tình cảm nhiều hơn",
+     "src": [
+      "https://vnexpress.net/than-dieu-dai-hiep-moi-he-lo-doan-tieu-long-nu-lam-nung-3111284.html",
+      "https://www.kiemhiepkimdung.vn/2015/09/kim-dung-chinh-sua-thay-oi-nhung-gi_20.html"
+     ]
+    },
+    {
+     "claim": "Bản tân tu đổi Kim Luân Pháp Vương thành Kim Luân Quốc Sư; Dương Quá đánh bại Kim Luân ở Tương Dương",
+     "src": [
+      "https://zh.wikipedia.org/wiki/小龙女",
+      "https://www.kiemhiepkimdung.vn/2015/09/kim-dung-chinh-sua-thay-oi-nhung-gi_20.html",
+      "https://vi.wikipedia.org/wiki/Dương_Quá"
+     ]
+    },
+    {
+     "claim": "Kết: sau Hoa Sơn luận kiếm lần ba, hai người cùng thần điêu rời giang hồ",
+     "src": [
+      "https://vi.wikipedia.org/wiki/Dương_Quá",
+      "https://zh.wikipedia.org/wiki/小龙女"
+     ]
+    }
+   ],
+   "sources": [
+    "https://vi.wikipedia.org/wiki/Dương_Quá",
+    "https://vi.wikipedia.org/wiki/Tiểu_Long_Nữ",
+    "https://vi.wikipedia.org/wiki/Cổ_Mộ_phái",
+    "https://zh.wikipedia.org/wiki/小龙女",
+    "https://danviet.vn/bi-an-tuyet-tinh-coc-va-chuyen-tinh-tieu-long-nu-duong-qua-7777749989-d502481.html",
+    "https://soha.vn/su-that-canh-tieu-long-nu-duong-qua-trung-phung-sau-16-nam-xa-cach-20190311203844539.htm",
+    "https://kenh14.vn/tieu-long-nu-rot-cuoc-da-trai-qua-chuyen-gi-trong-16-nam-o-duoi-day-tuyet-tinh-coc-21526041723344731.chn"
+   ]
+  }
+ }
+]
