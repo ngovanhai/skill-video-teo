@@ -4,21 +4,21 @@ description: >
   Sản xuất video YouTube explainer hoạt hình 2D tiếng Việt dài trên 20 phút (thường 20–30) do mascot Tèo dẫn (giọng VieNeu "Lóng"),
   từ chọn chủ đề (bắt buộc là người nổi tiếng hoặc sự việc nhiều người biết) → nghiên cứu ≥2 nguồn → kịch bản video.json → nhân vật SVG → TTS/align/build → snapshot → render MP4
   + thumbnail 1280×720 đẹp + tiêu đề chuẩn SEO (đuôi "| Tèo Kể") + gói đăng youtube/ (mp4, thumb, tiêu đề, mô tả, tags, phụ đề .srt). Dùng khi người dùng nói "tạo video", "làm video Tèo",
-  "video dài hôm nay", "làm tiếp video", hoặc chạy chế độ sản xuất liên tục. Dùng kit tại E:\tool\MuseStudio\kit.
+  "video dài hôm nay", "làm tiếp video", hoặc chạy chế độ sản xuất liên tục. Dùng kit tại __MUSE_ROOT__\kit.
 ---
 
 # Video Tèo — dây chuyền video dài trên 20 phút
 
 Mày là cả ê-kíp của một kênh YouTube tiếng Việt: biên kịch, họa sĩ, dựng phim, SEO. Mỗi video làm TRỌN gói. Người dùng chỉ việc xem lại rồi tự đăng.
 
-`KIT = E:\tool\MuseStudio\kit` · `<SKILL_DIR>` = thư mục chứa file này.
+`KIT = __MUSE_ROOT__\kit` · `<SKILL_DIR>` = thư mục chứa file này.
 
 **ĐỌC TRƯỚC (bắt buộc, mỗi phiên):** `KIT/README.md`. Đây là spec định dạng video.json, các loại cảnh, luật kịch bản, nhân vật, thumbnail và publish. Bảng tra cứu nhanh nằm ở `<SKILL_DIR>/reference.md`.
 
 ## Luật cứng
 
 - KHÔNG đăng gì lên mạng. KHÔNG gửi tin nhắn cho ai.
-- Chỉ sửa thư mục video đang làm, `E:\tool\MuseStudio\ideas\` và **thêm** fx mới vào `kit/fx/<ten>.mjs`. KHÔNG sửa template cũ trong `kit/scenes/`, `kit/lib/`, `kit/make.mjs`. Cảnh tự chế (`custom`) để trong `videos/<slug>/scenes/`.
+- Chỉ sửa thư mục video đang làm, `__MUSE_ROOT__\ideas\` và **thêm** fx mới vào `kit/fx/<ten>.mjs`. KHÔNG sửa template cũ trong `kit/scenes/`, `kit/lib/`, `kit/make.mjs`. Cảnh tự chế (`custom`) để trong `videos/<slug>/scenes/`.
 - Không dùng `videos\_pilot` hay `khoi-nguyen-vu-tru-hy-lap` để thử nghiệm.
 - Tránh chính trị nhạy cảm, tôn giáo gây tranh cãi, 18+, bạo lực ghê rợn. Phần truyền thuyết phải nói rõ là truyền thuyết.
 - Hỏng mà không tự sửa được thì dừng lại, báo rõ lỗi kèm log.
@@ -31,7 +31,7 @@ Xong video này thì làm ngay video kế. Cho các việc chạy chồng lên n
 - Các việc nặng CPU chạy tuần tự: không chạy 2 TTS, 2 align hay 2 render cùng lúc. Riêng `thumb` và `validate` nhẹ, chạy song song được.
 - Mỗi video xong thì báo người dùng ngắn gọn (mẫu ở mục 9), rồi làm tiếp.
 - **Chỉ tiêu: tối thiểu 10 video/ngày, video nào cũng phải chuẩn chỉnh** (không bỏ bước kiểm nào để chạy cho đủ số). Làm đa luồng: **mỗi video một session** (start_session), còn các stage nặng (`tts,align,build,lint` và `render,thumb,publish`) chạy qua hàng đợi chung:
-  `bash E:/tool/MuseStudio/ideas/chay-nang.sh <video_dir> <stages> <log_file>` (chạy nền). KHÔNG gọi thẳng make.mjs cho các stage đó.
+  `bash __MUSE_ROOT__/ideas/chay-nang.sh <video_dir> <stages> <log_file>` (chạy nền). KHÔNG gọi thẳng make.mjs cho các stage đó.
 - Lúc nào cũng phải có **≥4 video** đang viết hoặc chờ CPU. Mỗi video tốn khoảng 100 phút CPU (TTS cộng render), nên trần là khoảng 14 video/ngày. CPU rảnh là mất chỉ tiêu.
 - Trước khi tạo `videos/<slug>`, phải kiểm tra slug chưa có ai làm (thư mục chưa tồn tại, DA-LAM chưa có dòng đó). Không ghi vào thư mục của session khác.
 - Cứ 2 tiếng báo cáo người dùng một lần: số video đã xong hôm nay trên chỉ tiêu 10, từng video đang ở bước nào, dự kiến xong lúc mấy giờ, lỗi nếu có.
@@ -95,7 +95,7 @@ Ngày đó đã có file thì đặt tên `YYYY-MM-DD-2.md`. Nội dung gồm: c
 
 Mỗi video phải **khác video trước ở cấu trúc kể, giọng kể và hình**, không chỉ khác chủ đề. Đã có lúc 10 tập liền dùng chung một bộ xương: hook "Vậy…?" → "Chào các bạn, lại là Tèo đây, hôm nay Tèo khoác áo…" → "ba câu hỏi. Một… Hai… Và ba" → kể từ sinh tới mất → CTA giữa "đoạn sau còn gắt hơn" → "điểm lại ba điều đã hứa" → "Tập sau…". **Đó chính là thứ phải tránh.**
 
-1. **Chống lặp:** chạy `node E:/tool/MuseStudio/kit/fx-list.mjs`. Lệnh in kho fx, số lần dùng gần đây và bảng **5 tập gần nhất** gồm: tên khung, trục khung, vai Tèo, kiểu hook, câu chào, câu CTA, câu kết, thông số thumbnail. Đọc thêm 5 dòng cuối `ideas/DA-LAM.md`.
+1. **Chống lặp:** chạy `node __MUSE_ROOT__/kit/fx-list.mjs`. Lệnh in kho fx, số lần dùng gần đây và bảng **5 tập gần nhất** gồm: tên khung, trục khung, vai Tèo, kiểu hook, câu chào, câu CTA, câu kết, thông số thumbnail. Đọc thêm 5 dòng cuối `ideas/DA-LAM.md`.
 2. **Khung kể: phân tích kịch bản rồi mới tạo khung. KHÔNG có danh sách khung để chọn.** Mỗi video, khung sinh ra từ chính chất liệu của video đó. Làm theo thứ tự:
    1. **Kịch bản thô trước.** Gom hết chất liệu đã research vào mục **"Kịch bản thô"** trong `ideas/YYYY-MM-DD.md`, chưa cần thứ tự: các sự kiện và cảnh, lời nói nổi tiếng (tối đa 1 câu trích nguyên văn), con số sẽ lên `stat`, các khoảnh khắc mạnh nhất, những điều người xem hay tranh cãi hoặc hiểu sai.
    2. **Phân tích**, ghi vào mục **"Phân tích"**. Trả lời từng câu:
@@ -239,7 +239,7 @@ Viết cảnh **mỗi cảnh một dòng** trong file chương để sau này ch
 `thumb` không phụ thuộc render và chạy ~10 s, nên làm ngay sau khi viết xong video.json:
 
 ```bash
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage thumb
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage thumb
 ```
 
 Mở `thumbnail.png` ra xem (Read). Lặp lại tới khi đạt đủ checklist:
@@ -275,8 +275,8 @@ Các phần còn lại của `publish`:
 ## 6. Pipeline
 
 ```bash
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage scaffold,validate        # sửa tới khi 0 lỗi, 0 cảnh báo
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage tts,align,build,lint > <dir>/work/stage2.log 2>&1   # chạy NỀN
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage scaffold,validate        # sửa tới khi 0 lỗi, 0 cảnh báo
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage tts,align,build,lint > <dir>/work/stage2.log 2>&1   # chạy NỀN
 ```
 
 **Sau TTS, đo thời lượng thật**, đừng tin số ước tính:
@@ -298,7 +298,7 @@ Xem `work/snap/contact-sheet*.jpg`. Thấy chữ tràn, hình đè nhau, cảnh 
 **Render** (chạy nền, ~2,7× thời lượng, tức khoảng 70–80 phút):
 
 ```bash
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage render,thumb,publish > <dir>/work/render.log 2>&1
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage render,thumb,publish > <dir>/work/render.log 2>&1
 ```
 
 Render mặc định nén mp4 bằng **GPU** (`make.mjs` tự truyền `--gpu` cho hyperframes; card AMD RX 6600 XT → `h264_amf`, không có encoder GPU dùng được thì hyperframes tự quay về CPU). Hình hỏng / sai màu do GPU thì thêm `--no-gpu`. Đặt `TEMP`/`TMP` sang ổ E: (`chay-nang.sh` đã làm sẵn) vì ổ C: không đủ ~12 GB khung tạm mỗi chương.
@@ -319,7 +319,7 @@ Yêu cầu: > 20 phút, có cả stream video lẫn audio. Xem lại `thumbnail.
    ```json
    { "title": "Titanic Chìm Vì Đâu? Đêm Cuối Của Con Tàu", "alts": ["Titanic: 2 Giờ 40 Phút Định Mệnh", "Titanic: Vì Sao Chỉ 706 Người Sống Sót?"] }
    ```
-2. Chạy từ `E:\tool\MuseStudio`:
+2. Chạy từ `__MUSE_ROOT__`:
    ```bash
    node <SKILL_DIR>/scripts/youtube-pack.mjs videos/<slug>      # hoặc --all cho mọi video có seo.json
    ```
@@ -332,7 +332,7 @@ Yêu cầu: > 20 phút, có cả stream video lẫn audio. Xem lại `thumbnail.
    - `phu-de.vi.srt`: phụ đề tiếng Việt dựng từ `words/` (tăng SEO, người xem tắt tiếng vẫn theo được).
    - `DANG-YOUTUBE.md`: bảng file nào dán vào đâu, cài đặt nên chọn, dữ kiện cần kiểm lại (`notes`), mục "⚠ Cần sửa" nếu có lỗi.
 4. Script thoát mã 1 nếu tiêu đề > 60 ký tự, mô tả > 5000 hoặc có `<`/`>`, video ≤ 20 phút hay thiếu audio, phụ đề lệch timeline > 1 s. Sửa rồi chạy lại.
-5. Mở `tieu-de.txt` và `mo-ta.txt` đọc lại một lượt. Dấu ấn phải đồng nhất: đuôi tiêu đề, `#TeoKe`, chân trang mô tả, avatar, ảnh bìa, hình mờ ở `E:\tool\MuseStudio\avatar\`.
+5. Mở `tieu-de.txt` và `mo-ta.txt` đọc lại một lượt. Dấu ấn phải đồng nhất: đuôi tiêu đề, `#TeoKe`, chân trang mô tả, avatar, ảnh bìa, hình mờ ở `__MUSE_ROOT__\avatar\`.
 6. Mục "Dành cho trẻ em" (COPPA) là quyết định của chủ kênh. Chỉ nhắc, không tự quyết.
 7. **Đồng bộ Google Drive (bắt buộc, tự động):** đóng gói không lỗi xong, `youtube-pack.mjs` chép cả thư mục `youtube/` sang `G:\My Drive\TeoKenhYoutube\<slug>\` (thư mục của ứng dụng Google Drive for desktop; ứng dụng tự tải lên mây ở nền).
    - Ghi qua file `.part` rồi đổi tên, nên Drive không đồng bộ file chép dở. File đã có cùng kích thước và không cũ hơn thì bỏ qua.

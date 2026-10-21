@@ -1,6 +1,6 @@
 # Tra cứu nhanh — cảnh, hiệu ứng, mẫu
 
-Nguồn chuẩn vẫn là `E:\tool\MuseStudio\kit\README.md`. File này chỉ để tra nhanh.
+Nguồn chuẩn vẫn là `__MUSE_ROOT__\kit\README.md`. File này chỉ để tra nhanh.
 
 ## Khung video.json
 
@@ -48,7 +48,7 @@ Nguồn chuẩn vẫn là `E:\tool\MuseStudio\kit\README.md`. File này chỉ đ
 - `"cta": true`: tự gắn fx `subscribe` (nút ĐĂNG KÝ đỏ + chuông + con trỏ bấm, hiện ở chữ "đăng ký"). `say` phải có "đăng ký".
 - `{"type": "custom", "file": "scenes/<ten>.mjs", ...}`: cảnh tự vẽ, mẫu `kit/examples/custom-scene.mjs`.
 - `video.json` → `"creative": {"frame": {name, analysis, axis, open, close, segments}, "voice_role", "style", "motif", "hook", "palette", "signature_fx", "gag"}` (SKILL.md mục 2b).
-- Kho fx + lịch sử dùng: `node E:/tool/MuseStudio/kit/fx-list.mjs`.
+- Kho fx + lịch sử dùng: `node __MUSE_ROOT__/kit/fx-list.mjs`.
 
 | nhóm | fx (tham số) |
 |---|---|
@@ -70,7 +70,7 @@ Gợi ý: nghịch lý sốc · con số gây sốc · in medias res · câu h�
 
 - Khung kể (`creative.frame`) **không chọn từ danh sách**: viết kịch bản thô → phân tích → tự thiết kế `{name, analysis, axis, open, close, segments}` (SKILL.md mục 2b). Validate so độ giống tên/trục/dàn khung với 3 tập gần nhất; `voice_role` là chữ tự do, so với 2 tập gần nhất.
 - Kiểu kết: phán quyết · twist · vòng tròn về cảnh mở · câu hỏi để ngỏ · nhân vật nói lời cuối · đồ vật về chỗ cũ · bảng điểm.
-- Câu chào, câu CTA, câu kết của 5 tập gần nhất: `node E:/tool/MuseStudio/kit/fx-list.mjs`. **Không có câu mẫu**: mỗi tập tự viết theo giọng khung và `voice_role`.
+- Câu chào, câu CTA, câu kết của 5 tập gần nhất: `node __MUSE_ROOT__/kit/fx-list.mjs`. **Không có câu mẫu**: mỗi tập tự viết theo giọng khung và `voice_role`.
 - Cấm công thức: "ba câu hỏi. Một… Hai… Và ba" · "đoạn sau còn gắt hơn" · "Mỗi lượt đăng ký là thêm một…" (nếu 5 tập trước đã dùng) · "điểm lại ba điều đã hứa" làm kết mặc định · "một … nổi tiếng khác, với một cách kể hoàn toàn mới".
 
 ## Kho gợi ý chủ đề có neo (chưa làm; dùng rồi thì xoá khỏi đây)

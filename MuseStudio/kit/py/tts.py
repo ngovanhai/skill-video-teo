@@ -1,11 +1,12 @@
 # VieNeu-TTS narration for every scene of a long video. Skips scenes whose wav is newer than
 # their text (cache key = text hash stored next to the wav), so a crashed run resumes.
-#   E:/tool/VieNeu-TTS/.venv/Scripts/python kit/py/tts.py <job.json>
+#   __VIENEU_DIR__/.venv/Scripts/python kit/py/tts.py <job.json>
 # job: { "voice": "Lóng", "temperature": 0.8, "lines": [{ "id": "s001", "text": "...", "out": "abs/path.wav" }] }
 import sys, json, time, hashlib
 from pathlib import Path
 
-REPO = Path("E:/tool/VieNeu-TTS")
+import os
+REPO = Path(os.environ.get("VIENEU_DIR") or "__VIENEU_DIR__")
 sys.path.insert(0, str(REPO))
 from vieneu import Vieneu
 from apps.user_voices import load_user_voices

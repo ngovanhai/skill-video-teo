@@ -3,17 +3,17 @@
 Mày viết `video.json` (kịch bản + cảnh), kit lo phần còn lại: giọng VieNeu "Lóng" → căn chữ Whisper → dựng cảnh HyperFrames → render từng chương → ghép `renders/final.mp4` → `thumbnail.png` → `publish.md`.
 
 ```bash
-node E:/tool/MuseStudio/kit/make.mjs E:/tool/MuseStudio/videos/<slug>                     # tất cả các bước
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage validate                                # chỉ kiểm tra kịch bản
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage build,lint                              # dựng lại sau khi sửa
-node E:/tool/MuseStudio/kit/make.mjs <dir> --stage render --only ch03 --force              # render lại 1 chương
+node __MUSE_ROOT__/kit/make.mjs __MUSE_ROOT__/videos/<slug>                     # tất cả các bước
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage validate                                # chỉ kiểm tra kịch bản
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage build,lint                              # dựng lại sau khi sửa
+node __MUSE_ROOT__/kit/make.mjs <dir> --stage render --only ch03 --force              # render lại 1 chương
 ```
 
 Các bước: `scaffold, validate, tts, align, build, lint, render, thumb, publish, fxlog`. Bước nào cũng chạy tiếp được (có cache): TTS/căn chữ chỉ làm lại cảnh có `say` đổi, render bỏ qua chương đã render và chưa đổi.
 
 Thời gian (máy này, CPU): TTS ≈ 0,8× thời lượng, căn chữ ≈ 0,5×, render ≈ 2,7× → video 28 phút ≈ **2–2,5 giờ** chạy máy. Chạy `tts`, `align`, `render` ở chế độ nền (background) và theo dõi log.
 
-**GPU (AMD RX 6600 XT, DirectML):** `tts` và `align` tự chạy trên GPU nếu có venv `E:/tool/VieNeu-TTS/.venv-dml` và `E:/tool/whisper-dml`. TTS nhanh ≈ 1,5×, căn chữ ≈ 3× (ra y hệt CPU). GPU lỗi thì tự chạy lại bằng CPU. Tắt bằng `--no-gpu` hoặc tạo file `kit/gpu-off`. Render vốn đã dùng GPU (Chrome D3D11 + encode `--gpu`).
+**GPU (AMD RX 6600 XT, DirectML):** `tts` và `align` tự chạy trên GPU nếu có venv `__VIENEU_DIR__/.venv-dml` và `E:/tool/whisper-dml`. TTS nhanh ≈ 1,5×, căn chữ ≈ 3× (ra y hệt CPU). GPU lỗi thì tự chạy lại bằng CPU. Tắt bằng `--no-gpu` hoặc tạo file `kit/gpu-off`. Render vốn đã dùng GPU (Chrome D3D11 + encode `--gpu`).
 
 **Tốc độ render:**
 - `render` chạy 2 chương cùng lúc. Đổi số luồng bằng `--par N`; có `--low-memory` thì chỉ chạy 1.

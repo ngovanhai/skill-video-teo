@@ -13,12 +13,13 @@ import { captionGroups, captionsComposition } from "./lib/captions.mjs";
 import { thumbnailHtml } from "./lib/thumbnail.mjs";
 
 const HF = "hyperframes@0.8.172";
-const VIENEU_PY = "E:/tool/VieNeu-TTS/.venv/Scripts/python.exe";
-const WHISPER_PY = process.env.WHISPER_PY || "python";
+const VIENEU_DIR = process.env.VIENEU_DIR || "__VIENEU_DIR__";
+const VIENEU_PY = join(VIENEU_DIR, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
+const WHISPER_PY = process.env.WHISPER_PY || "__WHISPER_PY__";
 // GPU (AMD RX 6600 XT qua DirectML) cho tts/align, thử 2026-10-20: tts nhanh ~1,5×, align ~3× và ra y hệt CPU.
 // Tắt: --no-gpu hoặc tạo file kit/gpu-off. GPU lỗi → tự chạy lại bằng CPU (cache giữ phần đã xong).
-const VIENEU_DML_PY = "E:/tool/VieNeu-TTS/.venv-dml/Scripts/python.exe";
-const WHISPER_DML_PY = "E:/tool/whisper-dml/Scripts/python.exe";
+const VIENEU_DML_PY = join(VIENEU_DIR, ".venv-dml/Scripts/python.exe");
+const WHISPER_DML_PY = process.env.WHISPER_DML_PY || join(VIENEU_DIR, "../whisper-dml/Scripts/python.exe");
 const LEAD = 0.25; // silence before the voice in each scene
 const TAIL = 0.3; // breath after it
 const STAGES = ["scaffold", "validate", "tts", "align", "build", "lint", "render", "thumb", "publish"];
@@ -257,7 +258,7 @@ function fxlog() {
 function tts(subset = scenes) {
   const job = { voice: video.voice || "Lóng", temperature: video.temperature ?? 0.8, lines: subset.map((s) => ({ id: s.id, text: spoken(s), out: wav(s) })) };
   writeFileSync(P("work/tts-job.json"), JSON.stringify(job, null, 1));
-  const argv = [join(KIT, "py/tts.py"), P("work/tts-job.json")], o = { cwd: "E:/tool/VieNeu-TTS" };
+  const argv = [join(KIT, "py/tts.py"), P("work/tts-job.json")], o = { cwd: VIENEU_DIR };
   // acoustic (≈2300 bước nhỏ/câu) chạy GPU chậm 16× nên để CPU; prefill/decode/codec lên GPU
   const genv = { ...PYENV, VIENEU_ORT_PROVIDERS: "DmlExecutionProvider", VIENEU_ORT_GPU_PARTS: "pre,dec,codec" };
   runGpu(useGpu(VIENEU_DML_PY) && { cmd: VIENEU_DML_PY, argv, o: { ...o, env: genv } }, { cmd: VIENEU_PY, argv, o });

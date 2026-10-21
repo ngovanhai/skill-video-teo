@@ -13,7 +13,7 @@ description: >
 # Tèo Kiếm Hiệp: video chủ đề kiếm hiệp kinh điển, chống trùng lặp
 
 `SKILL = thư mục chứa file này` · Engine: `SKILL/engine/` · Script: `SKILL/scripts/` · Lịch sử: `SKILL/data/history.json` · Kho chủ đề: `SKILL/data/chu-de.md`.
-Font, sfx và bgm lấy từ `E:\tool\MuseStudio\kit\assets` (chỉ đọc, build tự copy vào tập).
+Font, sfx và bgm lấy từ `__MUSE_ROOT__\kit\assets` (chỉ đọc, build tự copy vào tập).
 
 Mỗi tập là một **chủ đề có thật** trong kiếm hiệp Trung Quốc, theo một trong 18 `format` (9 format chính dưới đây + 9 format mở rộng):
 
@@ -38,7 +38,7 @@ Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo �
 ## Luật cứng
 
 - KHÔNG đăng gì lên mạng. KHÔNG gửi tin nhắn cho ai.
-- Chỉ sửa thư mục tập đang làm, `E:\tool\MuseStudio\ideas\DA-LAM.md` và dấu `(tập N)` trong `SKILL/data/chu-de.md`. KHÔNG sửa `kit/`.
+- Chỉ sửa thư mục tập đang làm, `__MUSE_ROOT__\ideas\DA-LAM.md` và dấu `(tập N)` trong `SKILL/data/chu-de.md`. KHÔNG sửa `kit/`.
 - Không dùng `videos\_pilot` hay `khoi-nguyen-vu-tru-hy-lap` để thử nghiệm.
 - Không tự sản xuất tập mới khi người dùng chưa yêu cầu.
 - Không chia chương, không nói "Chương X".
@@ -99,7 +99,7 @@ Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo �
 
 ## Quy trình một tập
 
-Thư mục tập: `E:\tool\MuseStudio\kiem-hiep\tap-<NN>-<slug>\` (slug không dấu, gạch nối, ví dụ `tap-01-tieu-phong-vs-quach-tinh`).
+Thư mục tập: `__MUSE_ROOT__\kiem-hiep\tap-<NN>-<slug>\` (slug không dấu, gạch nối, ví dụ `tap-01-tieu-phong-vs-quach-tinh`).
 
 0. **Research & chọn chủ đề** (bắt buộc, không hỏi người dùng, tự chọn rồi đi tiếp):
    1. `node SKILL/scripts/story-check.mjs`: xem các tập trước (format, subjects, tác giả), lời hẹn `next`, thống kê format/tác giả/tác phẩm/set.
@@ -134,7 +134,7 @@ Thư mục tập: `E:\tool\MuseStudio\kiem-hiep\tap-<NN>-<slug>\` (slug không d
       Đánh dấu chủ đề đã dùng trong `data/chu-de.md` bằng `(tập N)`.
 1. Chạy `fx-list.mjs` để biết nhóm hiệu ứng nào đang bị dùng nhiều.
 2. Viết `tap.json` (định dạng ở dưới, **có khối `story`**) và `fx/<tên>.mjs` (≥1 file). Chạy `node SKILL/scripts/story-check.mjs <dir>`, sửa tới khi hết mọi dòng ✗; dòng ! thì cân nhắc.
-3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` bằng VieNeu (`E:\tool\VieNeu-TTS`), giọng mặc định "Lóng", ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. Đổi giọng bằng `"voice"` trong tap.json, độ ngẫu nhiên bằng `"voice_temperature"` (mặc định 0,8).
+3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` bằng VieNeu (`__VIENEU_DIR__`), giọng mặc định "Lóng", ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. Đổi giọng bằng `"voice"` trong tap.json, độ ngẫu nhiên bằng `"voice_temperature"` (mặc định 0,8).
    - Câu dưới 6 từ VieNeu dễ đọc vội/méo; nên viết câu ≥10 từ. Sửa chữ sau khi đọc thì phải chạy lại voice.mjs (build sẽ cảnh báo câu chưa có giọng).
    - Giọng là nguồn thời lượng chính: ~4,1 từ/giây, nên 20 phút cần khoảng 4.500–5.000 từ lời đọc.
 
@@ -163,7 +163,7 @@ Thư mục tập: `E:\tool\MuseStudio\kiem-hiep\tap-<NN>-<slug>\` (slug không d
    - Không thấy `G:\My Drive` thì pack báo "CHƯA lên Drive" và thoát mã 1 (gói `youtube/` và lịch sử đã ghi xong). Mở ứng dụng Google Drive rồi chạy `node SKILL/scripts/drive-sync.mjs <dir>`.
    - Sửa thumbnail hay seo sau bước 7 thì chạy lại pack để Drive nhận bản mới. `--no-drive` chỉ dùng khi chạy thử; đổi đích bằng biến môi trường `TEO_DRIVE_DIR`.
 7. Read `youtube/thumbnail.png` để kiểm tra: mặt không bị che, chữ hook đọc được.
-8. Ghi một dòng vào `E:\tool\MuseStudio\ideas\DA-LAM.md`, mảng "Tèo kiếm hiệp": tập, tiêu đề, đường dẫn, hiệu ứng local. Khi báo cáo cho người dùng, ghi kèm đường dẫn trên Drive (hoặc nói rõ là chưa lên Drive).
+8. Ghi một dòng vào `__MUSE_ROOT__\ideas\DA-LAM.md`, mảng "Tèo kiếm hiệp": tập, tiêu đề, đường dẫn, hiệu ứng local. Khi báo cáo cho người dùng, ghi kèm đường dẫn trên Drive (hoặc nói rõ là chưa lên Drive).
 
 ## Khung dựng: phân tích kịch bản rồi mới tạo khung (bắt buộc `story.frame`)
 

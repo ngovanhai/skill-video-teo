@@ -13,7 +13,7 @@ import { PLANNED } from "../engine/slots.mjs";
 import { loadVoice, voOf } from "../engine/voice.mjs";
 import { printSlow } from "../engine/slow.mjs";
 
-const KIT = "E:/tool/MuseStudio/kit";
+const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
 const SFX_LEN = { chime: 2.5, click: 0.37, error: 1.62, "glitch-1": 2.64, "impact-bass-1": 2.12, "impact-bass-2": 2.59, pop: 0.72, riser: 10.03, sparkle: 1.8, "whoosh-cinematic": 5.54, "whoosh-short": 0.57, whoosh: 0.57 };
 const BGM = { file: "playful-pizzicato.mp3", len: 67 };
 // mức nhạc nền theo cảnh (scene.music); "on" = như cũ
