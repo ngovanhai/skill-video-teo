@@ -115,7 +115,7 @@ ${div(u + "-t", { left: 0, top: 820, width: 1920, opacity: 0 }, `<div style="${t
 ${div(u + "-s", { left: 0, top: 960, width: 1920, textAlign: "center", opacity: 0, font: "600 44px 'Space Grotesk'", color: th.light }, esc(b.sub))}`);
   ctx.js(`tl.fromTo("#${u}-m", { y: 260, scale: 0.7 }, { y: 0, scale: 1, duration: 2, ease: "power2.out" }, ${t});
 tl.fromTo("#${u}-h", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ...NF }, ${t + 0.6});
-tl.to("#${u}h-tail", { rotation: 14, svgOrigin: PIV.teo.tail, duration: 0.2, yoyo: true, repeat: 21, ease: "sine.inOut" }, ${t});
+${ctx.v2 ? `SWAY("${u}h-tail", ${t}, ${t + 4.2}, 14, 0.2);` : `tl.to("#${u}h-tail", { rotation: 14, svgOrigin: PIV.teo.tail, duration: 0.2, yoyo: true, repeat: 21, ease: "sine.inOut" }, ${t});`}
 POSE("${u}h", "raise", ${t + 1.6}, 0.4);
 tl.fromTo("#${u}-t", { opacity: 0, letterSpacing: "40px" }, { opacity: 1, letterSpacing: "0px", duration: 0.9, ease: "power3.out", ...NF }, ${t + 1.9});
 SHOW("#${u}-s", ${t + 2.6}, 0.5, { y: 20 });`);
@@ -350,10 +350,11 @@ BROW("${a.p}", ${t}, true); POSE("${a.p}", "raise", ${t}, 0.3); SHAKE("#${ctx.S}
   return { dur: d + 0.3 };
 });
 // giant rig cropped to the eye band (band is 320 tall; eyes land at y=160): teo eyes at 0.234h, npc at 0.383h
-const eyeBox = (type) => { const w = type === "teo" ? 1800 : 1000, h = type === "teo" ? (w * 760) / 500 : w * 1.5, ey = h * (type === "teo" ? 0.234 : 0.383); return { left: 960 - w / 2, top: Math.round(160 - ey), width: w, height: h }; };
+// rig 2: hình v2 nằm trong cùng hộp, mắt ở 0.283h
+const eyeBox = (type, v2) => { const w = type === "teo" ? 1800 : 1000, h = type === "teo" ? (w * 760) / 500 : w * 1.5, ey = h * (v2 ? 0.283 : type === "teo" ? 0.234 : 0.383); return { left: 960 - w / 2, top: Math.round(160 - ey), width: w, height: h }; };
 def("power", "pw-eyes", "Màn đen, ánh mắt lóe sáng", (ctx, b, t) => {
   const a = ctx.actor(b.who), u = ctx.uid("pw"), th = ctx.theme, d = 1.8;
-  ctx.add("hud", div(u + "-t", { left: 0, top: 0, width: 1920, height: 0, background: "#000" }) + div(u + "-b", { left: 0, top: 1080, width: 1920, height: 0, background: "#000" }) + div(u + "-g", { left: 0, top: 380, width: 1920, height: 320, opacity: 0, background: "#000", overflow: "hidden" }, div(null, eyeBox(a.type), ctx.rig(a.type, u + "e", a.type === "teo" ? 1800 : 1000, a.look)) + div(u + "-shine", { left: -400, top: 0, width: 260, height: 320, background: `linear-gradient(90deg, transparent, ${th.light}cc, transparent)`, transform: "skewX(-20deg)" })));
+  ctx.add("hud", div(u + "-t", { left: 0, top: 0, width: 1920, height: 0, background: "#000" }) + div(u + "-b", { left: 0, top: 1080, width: 1920, height: 0, background: "#000" }) + div(u + "-g", { left: 0, top: 380, width: 1920, height: 320, opacity: 0, background: "#000", overflow: "hidden" }, div(null, eyeBox(a.type, ctx.v2), ctx.rig(a.type, u + "e", a.type === "teo" ? 1800 : 1000, a.look)) + div(u + "-shine", { left: -400, top: 0, width: 260, height: 320, background: `linear-gradient(90deg, transparent, ${th.light}cc, transparent)`, transform: "skewX(-20deg)" })));
   ctx.rigType(u + "e", a.type);
   ctx.js(`tl.to("#${u}-t", { height: 380, duration: 0.25, ease: "power3.out" }, ${t}); tl.to("#${u}-b", { top: 700, height: 380, duration: 0.25, ease: "power3.out" }, ${t});
 tl.set("#${u}-g", { opacity: 1 }, ${t + 0.25}); BROW("${u}e", ${t}, true); tl.to("#${u}-shine", { x: 2600, duration: 0.6, ease: "power2.inOut" }, ${t + 0.5});
@@ -808,7 +809,7 @@ def("ender", "ed-sunset", "Bóng lưng đi vào hoàng hôn", (ctx, b, t) => {
 ${div(u + "-h", { left: 860, top: 520, filter: "brightness(0)" }, ctx.rig("teo", u + "h", 200, { band: "#D7263D", weapon: "kiem" }))}
 ${div(u + "-t", { left: 0, top: 120, width: 1920, opacity: 0 }, `<div style="${titleCss(100, "#fff", "#3B2A2A")}">HẾT TẬP ${esc(b.ep)}</div><div style="text-align:center;margin-top:20px;font:600 46px 'Space Grotesk';color:#3B2A2A">Tập sau: ${esc(b.next)}</div>`)}`);
   ctx.rigType(u + "h", "teo");
-  ctx.js(`tl.to("#${u}-sun", { y: 140, duration: 4, ease: "none" }, ${t}); tl.to("#${u}-h", { scale: 0.5, y: -40, transformOrigin: "50% 100%", duration: 3.6, ease: "none" }, ${t}); RUN("${u}h", ${t}, ${t + 3.4}, null, true, 18, 0.25); tl.to("#${u}h-tail", { rotation: 14, svgOrigin: PIV.teo.tail, duration: 0.25, yoyo: true, repeat: 13 }, ${t});
+  ctx.js(`tl.to("#${u}-sun", { y: 140, duration: 4, ease: "none" }, ${t}); tl.to("#${u}-h", { scale: 0.5, y: -40, transformOrigin: "50% 100%", duration: 3.6, ease: "none" }, ${t}); RUN("${u}h", ${t}, ${t + 3.4}, null, true, 18, 0.25); ${ctx.v2 ? `SWAY("${u}h-tail", ${t}, ${t + 3.5}, 14, 0.25);` : `tl.to("#${u}h-tail", { rotation: 14, svgOrigin: PIV.teo.tail, duration: 0.25, yoyo: true, repeat: 13 }, ${t});`}
 SHOW("#${u}-t", ${t + 0.8}, 0.8, { y: -30 }); tl.to("#X-black", { opacity: 1, duration: 0.7 }, ${t + 3.5});`);
   ctx.sfx("chime", t + 0.8, 0.35, 2);
   return { dur: 4.2 };

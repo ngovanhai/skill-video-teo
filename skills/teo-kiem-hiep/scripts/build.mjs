@@ -5,6 +5,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, readd
 import { join, resolve, basename } from "path";
 import { pathToFileURL } from "url";
 import { teo, npc, PRESETS, HATS, WEAPONS } from "../engine/rig.mjs";
+import { figure, PRESETS as PRESETS2, WEAPONS as WEAPONS2, JPOS, EXPRS, FEET } from "../engine/rig2.mjs";
+import { POSES as POSES2 } from "../engine/moves2.mjs";
 import { SETS, GROUND, WEATHER, STAGES } from "../engine/sets.mjs";
 import { execFileSync } from "child_process";
 import { loadLibrary, SKILL } from "../engine/library.mjs";
@@ -44,13 +46,37 @@ function castOf(tap) {
     if (c.preset && !PRESETS[c.preset]) die(`cast.${id}: preset "${c.preset}" không có (có: ${Object.keys(PRESETS).join(", ")})`);
     if (kind !== "teo" && look.hat && !HATS.includes(look.hat)) die(`cast.${id}: hat "${look.hat}" không có (có: ${HATS.join(", ")})`);
     if (look.weapon && !WEAPONS.includes(look.weapon)) die(`cast.${id}: weapon "${look.weapon}" không có (có: ${WEAPONS.join(", ")})`);
-    cast[id] = { id, kind, look, name: c.name || id, w: c.w || (kind === "teo" ? 250 : 190), side: c.side || (kind === "teo" ? "hero" : "foe") };
+    cast[id] = { id, kind, look: V2 ? look2(kind, kind === "teo" ? look : Object.fromEntries(Object.entries(c).filter(([k]) => ["robe", "hat", "beard", "weapon", "skin", "belt", "sash"].includes(k))), c.preset) : look, name: c.name || id, w: c.w || (kind === "teo" ? 250 : 190), side: c.side || (kind === "teo" ? "hero" : "foe") };
   }
   return cast;
 }
-const rigSvg = (type, p, w, look) => (type === "teo" ? teo(p, w, look) : npc(p, w, look));
 const rigH = (type, w) => (type === "teo" ? Math.round((w * 760) / 500) : Math.round(w * 1.5));
-const HEAD = { teo: 0.24, npc: 0.33 };
+// rig 2 (tap.rig = 2 hoặc --rig 2): hình v2 (engine/rig2.mjs) vẽ trong đúng hộp w×rigH của rig cũ — chân chạm đáy hộp, đỉnh tóc chạm
+// đỉnh hộp — nên vị trí diễn viên, bong bóng, koHead và fx dùng a.top/a.h không đổi. Lệnh v1 trong fx chạy qua engine/compat2.js.
+let V2 = false;
+const V2_TOP = 99; // đỉnh tóc (toạ độ viewBox 400×620); chân ở FEET
+const HAT2 = { non: "non-la", dao: "tram", bui: undefined, none: undefined, linh: "linh", khan: "khan", troc: "troc" };
+const WP2 = (w) => (w === undefined ? undefined : WEAPONS2.includes(w) ? w : "kiem");
+// diện mạo v1 (cast cũ hoặc look viết tay trong fx) → v2; look đã là v2 (_v2) thì giữ
+function look2(type, look = {}, preset) {
+  if (look._v2) return look;
+  const def = (o) => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined));
+  if (type === "teo") return { ...PRESETS2.teo, ...def({ band: look.band, weapon: WP2(look.weapon), robe: look.jacket }), _v2: true };
+  const o = { ...(PRESETS2[preset] || PRESETS2[String(preset).replace(/-.*/, "")] || {}) };
+  if (look.robe) o.robe = look.robe;
+  if ("hat" in look) { o.hat = HAT2[look.hat] ?? (look.hat in HAT2 ? undefined : look.hat); if (look.hat === "dao") o.hair = { style: "bui-cao", color: o.hair?.color || "#1E1A1A" }; if (look.hat === "bui" && !o.hair) o.hair = { style: "bui-toi", color: "#2B2220" }; }
+  if ("beard" in look) { if (!look.beard) delete o.beard; else { o.beard = o.beard || "rau-dai"; if (typeof look.beard === "string" && look.beard.startsWith("#")) o.beardColor = look.beard; } }
+  if (look.weapon) o.weapon = WP2(look.weapon);
+  for (const k of ["skin", "belt", "sash"]) if (look[k]) o[k] = look[k];
+  return { ...o, _v2: true };
+}
+function rigSvg(type, p, w, look) {
+  if (!V2) return type === "teo" ? teo(p, w, look) : npc(p, w, look);
+  const h = rigH(type, w), k = h / (FEET - V2_TOP), w2 = 400 * k;
+  return `<div style="position:relative;width:${w}px;height:${h}px"><div style="position:absolute;left:${f2((w - w2) / 2)}px;top:${f2(-V2_TOP * k)}px">${figure(p, f2(w2), look2(type, look))}</div></div>`;
+}
+const HEAD1 = { teo: 0.24, npc: 0.33 }, HEAD2 = { teo: 0.283, npc: 0.283 };
+let HEAD = HEAD1;
 
 // ---------------------------------------------------------------- built-in beats (không phải "hiệu ứng" xoay vòng)
 const BUILTIN = {
@@ -268,7 +294,8 @@ function buildScene(base, sc, i, t0) {
   runFx(ctx, `${S}.cam`, "camera", {}, t0);
   for (const s of Object.values(ctx.actors)) {
     const per = 1.1 + ctx.rnd() * 0.6;
-    ctx.js(`tl.to("#${s.p}-all", { scaleY: 1.018, svgOrigin: PIV.${s.type}.all, duration: ${f2(per)}, yoyo: true, repeat: ${Math.ceil((ctx.t1 - t0) / per)}, ease: "sine.inOut" }, ${f2(t0)});`);
+    if (V2) ctx.js(`BREATH("${s.p}", ${f2(t0)}, ${f2(ctx.t1)}, 0.022, ${f2(per)}); SWAY("${s.p}-hairB", ${f2(t0)}, ${f2(ctx.t1)}, 7, 0.9); SWAY("${s.p}-tail", ${f2(t0)}, ${f2(ctx.t1)}, 12, 0.7); SWAY("${s.p}-flapB", ${f2(t0)}, ${f2(ctx.t1)}, 4, 1.1);`);
+    else ctx.js(`tl.to("#${s.p}-all", { scaleY: 1.018, svgOrigin: PIV.${s.type}.all, duration: ${f2(per)}, yoyo: true, repeat: ${Math.ceil((ctx.t1 - t0) / per)}, ease: "sine.inOut" }, ${f2(t0)});`);
     for (let bt = t0 + ctx.range(0.8, 2); bt < ctx.t1 - 0.3; bt += ctx.range(2.2, 3.8)) ctx.js(`BLINK("${s.p}", ${f2(bt)});`);
   }
   return { ctx, dur: ctx.t1 - t0 };
@@ -296,6 +323,15 @@ html, body { overflow: hidden; background: #000; }
 .nametag { display: inline-block; margin-top: 10px; background: #FFFAF0; color: #8A2A1E; font: 700 32px "Space Grotesk"; padding: 8px 20px 4px; border: 4px solid #111; border-radius: 8px; white-space: nowrap; }`;
 
 function page({ id, w, h, dur, body, code, RIG, seed }) {
+  const rt = V2
+    ? `const RIG = ${JSON.stringify(RIG)}; const SEED = ${seed}; const JPOS = ${JSON.stringify(JPOS)}; const EXPRS = ${JSON.stringify(EXPRS)}; const POSES2 = ${JSON.stringify(POSES2)};
+${readFileSync(join(SKILL, "engine/runtime2.js"), "utf8")}
+${readFileSync(join(SKILL, "engine/compat2.js"), "utf8")}
+${code}
+__FLUSH();`
+    : `const RIG = ${JSON.stringify(RIG)}; const SEED = ${seed};
+${readFileSync(join(SKILL, "engine/runtime.js"), "utf8")}
+${code}`;
   return `<!doctype html>
 <html lang="vi"><head><meta charset="UTF-8" />
 <meta name="viewport" content="width=${w}, height=${h}" />
@@ -307,9 +343,7 @@ html, body, #root { width: ${w}px; height: ${h}px; }</style></head>
 ${body}
 </div>
 <script>
-const RIG = ${JSON.stringify(RIG)}; const SEED = ${seed};
-${readFileSync(join(SKILL, "engine/runtime.js"), "utf8")}
-${code}
+${rt}
 </script>
 </body></html>`;
 }
@@ -430,6 +464,9 @@ export async function build(dir, opts = {}) {
   dir = resolve(dir);
   if (!existsSync(join(dir, "tap.json"))) die(`${dir}: thiếu tap.json`);
   const tap = JSON.parse(readFileSync(join(dir, "tap.json"), "utf8"));
+  const rig = opts.rig ?? tap.rig ?? 1;
+  if (![1, 2].includes(+rig)) die(`rig "${rig}" không có (1 | 2)`);
+  V2 = +rig === 2; HEAD = V2 ? HEAD2 : HEAD1;
   if (!Array.isArray(tap.scenes) || !tap.scenes.length) die("tap.json: cần ít nhất 1 cảnh trong scenes");
   const lib = await loadLibrary(dir);
   const plan = await makePlan(dir, opts);
@@ -437,7 +474,7 @@ export async function build(dir, opts = {}) {
   const rnd = mulberry(plan.seed);
   const cast = castOf(tap);
   const base = {
-    plan, lib, theme, cast, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)],
+    v2: V2, plan, lib, theme, cast, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)],
     RIG: {}, code: [], over: [], sfxList: [], used: [], beatsLog: [], n: 0,
     voice: loadVoice(dir, tap.voice), voiceList: [], voiceMiss: [],
   };
@@ -482,6 +519,7 @@ ${voiceTags(base.voiceList, total)}`;
   if (!opts.quiet) {
     printPlan(plan, lib);
     console.log(`build: ${basename(dir)}/index.html · ${f2(total)} s · ${tap.scenes.length} cảnh · ${base.sfxList.length} sfx · hiệu ứng tự chế: ${local.length ? [...new Set(local.map((u) => u.id))].join(", ") : "KHÔNG CÓ"}`);
+    if (V2) console.log("build: rig 2 (engine/rig2.mjs + compat2.js)");
     if (base.voice) console.log(`build: giọng ${base.voice.voice} · ${base.voiceList.length} câu · ${f2(base.voiceList.reduce((a, v) => a + v.dur, 0))} s`);
     else console.warn("build: CẢNH BÁO chưa có giọng đọc — chạy scripts/voice.mjs <dir> trước rồi build lại");
     if (base.voiceMiss.length) console.warn(`build: CẢNH BÁO ${base.voiceMiss.length} câu chưa có giọng (sửa chữ sau khi chạy voice.mjs) — chạy lại voice.mjs: ${base.voiceMiss.slice(0, 3).map((x) => JSON.stringify(x)).join(", ")}`);
@@ -494,7 +532,7 @@ ${voiceTags(base.voiceList, total)}`;
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
-  const dir = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a)) || die("dùng: node build.mjs <dir> [--replan] [--seed N]");
-  const si = args.indexOf("--seed");
-  await build(dir, { replan: args.includes("--replan"), quiet: args.includes("--quiet"), seed: si >= 0 ? Number(args[si + 1]) : null });
+  const dir = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a)) || die("dùng: node build.mjs <dir> [--replan] [--seed N] [--rig 1|2]");
+  const si = args.indexOf("--seed"), ri = args.indexOf("--rig");
+  await build(dir, { replan: args.includes("--replan"), quiet: args.includes("--quiet"), seed: si >= 0 ? Number(args[si + 1]) : null, rig: ri >= 0 ? Number(args[ri + 1]) : undefined });
 }

@@ -352,6 +352,14 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
   - Tập có `story.format` thì mọi react cấm cả cờ `down` (af-ko, af-domino, af-spin, af-flat, af-fly).
   - Hai luật này không bao giờ nới. Nhân vật đang nằm mà được giao beat khác thì tự đứng dậy.
 
+### Rig 2 (nhân vật kiểu mới): `"rig": 2`
+Thêm `"rig": 2` vào tap.json (hoặc `build.mjs <dir> --rig 2`) → nhân vật vẽ bằng `engine/rig2.mjs` (chibi mặt anime, khớp lồng nhau). Không ghi = rig cũ, kết quả y hệt trước.
+- cast giữ nguyên cách viết cũ (preset/hat/beard/weapon/robe…): build tự đổi sang v2 (preset cùng tên trong rig2.mjs; hat non→non-la, dao→trâm + búi cao, bui/none→tóc theo preset; beard mã màu → rau-dai màu đó).
+- Hình v2 nằm đúng hộp w×cao của rig cũ (chân chạm đáy, đỉnh tóc chạm đỉnh) → a.top/a.h/a.cx/koHead, bong bóng thoại, vị trí fx không đổi; đầu ở 0.283·h.
+- Lệnh cũ trong fx (POSE R RS BROW KO RUN ATTR FLAP(p,t0,t1) BLINK) chạy qua `engine/compat2.js`: armF→uaF, foreF→faF, armB→uaB, foreB→faB, legR→thF, legL→thB, head/all/tail giữ tên; BROW→EX gian/vui, KO→EX ko. `PIV`/`org()` KHÔNG có ở rig 2.
+- fx viết mới cho rig 2 nên gọi thẳng runtime2: `J(id,t,d,góc,dx,dy,ease)`, `JS`, `EX(p,t,"vui|binh|gian|buon|soc|dac-y|ngai|quyet-tam|ko")`, `SWAY`, `NOD`, `PUFF`, `TRAIL`; khớp: all torso head uaF faF hdF uaB faB hdB thF shF ftF thB shB ftB wpF(vũ khí, 180 = nối dài cẳng tay) flapF flapB hairB tail. Rẽ nhánh bằng `ctx.v2`.
+- fx chèn đồ vào `<p>-armF` (chổi, gậy…) phải đổi sang `<p>-hdF` (bàn tay, gốc 0,0 toạ độ khớp) khi `ctx.v2`.
+
 ## Viết hiệu ứng local `fx/<tên>.mjs`
 
 Mẫu đầy đủ: `SKILL/examples/tap-01/fx/rong-chuong.mjs` (rồng vàng từ chưởng, tự né mặt đối thủ).

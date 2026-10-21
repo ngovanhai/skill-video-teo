@@ -19,10 +19,15 @@ const SWAY = (id, t0, t1, amp, per, ph = 0) => { if (!$id(id)) return; const n =
 const BREATH = (p, t0, t1, amp = 0.022, per = 1.4) => { const id = p + "-breath"; if (!$id(id)) return; const n = Math.max(1, Math.ceil((t1 - t0) / per)); tl.fromTo("#" + id, { attr: { transform: "scale(1 1)" } }, { attr: { transform: `scale(1 ${1 + amp})` }, duration: per, yoyo: true, repeat: n, ease: "sine.inOut", ...NF }, t0); };
 const OP = (id, t, o) => { if ($id(id)) tl.set("#" + id, { attr: { opacity: o } }, t); };
 // biểu cảm: chỉ 1 nhóm p-ex-<tên> hiện
-const EX = (p, t, name) => { for (const e of EXPRS) OP(`${p}-ex-${e}`, t, e === name ? 1 : 0); };
+const __exl = {};
+const EX = (p, t, name) => { (__exl[p] = __exl[p] || []).push([t, name]); for (const e of EXPRS) OP(`${p}-ex-${e}`, t, e === name ? 1 : 0); };
+const exAt = (p, t) => { let n = "vui", tt = -1; for (const [a, e] of __exl[p] || []) if (a <= t + 1e-6 && a >= tt) { tt = a; n = e; } return n; };
 // miệng của biểu cảm đang hiện
 const MO = (p, ex, t, open) => { OP(`${p}-mo-${ex}`, t, open ? 1 : 0); OP(`${p}-mc-${ex}`, t, open ? 0 : 1); };
-const FLAP = (p, ex, t0, t1) => { let t = t0; while (t < t1 - 0.12) { const d = 0.11 + rand() * 0.1; MO(p, ex, t, 1); MO(p, ex, t + d, 0); t += d + 0.08 + rand() * 0.1; } };
+// FLAP(p, ex, t0, t1); dạng cũ FLAP(p, t0, t1) xếp hàng, __FLUSH() tra biểu cảm đang hiện lúc t0 (EX gọi theo thứ tự bất kỳ)
+const __fq = [];
+const __FLUSH = () => { for (const [p, t0, t1] of __fq.splice(0)) FLAP(p, exAt(p, t0), t0, t1); };
+const FLAP = (p, ex, t0, t1) => { if (typeof ex === "number") { __fq.push([p, ex, t0]); return; } let t = t0; while (t < t1 - 0.12) { const d = 0.11 + rand() * 0.1; MO(p, ex, t, 1); MO(p, ex, t + d, 0); t += d + 0.08 + rand() * 0.1; } };
 const BLINK = (p, t) => { OP(p + "-blink", t, 1); OP(p + "-blink", t + 0.1, 0); };
 // nhìn/gật: dịch nhóm mặt trong đầu (p-face giữ scale nên dùng x/y css)
 const NOD = (p, t, n = 1) => { for (let k = 0; k < n; k++) { J(p + "-head", t + k * 0.36, 0.14, 6, 0, 7, "power2.out"); J(p + "-head", t + k * 0.36 + 0.14, 0.18, 0, 0, 0, "power2.inOut"); } };
