@@ -1,6 +1,13 @@
 // Word-highlight captions for one chapter, as a sub-composition. Groups are built from the
 // aligned words (chapter-local seconds); the DOM is generated at load from embedded data.
-import { r3 } from "./base.mjs";
+import { r3, theme } from "./base.mjs";
+
+// Caption looks (video.theme → caption). "pill" is the classic one and stays byte-identical.
+const CAP = {
+  band: { box: `background: rgba(0,0,0,0.88); border: none; box-shadow: none; max-width: 100%; width: 100%; padding: 18px 60px 20px;`, w: "#D8D8D0", on: "#F7CB46", hi: false },
+  outline: { box: `background: none; border: none; box-shadow: none; -webkit-text-stroke: 10px #000; paint-order: stroke fill; text-shadow: 5px 5px 0 #000;`, w: "#FFFFFF", on: "#F7CB46", hi: false },
+  ink: { box: `background: #F6EBD0; border: 3px solid #5A3B1C; box-shadow: 6px 6px 0 rgba(90,59,28,0.85); border-radius: 6px;`, w: "#9A8466", on: "#3B2410", hi: "#E8B44A" },
+};
 
 export function captionGroups(words, maxWords = 7) {
   const groups = [];
@@ -24,7 +31,13 @@ export function captionGroups(words, maxWords = 7) {
   });
 }
 
-export function captionsComposition(id, dur, groups) {
+export function captionsComposition(id, dur, groups, style = theme()?.caption || "pill") {
+  const K = CAP[style];
+  const extra = K ? `
+    .${id}-pill { ${K.box} }
+    .${id}-w { color: ${K.w}; }` : "";
+  const on = K ? (K.hi ? `{ color: "${K.on}", backgroundColor: "${K.hi}", boxShadow: "0 0 0 0.08em ${K.hi}" }` : `{ color: "${K.on}" }`) : `{ color: "#000000", backgroundColor: "#F7CB46", boxShadow: "0 0 0 0.08em #F7CB46" }`;
+  const off = K && !K.hi ? `{ color: "${K.w}" }` : `{ backgroundColor: "rgba(247,203,70,0)", boxShadow: "0 0 0 0 rgba(0,0,0,0)" }`;
   return `<template id="${id}-template">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <style>
@@ -35,7 +48,7 @@ export function captionsComposition(id, dur, groups) {
     .${id}-pill { max-width: 82%; padding: 16px 38px 18px; background: #FFFFFF; border: 4px solid #000; box-shadow: 8px 8px 0 #000;
       display: flex; flex-wrap: wrap; justify-content: center; gap: 0.1em 0.3em;
       font-family: "Inter", sans-serif; font-weight: 900; text-transform: uppercase; font-size: 50px; line-height: 1.18; letter-spacing: -0.02em; }
-    .${id}-w { display: inline-block; padding: 0 0.1em; color: #999990; }
+    .${id}-w { display: inline-block; padding: 0 0.1em; color: #999990; }${extra}
   </style>
   <div id="${id}-root" data-composition-id="${id}" data-width="1920" data-height="1080" data-start="0" data-duration="${r3(dur)}">
     <div class="clip ${id}-band" id="${id}-band" data-start="0" data-duration="${r3(dur)}" data-track-index="0"></div>
@@ -59,8 +72,8 @@ export function captionsComposition(id, dur, groups) {
         tl.set(g, { opacity: 0 }, G[i].e);
         for (var k2 = 0; k2 < spans.length; k2++) {
           var w = G[i].w[k2];
-          tl.set(spans[k2], { color: "#000000", backgroundColor: "#F7CB46", boxShadow: "0 0 0 0.08em #F7CB46" }, w[1]);
-          tl.set(spans[k2], { backgroundColor: "rgba(247,203,70,0)", boxShadow: "0 0 0 0 rgba(0,0,0,0)" }, Math.max(w[1] + 0.05, k2 + 1 < spans.length ? G[i].w[k2 + 1][1] : w[2]));
+          tl.set(spans[k2], ${on}, w[1]);
+          tl.set(spans[k2], ${off}, Math.max(w[1] + 0.05, k2 + 1 < spans.length ? G[i].w[k2 + 1][1] : w[2]));
         }
       }
       tl.set({}, {}, ${r3(dur)});

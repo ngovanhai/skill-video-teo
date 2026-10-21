@@ -31,3 +31,22 @@ if (recent.length) {
   const fresh = Object.keys(FX).filter((id) => !used[id] && id !== "subscribe");
   console.log(`\nchưa dùng gần đây (ưu tiên làm fx chữ ký): ${fresh.join(", ")}`);
 }
+
+// bảng chống lặp: 5 tập gần nhất — khung kể, vai Tèo, câu chào / CTA / kết, thumbnail
+const five = hist.slice(-5);
+if (five.length) {
+  const cut = (s, n) => { s = String(s || "-").replace(/\s+/g, " "); return s.length > n ? s.slice(0, n - 1) + "…" : s; };
+  console.log(`\nCHỐNG LẶP — ${five.length} tập gần nhất (khung tự thiết kế từ kịch bản: tên/trục/dàn khung không giống 3 tập cuối, voice_role không giống 2 tập cuối, câu chữ không chép):`);
+  for (const h of five) {
+    const c = h.creative || {}, t = h.thumb || {};
+    console.log(`\n  ● ${h.slug} (${h.date})`);
+    const fr = c.frame && typeof c.frame === "object" ? c.frame : null;
+    console.log(`    khung: ${h.frame || fr?.name || c.frame || "-"} | vai Tèo: ${h.voice_role || c.voice_role || "-"} | style: ${c.style || "-"} | hook: ${c.hook || "-"} | theme: ${h.theme || "-"}`);
+    const axis = h.frame_axis || fr?.axis;
+    if (axis) console.log(`    trục:  ${cut(axis, 110)}`);
+    console.log(`    chào:  ${cut(h.greeting, 110)}`);
+    console.log(`    CTA:   ${cut(h.cta, 110)}`);
+    console.log(`    kết:   ${cut(h.ending, 110)}`);
+    console.log(`    thumb: pose ${t.pose ?? "-"} · bg ${t.bg ?? "-"} · vòng ${t.circle_x ?? "-"},${t.circle_y ?? "-"} · arrow ${t.arrow ?? "-"} · layout ${t.layout ?? "-"} · chữ "${cut(t.text, 40)}"`);
+  }
+}

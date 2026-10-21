@@ -54,7 +54,7 @@ const whip = { id: "whip", cat: "camera", label: "Lia vụt vào cảnh, nhoè c
     const { t } = when(ctx, o, 0);
     const dx = o.dir === "right" ? -700 : 700;
     return { cam: true, css: `#${ctx.ns}-fxcam { opacity: 0; }`,
-      js: `      tl.fromTo(${CAM(ctx)}, { x: ${dx}, opacity: 0, filter: "blur(24px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.38, ease: "power3.out" }, ${t});\n`,
+      js: `      tl.fromTo(${CAM(ctx)}, { x: ${dx}, scaleX: 1.12, opacity: 0 }, { x: 0, scaleX: 1, opacity: 1, duration: 0.38, ease: "power3.out" }, ${t});\n`,
       sfx: [sfx("whoosh", t, 0.35)] };
   } };
 

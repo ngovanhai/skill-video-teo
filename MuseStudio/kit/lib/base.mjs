@@ -27,7 +27,7 @@ export function castSvg(video, who, pose, ns) {
   const entry = video.cast?.[who];
   if (!entry) throw new Error(`cast "${who}" is not defined in video.json`);
   let file;
-  if (entry.svg === "narrator") file = join(KIT, "chars", "narrator", `teo-${pose || entry.pose || "talk"}.svg`);
+  if (entry.svg === "narrator") file = join(KIT, "chars", video.narrator_style ? `narrator-${video.narrator_style}` : "narrator", `teo-${pose || entry.pose || "talk"}.svg`);
   else if (entry.svg.startsWith("library/")) file = join(KIT, "chars", entry.svg + (entry.svg.endsWith(".svg") ? "" : ".svg"));
   else file = join(video.__dir, entry.svg);
   if (!existsSync(file)) throw new Error(`svg for "${who}" not found: ${file}`);
@@ -105,10 +105,12 @@ export function times(cues, items, a, b) {
 
 // ---------- runtime helpers (inlined into each scene script) ----------
 export const RUNTIME = `
-      var POP = function (el, t, o) { o = o || {}; tl.fromTo(el, { scale: o.from || 0, rotation: o.rf || 0, opacity: 0 }, { scale: 1, rotation: o.r || 0, opacity: 1, duration: o.d || 0.4, ease: "back.out(1.7)", immediateRender: false }, t); };
-      var STAMP = function (el, t, r) { tl.fromTo(el, { scale: 1.35, rotation: (r || 0) + 4, opacity: 0 }, { scale: 1, rotation: r || 0, opacity: 1, duration: 0.32, ease: "back.out(1.6)", immediateRender: false }, t); };
-      var SLIDE = function (el, t, x, y, d) { tl.fromTo(el, { x: x || 0, y: y || 0, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: d || 0.55, ease: "power3.out", immediateRender: false }, t); };
-      var FADE = function (el, t, d) { tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d || 0.4, ease: "power1.out", immediateRender: false }, t); };
+      // ẩn từ đầu cảnh tới lúc hiện: thiếu dòng này thì phần tử đứng sẵn trên màn trước mốc của nó
+      var HIDE0 = function (el) { if (el) tl.set(el, { opacity: 0 }, 0); };
+      var POP = function (el, t, o) { HIDE0(el); o = o || {}; tl.fromTo(el, { scale: o.from || 0, rotation: o.rf || 0, opacity: 0 }, { scale: 1, rotation: o.r || 0, opacity: 1, duration: o.d || 0.4, ease: "back.out(1.7)", immediateRender: false }, t); };
+      var STAMP = function (el, t, r) { HIDE0(el); tl.fromTo(el, { scale: 1.35, rotation: (r || 0) + 4, opacity: 0 }, { scale: 1, rotation: r || 0, opacity: 1, duration: 0.32, ease: "back.out(1.6)", immediateRender: false }, t); };
+      var SLIDE = function (el, t, x, y, d) { HIDE0(el); tl.fromTo(el, { x: x || 0, y: y || 0, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: d || 0.55, ease: "power3.out", immediateRender: false }, t); };
+      var FADE = function (el, t, d) { HIDE0(el); tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: d || 0.4, ease: "power1.out", immediateRender: false }, t); };
       var OUT = function (el, t, d) { tl.to(el, { opacity: 0, scale: 0.92, duration: d || 0.25, ease: "power2.in" }, t); };
       var DRAW = function (el, t, d) { tl.fromTo(el, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: d || 0.5, ease: "power2.inOut", immediateRender: false }, t); };
       var FLAP = function (ns, spans) {
@@ -129,8 +131,35 @@ export const RUNTIME = `
       };
       var SHAKE = function (el, t, amp) { var a = amp || 10; [a, -a, a * 0.6, -a * 0.6, 0].forEach(function (x, i) { tl.to(el, { x: x, duration: 0.05, ease: "none" }, t + i * 0.05); }); };`;
 
+// ---------- per-video theme ----------
+// video.theme = preset name (or {preset, font, caption}). No theme → the classic look, byte-for-byte.
+// font: CSS font-family for scene text (system fonts are fine: the render runs on this machine).
+// caption: "pill" (classic) | "band" (black band, yellow word) | "outline" (no box, stroked text) | "ink" (cream paper strip).
+// pattern(c): background pattern replacing the 80px grid; c = line colour for that bg.
+export const THEMES = {
+  "giay-do": { font: `Georgia, "Times New Roman", serif`, caption: "ink", paper: "#F3E6C8", cream: "#EBD3A0",
+    pattern: (c) => `background-image: radial-gradient(${c} 1px, transparent 1.6px), radial-gradient(${c} 1px, transparent 1.4px), linear-gradient(115deg, rgba(120,80,30,0.05), transparent 40%, rgba(120,80,30,0.06)); background-size: 23px 31px, 37px 29px, 100% 100%; background-position: 0 0, 11px 17px, 0 0;` },
+  "o-ly": { caption: "outline", paper: "#FDFDF8",
+    pattern: (c) => `background-image: linear-gradient(90deg, transparent 158px, rgba(254,61,127,0.45) 158px, rgba(254,61,127,0.45) 162px, transparent 162px), linear-gradient(${c} 2px, transparent 2px), linear-gradient(90deg, ${c} 1px, transparent 1px); background-size: 100% 100%, 60px 60px, 60px 60px; background-position: 0 0, 0 -1px, -1px 0;` },
+  "bang-den": { font: `"Segoe Print", "Comic Sans MS", sans-serif`, caption: "outline", paper: "#ECEAE2", dark: "#22382D",
+    pattern: (c) => `background-image: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.10), transparent 55%), radial-gradient(ellipse at 75% 80%, rgba(255,255,255,0.06), transparent 50%);` },
+  "noir": { font: `Georgia, "Times New Roman", serif`, caption: "band", paper: "#E7E3DA", dark: "#151515",
+    pattern: (c) => `background-image: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(0,0,0,0.35) 100%), repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0 2px, transparent 2px 4px);` },
+  "tron": { caption: "pill", pattern: () => "" },
+};
+let THEME = null;
+export function setTheme(t) {
+  if (!t) { THEME = null; return; }
+  const o = typeof t === "string" ? { preset: t } : t;
+  const base = THEMES[o.preset];
+  if (o.preset && !base) throw new Error(`unknown theme "${o.preset}" (have: ${Object.keys(THEMES).join(", ")})`);
+  THEME = { ...(base || {}), ...o };
+}
+export const theme = () => THEME;
+
 // ---------- grounds ----------
 export function groundCss(kind, p) {
+  if (THEME) return themedGround(kind);
   const grid = (c) => `background-image: linear-gradient(${c} 2px, transparent 2px), linear-gradient(90deg, ${c} 2px, transparent 2px); background-size: 80px 80px; background-position: -2px -2px;`;
   switch (kind) {
     case "dark": return `background-color: ${C.dark}; ${grid("rgba(255,255,255,0.05)")}`;
@@ -142,6 +171,17 @@ export function groundCss(kind, p) {
     case "green": return `background-color: ${C.green}; ${grid("rgba(0,0,0,0.06)")}`;
     case "cream": return `background-color: ${C.cream}; ${grid("rgba(0,0,0,0.06)")}`;
     default: return `background-color: ${C.paper}; ${grid("rgba(0,0,0,0.07)")}`;
+  }
+}
+function themedGround(kind) {
+  const T = THEME;
+  const pat = (c) => (T.pattern ? T.pattern(c) : `background-image: linear-gradient(${c} 2px, transparent 2px), linear-gradient(90deg, ${c} 2px, transparent 2px); background-size: 80px 80px; background-position: -2px -2px;`);
+  switch (kind) {
+    case "dark": return `background-color: ${T.dark || C.dark}; ${pat("rgba(255,255,255,0.06)")}`;
+    case "night": return `background: radial-gradient(ellipse at 50% 30%, #2A2D5A 0%, #12132A 70%);`;
+    case "red": case "yellow": case "blue": case "pink": case "green": return `background-color: ${C[kind]}; ${pat("rgba(0,0,0,0.07)")}`;
+    case "cream": return `background-color: ${T.cream || C.cream}; ${pat("rgba(0,0,0,0.06)")}`;
+    default: return `background-color: ${T.paper || C.paper}; ${pat("rgba(0,0,0,0.07)")}`;
   }
 }
 export const isDark = (bg) => bg === "dark" || bg === "night";
@@ -157,7 +197,7 @@ export function wrapScene({ id, ns, dur, bg = "paper", css, html, js, camera = t
   <style>
     @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-Variable.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: block; }
     @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/Space_Grotesk-Variable.ttf") format("truetype"); font-weight: 300 700; font-style: normal; font-display: block; }
-    #${ns}-root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: "Space Grotesk", sans-serif; color: #000; }
+    #${ns}-root { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: ${THEME?.font || `"Space Grotesk", sans-serif`}; color: #000; }
     #${ns}-root * { box-sizing: border-box; }
     .${ns}-ground { position: absolute; inset: 0; ${groundCss(bg)} }
     .${ns}-cam { position: absolute; inset: 0; }

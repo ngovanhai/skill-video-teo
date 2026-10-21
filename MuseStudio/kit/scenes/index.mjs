@@ -301,18 +301,23 @@ function stat(ctx) {
   const val = Number(s.value) || 0;
   const dec = s.decimals ?? (Number.isInteger(val) ? 0 : 1);
   const grp = s.grouping ?? !(Number.isInteger(val) && val >= 1000 && val <= 2100); // years read 1428, not 1.428
-  const txt = `${s.prefix || ""}${val.toLocaleString("vi-VN", { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: grp })}${s.suffix || ""}`;
+  const show = (v) => `${s.prefix || ""}${v.toLocaleString("vi-VN", { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: grp })}${s.suffix || ""}`;
+  const txt = show(val), N = 16;
+  const steps = Array.from({ length: N + 1 }, (_, k) => show(k === N ? val : val * (1 - (1 - k / N) ** 2))); // power2.out
   const sz = fit(txt, 1500, 260, 90, 1, 0.6);
   let html = `<div id="${ns}-rays" style="position:absolute;left:460px;top:-200px;width:1000px;height:1000px;border-radius:50%;opacity:0.35;background:repeating-conic-gradient(${color(s.color, 0)} 0deg 9deg, transparent 9deg 18deg);"></div>
-      <div id="${ns}-num" style="position:absolute;left:0;width:1920px;top:${380 - sz * 0.6}px;text-align:center;font-weight:700;font-size:${sz}px;line-height:1.15;color:${color(s.color, 0)};-webkit-text-stroke:10px #000;paint-order:stroke fill;text-shadow:12px 12px 0 #000;">${esc(txt)}</div>`;
+      <div id="${ns}-num" style="position:absolute;left:0;width:1920px;top:${380 - sz * 0.6}px;text-align:center;font-weight:700;font-size:${sz}px;line-height:1.15;color:${color(s.color, 0)};-webkit-text-stroke:10px #000;paint-order:stroke fill;text-shadow:12px 12px 0 #000;display:grid;">${steps.map((v, k) => `<span id="${ns}-n${k}" style="grid-area:1/1;opacity:${k ? 0 : 1};">${esc(v)}</span>`).join("")}</div>`;
   const ls = fit(s.label || "", 1300, 64, 32, 2);
   if (s.label) html += card(ns, "label", s.label, { left: 310, top: 600, width: 1300, bg: "#fff", size: ls, rot: -1 });
   let js = `      tl.fromTo(q("#${ns}-rays"), { rotation: 0, scale: 0.5 }, { rotation: 30, scale: 1, duration: ${r3(dur)}, ease: "none" }, 0);
       tl.fromTo(q("#${ns}-num"), { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", immediateRender: false }, ${r3(t0)});
-      (function () { var el = q("#${ns}-num"), o = { v: 0 };
-        tl.fromTo(o, { v: 0 }, { v: ${val}, duration: 1.1, ease: "power2.out", immediateRender: false, onUpdate: function () {
-          el.textContent = ${JSON.stringify(s.prefix || "")} + o.v.toLocaleString("vi-VN", { minimumFractionDigits: ${dec}, maximumFractionDigits: ${dec}, useGrouping: ${grp} }) + ${JSON.stringify(s.suffix || "")}; } }, ${r3(t0)});
-        tl.set(o, { v: 0 }, 0); })();\n`;
+`;
+  // số chạy = các nấc chồng lên nhau, bật tắt bằng tl.set opacity. Không dùng onUpdate: hyperframes tua với
+  // suppressEvents nên onUpdate không chạy lúc chụp ảnh đối chiếu, self-verify lệch và cả chương bị render lại.
+  for (let k = 1; k <= N; k++) {
+    const tk = r3(t0 + (1.1 * k) / N);
+    js += `      tl.set(q("#${ns}-n${k - 1}"), { opacity: 0 }, ${tk}); tl.set(q("#${ns}-n${k}"), { opacity: 1 }, ${tk});\n`;
+  }
   if (s.label) js += `      STAMP(q("#${ns}-label"), ${r3(t0 + 0.6)}, -1);\n`;
   if (s.note) {
     const tn = cues.find(s.note.at, Math.min(dur - 1, t0 + 2));
@@ -332,7 +337,7 @@ function quote(ctx) {
   let html = `<div id="${ns}-box" style="position:absolute;left:260px;top:150px;width:1400px;">
         <div class="${ns}-card" style="position:relative;background:#fff;font-size:${sz}px;padding:70px 80px 50px;text-align:center;font-style:italic;">${esc(s.text)}</div>
         <div style="position:absolute;left:-30px;top:-110px;font-size:300px;font-weight:700;color:${color(s.color, 0)};-webkit-text-stroke:8px #000;paint-order:stroke fill;line-height:1;">“</div></div>`;
-  let js = `      POP(q("#${ns}-box"), ${r3(t0)}, { from: 0.7 });\n`;
+  let js = `      POP(q("#${ns}-box"), ${r3(Math.min(t0, 0.6))}, { from: 0.7 });\n`;
   if (s.by) {
     html += card(ns, "by", "— " + s.by, { left: 960, top: 740, width: 700, bg: color(s.color, 1), size: fit(s.by, 640, 44, 24), rot: -2 });
     js += `      SLIDE(q("#${ns}-by"), ${r3(cues.find(s.by_at, t0 + 0.8))}, 200, 0, 0.4);\n`;
@@ -350,12 +355,12 @@ function versus(ctx) {
     const x = k ? 1000 : 80, w = 840;
     const ts = fit(sd.title || "", w - 60, 64, 32);
     html += card(ns, `t${k}`, sd.title || "", { left: x, top: 60, width: w, bg: color(sd.color, k ? 1 : 2), size: ts, rot: k ? 1.5 : -1.5 });
-    js += `      SLIDE(q("#${ns}-t${k}"), ${r3(t0 + k * 0.2)}, ${k ? 400 : -400}, 0, 0.45);\n`;
+    js += `      SLIDE(q("#${ns}-t${k}"), ${r3(Math.min(t0, 0.4) + k * 0.2)}, ${k ? 400 : -400}, 0, 0.45);\n`;
     let top = 220;
     if (sd.who) {
       const c = charBox(video, sd.who, { ns: `${ns}-c${k}`, left: x + (w - 380 * 0.72) / 2, top: 200, h: 340, pose: sd.pose, flip: k === 1 });
       html += c.html;
-      js += `      POP(q("#${ns}-c${k}"), ${r3(t0 + 0.3 + k * 0.2)}, { from: 0.4 });\n`;
+      js += `      POP(q("#${ns}-c${k}"), ${r3(Math.min(t0, 0.4) + 0.3 + k * 0.2)}, { from: 0.4 });\n`;
       top = 560;
     }
     const pts = (sd.points || []).slice(0, sd.who ? 2 : 4);
@@ -408,19 +413,23 @@ function moment(ctx) {
     const h = 520;
     const c = charBox(video, w, { ns: `${ns}-c${i}`, left: whos.length > 1 ? (i ? 1180 : 260) : 720, top: 880 - h, h, pose: i ? s.pose2 : s.pose, flip: i === 1 });
     html += c.html;
-    js += `      POP(q("#${ns}-c${i}"), ${r3(Math.max(0.05, t0 - 0.6 + i * 0.15))}, { from: 0.5 });\n`;
+    // nhân vật đứng sẵn từ đầu cảnh (cue của moment thường rơi muộn); chữ + burst mới chờ cue
+    js += `      POP(q("#${ns}-c${i}"), ${r3(Math.max(0.05, Math.min(t0 - 0.6, 0.3) + i * 0.15))}, { from: 0.5 });\n`;
   });
   const ws = fit(s.word || "BÙM!", 900, 200, 80, 1, 0.66);
   html += `<div id="${ns}-word" style="position:absolute;left:0;width:1920px;top:${whos.length ? 60 : 300}px;text-align:center;font-weight:700;font-size:${ws}px;line-height:1.2;color:${C.yellow};-webkit-text-stroke:10px #000;paint-order:stroke fill;text-shadow:12px 12px 0 #000;transform:rotate(-6deg);" data-layout-allow-overlap>${esc(s.word || "BÙM!")}</div>`;
   js += `      tl.fromTo(q("#${ns}-burst"), { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)", immediateRender: false }, ${r3(t0 - 0.05)});
       tl.fromTo(q("#${ns}-word"), { scale: 2.4, opacity: 0, rotation: -6 }, { scale: 1, opacity: 1, rotation: -6, duration: 0.3, ease: "power4.out", immediateRender: false }, ${r3(t0)});
       SHAKE(q("#${ns}-cam"), ${r3(t0 + 0.28)}, ${s.effect === "zoom" ? 4 : 14});\n`;
-  if (s.effect === "zoom") js += `      tl.to(q("#${ns}-cam"), { scale: 1.12, duration: 0.25, ease: "power3.out" }, ${r3(t0)});\n`;
+  // zoom trên lớp bọc riêng: tween chồng lên slow-zoom của #cam cho kết quả khác nhau khi tua liền và tua nhảy
+  if (s.effect === "zoom") js += `      tl.fromTo(q("#${ns}-mz"), { scale: 1 }, { scale: 1.12, duration: 0.25, ease: "power3.out", immediateRender: false }, ${r3(t0)});
+      tl.fromTo(q("#${ns}-mz"), { scale: 1.12 }, { scale: 1, duration: 0.7, ease: "power2.inOut", immediateRender: false }, ${r3(t0 + 0.4)});\n`;
   if (s.caption) {
     const tc = cues.find(s.caption.at, t0 + 1.2);
     html += card(ns, "cap", s.caption.text, { left: 460, top: 760, width: 1000, bg: "#fff", size: fit(s.caption.text, 940, 46, 24, 2), rot: 1 });
     js += `      POP(q("#${ns}-cap"), ${r3(tc)}, { from: 0.6, r: 1 });\n`;
   }
+  if (s.effect === "zoom") html = `<div id="${ns}-mz" style="position:absolute;inset:0;transform-origin:50% 45%;">${html}</div>`;
   return { css: `#${ns}-word { opacity: 0; } #${ns}-burst { transform: scale(0); }`, html, js, sfx: [fx(s.sound || "impact", t0, 0.45)], bg: s.bg || "red" };
 }
 function burst(cx, cy, R, r, n) {

@@ -4,18 +4,21 @@
 //   node kit/make.mjs <videoDir> [--stage all|scaffold|validate|tts|align|build|lint|render|thumb|publish|fxlog] [--only ch01,ch02]
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync, statSync, rmSync } from "node:fs";
 import { join, resolve, basename } from "node:path";
-import { spawnSync } from "node:child_process";
+import { spawnSync, spawn } from "node:child_process";
 import { pathToFileURL } from "node:url";
-import { KIT, Cues, wrapScene, r3 } from "./lib/base.mjs";
+import { KIT, Cues, wrapScene, r3, setTheme } from "./lib/base.mjs";
 import { TEMPLATES } from "./scenes/index.mjs";
 import { FX, sceneFx, CONTINUOUS_CAM } from "./fx/index.mjs";
 import { captionGroups, captionsComposition } from "./lib/captions.mjs";
 import { thumbnailHtml } from "./lib/thumbnail.mjs";
 
 const HF = "hyperframes@0.8.172";
-const VIENEU_DIR = process.env.VIENEU_DIR || "__VIENEU_DIR__";
-const VIENEU_PY = join(VIENEU_DIR, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
-const WHISPER_PY = process.env.WHISPER_PY || "__WHISPER_PY__";
+const VIENEU_PY = "E:/tool/VieNeu-TTS/.venv/Scripts/python.exe";
+const WHISPER_PY = process.env.WHISPER_PY || "python";
+// GPU (AMD RX 6600 XT qua DirectML) cho tts/align, thử 2026-10-20: tts nhanh ~1,5×, align ~3× và ra y hệt CPU.
+// Tắt: --no-gpu hoặc tạo file kit/gpu-off. GPU lỗi → tự chạy lại bằng CPU (cache giữ phần đã xong).
+const VIENEU_DML_PY = "E:/tool/VieNeu-TTS/.venv-dml/Scripts/python.exe";
+const WHISPER_DML_PY = "E:/tool/whisper-dml/Scripts/python.exe";
 const LEAD = 0.25; // silence before the voice in each scene
 const TAIL = 0.3; // breath after it
 const STAGES = ["scaffold", "validate", "tts", "align", "build", "lint", "render", "thumb", "publish"];
@@ -37,6 +40,13 @@ const run = (cmd, argv, o = {}) => {
   if (r.status !== 0 && !o.allowFail) die(`${cmd} failed (${r.status})`);
   return r.status;
 };
+const useGpu = (py) => !flag("no-gpu") && !existsSync(join(KIT, "gpu-off")) && existsSync(py);
+// chạy bằng GPU trước; hỏng thì báo và chạy lại bằng CPU
+const runGpu = (gpu, cpu) => {
+  if (gpu && run(gpu.cmd, gpu.argv, { ...gpu.o, allowFail: true }) === 0) return;
+  if (gpu) log("! GPU failed — retrying on CPU");
+  run(cpu.cmd, cpu.argv, cpu.o);
+};
 const capture = (cmd, argv) => spawnSync(cmd, argv, { encoding: "utf8", cwd: dir }).stdout || "";
 
 // ---------------------------------------------------------------- load
@@ -44,6 +54,7 @@ const vfile = join(dir, "video.json");
 if (!existsSync(vfile)) die(`no video.json in ${dir}`);
 const video = JSON.parse(readFileSync(vfile, "utf8"));
 video.__dir = dir;
+try { setTheme(video.theme); } catch (e) { die(e.message); }
 video.cast = { teo: { svg: "narrator", name: "Tèo" }, ...(video.cast || {}) };
 // a chapter may live in its own file: "chapters": ["chapters/01.json", ...]
 const chapters = (video.chapters || []).map((c) => (typeof c === "string" ? JSON.parse(readFileSync(join(dir, c), "utf8")) : c));
@@ -89,7 +100,7 @@ function scaffold() {
 function validate() {
   const errs = [], warns = [];
   if (!chapters.length) errs.push("no chapters");
-  if (scenes[0]?.type !== "hook") errs.push("first scene must be a hook");
+  if (scenes[0]?.type !== "hook" && scenes[0]?.hook !== true) errs.push(`first scene must be a hook (type "hook", or any type with "hook": true)`);
   if (scenes.at(-1)?.type !== "outro") errs.push("last scene must be an outro");
   for (const ch of chapters) {
     if (!ch.title) errs.push(`${ch.id}: missing title`);
@@ -102,6 +113,7 @@ function validate() {
     const fxl = sceneFx(s);
     for (const e of fxl) if (!FX[e.id]) errs.push(`${where}: unknown fx "${e.id}" (see node kit/fx-list.mjs)`);
     if (fxl.filter((e) => CONTINUOUS_CAM.has(e.id)).length > 1) warns.push(`${where}: more than one continuous camera fx (${[...CONTINUOUS_CAM].join("/")}) — pick one`);
+    if (fxl.some((e) => e.id === "punch") && fxl.some((e) => CONTINUOUS_CAM.has(e.id))) warns.push(`${where}: punch + camera fx cùng tween scale của #fxcam — render rớt về chụp chậm; bỏ một cái`);
     const words = spoken(s).split(" ").length;
     if (words > 70) warns.push(`${where}: ${words} words — split it (scenes over ~18s get stale)`);
     if (words < 10) warns.push(`${where}: only ${words} words — VieNeu rushes/garbles very short lines, write a full sentence (10+ words)`);
@@ -131,14 +143,38 @@ function validate() {
   if (errs.length) die("validate failed:\n  " + errs.join("\n  "));
 }
 
-// hook → greeting → mid-video subscribe → closing subscribe; fx density; no repeats of recent videos
-function creativeChecks(warns) {
-  const has = (s, p) => (" " + plain(spoken(s)) + " ").includes(" " + plain(p) + " ");
-  if (!scenes.slice(0, 3).some((s) => has(s, "lại là tèo"))) warns.push(`greeting: one of the first 3 scenes (right after the hook) must say "Chào các bạn, lại là Tèo đây…"`);
+// the lines that tend to become a formula: greeting, mid-video subscribe call, closing scenes
+const hasPhrase = (s, p) => (" " + plain(spoken(s)) + " ").includes(" " + plain(p) + " ");
+function signatureLines() {
   const words = scenes.map((s) => spoken(s).split(" ").length), total = words.reduce((a, b) => a + b, 0) || 1;
   let acc = 0;
-  const mid = scenes.filter((s, i) => { const f = (acc + words[i] / 2) / total; acc += words[i]; return f >= 0.35 && f <= 0.65; });
-  if (!mid.some((s) => has(s, "đăng ký"))) warns.push(`cta: no subscribe call ("đăng ký") in the middle of the video (35–65%) — add one with "cta": true`);
+  const pos = scenes.map((s, i) => { const f = (acc + words[i] / 2) / total; acc += words[i]; return f; });
+  // ~60 s of narration at 4.1 words/s, never fewer than the first 3 scenes
+  let w = 0;
+  const opening = scenes.filter((s, i) => { w += words[i]; return i < 3 || w - words[i] < 250; });
+  const mid = scenes.filter((s, i) => pos[i] >= 0.25 && pos[i] <= 0.75);
+  const sentence = (s, p) => (spoken(s).split(/(?<=[.!?…])\s+/).find((x) => plain(x).includes(plain(p))) || "").slice(0, 200);
+  const g = opening.find((s) => hasPhrase(s, "lại là tèo"));
+  const c = mid.find((s) => s.cta && hasPhrase(s, "đăng ký")) || mid.find((s) => hasPhrase(s, "đăng ký"));
+  return { opening, mid, greeting: g ? sentence(g, "lại là tèo") : "", cta: c ? spoken(c).slice(0, 300) : "",
+    ending: scenes.slice(-3).map(spoken).join(" ").slice(0, 600) };
+}
+// word-trigram overlap (Jaccard) — catches copied formulas, not shared topic words
+function trigramSim(a, b) {
+  const g = (x) => { const t = plain(x).split(" "), r = new Set(); for (let i = 0; i + 2 < t.length; i++) r.add(t.slice(i, i + 3).join(" ")); return r; };
+  const A = g(a), B = g(b);
+  if (!A.size || !B.size) return 0;
+  let n = 0; for (const x of A) if (B.has(x)) n++;
+  return n / (A.size + B.size - n);
+}
+
+// hook → greeting → mid-video subscribe → closing subscribe; fx density; no repeats of recent videos
+function creativeChecks(warns) {
+  const has = hasPhrase;
+  const sig = signatureLines();
+  if (!sig.opening.some((s) => has(s, "lại là tèo"))) warns.push(`greeting: say "lại là Tèo đây" somewhere in the first ~60 s (any wording, in the frame's voice)`);
+  const mid = sig.mid;
+  if (!mid.some((s) => has(s, "đăng ký"))) warns.push(`cta: no subscribe call ("đăng ký") in the middle of the video (25–75%) — add one with "cta": true`);
   if (!scenes.slice(-3).some((s) => has(s, "đăng ký"))) warns.push(`cta: the closing scenes (outro or the 2 before it) must ask viewers to subscribe ("đăng ký")`);
   for (const s of scenes) if (s.cta && !has(s, "đăng ký")) warns.push(`${s.id}: "cta": true but the narration never says "đăng ký"`);
   if (!video.target_min) return; // short tests / pilots skip the creativity rules
@@ -147,22 +183,71 @@ function creativeChecks(warns) {
   const withFx = scenes.filter((s) => s.type === "custom" || sceneFx(s).length).length;
   if (withFx < scenes.length / 4) warns.push(`creative: only ${withFx}/${scenes.length} scenes have fx or are custom — aim for ~1 in 3`);
   if (sceneFx(scenes[0]).length < 2) warns.push("creative: the hook scene should carry ≥2 fx");
+  const narr = scenes.filter((s) => s.type === "narrator").length;
+  if (narr > scenes.length * 0.2) warns.push(`creative: ${narr}/${scenes.length} narrator scenes (>20%) — let the frame carry the story (talk, custom, stat, list…)`);
+  const triple = scenes.filter((s, i) => i >= 2 && scenes[i - 2].type === "custom" && scenes[i - 1].type === "narrator" && s.type === "moment").length;
+  if (triple > 3) warns.push(`creative: the run custom → narrator → moment appears ${triple}× — vary the scene order`);
+  for (const s of scenes) if (has(s, "ba câu hỏi")) warns.push(`${s.id}: "ba câu hỏi" is a worn-out formula — promise differently (or not at all)`);
   const c = video.creative || {};
-  for (const k of ["style", "motif", "hook"]) if (!c[k]) warns.push(`creative: video.json "creative.${k}" is missing`);
-  const recent = readHistory().filter((h) => h.slug !== slugOf()).slice(-2);
+  for (const k of ["style", "motif", "hook", "frame", "voice_role"]) if (!c[k]) warns.push(`creative: video.json "creative.${k}" is missing`);
+  const all = readHistory().filter((h) => h.slug !== slugOf());
+  const recent = all.slice(-2);
   for (const k of ["style", "motif", "hook"]) if (c[k] && recent.some((h) => plain(h.creative?.[k]) === plain(c[k]))) warns.push(`creative: creative.${k} "${c[k]}" repeats one of the last 2 videos`);
+  if (c.frame && typeof c.frame === "object") frameChecks(warns, c, all);
+  else if (c.frame) {
+    warns.push(`creative: creative.frame is a bare name — analyse the raw script and design { name, analysis, axis, open, close, segments[] } (SKILL.md 2b)`);
+    if (all.slice(-3).some((h) => plain(h.frame || h.creative?.frame) === plain(c.frame))) warns.push(`creative: creative.frame "${c.frame}" repeats one of the last 3 videos — pick another storytelling frame`);
+  }
+  if (c.voice_role && typeof c.frame !== "object" && all.slice(-2).some((h) => plain(h.voice_role || h.creative?.voice_role) === plain(c.voice_role))) warns.push(`creative: creative.voice_role "${c.voice_role}" repeats one of the last 2 videos`);
+  const last5 = all.slice(-5);
+  for (const k of ["greeting", "cta", "ending"]) {
+    if (!sig[k]) continue;
+    const hit = last5.find((h) => h[k] && trigramSim(sig[k], h[k]) > 0.7);
+    const shared = last5.find((h) => h[k] && trigramSim(sig[k], h[k]) > 0.35);
+    if (hit) warns.push(`creative: the ${k} line is almost a copy of "${hit.slug}" — rewrite it in this episode's voice`);
+    else if (shared) warns.push(`creative: the ${k} line reuses phrasing from "${shared.slug}" — rewrite it in this episode's voice`);
+  }
   const mine = new Set(scenes.flatMap((s) => sceneFx(s).map((e) => e.id)).filter((id) => id !== "subscribe"));
   const theirs = new Set(recent.flatMap((h) => Object.keys(h.fx || {})));
   const same = [...mine].filter((id) => theirs.has(id));
   if (mine.size && theirs.size && same.length / mine.size > 0.5) warns.push(`creative: ${same.length}/${mine.size} fx kinds also used in the last 2 videos (${same.join(", ")}) — swap some for less used ones`);
 }
 
+// creative.frame is designed per video from the raw script (no fixed list): { name, analysis, axis, open, close, segments[] }.
+// Anti-repeat = similarity of name / axis / whole frame vs the last 3 videos; voice_role (free text) vs the last 2.
+// Videos made before this rule have no frame object and keep the old checks above.
+const frameName = (f) => (f && typeof f === "object" ? f.name || "" : f || "");
+const frameSig = (f) => (f && typeof f === "object" ? [f.axis, f.open, f.close, ...(f.segments || [])].filter(Boolean).join(" | ") : "");
+const wordSet = (x) => new Set(plain(x).split(" ").filter(Boolean));
+const wordSim = (a, b) => { const A = wordSet(a), B = wordSet(b); if (!A.size || !B.size) return 0; let n = 0; for (const w of A) if (B.has(w)) n++; return n / (A.size + B.size - n); };
+const triOverlap = (a, b) => { const g = (x) => { const t = plain(x).split(" ").filter(Boolean), r = new Set(); for (let i = 0; i + 2 < t.length; i++) r.add(t.slice(i, i + 3).join(" ")); return r; };
+  const A = g(a), B = g(b); if (!A.size || !B.size) return 0; let n = 0; for (const x of A) if (B.has(x)) n++; return n / Math.min(A.size, B.size); };
+function frameChecks(warns, c, all) {
+  const f = c.frame;
+  for (const k of ["name", "axis", "open", "close"]) if (!String(f[k] || "").trim()) warns.push(`creative: creative.frame.${k} is empty`);
+  const aw = plain(f.analysis).split(" ").filter(Boolean).length;
+  if (aw < 25) warns.push(`creative: creative.frame.analysis has ${aw} words — sum up the script analysis (core, emotion, strongest moment, who stands closest to tell it, what viewers want, natural blocks) and why this frame fits (≥25 words)`);
+  const n = (f.segments || []).length;
+  if (n < 5 || n > 12) warns.push(`creative: creative.frame.segments has ${n} entries — lay out the body as 6–10 segments, one sentence each`);
+  const me = { name: frameName(f), axis: f.axis || "", sig: frameSig(f) };
+  for (const h of all.slice(-3)) {
+    const name = h.frame || frameName(h.creative?.frame), axis = h.frame_axis || h.creative?.frame?.axis || "", sig = h.frame_sig || frameSig(h.creative?.frame);
+    if (name && wordSim(me.name, name) >= 0.6) warns.push(`creative: frame name "${me.name}" is close to "${h.slug}" ("${name}") — design a new frame from this script`);
+    if (axis && wordSim(me.axis, axis) >= 0.6) warns.push(`creative: frame axis is close to "${h.slug}" ("${axis}") — order the body another way`);
+    if (sig && triOverlap(me.sig, sig) >= 0.45) warns.push(`creative: frame (axis/open/close/segments) overlaps "${h.slug}" ${(triOverlap(me.sig, sig) * 100).toFixed(0)}% — rebuild it from this video's material`);
+  }
+  if (c.voice_role) { const h = all.slice(-2).find((x) => wordSim(c.voice_role, x.voice_role || x.creative?.voice_role) >= 0.6); if (h) warns.push(`creative: creative.voice_role "${c.voice_role}" is close to "${h.slug}" ("${h.voice_role || h.creative?.voice_role}")`); }
+}
+
 // record what this video used so the next ones avoid repeating it (publish calls this; builds never do)
 function fxlog() {
   const count = {};
   for (const s of scenes) for (const e of sceneFx(s)) count[e.id] = (count[e.id] || 0) + 1;
-  const entry = { slug: slugOf(), date: new Date().toISOString().slice(0, 10), title: video.title, creative: video.creative || {}, fx: count,
-    custom: scenes.filter((s) => s.type === "custom").map((s) => s.file) };
+  const sig = signatureLines(), t = video.thumbnail || {}, cr = video.creative || {};
+  const entry = { slug: slugOf(), date: new Date().toISOString().slice(0, 10), title: video.title, creative: cr, fx: count,
+    custom: scenes.filter((s) => s.type === "custom").map((s) => s.file),
+    frame: frameName(cr.frame), frame_axis: cr.frame?.axis || "", frame_sig: frameSig(cr.frame), voice_role: cr.voice_role || "", theme: (typeof video.theme === "string" ? video.theme : video.theme?.preset) || "", greeting: sig.greeting, cta: sig.cta, ending: sig.ending,
+    thumb: { pose: t.pose ?? null, bg: t.bg ?? null, circle_x: t.circle_x ?? null, circle_y: t.circle_y ?? null, arrow: t.arrow ?? null, layout: t.layout ?? null, text: t.text ?? t.hook ?? null } };
   const h = readHistory().filter((x) => x.slug !== entry.slug);
   h.push(entry);
   writeFileSync(HISTORY, JSON.stringify(h, null, 1));
@@ -172,14 +257,19 @@ function fxlog() {
 function tts(subset = scenes) {
   const job = { voice: video.voice || "Lóng", temperature: video.temperature ?? 0.8, lines: subset.map((s) => ({ id: s.id, text: spoken(s), out: wav(s) })) };
   writeFileSync(P("work/tts-job.json"), JSON.stringify(job, null, 1));
-  run(VIENEU_PY, [join(KIT, "py/tts.py"), P("work/tts-job.json")], { cwd: VIENEU_DIR });
+  const argv = [join(KIT, "py/tts.py"), P("work/tts-job.json")], o = { cwd: "E:/tool/VieNeu-TTS" };
+  // acoustic (≈2300 bước nhỏ/câu) chạy GPU chậm 16× nên để CPU; prefill/decode/codec lên GPU
+  const genv = { ...PYENV, VIENEU_ORT_PROVIDERS: "DmlExecutionProvider", VIENEU_ORT_GPU_PARTS: "pre,dec,codec" };
+  runGpu(useGpu(VIENEU_DML_PY) && { cmd: VIENEU_DML_PY, argv, o: { ...o, env: genv } }, { cmd: VIENEU_PY, argv, o });
 }
 
 function alignStage(subset = scenes) {
   const names = video.names || Object.values(video.cast).map((c) => c.name).filter(Boolean).join(", ");
   const job = { names, lines: subset.map((s) => ({ id: s.id, text: spoken(s), out: wav(s), words: wordsFile(s) })) };
   writeFileSync(P("work/align-job.json"), JSON.stringify(job, null, 1));
-  run(WHISPER_PY, [join(KIT, "py/align.py"), P("work/align-job.json"), video.whisper || "small"]);
+  const argv = [join(KIT, "py/align.py"), P("work/align-job.json"), video.whisper || "small"];
+  const gpu = !process.env.WHISPER_PY && useGpu(WHISPER_DML_PY) && { cmd: WHISPER_DML_PY, argv, o: { env: { ...PYENV, WHISPER_DEVICE: "dml" } } };
+  runGpu(gpu, { cmd: WHISPER_PY, argv, o: {} });
 }
 
 function align() {
@@ -310,7 +400,9 @@ ${body}
 
 function bgm(total) {
   const out = P("assets/bgm/bgm-full.mp3");
-  const src = join(KIT, "bgm", video.bgm || "playful-pizzicato.mp3");
+  // video.bgm: a file in kit/bgm, or a path relative to the video folder (e.g. "assets/my-track.mp3")
+  const src = video.bgm && existsSync(join(dir, video.bgm)) ? join(dir, video.bgm) : join(KIT, "bgm", video.bgm || "playful-pizzicato.mp3");
+  if (!existsSync(src)) die(`bgm not found: ${video.bgm}`);
   const stamp = P("assets/bgm/bgm-full.len");
   if (existsSync(out) && existsSync(stamp) && readFileSync(stamp, "utf8") === `${src}|${total}`) return;
   const len = r3(total + 1);
@@ -318,27 +410,59 @@ function bgm(total) {
   writeFileSync(stamp, `${src}|${total}`);
 }
 
+// Những thứ làm hyperframes bỏ chụp nhanh (drawElement): filter/blend/3D/clip thì bị chặn từ đầu, còn callback
+// thì làm khung đối chiếu (tua nhảy, không chạy callback) lệch khung chụp nhanh nên cả chương bị render lại.
+const SLOW = [
+  [/filter\s*:\s*[^;"]*(blur|drop-shadow)|mix-blend-mode|backdrop-filter|@keyframes/, "filter/blend/keyframes"],
+  [/\b(clipPath|rotationX|rotationY|rotateX|rotateY)\s*:/, "tween clipPath/3D"],
+  [/\b(onUpdate|onComplete|onStart)\s*:|\btl\.call\(/, "callback đổi hình"],
+];
 function lint() {
   run("npx", ["--yes", HF, "lint"], { allowFail: true });
+  const dir2 = P("compositions"), hits = {};
+  for (const f of existsSync(dir2) ? readdirSync(dir2) : []) {
+    const src = readFileSync(join(dir2, f), "utf8");
+    for (const [re, why] of SLOW) if (re.test(src)) (hits[why] ||= []).push(f.replace(/\.html$/, ""));
+  }
+  for (const [why, fs] of Object.entries(hits)) log(`⚠ render chậm (${why}): ${fs.slice(0, 12).join(", ")}${fs.length > 12 ? "…" : ""}. Xem README "Tốc độ render".`);
 }
 
-function render() {
+// Các chương render song song (--par N, mặc định 2; --low-memory thì 1). Chụp drawElement chỉ dùng 1 luồng
+// mỗi tiến trình, nên 2 tiến trình cùng lúc tận dụng được 4 nhân. Thứ tự ghép final vẫn theo timeline.
+async function render() {
   const timeline = JSON.parse(readFileSync(P("work/timeline.json"), "utf8"));
-  const parts = [];
+  const parts = [], jobs = [];
   for (const c of timeline) {
     const outFile = P("renders", `${c.id}.mp4`);
     parts.push(outFile);
     if (only.length && !only.includes(c.id)) continue;
     const src = statSync(P("work", `${c.id}.html`)).mtimeMs;
     if (existsSync(outFile) && statSync(outFile).mtimeMs > src && !flag("force")) { log(`render: ${c.id} up to date`); continue; }
+    jobs.push(c);
+  }
+  const par = Math.max(1, Math.min(jobs.length, flag("low-memory") ? 1 : Number(opt("par", 2)) || 1));
+  const one = (c) => new Promise((ok, fail) => {
     const t0 = Date.now();
     const argv = ["--yes", HF, "render", "--composition", `${c.id}.html`, "--output", `renders/${c.id}.mp4`, "--quality", opt("quality", "standard"), "--quiet"];
     if (flag("low-memory")) argv.push("--low-memory-mode");
-    // chapter docs live in work/ so the project keeps a single root; copied to the root only while rendering
+    if (!flag("no-gpu")) argv.push("--gpu");
     copyFileSync(P("work", `${c.id}.html`), P(`${c.id}.html`));
-    try { run("npx", argv); } finally { rmSync(P(`${c.id}.html`), { force: true }); }
-    log(`render: ${c.id} (${(c.dur / 60).toFixed(1)} min) took ${((Date.now() - t0) / 60000).toFixed(1)} min`);
-  }
+    log(`$ npx ${argv.join(" ")}`);
+    const ch = spawn("npx", argv, { stdio: "inherit", shell: process.platform === "win32", cwd: dir, env: PYENV });
+    ch.on("error", (e) => { rmSync(P(`${c.id}.html`), { force: true }); fail(e); });
+    ch.on("close", (code) => {
+      rmSync(P(`${c.id}.html`), { force: true });
+      if (code !== 0) return fail(new Error(`render ${c.id} failed (${code})`));
+      log(`render: ${c.id} (${(c.dur / 60).toFixed(1)} min) took ${((Date.now() - t0) / 60000).toFixed(1)} min`);
+      ok();
+    });
+  });
+  if (jobs.length) log(`render: ${jobs.length} chapter(s), ${par} at a time`);
+  let next = 0, err = null;
+  await Promise.all(Array.from({ length: par }, async () => {
+    while (!err && next < jobs.length) { const c = jobs[next++]; try { await one(c); } catch (e) { err = e; } }
+  }));
+  if (err) die(err.message);
   if (only.length) return;
   writeFileSync(P("work/concat.txt"), parts.map((p) => `file '${p.replace(/\\/g, "/")}'`).join("\n"));
   run("ffmpeg", ["-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", P("work/concat.txt"), "-c", "copy", "-movflags", "+faststart", P("renders/final.mp4")]);
@@ -396,6 +520,6 @@ for (const st of todo) {
   if (!table[st]) die(`unknown stage ${st}`);
   const t0 = Date.now();
   log(`\n== ${st} ==`);
-  table[st]();
+  await table[st]();
   log(`== ${st} done in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
 }

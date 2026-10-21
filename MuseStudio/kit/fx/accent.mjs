@@ -77,7 +77,7 @@ const glitch = { id: "glitch", cat: "accent", label: "Nhiễu sọc RGB + giật
     const { t, d } = when(ctx, o, 0.2);
     const R = rng(ctx.id), id = ctx.id, len = Math.min(d, o.len ?? 0.6);
     let inner = "";
-    for (let i = 0; i < 7; i++) inner += `<div class="${id}-b" style="position:absolute;left:0;width:1920px;top:0;height:40px;opacity:0;background:${["rgba(255,0,80,0.55)", "rgba(0,240,255,0.55)", "rgba(255,255,255,0.7)"][i % 3]};mix-blend-mode:screen;"></div>`;
+    for (let i = 0; i < 7; i++) inner += `<div class="${id}-b" style="position:absolute;left:0;width:1920px;top:0;height:40px;opacity:0;background:${["rgba(255,60,120,0.5)", "rgba(80,240,255,0.5)", "rgba(255,255,255,0.6)"][i % 3]};"></div>`;
     let js = "";
     for (let tt = t; tt < t + len; tt = r3(tt + 0.05)) {
       for (let i = 0; i < 7; i++) js += `      tl.set(qa(".${id}-b")[${i}], { y: ${r3(R() * 1040)}, height: ${r3(6 + R() * 70)}, x: ${r3((R() - 0.5) * 120)}, opacity: ${R() > 0.45 ? 1 : 0} }, ${tt});\n`;
@@ -118,7 +118,7 @@ const lightning = { id: "lightning", cat: "accent", label: "Tia sét giáng xu�
     for (let i = 1; i <= 9; i++) pts.push([r3(pts[0][0] + (x - pts[0][0]) * (i / 9) + (i < 9 ? (R() - 0.5) * 140 : 0)), r3(-40 + (y + 40) * (i / 9))]);
     const d = "M" + pts.map((p) => p.join(" ")).join(" L");
     const inner = `<div id="${id}-f" style="position:absolute;inset:0;background:#fff;opacity:0;"></div>
-      <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:visible"><g id="${id}-b" opacity="0"><path d="${d}" fill="none" stroke="${o.color || "#BFE6FF"}" stroke-width="26" stroke-linejoin="bevel" style="filter:blur(10px)"/><path d="${d}" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="bevel"/></g></svg>`;
+      <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:1920px;height:1080px;overflow:visible"><g id="${id}-b" opacity="0">${[[44, 0.12], [30, 0.22], [18, 0.45]].map(([w, a]) => `<path d="${d}" fill="none" stroke="${o.color || "#BFE6FF"}" stroke-width="${w}" stroke-opacity="${a}" stroke-linejoin="round" stroke-linecap="round"/>`).join("")}<path d="${d}" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="bevel"/></g></svg>`;
     const js = [[0, 1, 0.85], [0.07, 0, 0.1], [0.12, 1, 0.6], [0.3, 0, 0]].map(([dt, b, f]) =>
       `      tl.set(q("#${id}-b"), { opacity: ${b} }, ${r3(t + dt)}); tl.set(q("#${id}-f"), { opacity: ${f} }, ${r3(t + dt)});\n`).join("");
     return { over: layer(id, inner), js, sfx: [sfx("impact2", t, 0.45)] };

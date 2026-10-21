@@ -2,7 +2,7 @@
 # onto them (difflib); unmatched words are interpolated. Cached per scene (keyed on wav + text).
 #   python kit/py/align.py <job.json> [model]
 # job: { "names": "comma list of proper names", "lines": [{ "id", "text", "out" (wav), "words" (json out) }] }
-import sys, json, re, difflib, unicodedata, hashlib, time
+import sys, os, json, re, difflib, unicodedata, hashlib, time
 from pathlib import Path
 
 
@@ -69,7 +69,16 @@ def main():
     if not todo:
         return
     import whisper
-    model = whisper.load_model(model_name)
+    model = whisper.load_model(model_name, device="cpu")
+    if os.environ.get("WHISPER_DEVICE") == "dml":  # GPU AMD qua torch-directml (venv E:/tool/whisper-dml)
+        import torch_directml
+        import whisper.timing as wt
+        ah = model._buffers.pop("alignment_heads")  # tensor sparse: DirectML không chạy được, giữ ở CPU
+        model = model.to(torch_directml.device())
+        model._buffers["alignment_heads"] = ah
+        _mf = wt.median_filter
+        wt.median_filter = lambda x, w: _mf(x.cpu(), w)  # pad "reflect" không chạy trên DirectML
+    print(f"align device: {next(model.parameters()).device}", flush=True)
     prompt = job.get("names") or None
     t_all = time.time()
     weak = []

@@ -5,7 +5,7 @@ const glow = { id: "glow", cat: "light", label: "Quầng sáng phát quang nhị
   run(ctx, o) {
     const { t, d, end } = when(ctx, o, 0.2);
     const id = ctx.id, x = o.x ?? 960, y = o.y ?? 440, r = o.r ?? 320, c = o.color ? color(o.color) : "#7CFFB2";
-    const inner = `<div id="${id}-g" style="position:absolute;left:${x - r}px;top:${y - r}px;width:${2 * r}px;height:${2 * r}px;border-radius:50%;background:radial-gradient(circle, ${c}cc 0%, ${c}55 35%, ${c}00 70%);opacity:0;mix-blend-mode:screen;"></div>`;
+    const inner = `<div id="${id}-g" style="position:absolute;left:${x - r}px;top:${y - r}px;width:${2 * r}px;height:${2 * r}px;border-radius:50%;background:radial-gradient(circle, ${c}cc 0%, ${c}55 35%, ${c}00 70%);opacity:0;"></div>`;
     const p = 1.6;
     let js = `      tl.fromTo(q("#${id}-g"), { opacity: 0, scale: 0.6 }, { opacity: ${o.opacity ?? 0.85}, scale: 1, duration: 0.8, ease: "power2.out", immediateRender: false }, ${t});\n`;
     if (d > 1.4) js += `      tl.to(q("#${id}-g"), { opacity: ${r3((o.opacity ?? 0.85) * 0.55)}, scale: 1.08, duration: ${p / 2}, ease: "sine.inOut", yoyo: true, repeat: ${reps(d - 0.8, p / 2)} }, ${r3(t + 0.8)});\n`;

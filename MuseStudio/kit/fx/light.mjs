@@ -51,8 +51,8 @@ const lightLeak = { id: "light-leak", cat: "light", label: "Vệt sáng ấm qu�
   run(ctx, o) {
     const { t } = when(ctx, o, 0.1);
     const id = ctx.id, c = o.color || "rgba(255,170,90,0.75)";
-    const inner = `<div id="${id}-a" style="position:absolute;left:-900px;top:-200px;width:900px;height:1500px;border-radius:50%;background:${c};filter:blur(90px);mix-blend-mode:screen;"></div>
-      <div id="${id}-b" style="position:absolute;left:-700px;top:300px;width:600px;height:900px;border-radius:50%;background:rgba(255,120,170,0.6);filter:blur(80px);mix-blend-mode:screen;"></div>`;
+    const inner = `<div id="${id}-a" style="position:absolute;left:-900px;top:-200px;width:900px;height:1500px;background:radial-gradient(ellipse closest-side, ${c} 0%, transparent 100%);"></div>
+      <div id="${id}-b" style="position:absolute;left:-700px;top:300px;width:600px;height:900px;background:radial-gradient(ellipse closest-side, rgba(255,120,170,0.6) 0%, transparent 100%);"></div>`;
     return { over: layer(id, inner, "opacity:0;"),
       js: `      FADE(q("#${id}"), ${t}, 0.4);
       tl.fromTo(q("#${id}-a"), { x: 0 }, { x: 3000, duration: ${o.speed ?? 2.6}, ease: "power1.inOut", immediateRender: false }, ${t});
@@ -63,7 +63,7 @@ const oldFilm = { id: "old-film", cat: "light", label: "Phim cũ: ngả nâu, nh
   run(ctx, o) {
     const { t, end } = when(ctx, o, 0);
     const R = rng(ctx.id), id = ctx.id;
-    let inner = `<div style="position:absolute;inset:0;backdrop-filter:sepia(0.75) contrast(1.08) brightness(0.97);"></div><div id="${id}-k" style="position:absolute;inset:0;background:#2a1a08;opacity:0;"></div>`;
+    let inner = `<div style="position:absolute;inset:0;background:rgba(150,95,35,0.28);"></div><div style="position:absolute;inset:0;background:radial-gradient(ellipse at center, transparent 55%, rgba(40,22,6,0.45) 100%);"></div><div id="${id}-k" style="position:absolute;inset:0;background:#2a1a08;opacity:0;"></div>`;
     for (let i = 0; i < 3; i++) inner += `<div class="${id}-s" style="position:absolute;top:0;left:${r3(200 + R() * 1500)}px;width:2px;height:1080px;background:rgba(40,25,10,0.55);"></div>`;
     let js = `      FADE(q("#${id}"), ${t}, 0.3);\n`;
     for (let k = 0, tt = t; tt < end - 0.1; k++, tt = r3(tt + 0.12)) {

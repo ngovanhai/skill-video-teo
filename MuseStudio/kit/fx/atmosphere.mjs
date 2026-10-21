@@ -81,7 +81,7 @@ const fog = { id: "fog", cat: "atmosphere", label: "Sương mù trôi ngang",
     let html = "", js = `      FADE(q("#${id}"), ${t}, 1.2);\n`;
     for (let i = 0; i < 5; i++) {
       const w = r3(900 + R() * 700), top = r3(80 + i * 160 + R() * 60);
-      html += `<div class="${id}-f" style="position:absolute;left:${r3(R() * 1400 - 400)}px;top:${top}px;width:${w}px;height:${r3(w * 0.35)}px;border-radius:50%;background:${o.color || "rgba(255,255,255,0.55)"};filter:blur(50px);"></div>`;
+      html += `<div class="${id}-f" style="position:absolute;left:${r3(R() * 1400 - 400)}px;top:${top}px;width:${w}px;height:${r3(w * 0.35)}px;background:radial-gradient(ellipse closest-side, ${o.color || "rgba(255,255,255,0.55)"} 0%, transparent 100%);"></div>`;
       js += `      tl.fromTo(qa(".${id}-f")[${i}], { x: 0 }, { x: ${r3((i % 2 ? -1 : 1) * (240 + R() * 260))}, duration: ${r3(end - t)}, ease: "none", immediateRender: false }, ${t});\n`;
     }
     return { [o.layer || "over"]: layer(id, html, `opacity:0;${o.opacity != null ? `filter:opacity(${o.opacity});` : ""}`), js };
