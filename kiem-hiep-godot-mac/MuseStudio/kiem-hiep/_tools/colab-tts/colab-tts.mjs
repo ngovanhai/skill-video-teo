@@ -16,7 +16,8 @@ const COLAB = process.env.COLAB_CLI || "colab";
 const VOICES = join(process.env.VIENEU_HOME || join(homedir(), ".vieneu"), "user_voices_v3_turbo.json");
 const S = "tts", BATCH = 60, LOCK = join(HERE, ".lock"), WAIT = join(HERE, ".wait");
 const env = { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8", MSYS_NO_PATHCONV: "1" };
-const die = (m) => { console.error("colab-tts: " + m); release(); process.exit(1); };
+let tmp = null, locked = false; // locked: đã giữ phiên → die phải dọn phiên + thư mục tạm như lúc xong
+const die = (m) => { console.error("colab-tts: " + m); if (locked) finish(); release(); process.exit(1); };
 const sleep = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
 function colab(args, { quiet = false, timeout } = {}) {
@@ -43,6 +44,12 @@ function acquire() {
   }
 }
 const waiting = () => (existsSync(WAIT) ? readdirSync(WAIT).filter((f) => Date.now() - statSync(join(WAIT, f)).mtimeMs < 6 * 3600e3).length : 0);
+// tắt phiên (GPU tốn hạn mức) trừ khi COLAB_TTS_KEEP=1 hoặc còn job chờ dùng tiếp; dùng cả khi xong lẫn khi die
+function finish() {
+  if (process.env.COLAB_TTS_KEEP !== "1" && !waiting()) { console.log("colab-tts: tắt phiên Colab"); colab(["stop", "-s", S], { quiet: true, timeout: 120e3 }); }
+  else console.log("colab-tts: giữ phiên (COLAB_TTS_KEEP=1 hoặc còn job chờ)");
+  if (tmp) rmSync(tmp, { recursive: true, force: true });
+}
 function release() { if (existsSync(join(LOCK, "pid")) && readFileSync(join(LOCK, "pid"), "utf8") === String(process.pid)) rmSync(LOCK, { recursive: true, force: true }); }
 
 if (process.argv[2] === "--stop") { colab(["stop", "-s", S]); process.exit(0); }
@@ -55,8 +62,9 @@ if (!existsSync(COLAB) && spawnSync(COLAB, ["--help"], { stdio: "ignore" }).stat
 if (!existsSync(VOICES)) die("không thấy giọng đã lưu: " + VOICES);
 
 acquire();
+locked = true;
 process.on("exit", release);
-const tmp = join(tmpdir(), "colab-tts-" + process.pid);
+tmp = join(tmpdir(), "colab-tts-" + process.pid);
 mkdirSync(tmp, { recursive: true });
 const probe = join(tmp, "probe.py");
 writeFileSync(probe, 'import os\nprint("READY" if os.path.exists("/content/.vieneu_ready") else "NEW")\n');
@@ -115,6 +123,4 @@ for (let b = 0; b < todo.length; b += BATCH) {
   }
 }
 console.log(`colab-tts: xong ${todo.length} câu trong ${Math.round((Date.now() - t0) / 1000)}s`);
-if (process.env.COLAB_TTS_KEEP !== "1" && !waiting()) colab(["stop", "-s", S], { quiet: true });
-else console.log("colab-tts: còn job chờ — giữ phiên");
-rmSync(tmp, { recursive: true, force: true });
+finish();

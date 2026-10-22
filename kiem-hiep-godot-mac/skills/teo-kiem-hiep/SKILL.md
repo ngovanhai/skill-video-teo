@@ -67,7 +67,7 @@ Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dự
 
 - Mỗi tập có project Godot riêng `<tap>/godot/` (Godot 4.7.2: `__GODOT__`). Tập tự thiết kế khung dựng, bộ bút, máy quay, nhân vật. **Không chép engine của tập trước** mà chỉ đọc để học. Muốn dùng lại một ý thì viết lại theo kiểu của tập mới.
 - Kịch bản `godot/loi.txt`: mỗi câu đọc là một dòng `[id] lời`. Mọi dòng khác (ví dụ `## kNN ghi chú`) để GDScript của tập tự đọc.
-- Giọng đọc: `bash kiem-hiep/_tools/slot.sh "<tập> giọng" node SKILL/scripts/gd-voice.mjs <tap>` ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
+- Giọng đọc: `node SKILL/scripts/gd-voice.mjs <tap>` (đọc trên Colab, không qua slot.sh; lùi về máy nhà thì tự xin suất) ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
 - Mặt: `node SKILL/scripts/gd-mat.mjs <tap>` dùng `<tap>/ve.mjs` riêng của tập để ra `godot/mat/<nv>/<biểu cảm>.svg`. Thân người tập tự vẽ bằng GDScript.
 - Hợp đồng với gd-render (đầu file `scripts/gd-render.mjs`):
   - cửa sổ 1920×1080, stretch `canvas_items`;

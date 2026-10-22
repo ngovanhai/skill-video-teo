@@ -39,12 +39,18 @@ if (argv.includes("--dry")) process.exit(0);
 
 mkdirSync(vdir, { recursive: true });
 if (todo.length) {
-  if (!existsSync(PY_CPU)) die(`không thấy VieNeu: ${PY_CPU}`);
   for (const l of todo) if (existsSync(l.out)) unlinkSync(l.out); // tts.py bỏ qua file đã có
   const job = join(vdir, "tts-job.json");
   writeFileSync(job, JSON.stringify({ voice, temperature: 0.8, lines: todo.map(({ id, text, out }) => ({ id, text, out })) }, null, 1));
   const env = { ...process.env, PYTHONIOENCODING: "utf-8", PYTHONUTF8: "1" };
-  const run = (py, e) => spawnSync(py, [join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e }).status;
+  // Đọc trên Colab không cần suất máy, nên gọi gd-voice thẳng (không qua slot.sh); lùi về máy nhà thì tự xin suất ở đây.
+  // Vẫn được gọi qua slot.sh (lệnh cũ): khi đó đã có suất, không xin thêm.
+  const SLOT = "__MUSE_ROOT__/kiem-hiep/_tools/slot.sh";
+  const anc = spawnSync("powershell", ["-NoProfile", "-c", `$p=${process.ppid}; for($i=0;$i -lt 5 -and $p;$i++){ $x=Get-CimInstance Win32_Process -Filter "ProcessId=$p"; $x.CommandLine; $p=$x.ParentProcessId }`], { encoding: "utf8" }).stdout || "";
+  const who = anc.includes("slot.sh") ? null : dir.split(/[\\/]/).slice(-3).join("/") + " giọng (máy nhà)";
+  const run = (py, e) => (who
+    ? spawnSync("bash", [SLOT, who, py, join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })
+    : spawnSync(py, [join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })).status;
   // Mặc định đọc trên Google Colab (GPU T4, colab CLI); lỗi hoặc --local thì đọc ở máy nhà (GPU DirectML rồi CPU).
   let st = -1;
   if (!argv.includes("--local") && existsSync(COLAB_TTS)) {
@@ -54,7 +60,11 @@ if (todo.length) {
   const gpu = st !== 0 && !argv.includes("--no-gpu") && !existsSync(join(KIT, "gpu-off")) && existsSync(PY_DML);
   if (gpu) st = run(PY_DML, { ...env, VIENEU_ORT_PROVIDERS: "DmlExecutionProvider", VIENEU_ORT_GPU_PARTS: "pre,dec,codec" });
   if (gpu && st !== 0) console.log("gd-voice: ! GPU lỗi (exit " + st + ") — chạy lại bằng CPU");
-  if (st !== 0) st = run(PY_CPU, env);
+  if (st !== 0) {
+    // VieNeu máy nhà chỉ cần khi Colab không đọc được (máy cài --skip-vieneu vẫn dùng Colab bình thường)
+    if (!existsSync(PY_CPU)) die(`không thấy VieNeu máy nhà (cần khi Colab lỗi hoặc --local): ${PY_CPU}`);
+    st = run(PY_CPU, env);
+  }
   if (st !== 0) die("tts.py lỗi (exit " + st + ")");
 }
 function wavDur(f) {

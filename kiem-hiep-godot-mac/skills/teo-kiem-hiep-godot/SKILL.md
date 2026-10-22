@@ -24,7 +24,7 @@ Phần HyperFrames trong teo-kiem-hiep (tap.json beat, build.mjs, plan.mjs, fx l
 | lệnh | việc |
 |---|---|
 | `node SKILL/scripts/new-tap.mjs <tap> --ten "<khung>"` | Tạo `<tap>/godot/` chỉ gồm hạ tầng: project.godot, main.gd (hợp đồng + xếp giờ theo giọng + phát giọng/nhạc/sfx), phim.gd chỗ giữ, loi.txt/story.json/cast.json mẫu, sfx. Không chép font. Không ghi đè. |
-| `LOCK "<tap> giọng" node KH/scripts/gd-voice.mjs <tap>` | `loi.txt` → `godot/voice/<id>.wav` + `voice.json` (độ dài thật). Có cache. `--dry` để ước thời lượng. Mặc định đọc trên Google Colab GPU T4 (`kiem-hiep/_tools/colab-tts/colab-tts.mjs`: tự tạo phiên, cài VieNeu, chờ nhau qua `.lock`, xong tự tắt phiên; đăng nhập colab một lần bằng `colab sessions`). Colab lỗi thì tự lùi về máy nhà; `--local` để đọc ở nhà luôn. |
+| `node KH/scripts/gd-voice.mjs <tap>` (không qua LOCK) | `loi.txt` → `godot/voice/<id>.wav` + `voice.json` (độ dài thật). Có cache. `--dry` để ước thời lượng. Mặc định đọc trên Google Colab GPU T4 (`kiem-hiep/_tools/colab-tts/colab-tts.mjs`: tự tạo phiên, cài VieNeu, chờ nhau qua `.lock`, xong tự tắt phiên; đăng nhập colab một lần bằng `colab sessions`). Colab lỗi thì tự lùi về máy nhà và **tự xin suất LOCK** lúc đó; `--local` để đọc ở nhà luôn. Không bọc bằng LOCK: chờ hàng Colab mà giữ suất thì chặn render. Đừng sửa `slot.sh` khi đang có job chạy (bash đọc script theo byte, sửa giữa chừng làm hỏng job đang chờ). |
 | `node KH/scripts/gd-mat.mjs <tap>` | Mặt từng nhân vật bằng `<tap>/ve.mjs` → `godot/mat/<nv>/<biểu cảm>.svg`, đọc `godot/cast.json`. |
 | `node SKILL/scripts/gd-chieu.mjs <tap> <id chiêu> [id …]` | Đưa chiêu đã làm xong bên `chuong-2d` (có trong `moves.json`) vào tập: chép engine + chiêu + nhân vật vào `godot/chuong/` (đổi đường `res://`), cầu nối `chuong/chieu.gd`, sfx thiếu; ghi `story.chieu`; đổi project sang renderer `forward_plus` (chiêu làm trên Forward+, gl_compatibility lệch màu). Sửa chiêu bên chuong-2d xong thì chạy lại. |
 | `node SKILL/scripts/gd-check.mjs <tap>` | Soát: id, chữ "Chương", hook/Tèo/CTA, giọng khớp chữ, parse Godot, DUR ≥ 20:00, phim.gd đã dựng, story.json khác 5 tập trước, cast có trong sổ. `--no-godot` bỏ bước Godot. |
@@ -33,7 +33,7 @@ Phần HyperFrames trong teo-kiem-hiep (tap.json beat, build.mjs, plan.mjs, fx l
 | `node SKILL/scripts/pack.mjs <tap>` | `youtube/`: mp4, thumbnail.png 1280×720, tieu-de, mo-ta (seo.mo_ta + seo.chan), tags. Không có chân mô tả cố định. |
 | `node SKILL/scripts/gd-check.mjs <tap> --log` | Sau bản cuối: ghi story.json vào `SKILL/data/history.json`. |
 
-Việc nặng (giọng, render) luôn chạy qua `LOCK`: máy chỉ có 2 suất. Lệnh dài chạy nền.
+Việc nặng ở máy nhà (render, preview, check chiêu) luôn chạy qua `LOCK`; giọng đọc trên Colab thì không: máy chỉ có 2 suất. Lệnh dài chạy nền.
 
 ## Quy trình
 
@@ -48,7 +48,7 @@ Việc nặng (giọng, render) luôn chạy qua `LOCK`: máy chỉ có 2 suất
    - CTA (đăng ký / bình luận) hai lần: một ở 25–75%, một ở cuối, nói bằng giọng của khung.
    - Chữ hiện trên hình (thẻ, bảng, chú thích) phải có câu đọc đi kèm.
    - Điền `godot/story.json`: khung, teo_role, but (bút / kiểu nét), may_quay, palette, nhac, thumb, mat, font; `doan` ghi kiểu dựng của từng đoạn (mỗi đoạn một kiểu: tranh, bản đồ, sân khấu bóng, sổ tay, bàn cờ…); `seo` (title, mo_ta, `chan` = chân mô tả viết theo giọng của khung, mời bình luận/đăng ký theo kiểu của tập, tags).
-4. **Giọng:** `gd-voice` qua `LOCK`, giọng Lóng. Sau đó `gd-check --no-godot`: biết tổng thời lượng thật. Dưới 20:00 thì viết thêm lời (thêm chủ đề phụ hoặc chi tiết), không kéo dài khoảng lặng.
+4. **Giọng:** `gd-voice` (chạy thẳng, không qua `LOCK`; chạy nền nếu hàng Colab dài), giọng Lóng. Sau đó `gd-check --no-godot`: biết tổng thời lượng thật. Dưới 20:00 thì viết thêm lời (thêm chủ đề phụ hoặc chi tiết), không kéo dài khoảng lặng.
 5. **Nhân vật.**
    - Look lấy từ skill `nhan-vat-chibi`: chưa có thì tạo bằng skill đó và soi sheet. `godot/cast.json`: `{"tieu": {"char": "tieu-phong", "name": "Tiêu Phong"}}`; khoá khác cạnh `char` sẽ ghi đè.
    - Mặt riêng của tập: viết `<tap>/ve.mjs` (mắt, mũi, miệng theo bút của tập, khác tập trước), rồi `gd-mat`.
@@ -86,7 +86,7 @@ Mỗi short là **một project Godot dọc riêng** ở `<tap>/shorts/<NN-ten>/
 | lệnh | việc |
 |---|---|
 | `node SKILL/scripts/new-short.mjs <tap> <NN-ten> --tu kA-01..kB-05 [--tu …] [--nhac <giây>]` | Tạo `S/godot/` dọc 1080×1920. Chép font/, mat/, chars/, chuong/, sfx/, các file vẽ `.gd` của tập (trừ main/phim/thumb) và cast.json. Câu `--tu` vào `loi.txt` (đoạn `s02 than`) kèm wav và voice.json, nên không phải đọc lại. Có sẵn chỗ viết hook `s01` và kết `s03`. Thêm `story.json` (kieu, phu_de, seo), `phude.gd` (phụ đề 2–4 chữ, y≈1490) và `nhac.ogg` cắt 70 s từ nhạc tập (mặc định 10 s trước câu đầu). |
-| `LOCK "<tap> sNN giọng" node KH/scripts/gd-voice.mjs S` | Chỉ đọc câu mới hoặc câu đã sửa chữ. |
+| `node KH/scripts/gd-voice.mjs S` (không qua LOCK) | Chỉ đọc câu mới hoặc câu đã sửa chữ. |
 | `node SKILL/scripts/gd-check.mjs S` | Chế độ short (tự nhận theo khung dọc). **Lỗi:** quá 60 s, thiếu "đăng ký" trong 30% cuối, kieu trống hoặc giống short khác của tập ≥60%, title quá 60 ký tự hoặc không kết "\| Tèo Kể", thiếu mo_ta. **Cảnh báo:** hook > 12 chữ, hook dài > 12 s, thiếu "Tèo Kể", dưới 20 s. Không dùng `--log`. |
 | `LOCK "<tap> sNN xem" node KH/scripts/gd-render.mjs S --preview --sheet 2` | Preview 540×960 + `S/work/sheet-preview.jpg`. |
 | `LOCK "<tap> sNN render" node KH/scripts/gd-render.mjs S` | `S/renders/final.mp4` 1080×1920. Short ngắn, không cần `--par`. |
@@ -101,7 +101,7 @@ Mỗi short là **một project Godot dọc riêng** ở `<tap>/shorts/<NN-ten>/
    - Câu nối hoặc giới thiệu lại tên người, tên môn võ nếu đoạn cắt giữa chừng. Viết câu mới thay câu tập bắt đầu bằng "Còn…", "Vì thế…" trơ trọi.
    - `[s03-01]` kết một câu, có "đăng ký" và "Tèo Kể".
    - Điền `story.json`: kieu, seo.title (≤ 60, kết "| Tèo Kể"), mo_ta, tags. Sửa `phu_de` (font, cỡ, màu) theo bút của tập nếu cần.
-4. Chạy `gd-voice` qua LOCK, rồi `gd-check S`.
+4. Chạy `gd-voice` (không qua LOCK), rồi `gd-check S`.
 5. **Viết `S/godot/phim.gd` dọc**, dùng các hàm vẽ của tập (mẫu cũ `_lab/mau-godot-tap-01`: `But`, `Canh`, `Nguoi`). Lấy giờ từng câu ở `main.lines` (id → t0, dur) để hình khớp lời.
    - Vùng hình y 190–1350. Dưới y 1350 để trống cho phụ đề và nút của Shorts; mép phải cũng để thoáng.
    - **Trong 1–2 s đầu phải có hình đắt nhất, khung không được trống.** Hook có cú chốt, ví dụ triện đóng xuống.
