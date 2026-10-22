@@ -1,4 +1,4 @@
-// node run-timeout.mjs <giây> <lệnh> [tham số…]: chạy lệnh, quá giờ thì taskkill /T cả cây tiến trình và thoát mã 124.
+// node run-timeout.mjs <giây> <lệnh> [tham số…]: chạy lệnh, quá giờ thì giết cả nhóm tiến trình (kill -pid) và thoát mã 124.
 // colab-tts.mjs gọi qua spawnSync: timeout của spawnSync chỉ giết colab.exe (trình khởi động), python con vẫn treo.
 import { spawn, spawnSync } from "node:child_process";
 const [sec, cmd, ...args] = process.argv.slice(2);
