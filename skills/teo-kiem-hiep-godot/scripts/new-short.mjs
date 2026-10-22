@@ -15,7 +15,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const SKILL = dirname(dirname(fileURLToPath(import.meta.url)));
-const FFMPEG = "C:/Users/Administrator/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe";
+const FFMPEG = "__FFMPEG__";
 const args = process.argv.slice(2);
 const die = (m) => { console.error("new-short: " + m); process.exit(1); };
 const tus = [];

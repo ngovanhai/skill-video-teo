@@ -4,7 +4,7 @@
 # ENGINE=<thư mục dự án> để chạy trên bản engine khác (vd thư mục tập phim); mặc định engine của skill.
 set -e
 E="${ENGINE:-$(cd "$(dirname "$0")/../engine" && pwd)}"; cd "$E"; mkdir -p work
-G=${GODOT:-/e/tool/Godot/Godot_v4.7.2-stable_win64_console.exe}
+G=${GODOT:-__GODOT__}
 ID=$1; N=${2:-240}; shift 2 2>/dev/null || shift $#
 [ -f "canh/$ID.gd" ] || { echo "không có canh/$ID.gd"; exit 1; }
 ERR=$("$G" --path . --headless --check-only --script "res://canh/$ID.gd" 2>&1 | grep -iE "error" || true)

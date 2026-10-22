@@ -11,7 +11,7 @@ description: >
 # Chưởng 2D: mỗi chiêu một file, chung engine, theo rule chuẩn
 
 `SKILL = thư mục chứa file này` · Engine (dự án Godot): `SKILL/engine/` · Sổ chiêu: `SKILL/data/moves.json`
-Godot: `E:/tool/Godot/Godot_v4.7.2-stable_win64_console.exe` · Nhân vật: `engine/tools/export-chars.mjs` (rig2 của skill teo-kiem-hiep).
+Godot: `__GODOT__` · Nhân vật: `engine/tools/export-chars.mjs` (rig2 của skill teo-kiem-hiep).
 
 ## Quy trình (làm đủ, không bỏ bước)
 

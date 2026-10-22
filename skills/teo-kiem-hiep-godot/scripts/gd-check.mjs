@@ -13,7 +13,7 @@ import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 
 const SKILL = dirname(dirname(fileURLToPath(import.meta.url)));
-const GODOT = "E:/tool/Godot/Godot_v4.7.2-stable_win64_console.exe";
+const GODOT = "__GODOT__";
 const HIST = join(SKILL, "data/history.json");
 const CHARS = join(homedir(), ".claude/skills/nhan-vat-chibi/data/chars.json");
 const args = process.argv.slice(2);

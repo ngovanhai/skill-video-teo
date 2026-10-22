@@ -65,7 +65,7 @@ Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo �
 
 Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dựng riêng, không template chung, hiệu ứng làm bằng Godot 2D** (không dùng HyperFrames). Tập mẫu: `kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot/`. Các phần build.mjs / plan.mjs / beat / fx HyperFrames ở dưới chỉ còn để tham khảo tập cũ.
 
-- Mỗi tập có project Godot riêng `<tap>/godot/` (Godot 4.7.2: `E:/tool/Godot/Godot_v4.7.2-stable_win64_console.exe`). Tập tự thiết kế khung dựng, bộ bút, máy quay, nhân vật. **Không chép engine của tập trước** mà chỉ đọc để học. Muốn dùng lại một ý thì viết lại theo kiểu của tập mới.
+- Mỗi tập có project Godot riêng `<tap>/godot/` (Godot 4.7.2: `__GODOT__`). Tập tự thiết kế khung dựng, bộ bút, máy quay, nhân vật. **Không chép engine của tập trước** mà chỉ đọc để học. Muốn dùng lại một ý thì viết lại theo kiểu của tập mới.
 - Kịch bản `godot/loi.txt`: mỗi câu đọc là một dòng `[id] lời`. Mọi dòng khác (ví dụ `## kNN ghi chú`) để GDScript của tập tự đọc.
 - Giọng đọc: `bash kiem-hiep/_tools/slot.sh "<tập> giọng" node SKILL/scripts/gd-voice.mjs <tap>` ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
 - Mặt: `node SKILL/scripts/gd-mat.mjs <tap>` dùng `<tap>/ve.mjs` riêng của tập để ra `godot/mat/<nv>/<biểu cảm>.svg`. Thân người tập tự vẽ bằng GDScript.

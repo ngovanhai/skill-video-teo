@@ -13,8 +13,8 @@ import { existsSync, mkdirSync, rmSync, statSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { spawnSync, spawn } from "node:child_process";
 
-const GODOT = "E:/tool/Godot/Godot_v4.7.2-stable_win64_console.exe";
-const FFMPEG = "C:/Users/Administrator/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe";
+const GODOT = "__GODOT__";
+const FFMPEG = "__FFMPEG__";
 const argv = process.argv.slice(2);
 const opt = (k, d) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : d; };
 const has = (k) => argv.includes("--" + k);

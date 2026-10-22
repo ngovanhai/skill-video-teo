@@ -3,7 +3,7 @@
 # Dùng: check.sh <id> [số khung=345] [8 mốc giây…]   -> renders/<id>.mp4, work/sheet_<id>.jpg
 set -e
 E="$(cd "$(dirname "$0")/../engine" && pwd)"; cd "$E"
-G=${GODOT:-/e/tool/Godot/Godot_v4.7.2-stable_win64_console.exe}
+G=${GODOT:-__GODOT__}
 ID=$1; N=${2:-345}; shift 2 2>/dev/null || shift $#
 [ -f "moves/$ID.gd" ] || { echo "không có moves/$ID.gd"; exit 1; }
 ERR=$("$G" --path . --headless --check-only --script "res://moves/$ID.gd" 2>&1 | grep -iE "error" || true)

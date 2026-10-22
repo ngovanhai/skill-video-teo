@@ -3,7 +3,7 @@
 Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo, phụ đề, thumbnail và gói upload.
 - `teo-kiem-hiep`: tập kiếm hiệp hoạt hình (HyperFrames + GSAP), đọc bằng giọng VieNeu "Lóng".
-- `teo-kiem-hiep-godot`: tập kiếm hiệp dựng toàn bộ bằng Godot 2D (cần Godot 4.7, sửa đường dẫn Godot/ffmpeg trong `SKILL.md` và `scripts/` nếu máy khác).
+- `teo-kiem-hiep-godot`: tập kiếm hiệp dựng toàn bộ bằng Godot 2D (Godot 4.7.2 do `install.mjs` tự tải; tập mẫu nằm ở `MuseStudio/kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot`, không kèm voice/nhạc).
 - `chuong-2d`: tạo chiêu/chưởng Godot 2D (engine nằm trong skill), dùng cho tập kiếm hiệp Godot.
 - `nhan-vat-chibi`: tạo nhân vật chibi, lưu look vào sổ chung `chars.json`.
 - `thao-tac-chibi`: sổ động tác chibi (rig v2) + vật phẩm (kiếm/ô/đèn/hồ lô).
@@ -43,9 +43,11 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
    - `--vieneu-dir <thư mục>`: nơi cài VieNeu-TTS. Mặc định là thư mục `VieNeu-TTS` nằm cạnh MuseRoot.
    - `--gpu`: dùng khi máy Windows có card NVIDIA, đọc giọng nhanh hơn khoảng 25 lần. Mac không cần cờ này.
    - `--skip-vieneu`: dùng khi máy đã có VieNeu-TTS.
-3. Mở terminal **mới**, `cd` vào MuseRoot, chạy `claude` rồi gõ `/video-teo` hoặc `/teo-kiem-hiep`.
+   - `--godot-dir <thư mục>`: nơi cài Godot 4.7.2 (script tự tải bản chính thức từ GitHub, kiểm tra SHA512). Mặc định là thư mục `Godot` nằm cạnh MuseRoot.
+   - `--godot <file>`: dùng file chạy Godot 4.7.2 có sẵn thay vì tải. `--skip-godot`: bỏ qua Godot (khi không làm tập Godot).
+3. Mở terminal **mới**, `cd` vào MuseRoot, chạy `claude` rồi gõ `/video-teo`, `/teo-kiem-hiep` hoặc `/teo-kiem-hiep-godot`.
 
-Script cài sẽ thay `__MUSE_ROOT__` / `__VIENEU_DIR__` / `__WHISPER_PY__` trong skill và kit bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `VIENEU_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
+Script cài sẽ thay `__MUSE_ROOT__` / `__VIENEU_DIR__` / `__WHISPER_PY__` / `__GODOT__` / `__FFMPEG__` trong skill, kit và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `VIENEU_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
 
 ## Lưu ý
 

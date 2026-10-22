@@ -1,0 +1,209 @@
+# Tập 01 (dựng Godot, 2026-10-21) — CUỘN TRANH MỰC: một bộ chưởng, hai người
+# Khung: Tèo là thợ vẽ tranh cuộn. Cả video là MỘT cuộn giấy dài, máy quay trôi dọc cuộn trong lúc Tèo vẽ dần câu chuyện.
+# Bên phải cuộn là Bắc Tống (Tiêu Phong), bên trái là Nam Tống (Quách Tĩnh); hai nửa gặp nhau ở giữa thành trận trong tranh, rồi tách ra ở hai cửa ải.
+# Cú pháp: "## kNN tên | ghi chú dựng" mở một khung tranh; "[id] lời" là một câu Tèo đọc (gd-voice đọc mọi dòng [id]).
+
+## k01 giot-muc | giấy trắng, một giọt mực rơi, loang thành rồng, rồng tách đôi lao về hai đầu cuộn, hai bàn tay chưởng ra
+[k01-01] Một giọt mực rơi xuống tờ giấy trắng. Nó loang ra, uốn thành thân rồng, rồi tách làm hai con rồng chạy về hai phía.
+[k01-02] Hai con rồng ấy là cùng một bộ chưởng, Hàng Long Thập Bát Chưởng, bộ chưởng cương mãnh bậc nhất trong truyện của Kim Dung.
+[k01-03] Đầu bên này cuộn tranh, người đánh nó là Tiêu Phong, bang chủ Cái Bang, một người Khiết Đan lớn lên giữa đất Tống.
+[k01-04] Đầu bên kia, cách hơn một trăm năm, người đánh nó là Quách Tĩnh, một người Tống lớn lên giữa thảo nguyên Mông Cổ.
+[k01-05] Hai người chưa từng gặp nhau. Nhưng nếu đặt họ đứng đối mặt trên cùng một tờ giấy, thì con rồng của ai sẽ gầm to hơn?
+[k01-06] Và câu hỏi khó hơn nữa: vì sao cả hai người đều kết thúc đời mình ở một cửa ải, đứng chắn giữa hai đạo quân?
+
+## k02 ban-ve | Tèo hiện ra sau bàn vẽ, nghiên mực, bút treo; chào khán giả; cuộn giấy dài chạy ra khỏi khung
+[k02-01] Chào các bạn, Tèo đây! Hôm nay Tèo không ngồi kể suông đâu, Tèo trải hẳn một cuộn giấy thật dài ra để vẽ cho các bạn xem.
+[k02-02] Nghề của Tèo trong video này là thợ vẽ tranh cuộn. Người ta đặt Tèo vẽ một bức tranh có hai người đàn ông cùng đánh một bộ chưởng.
+[k02-03] Tèo nhận lời, rồi mới thấy khó. Vì hai người này sống cách nhau cả trăm năm, mỗi người đứng ở một đầu của lịch sử.
+[k02-04] Thế nên Tèo vẽ thế này: nửa bên phải cuộn tranh dành cho Tiêu Phong, nửa bên trái dành cho Quách Tĩnh.
+[k02-05] Mình sẽ đi dọc cuộn tranh từ thuở nhỏ của hai người, qua những người thầy, những ngày bị thử thách, cho tới lúc hai con rồng gặp nhau ở chính giữa.
+[k02-06] Các bạn cứ ngồi xuống, pha ấm trà, để Tèo mài mực đã. Mực phải đặc thì nét rồng mới đứng được.
+
+## k03 dong-song | một dòng sông mực chảy ngang cuộn làm trục thời gian; mốc năm hiện như dấu đỏ; bốn vương triều thành bốn vệt màu
+[k03-01] Trước khi vẽ người, Tèo vẽ một dòng sông. Dòng sông này là thời gian, chảy từ phải sang trái theo cách người xưa đọc tranh cuộn.
+[k03-02] Ở thượng nguồn là thời Bắc Tống. Phía bắc nước Tống lúc ấy có nước Liêu của người Khiết Đan, hai bên đánh nhau rồi giảng hoà, rồi lại nghi kỵ nhau suốt nhiều đời.
+[k03-03] Câu chuyện của Tiêu Phong nằm ở khúc sông này, trong bộ Thiên Long Bát Bộ, vào khoảng cuối thế kỷ mười một.
+[k03-04] Trôi xuống hạ nguồn hơn một trăm năm, nước Tống đã mất nửa phía bắc vào tay nước Kim, phải dời về phương nam, sử gọi là Nam Tống.
+[k03-05] Rồi trên thảo nguyên xa hơn nữa, một thủ lĩnh tên Thiết Mộc Chân đang gom các bộ lạc lại, về sau thành Thành Cát Tư Hãn.
+[k03-06] Câu chuyện của Quách Tĩnh nằm ở khúc sông này, trong bộ Anh Hùng Xạ Điêu và tiếp sang Thần Điêu Hiệp Lữ.
+[k03-07] Các bạn để ý nhé: cả hai khúc sông đều có một đường biên giới chạy ngang. Và cả hai người đều sinh ra ở phía bên kia của đường biên ấy so với nơi họ lớn lên.
+[k03-08] Biên giới trong tranh của Tèo là một nét mực mảnh thôi, nhưng trong truyện, nó là thứ đã quyết định ai là bạn, ai là thù, và ai phải sống cả đời trong nghi ngờ.
+
+## k04 tieu-thuo-be | Nhạn Môn Quan đêm, bóng người bế đứa bé; nhà nông Kiều Tam Hoè; chùa Thiếu Lâm, Huyền Khổ dạy quyền
+[k04-01] Tèo chấm mực vẽ nửa bên phải trước. Một cửa ải đá trên núi cao, tên là Nhạn Môn Quan, nơi đàn nhạn bay qua mỗi mùa.
+[k04-02] Năm Tiêu Phong mới khoảng một tuổi, cha mẹ cậu là người Khiết Đan đi qua cửa ải này thì bị một nhóm cao thủ Trung Nguyên phục kích, vì họ tin lầm một tin đồn.
+[k04-03] Người cha là Tiêu Viễn Sơn. Sau trận ấy, đứa bé được bế đi, và được gửi cho một đôi vợ chồng nông dân người Tống nuôi như con đẻ.
+[k04-04] Đôi vợ chồng ấy họ Kiều, người cha nuôi tên là Kiều Tam Hoè. Thế nên suốt nửa đời, cậu bé mang tên Kiều Phong mà không hề biết mình là ai.
+[k04-05] Lớn lên một chút, cậu được nhà sư Huyền Khổ của chùa Thiếu Lâm dạy võ. Những bài quyền đầu tiên của cậu là quyền của Thiếu Lâm, gốc rễ của võ học Trung Nguyên.
+[k04-06] Các bạn thấy cái trớ trêu chưa? Một đứa trẻ Khiết Đan, học võ ở ngôi chùa đứng đầu võ lâm nước Tống, và thật lòng coi đất Tống là quê hương.
+[k04-07] Tèo tô một vệt mực xanh nhỏ trên ngực cậu bé. Các bạn nhớ vệt mực này nhé, sau này nó sẽ quay lại và đổi cả cuộc đời anh.
+
+## k05 quach-thao-nguyen | nửa trái: lều tròn, cỏ gió, mẹ Lý Bình, cậu bé chạy giữa đàn ngựa; Thiết Mộc Chân, Đà Lôi, Hoa Tranh
+[k05-01] Giờ Tèo lăn cuộn tranh sang nửa bên trái. Ở đây không có núi đá, chỉ có cỏ, gió và những chiếc lều tròn của người Mông Cổ.
+[k05-02] Cha của Quách Tĩnh là Quách Khiếu Thiên, một người Tống nghĩa khí. Ông mất từ trước khi con trai chào đời.
+[k05-03] Mẹ cậu, bà Lý Bình, mang thai chạy loạn lên tận thảo nguyên phương bắc, rồi sinh con và nuôi con giữa những người du mục.
+[k05-04] Cậu bé Quách Tĩnh lớn lên ăn sữa ngựa, nói tiếng Mông Cổ, chạy chơi cùng đám trẻ chăn cừu. Cậu chậm nói, chậm hiểu, nhưng thật thà đến mức ai cũng tin.
+[k05-05] Chính cái thật thà ấy khiến Thiết Mộc Chân, người sau này là Thành Cát Tư Hãn, quý cậu và che chở cho hai mẹ con.
+[k05-06] Cậu kết nghĩa anh em với Đà Lôi, con trai của Thiết Mộc Chân, và còn được hứa gả nàng công chúa Hoa Tranh.
+[k05-07] Các bạn thấy hai nửa tranh soi vào nhau chưa? Bên phải, một đứa trẻ Khiết Đan lớn lên như người Tống. Bên trái, một đứa trẻ Tống lớn lên như người Mông Cổ.
+[k05-08] Mà hai đứa trẻ ấy đều không chọn nơi mình sinh ra. Cái chúng chọn được, như các bạn sẽ thấy, là đứng về phía nào khi người lớn bắt đầu đánh nhau.
+
+## k06 mui-ten | Triết Biệt dạy bắn cung; một mũi tên bay lên trúng hai chim điêu; Giang Nam Thất Quái; Mã Ngọc dạy thở trên vách núi
+[k06-01] Người thầy đầu tiên dạy Quách Tĩnh một môn thật sự có ích là Triết Biệt, viên tướng bắn cung giỏi bậc nhất của Thiết Mộc Chân.
+[k06-02] Cậu bé học chậm, nhưng học đến đâu chắc đến đấy. Kéo cung nghìn lần, tay không run, mắt không chớp.
+[k06-03] Rồi có một ngày, hai con chim điêu lớn sà xuống tranh mồi. Quách Tĩnh giương cung, chỉ một mũi tên mà hạ cả hai con.
+[k06-04] Cái tên Anh Hùng Xạ Điêu, nghĩa là anh hùng bắn chim điêu, bắt đầu từ chính mũi tên ấy.
+[k06-05] Cùng lúc đó, bảy người thầy từ phương nam tìm lên thảo nguyên. Họ là Giang Nam Thất Quái, bảy quái hiệp đất Giang Nam, đến để dạy võ cho con trai Quách Khiếu Thiên.
+[k06-06] Bảy thầy dạy nhiệt tình, nhưng trò học mãi không vào. Có lúc cả bảy người đều muốn bỏ cuộc vì cậu quá chậm.
+[k06-07] Thứ thay đổi tất cả lại đến lặng lẽ. Đạo sĩ Mã Ngọc của phái Toàn Chân âm thầm lên vách núi mỗi đêm, dạy cậu cách thở, cách giữ hơi, tức là nội công nền tảng.
+[k06-08] Tèo ghi chú nhỏ ở góc tranh: Quách Tĩnh không có cái khởi đầu sáng chói. Cái anh có là một cái nền nội công được đắp từ từ, rất bền, từ khi còn là đứa trẻ.
+[k06-09] Bảy người thầy và một đạo sĩ cùng góp sức, mà Quách Tĩnh vẫn chưa có bộ chưởng nào làm nên tên tuổi. Bộ chưởng ấy đang đợi anh bên một bếp lửa.
+
+## k07 cai-bang | Uông Kiếm Thông trao gậy trúc xanh cho Kiều Phong; cờ Cái Bang; câu "Bắc Kiều Phong, Nam Mộ Dung" viết bằng thư pháp
+[k07-01] Quay lại nửa bên phải. Chàng trai Kiều Phong lớn lên, gia nhập Cái Bang, cái bang hội đông người nhất thiên hạ, toàn những người áo vá đi khắp các ngả đường.
+[k07-02] Bang chủ lúc đó là Uông Kiếm Thông. Ông là người dạy Kiều Phong Hàng Long Thập Bát Chưởng, và sau nhiều lần thử thách, trao lại cho anh cây gậy trúc xanh của bang chủ.
+[k07-03] Cây gậy ấy không phải vũ khí. Nó là lời hứa: người cầm nó phải lo cho cả bang, cho những người ăn xin, và cho đất nước của họ.
+[k07-04] Kiều Phong làm bang chủ giỏi đến mức giang hồ có một câu cửa miệng: phương bắc có Kiều Phong, phương nam có Mộ Dung.
+[k07-05] Nghĩa là hai cái tên lừng lẫy nhất võ lâm thời đó, một người ở phương bắc, một người ở phương nam, và người phương bắc là anh.
+[k07-06] Còn bộ Hàng Long trong tay anh lúc này dài hơn chúng ta tưởng. Nhưng chuyện con số của bộ chưởng, Tèo để dành cho trang sau, kèm một nồi canh ngon.
+[k07-07] Tèo vẽ Kiều Phong lúc này thật cao, vai rộng, đứng giữa đám đệ tử áo vá. Đây là lúc anh được cả võ lâm nước Tống yêu quý nhất, và cũng là lúc anh chưa biết sắp mất tất cả.
+
+## k08 bua-com | bếp lửa, Hoàng Dung nấu, Hồng Thất Công thèm; mỗi món ăn đổi một chưởng; đếm 15 + 3; bàn tay chín ngón
+[k08-01] Bên trái cuộn tranh, có một ông già ăn mày lôi thôi, râu tóc bạc, lưng đeo hồ lô rượu. Ông là Hồng Thất Công, bang chủ Cái Bang ở thời Quách Tĩnh.
+[k08-02] Ông võ công cao tuyệt đỉnh, nhưng có một cái tật: mê ăn. Mê đến mức có lần vì ham ăn mà lỡ việc lớn, ông tự chặt đi một ngón tay để răn mình.
+[k08-03] Từ đó giang hồ gọi ông là Cửu Chỉ Thần Cái, ông ăn mày thần chín ngón tay.
+[k08-04] Đi cùng Quách Tĩnh lúc này là Hoàng Dung, cô gái thông minh nhất truyện, và nấu ăn ngon nhất truyện. Hoàng Dung nhìn ra ngay cái tật của ông già.
+[k08-05] Thế là Hoàng Dung nấu. Mỗi bữa một món lạ, món nào cũng có cái tên văn hoa và mùi thơm làm ông già không bỏ đi được.
+[k08-06] Và ăn xong món nào, ông già lại phải dạy Quách Tĩnh một chưởng. Cứ thế, từng món một, mười lăm chưởng Hàng Long rơi vào tay chàng trai chậm chạp.
+[k08-07] Các bạn biết không, đệ tử Cái Bang phải lập công lớn mới được dạy một chiêu. Vậy mà Quách Tĩnh nhận mười lăm chiêu nhờ tài nấu bếp của người yêu.
+[k08-08] Ba chưởng còn lại, Hồng Thất Công dạy sau, đủ cả mười tám. Còn Hoàng Dung thì không học Hàng Long, vì bộ chưởng quá dương cương, cần sức vóc như Quách Tĩnh.
+[k08-09] Cô học Đả Cẩu Bổng Pháp, bộ gậy của bang chủ Cái Bang. Một người cầm chưởng, một người cầm gậy, hai người thành một đôi rất khéo.
+[k08-10] Về sau, Hồng Thất Công còn truyền lại chức bang chủ Cái Bang cho chính Hoàng Dung, cô gái từng đổi từng món ăn lấy từng chưởng cho người mình thương.
+
+## k09 kinh-dich | quẻ Càn sáu hào vẽ bằng nét đậm; con rồng bay từ hào dưới lên hào trên; 28 ô chưởng rơi còn 18; dấu ấn đỏ "bản sửa"
+[k09-01] Giờ Tèo phải giải thích một chuyện lạ: tại sao một bộ chưởng đánh người lại có những cái tên nghe như sách triết học.
+[k09-02] Vì tên các chiêu Hàng Long lấy từ Kinh Dịch, bộ sách bói cổ nhất của người Trung Hoa. Và quẻ đầu tiên trong Kinh Dịch là quẻ Càn, quẻ của trời, có hình con rồng.
+[k09-03] Quẻ Càn kể con rồng qua từng nấc: rồng còn ẩn dưới nước, rồng hiện trên cánh đồng, rồng bay trên trời, và cuối cùng là rồng bay quá cao.
+[k09-04] Nấc cuối ấy gọi là Kháng Long Hữu Hối, nghĩa là rồng lên tới cùng cực thì sẽ có lúc hối hận. Và đó lại là chiêu nổi tiếng nhất của cả bộ chưởng.
+[k09-05] Cái hay của Kháng Long Hữu Hối là chữ hối. Người đánh nó phải biết giữ lại vài phần sức, đánh mà còn chừa đường lùi, lực mới vô cùng.
+[k09-06] Còn chuyện con số: trong bản truyện sửa lại về sau của Kim Dung, Hàng Long thời Tiêu Phong có tới hai mươi tám chưởng.
+[k09-07] Cũng theo bản sửa ấy, Tiêu Phong cùng người em kết nghĩa Hư Trúc ngồi bàn với nhau, bỏ bớt những chiêu rườm rà, rút lại còn mười tám chưởng tinh tuý nhất.
+[k09-08] Vì thế bộ chưởng mới mang tên Thập Bát Chưởng, tức mười tám chưởng, và chính mười tám chưởng ấy truyền xuống tới Hồng Thất Công rồi tới Quách Tĩnh.
+[k09-09] Các bạn lưu ý là chi tiết hai mươi tám rút còn mười tám chỉ có trong bản sửa. Bản cũ mà nhiều người Việt mình đọc thì không có đoạn này.
+[k09-10] Và bộ chưởng không giữ được mãi. Trăm năm sau nữa, sang thời Ỷ Thiên Đồ Long Ký, bang chủ Cái Bang là Sử Hoả Long chỉ còn biết mười hai chưởng.
+[k09-11] Một con rồng mười tám vảy, qua mấy đời người, rụng dần từng chiếc. Võ công trong truyện Kim Dung cũng già đi như con người vậy.
+
+## k10 hanh-tu-lam | rừng hạnh, đại hội Cái Bang, lá thư mở ra; áo bị xé, hình đầu sói xanh hiện trên ngực; gậy trúc đặt xuống đất
+[k10-01] Bây giờ là ngày khó nhất trong đời Kiều Phong. Tèo vẽ một khu rừng cây hạnh, nơi Cái Bang họp đại hội, gọi là Hạnh Tử Lâm.
+[k10-02] Giữa đại hội, người ta đem ra một lá thư cũ do chính bang chủ đời trước Uông Kiếm Thông để lại. Lá thư nói thẳng: Kiều Phong là người Khiết Đan.
+[k10-03] Các bạn nhớ vệt mực xanh trên ngực cậu bé ở đầu cuộn tranh chứ? Đó là hình xăm đầu sói, dấu hiệu của người Khiết Đan, đã ở đó từ ngày anh còn nằm nôi.
+[k10-04] Với người Tống thời ấy, Khiết Đan là kẻ thù. Một bang chủ Cái Bang mà là người Khiết Đan thì cả bang không thể chấp nhận được.
+[k10-05] Kiều Phong không cãi, không đánh ai. Anh đặt cây gậy trúc xanh xuống đất, rời khỏi cái ghế mà anh đã gánh bằng cả tuổi trẻ.
+[k10-06] Từ ngày đó anh trở lại với họ thật của mình, họ Tiêu. Kiều Phong thành Tiêu Phong, một người không còn chỗ đứng ở bên nào của biên giới.
+[k10-07] Tèo dừng bút ở đây một chút. Bởi vì cái đau của Tiêu Phong không nằm ở trận đánh nào, mà nằm ở chỗ anh yêu một đất nước, rồi đất nước ấy bảo anh là người ngoài.
+
+## k11 tu-hien-trang | sân trang viện lớn, vòng tròn hàng trăm hào kiệt; một người giữa vòng; quyền phong đẩy lùi cả vòng; ai cũng chỉ bị hất ngã
+[k11-01] Nhưng nếu các bạn hỏi Tiêu Phong mạnh tới mức nào, thì câu trả lời nằm ở một nơi tên là Tụ Hiền Trang.
+[k11-02] Ở đó, quần hùng Trung Nguyên tụ lại cả mấy trăm người, mở tiệc để bàn cách diệt tên Khiết Đan. Và Tiêu Phong một mình bước vào.
+[k11-03] Anh uống rượu cạn từng bát với những người từng là bạn, để cắt đứt tình xưa. Rồi trận đấu nổ ra, một người giữa vòng vây của cả võ lâm.
+[k11-04] Điều làm cảnh này nổi tiếng là thứ võ Tiêu Phong dùng. Không phải tuyệt kỹ bí truyền nào, mà là Thái Tổ Trường Quyền, bài quyền phổ thông của chính người Tống.
+[k11-05] Bài quyền mà đứa trẻ nào học võ cũng biết vài thế, vào tay anh lại đẩy lùi từng lớp cao thủ. Người Khiết Đan dùng quyền của người Tống để đánh với người Tống.
+[k11-06] Tèo vẽ cảnh này bằng những vòng tròn mực loang ra. Mỗi vòng là một lớp người bị hất ngã, choáng váng, phải lùi lại, chứ không ai được vẽ vào trong vòng nữa.
+[k11-07] Trận Tụ Hiền Trang là lý do nhiều người tin rằng ở những chiêu đầu tiên, trong lúc khí thế lên cao nhất, không ai trong truyện Kim Dung đứng được trước Tiêu Phong.
+[k11-09] Mà các bạn để ý, trong suốt trận ấy Tiêu Phong không hề muốn đánh. Anh đến để nói rõ mình không phải kẻ ác, chỉ là không ai còn muốn nghe một người Khiết Đan nói nữa.
+[k11-08] Nếu các bạn thấy cuộn tranh này đáng xem tiếp, bấm đăng ký kênh Tèo Kể và bật chuông giúp Tèo nhé. Mỗi lượt đăng ký là thêm một thỏi mực cho những cuộn tranh sau.
+
+## k12 thieu-lam | sân chùa Thiếu Lâm, ba anh em kết nghĩa đứng thành hàng; ba cặp đối thủ; rồng mực "Kháng Long Hữu Hối"; bóng lão tăng quét lá
+[k12-01] Thêm một trận nữa ở bên phải cuộn tranh: trận ở chùa Thiếu Lâm, ngôi chùa đã dạy Tiêu Phong những bài quyền đầu tiên.
+[k12-02] Lúc này Tiêu Phong không còn một mình. Anh có hai người em kết nghĩa: Hư Trúc, một nhà sư hiền lành, và Đoàn Dự, một công tử nước Đại Lý.
+[k12-03] Ba anh em đứng giữa sân chùa, đối đầu với Mộ Dung Phục, Đinh Xuân Thu và Du Thản Chi, những cao thủ đáng gờm nhất thời ấy.
+[k12-04] Ở trận này, chưởng Kháng Long Hữu Hối của Tiêu Phong đánh ra mạnh đến mức một người đứng ngoài phải để ý, đó là vị Vô Danh lão tăng, nhà sư quét lá trong Tàng Kinh Các.
+[k12-05] Vị lão tăng này là người mà về sau ai cũng phải nể. Được ông chú ý, nghĩa là chưởng của Tiêu Phong đã chạm tới tầng cao nhất mà võ công trong truyện có thể chạm tới.
+[k12-06] Tèo tạm khép nửa bên phải ở đây. Tiêu Phong lúc này mạnh nhất đời mình, và cũng cô đơn nhất đời mình.
+
+## k13 dao-hoa | đảo Đào Hoa, hang đá; Chu Bá Thông ngồi trong hang 15 năm; tay trái đánh tay phải; Quách Tĩnh học; trang Cửu Âm bay
+[k13-01] Bên trái cuộn tranh, Quách Tĩnh vẫn đang học. Và người thầy tiếp theo của anh là người kỳ quặc nhất mà Tèo từng phải vẽ.
+[k13-02] Đó là Chu Bá Thông, biệt danh Lão Ngoan Đồng, tức ông già trẻ con. Ông bị nhốt trong một hang đá trên đảo Đào Hoa suốt mười lăm năm.
+[k13-09] Ông là sư đệ của Vương Trùng Dương, người sáng lập phái Toàn Chân, nên võ công rất cao, chỉ có cái tính là mãi mãi như một đứa trẻ ham chơi.
+[k13-03] Mười lăm năm một mình, không có ai để đánh cờ, cũng không có ai để đấu võ. Thế là ông cho tay trái đấu với tay phải.
+[k13-04] Trò chơi ấy thành một môn võ thật, tên là Song Thủ Hỗ Bác. Hai tay làm hai việc khác nhau cùng một lúc, như thể có hai người đang đánh.
+[k13-05] Ông dạy cho Quách Tĩnh, và thật buồn cười, người học được môn này lại là người chậm hiểu như Quách Tĩnh. Vì anh không nghĩ nhiều, nên hai tay không cãi nhau.
+[k13-06] Cũng qua Chu Bá Thông, Quách Tĩnh học thuộc Cửu Âm Chân Kinh, bộ kinh võ học mà cả giang hồ tranh nhau, dù lúc học anh còn chưa biết nó quý tới mức nào.
+[k13-07] Các bạn thấy cái khác chưa? Tiêu Phong học ít thứ mà luyện tới tận cùng. Quách Tĩnh học từ bảy, tám người thầy, mỗi người góp một viên gạch vào bức tường.
+[k13-08] Một bức tường xây chậm thì lâu xong, nhưng khi đã xong thì rất khó đổ. Các bạn nhớ hình ảnh bức tường này nhé, vì cuối cuộn tranh Quách Tĩnh sẽ đứng trên một bức tường thật.
+
+## k14 kim-dao | lều lớn của Đại Hãn, thanh kim đao trao tay; bản đồ phương nam bị dao chỉ; Quách Tĩnh quay ngựa đi; mẹ Lý Bình
+[k14-01] Quách Tĩnh lập công lớn trong quân Mông Cổ. Thành Cát Tư Hãn ban cho anh một thanh kim đao và phong anh làm kim đao phò mã, tức con rể của Đại Hãn.
+[k14-02] Một người Tống, lớn lên trên thảo nguyên, được Đại Hãn tin như con. Nếu câu chuyện dừng ở đây, nó đã là một câu chuyện thành công rất đẹp.
+[k14-03] Nhưng rồi Đại Hãn chỉ tay xuống phương nam, xuống đất Tống, và muốn Quách Tĩnh dẫn quân đi đánh chính quê cha của mình.
+[k14-04] Quách Tĩnh từ chối. Anh không nhận đem quân Mông Cổ đánh nước Tống, dù biết điều đó nghĩa là đánh mất ân tình, chức tước và cả mối hôn ước với Hoa Tranh.
+[k14-05] Các bạn đặt cảnh này cạnh cảnh Hạnh Tử Lâm xem. Tiêu Phong bị buộc phải rời bỏ nơi anh lớn lên. Còn Quách Tĩnh tự mình rời bỏ nơi anh lớn lên.
+[k14-06] Một người bị đẩy ra khỏi biên giới, một người tự bước qua biên giới. Cuộn tranh của Tèo tới đây bắt đầu giống một tấm gương soi.
+
+## k15 hoa-son | đỉnh Hoa Sơn trong mây, năm bóng ngũ tuyệt; Quách Tĩnh đỡ hơn trăm chiêu với Hoàng Dược Sư, rồi với Hồng Thất Công
+[k15-01] Bên trái cuộn tranh vươn lên một ngọn núi rất cao giữa mây, đó là Hoa Sơn, nơi các cao thủ hàng đầu thiên hạ hẹn nhau luận kiếm.
+[k15-06] Ở lần luận kiếm thứ nhất, Vương Trùng Dương đứng đầu, bốn người còn lại được gọi là Đông Tà, Tây Độc, Nam Đế, Bắc Cái. Bắc Cái chính là Hồng Thất Công.
+[k15-02] Ở lần luận kiếm thứ hai, chàng trai từng bị bảy thầy chê chậm ấy đứng ra so tài với những người đứng đầu thiên hạ.
+[k15-03] Anh đỡ hơn một trăm chiêu với Hoàng Dược Sư, chủ đảo Đào Hoa, cha của Hoàng Dung. Rồi lại hơn một trăm chiêu với chính thầy mình, Hồng Thất Công.
+[k15-04] Không thắng hẳn ai, nhưng cũng không ngã trước ai. Và điều quan trọng là càng về cuối, hơi thở của anh càng đều, như cái nền Mã Ngọc dạy năm nào vẫn đang gánh cho anh.
+[k15-05] Về sau, giang hồ gọi anh là Bắc Hiệp, người hiệp khách phương bắc. Các bạn để ý nhé, cũng là phương bắc, giống câu Bắc Kiều Phong năm nào.
+
+## k16 tran-trong-tranh-1 | hai nửa cuộn tranh khép lại ở giữa; hai người đối mặt trên đỉnh mây; hai rồng mực lao vào nhau; Tèo cầm cân, quả cân "ra đòn đầu", "một chọi nhiều"
+[k16-01] Và giờ là lúc hai nửa cuộn tranh gặp nhau ở chính giữa. Tèo xin nói rõ: trận này không có trong truyện, đây là trận trong tranh, trận Tèo tưởng tượng.
+[k16-02] Một bên là Tiêu Phong lúc mạnh nhất, ngay sau trận Thiếu Lâm. Một bên là Quách Tĩnh lúc mạnh nhất, sau lần luận kiếm Hoa Sơn. Cùng một bộ Hàng Long, mười tám chưởng.
+[k16-03] Tèo không dùng bảng điểm. Tèo dùng một cái cân, mỗi lần nói về một mặt của trận đấu, Tèo đặt một quả cân lên đĩa của người đang nhỉnh hơn.
+[k16-04] Trước hết là một trăm chiêu đầu tiên. Tiêu Phong nổi tiếng ra chưởng trước, áp đảo ngay từ những chiêu mở màn, khí thế như sóng dâng.
+[k16-05] Quách Tĩnh chắc chắn, nhưng anh là người khởi động chậm. Ở những chiêu đầu, Tèo nghĩ anh sẽ phải lùi, phải đỡ nhiều hơn đánh.
+[k16-06] Quả cân thứ nhất, ra đòn đầu, Tèo đặt về phía Tiêu Phong. Đây là ý kiến riêng của Tèo thôi, các bạn có quyền cân khác.
+[k16-07] Thứ hai là chuyện một người chống lại nhiều người. Tụ Hiền Trang cho thấy Tiêu Phong có thể một mình đứng giữa mấy trăm cao thủ.
+[k16-08] Quách Tĩnh thì mạnh nhất khi giữ một bức tường thành, có quân lính, có Hoàng Dung bày mưu bên cạnh. Quả cân thứ hai, một chọi nhiều, cũng về phía Tiêu Phong.
+[k16-09] Nếu trận này chỉ kéo dài một trăm chiêu, Tèo nghĩ cái cân đã nghiêng hẳn sang bên phải. Nhưng ai bảo trận đấu dừng ở một trăm chiêu?
+[k16-10] Tèo vẽ hai con rồng mực lao vào nhau ở chính giữa cuộn giấy. Rồng bên phải đen đặc, dữ dội. Rồng bên trái nhạt hơn một chút, nhưng thân nó cứ dài mãi ra.
+
+## k17 tran-trong-tranh-2 | trời chuyển tối trong tranh; rồng của Tiêu Phong vẫn gầm, rồng của Quách Tĩnh dài ra quấn vòng; hai quả cân bên trái; cân thăng bằng
+[k17-01] Sau một trăm chiêu, trận đấu trong tranh bắt đầu đổi màu. Mực của Tiêu Phong vẫn đậm, nhưng mực của Quách Tĩnh bắt đầu chảy dài ra.
+[k17-02] Mặt thứ ba là kho chiêu. Ngoài Hàng Long, Quách Tĩnh còn có Cửu Âm Chân Kinh, Song Thủ Hỗ Bác, Không Minh Quyền của Chu Bá Thông, và cả cung tên thảo nguyên.
+[k17-03] Tiêu Phong có Hàng Long, Thái Tổ Trường Quyền, Cầm Long Công để hút người và vật từ xa. Nhiều, nhưng ít ngả rẽ hơn. Quả cân thứ ba Tèo đặt về phía Quách Tĩnh.
+[k17-04] Mặt thứ tư là hơi dài. Quách Tĩnh luyện nội công từ năm còn bé với Mã Ngọc, rồi cộng thêm Cửu Âm. Ở Hoa Sơn, anh đứng vững hơn trăm chiêu trước hai người trong nhóm mạnh nhất thiên hạ.
+[k17-05] Nên khi trận kéo sang chiêu thứ hai trăm, ba trăm, Tèo tin Quách Tĩnh vẫn thở đều. Quả cân thứ tư cũng về phía anh.
+[k17-06] Và đây là lúc cái cân của Tèo đứng yên ở giữa. Hai quả bên phải, hai quả bên trái. Tèo không cộng tổng đâu, vì cộng tổng là nói dối.
+[k17-07] Câu trả lời thật là: trận ngắn thì Tiêu Phong, trận dài thì Quách Tĩnh. Đó cũng là điều mà người đọc Kim Dung cãi nhau mấy chục năm nay vẫn chưa xong.
+[k17-08] Phe Tiêu Phong nói một chưởng đầu đủ quyết định. Phe Quách Tĩnh nói chưởng đầu không hạ được thì người chậm sẽ thắng. Các bạn đứng phe nào, viết xuống phần bình luận cho Tèo đọc nhé.
+[k17-09] Còn với Tèo, câu hỏi ai mạnh hơn đến đây đã hết thú vị. Vì ở cuối cuộn tranh còn một câu hỏi lớn hơn đang chờ hai người họ.
+
+## k18 nhan-mon-quan | cuộn tranh tách đôi; bên phải tuyết rơi ở Nhạn Môn Quan; hai đạo quân hai bên; Tiêu Phong đứng giữa; vua Liêu thề; nhạn bay qua
+[k18-01] Hai nửa cuộn tranh lại tách ra. Tèo trở về nửa bên phải, về đúng cái cửa ải ở đầu tranh: Nhạn Môn Quan.
+[k18-02] Sau bao năm lưu lạc, Tiêu Phong về với người Khiết Đan. Anh kết nghĩa với Gia Luật Hồng Cơ, vua nước Liêu, và được phong làm Nam Viện đại vương.
+[k18-03] Rồi vua Liêu muốn đem quân đánh xuống phía nam, đánh nước Tống. Ông muốn Tiêu Phong, người hiểu đất Tống nhất, dẫn đầu đạo quân ấy.
+[k18-04] Tiêu Phong từ chối, và bị giam. Hai người em kết nghĩa Hư Trúc và Đoàn Dự dẫn người tới cứu anh ra, đưa anh chạy về phía cửa ải.
+[k18-05] Ở Nhạn Môn Quan, quân Liêu đuổi tới, quân Tống đóng phía bên kia. Tiêu Phong đứng ở giữa, đúng cái chỗ mà cha mẹ anh đã gặp nạn mấy chục năm trước.
+[k18-06] Anh bắt được vua Liêu, và không làm hại ông. Anh chỉ đòi một lời thề: chừng nào Gia Luật Hồng Cơ còn sống, quân Liêu không được vượt biên đánh Tống.
+[k18-07] Vua Liêu thề. Và Tiêu Phong, người không còn thuộc về bên nào, đã chọn ra đi ngay dưới cửa ải ấy, để lời thề kia có giá trị bằng cả mạng sống của anh.
+[k18-08] Tèo vẽ đàn nhạn bay qua cửa ải. Một người Khiết Đan, chết để người Tống được yên. Đó là đoạn mà nhiều người đọc Kim Dung nói là buồn nhất trong cả mười lăm bộ truyện.
+
+## k19 tuong-duong | bên trái: thành Tương Dương, tường thành mọc lên từng hàng gạch; Quách Tĩnh và Hoàng Dung trên mặt thành nhiều năm; câu trích duy nhất bằng thư pháp
+[k19-01] Còn nửa bên trái, Tèo vẽ một toà thành lớn bên sông Hán Thuỷ. Tên nó là Tương Dương, cánh cửa che chắn cho cả miền nam nước Tống.
+[k19-02] Quân Mông Cổ, chính những người từng nuôi Quách Tĩnh lớn, giờ kéo xuống phía nam. Và Quách Tĩnh cùng Hoàng Dung lên giữ thành Tương Dương.
+[k19-03] Không phải một trận, không phải một năm. Hai người giữ thành mấy chục năm, từ lúc tóc còn xanh cho tới khi đã có con có cháu.
+[k19-04] Tèo vẽ bức tường thành mọc lên từng hàng gạch. Mỗi hàng gạch là một năm Quách Tĩnh đứng trên mặt thành, nhìn về phía thảo nguyên nơi mình lớn lên.
+[k19-05] Tinh thần của Quách Tĩnh được tóm trong một câu mà người đọc Kim Dung ai cũng thuộc, và Tèo viết nó bằng nét to nhất của cuộn tranh.
+[k19-06] Hiệp chi đại giả, vị quốc vị dân. Nghĩa là: bậc đại hiệp là người vì nước, vì dân.
+[k19-07] Theo những bộ truyện về sau, Quách Tĩnh và Hoàng Dung ở lại cùng Tương Dương tới những ngày cuối cùng của toà thành. Họ không rời bức tường mà họ đã giữ cả đời.
+[k19-08] Các bạn thấy chưa, hai nửa cuộn tranh kết thúc giống nhau đến lạ. Hai người lớn lên ở phía bên kia biên giới, và cả hai đều đứng chắn giữa hai đạo quân để dân thường được sống.
+[k19-09] Một người Khiết Đan giữ hoà bình cho người Tống. Một người Tống từng là con rể của Đại Hãn giữ thành trước quân Mông Cổ. Hai cuộc đời, cùng một lựa chọn.
+
+## k20 nguoi-that | Tèo đặt bút, lật một tờ giấy nhỏ dán bên cạnh: chân dung tướng Quách Bảo Ngọc; ghi chú "ngoài đời"
+[k20-01] Trước khi đóng dấu, Tèo kể thêm một chuyện ngoài truyện. Nhân vật Quách Tĩnh được cho là lấy cảm hứng từ một người có thật, tướng Quách Bảo Ngọc.
+[k20-02] Quách Bảo Ngọc là một người Hán giỏi binh pháp, theo phò Thành Cát Tư Hãn trong những năm Mông Cổ mở rộng, đúng cái thời mà Kim Dung đặt Quách Tĩnh vào.
+[k20-03] Kim Dung lấy cái bóng của một vị tướng có thật, rồi vẽ lại thành một người hiệp khách chọn quay về giữ thành cho quê cha. Lịch sử là giấy, còn truyện là nét mực vẽ lên đó.
+[k20-04] Còn Tiêu Phong thì mang họ Tiêu, một dòng họ lớn của người Khiết Đan trong sử nước Liêu. Kim Dung đặt anh vào giữa hai dân tộc ngay từ cái họ của mình.
+
+## k21 con-dau | Tèo đóng con dấu đỏ ở giữa cuộn tranh; máy quay lùi xa thấy toàn bộ cuộn; hai yên ngựa? không — hai con rồng mực nằm hai đầu; Tèo chào
+[k21-01] Cuộn tranh đã vẽ xong. Tèo lùi lại xa một chút để các bạn nhìn cả cuộn từ đầu tới cuối, từ cửa ải bên phải tới toà thành bên trái.
+[k21-02] Nếu các bạn vẫn muốn Tèo trả lời ai mạnh hơn, thì đây là câu trả lời ngắn: một chưởng đầu thì Tiêu Phong, một trận dài thì Quách Tĩnh.
+[k21-03] Nhưng nếu hỏi ai là đại hiệp hơn, thì Tèo xin không chọn. Một người chết ở cửa ải để giữ lời thề hoà bình. Một người sống cả đời trên tường thành để giữ dân.
+[k21-04] Cùng một bộ chưởng, cùng một con rồng, và cuối cùng con rồng ấy không dùng để thắng ai cả. Nó dùng để đứng chắn.
+[k21-05] Tèo đóng con dấu đỏ vào chính giữa cuộn tranh, chỗ hai con rồng gặp nhau. Trên con dấu chỉ có bốn chữ: một chưởng, hai người.
+[k21-08] Tèo xin nhắc lại, phần so tài ở giữa cuộn tranh là ý kiến riêng của Tèo dựa trên truyện, còn các chi tiết về hai người thì Tèo đã đối chiếu qua nhiều nguồn trước khi vẽ.
+[k21-06] Nếu các bạn thích cách Tèo vẽ chuyện kiếm hiệp thế này, nhớ đăng ký kênh Tèo Kể, bấm chuông, và để lại cặp nhân vật mà các bạn muốn Tèo vẽ ở cuộn tranh sau.
+[k21-07] Mực trong nghiên vẫn còn, giấy vẫn còn dài. Cảm ơn các bạn đã ngồi xem Tèo vẽ tới tận nét cuối cùng. Tèo cuộn tranh lại đây, hẹn gặp các bạn lần sau nhé!
