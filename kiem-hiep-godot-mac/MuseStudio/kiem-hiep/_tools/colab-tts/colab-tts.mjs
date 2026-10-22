@@ -51,7 +51,7 @@ const todo = job.lines.map((it) => ({ ...it, key: createHash("sha1").update(job.
   .filter((it) => !(existsSync(it.out) && existsSync(it.out.replace(/\.wav$/, ".key")) && readFileSync(it.out.replace(/\.wav$/, ".key"), "utf8") === it.key));
 console.log(`colab-tts: ${job.lines.length - todo.length} cached, ${todo.length} to synthesize`);
 if (!todo.length) process.exit(0);
-if (!existsSync(COLAB)) die("không thấy colab CLI: " + COLAB);
+if (!existsSync(COLAB) && spawnSync(COLAB, ["--help"], { stdio: "ignore" }).status !== 0) die("không thấy colab CLI: " + COLAB);
 if (!existsSync(VOICES)) die("không thấy giọng đã lưu: " + VOICES);
 
 acquire();
