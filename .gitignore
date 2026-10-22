@@ -2,3 +2,7 @@ node_modules/
 *.bak-*
 .DS_Store
 Thumbs.db
+
+# đầu ra render của chuong-2d
+skills/chuong-2d/engine/renders/
+skills/chuong-2d/engine/work/

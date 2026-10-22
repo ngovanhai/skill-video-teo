@@ -1,0 +1,20 @@
+[
+  {"id": "hang_long", "chieu": "Hàng Long Thập Bát Chưởng", "truyen": "Thiên Long Bát Bộ", "hero": "tieu-phong", "foe": "lao-ma",
+   "co_che": "tụ khí rồng vàng, tia đối chưởng đẩy qua lại, nổ cầu năng lượng", "mau": "vàng cam vs tím", "nen": "đêm tím, trăng",
+   "ket": "nổ cầu, đối thủ văng phải", "frames": 390, "ngay": "2026-10-21"},
+  {"id": "luc_mach", "chieu": "Lục Mạch Thần Kiếm", "truyen": "Thiên Long Bát Bộ", "hero": "doan-du", "foe": "cuu-ma-tri",
+   "co_che": "kiếm khí mảnh đâm xuyên, chẻ đôi lửa địch (Hỏa Diệm Đao), quạt 6 kiếm sau lưng phóng ra", "mau": "lam ngọc + 6 sắc kinh mạch vs lửa cam", "nen": "bình minh xanh xám, không trăng",
+   "ket": "kiếm thứ 6 xuyên, đối thủ văng", "frames": 345, "ngay": "2026-10-21"},
+  {"id": "hap_tinh", "chieu": "Hấp Tinh Đại Pháp", "truyen": "Tiếu Ngạo Giang Hồ", "hero": "nham-nga-hanh", "foe": "cao-thu",
+   "co_che": "chạm tay, xoáy đen giữa hai bàn tay, nội lực chảy ngược về ngực, đối thủ xám và teo lại", "mau": "lục vs lam", "nen": "đêm xanh lam xám",
+   "ket": "xả ngược nội lực, nổ lục, đối thủ văng", "frames": 345, "ngay": "2026-10-21"},
+  {"id": "han_bang", "chieu": "Hàn Băng Miên Chưởng", "truyen": "Ỷ Thiên Đồ Long Ký", "hero": "vi-nhat-tieu", "foe": "hiep-khach",
+   "co_che": "khinh công để lại tàn ảnh, liên hoàn 3 chưởng phủ sương, cột băng lan dọc đất, đóng băng rồi vỡ", "mau": "băng lam vs đỏ", "nen": "đêm tuyết, đất trắng",
+   "ket": "khối băng vỡ vụn, đối thủ văng", "frames": 345, "ngay": "2026-10-21"},
+  {"id": "can_khon", "chieu": "Càn Khôn Đại Na Di", "truyen": "Ỷ Thiên Đồ Long Ký", "hero": "truong-vo-ky", "foe": "thanh-con",
+   "co_che": "vòng bát quái bắt chưởng địch, hất lên trời / dập xuống đất / xoay một vòng trả ngược, cầu đổi màu tím→lam", "mau": "lam ngọc vs tím", "nen": "hoàng hôn đỉnh núi, mặt trời đỏ",
+   "ket": "trúng chính chưởng mình, văng xoáy lộn", "frames": 360, "ngay": "2026-10-21"},
+  {"id": "doc_co", "chieu": "Độc Cô Cửu Kiếm", "truyen": "Tiếu Ngạo Giang Hồ", "hero": "lenh-ho-xung", "foe": "dien-ba-quang",
+   "co_che": "khoái đao liên hoàn 4 nhịp × 2 đao, LHX chỉ khẽ gạt; mỗi đao lộ một dấu sơ hở hổ phách; thời gian chậm (tuyết gần đứng, viền đen), sơ hở bừng sáng, vòng ngắm + đường chấm -> MỘT nhát đâm thẳng duy nhất (vô chiêu)", "mau": "kiếm ý ngọc đêm vs đao quang son, sơ hở hổ phách", "nen": "chạng vạng hổ phách, núi gỗ sẫm, sườn ngọc đêm, đất gỗ phủ tuyết mỏng, thông khắc gỗ, tuyết bay ngang",
+   "ket": "mũi kiếm điểm sơ hở, đao văng cắm tuyết, đối thủ bật lùi ngồi phịch xuống tuyết (không văng nằm, không máu)", "frames": 375, "ngay": "2026-10-22"}
+]

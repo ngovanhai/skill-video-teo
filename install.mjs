@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Cài 3 skill Claude Code "video-teo" + "teo-kiem-hiep" + "teo-kiem-hiep-godot" và kit MuseStudio. Chạy được trên macOS và Windows.
+// Cài 6 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi) và kit MuseStudio. Chạy được trên macOS và Windows.
 //   node install.mjs [--muse-root <thư mục>] [--vieneu-dir <thư mục>] [--gpu] [--skip-vieneu] [--no-env]
 import { cpSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync, writeFileSync, renameSync, copyFileSync, appendFileSync } from "node:fs";
 import { join, resolve, dirname, extname } from "node:path";
@@ -51,7 +51,7 @@ if (!existsSync(join(MUSE, "ideas/DA-LAM.md"))) copyFileSync(join(HERE, "MuseStu
 for (const skillsRoot of SKILL_DIRS) {
   step(`Cài skill vào ${skillsRoot}`);
   mkdirSync(skillsRoot, { recursive: true });
-  for (const s of ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot"]) {
+  for (const s of ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi"]) {
     const dst = join(skillsRoot, s);
     if (existsSync(dst)) { renameSync(dst, `${dst}.bak-${stamp}`); console.log(`  bản cũ -> ${s}.bak-${stamp}`); }
     cpSync(join(HERE, "skills", s), dst, { recursive: true });
@@ -94,7 +94,7 @@ step("Điền đường dẫn vào skill + kit");
 const TEXT = new Set([".md", ".mjs", ".js", ".py", ".json", ".txt", ".sh"]);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 let n = 0;
-const skillRoots = SKILL_DIRS.flatMap((dir) => [join(dir, "video-teo"), join(dir, "teo-kiem-hiep"), join(dir, "teo-kiem-hiep-godot")]).filter(existsSync);
+const skillRoots = SKILL_DIRS.flatMap((dir) => ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi"].map((s) => join(dir, s))).filter(existsSync);
 for (const root of [...skillRoots, join(MUSE, "kit"), join(MUSE, "avatar")])
   for (const f of walk(root)) {
     if (!TEXT.has(extname(f))) continue;
