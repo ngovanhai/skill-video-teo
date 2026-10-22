@@ -122,7 +122,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 |---|---|---|---|---|
 | Thiếu Lâm vs Võ Đang: "Bắc Thiếu Lâm, Nam Võ Đang"? (tập 8) | Kim Dung | san-tap | tang (hat troc) vs dao-si (hat dao) | chuông chùa ngân vs vòng Thái Cực xoay |
 | Toàn Chân giáo vs Cổ Mộ phái | Thần Điêu Hiệp Lữ | mai-ngoi (dem) | dao-si (hat dao) vs nu-hiep (robe #ffffff) | ong ngọc bay vo ve quanh đạo sĩ |
-| Hoa Sơn Khí tông vs Kiếm tông | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) vs hiep-khach (weapon kiem) | đồng hồ cát: khí chảy chậm vs kiếm nhanh |
+| Hoa Sơn Khí tông vs Kiếm tông (tập 10) | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) vs hiep-khach (weapon kiem) | đồng hồ cát: khí chảy chậm vs kiếm nhanh |
 | Nhật Nguyệt Thần Giáo vs Ngũ Nhạc Kiếm Phái | Tiếu Ngạo Giang Hồ | nui-tuyet | lao-quai (robe #8b0000) vs 5× hiep-khach | mặt trời và mặt trăng ghép thành chữ 明 |
 | Minh Giáo vs Lục Đại Môn Phái vây Quang Minh Đỉnh | Ỷ Thiên Đồ Long Ký | nui-tuyet | hiep-khach (robe #c0392b) vs tang, dao-si, nu-hiep… | ngọn lửa thánh bùng lên giữa núi tuyết |
 | Tiêu Dao phái vs Tinh Túc phái | Thiên Long Bát Bộ | rung-truc | tang (hat troc) vs lao-quai (robe #2e4b2e, beard) | đệ tử Tinh Túc thổi kèn tung hô bị gió cuốn ngã ngồi |
@@ -185,7 +185,7 @@ Kể đời nhân vật qua 5–6 mốc, mỗi mốc là một cảnh ngắn. Ch
 | Tiêu Phong: từ bang chủ Cái Bang đến người không có quê hương (tập 1) | Thiên Long Bát Bộ | nui-tuyet | cai-bang (robe #5a3d2b, beard) | chữ "Khiết Đan" khắc trên vách đá hiện ra ở mốc đầu và mốc cuối, đều ở Nhạn Môn Quan |
 | Dương Quá: đứa trẻ mồ côi thành Thần Điêu Đại Hiệp | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach (robe #3d4a5c, weapon kiem) | cái lịch xé dần đếm đủ 16 năm |
 | Quách Tĩnh: chậm hiểu nhưng giữ thành Tương Dương cả đời | Xạ Điêu / Thần Điêu | mai-ngoi | hiep-khach (robe #8b5a2b, hat khan) | thanh "chậm hiểu" tụt xuống, thanh "kiên trì" vọt lên |
-| Lệnh Hồ Xung: đại đệ tử bị trục xuất, cuối cùng sống tự do | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach (robe #2f6f8f, weapon kiem) | hồ lô rượu đổi màu theo từng chặng đời |
+| Lệnh Hồ Xung: đại đệ tử bị trục xuất, cuối cùng sống tự do (tập 10) | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach (robe #2f6f8f, weapon kiem) | hồ lô rượu đổi màu theo từng chặng đời |
 | Trương Vô Kỵ: tuổi thơ trúng Huyền Minh Thần Chưởng, lớn lên làm giáo chủ Minh Giáo | Ỷ Thiên Đồ Long Ký | nui-tuyet | hiep-khach (robe #e8e2d0, hat khan) | hơi lạnh xanh quanh cậu bé tan dần thành lửa cam |
 | Hư Trúc: chú tiểu vụng về bỗng thành chưởng môn Tiêu Dao phái | Thiên Long Bát Bộ | rung-truc | tang (robe #c8a165, hat troc) | ván cờ Trân Lung, rồi 70 năm công lực chảy vào người như dòng sáng |
 | Vi Tiểu Bảo: từ đứa bé đầu đường đến Lộc Đỉnh Công | Lộc Đỉnh Ký | mai-ngoi | cong-tu (robe #d4a017, hat khan) | mũ quan to dần theo từng mốc |
@@ -237,7 +237,7 @@ Luôn ghi "giả tưởng" trên màn hình. Mỗi tập chỉ đổi đúng **m
 |---|---|---|---|---|
 | Dương Quá – Tiểu Long Nữ: chờ nhau 16 năm (tập 9) | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach + nu-hiep (robe #ffffff) | đáy vực đầy hoa trắng, hai bóng gặp nhau |
 | Quách Tĩnh – Hoàng Dung: chàng ngốc và cô gái thông minh nhất | Xạ Điêu Anh Hùng Truyện | ben-song | hiep-khach + nu-hiep (robe #6fa86f) | bóng đèn ý tưởng bật trên đầu Hoàng Dung, dấu chấm hỏi trên đầu Quách Tĩnh |
-| Lệnh Hồ Xung – Nhậm Doanh Doanh: khúc nhạc kết duyên | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep (robe #2b2b4b) | nốt nhạc cầm và tiêu thành hình trái tim |
+| Lệnh Hồ Xung – Nhậm Doanh Doanh: khúc nhạc kết duyên (tập 10) | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep (robe #2b2b4b) | nốt nhạc cầm và tiêu thành hình trái tim |
 | Tiêu Phong – A Châu: lời hẹn ngoài quan ải | Thiên Long Bát Bộ | nui-tuyet | cai-bang + nu-hiep (robe #f8c8a0) | hai con ngựa đi về phía hoàng hôn (không vẽ cảnh buồn) |
 | Trương Vô Kỵ và bốn cô gái: chọn ai? | Ỷ Thiên Đồ Long Ký | mai-ngoi | hiep-khach + 4× nu-hiep | bốn cánh hoa, mỗi cánh một cái tên |
 | Đoàn Dự: Vương Ngữ Yên hay Mộc Uyển Thanh? (theo bản) | Thiên Long Bát Bộ **bản sửa vs tân tu** | ben-song | thu-sinh + nu-hiep ×2 | hai cái kết lật như trang sách |
@@ -253,7 +253,7 @@ Luôn ghi "giả tưởng" trên màn hình. Mỗi tập chỉ đổi đúng **m
 | Phong Thanh Dương dạy Lệnh Hồ Xung: học để quên chiêu (tập 2) | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (beard) + hiep-khach | chiêu thức hiện ra rồi bị cục tẩy xoá dần |
 | Trương Tam Phong dạy Trương Vô Kỵ Thái Cực: "quên hết chưa?" (tập 8) | Ỷ Thiên Đồ Long Ký | san-tap | dao-si + hiep-khach | chữ trên bảng mờ dần, vòng Thái Cực hiện rõ hơn |
 | Giang Nam Thất Quái: bảy ông thầy, một học trò chậm hiểu | Xạ Điêu | san-tap | 7 preset khác nhau + hiep-khach | bảy bóng thầy chen nhau nói, bong bóng thoại chồng lên nhau |
-| Nhạc Bất Quần và Lệnh Hồ Xung: thầy tốt hay nguỵ quân tử? | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) + hiep-khach | mặt nạ hiền rơi ra để lộ cái cau mày |
+| Nhạc Bất Quần và Lệnh Hồ Xung: thầy tốt hay nguỵ quân tử? (tập 10) | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd) + hiep-khach | mặt nạ hiền rơi ra để lộ cái cau mày |
 | Vô Nhai Tử truyền 70 năm công lực cho Hư Trúc | Thiên Long Bát Bộ | rung-truc | lao-quai (robe #f0f0f0, beard) + tang | dòng sáng chảy từ đầu sang đầu, đồng hồ đếm 70 năm |
 | Tiểu Long Nữ dạy Dương Quá trên dây thừng | Thần Điêu Hiệp Lữ | mai-ngoi (dem) | nu-hiep + hiep-khach | sợi dây treo giữa không trung, Dương Quá chibi lắc lư |
 | Top 5 sư phụ "lầy" nhất (Chu Bá Thông, Hồng Thất Công…) | Kim Dung | quan-tro | lao-quai, cai-bang… | bảng xếp hạng có thêm cột "độ lầy" |
@@ -312,7 +312,7 @@ Chữ Hán, nghĩa từng chữ, rồi vì sao đặt tên như vậy. Ghép 8�
 | "Ảm Nhiên Tiêu Hồn": chưởng pháp của nỗi buồn | Thần Điêu Hiệp Lữ | nui-tuyet | hiep-khach (robe #3d4a5c) | mây xám, chữ "ảm nhiên" nhỏ giọt như mưa |
 | "Càn Khôn Đại Na Di": dời cả trời đất | Ỷ Thiên Đồ Long Ký | mai-ngoi | hiep-khach (hat khan) | bầu trời và mặt đất đổi chỗ cho nhau |
 | "Độc Cô Cửu Kiếm": chín thức phá chín loại binh khí (tập 2) | Tiếu Ngạo Giang Hồ | nui-tuyet | hiep-khach (weapon kiem) | chín ô binh khí bị chém chéo lần lượt |
-| "Tiếu Ngạo Giang Hồ": tên khúc nhạc thành tên bộ truyện | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep | nốt nhạc bay ra thành chữ tiêu đề |
+| "Tiếu Ngạo Giang Hồ": tên khúc nhạc thành tên bộ truyện (tập 10) | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep | nốt nhạc bay ra thành chữ tiêu đề |
 | "Thiên Long Bát Bộ": tám bộ chúng trong kinh Phật | Thiên Long Bát Bộ | san-tap | tang | tám biểu tượng xoay vòng quanh chữ tiêu đề |
 | "Phá Toái Hư Không" và "Thiên Ngoại Phi Tiên": hai cái tên đẹp nhất? | Hoàng Dịch / Cổ Long | nui-tuyet | cao-thu + cong-tu | bầu trời nứt vỡ, rồi vệt kiếm từ trăng lao xuống |
 

@@ -59,6 +59,28 @@ Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo �
   - Tập có `story.format` thì planner tự cấm các react `down` (nằm gục, bẹp, văng). Chỉ còn af-blow, af-stagger, af-dizzy và react mới không gắn `down`.
   - Không máu me, không chết chóc, không chính trị/tôn giáo gây tranh cãi, không 18+. Nhân vật tăng/đạo sĩ dựng vui nhưng không giễu tôn giáo.
 
+## Dựng bằng Godot 2D (cách làm hiện tại, từ 2026-10-21; thay HyperFrames + beat/planner)
+
+**Quy trình đầy đủ + công cụ (new-tap, gd-check, pack, sổ chống lặp) ở skill `teo-kiem-hiep-godot`; làm tập Godot thì theo skill đó.**
+
+Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dựng riêng, không template chung, hiệu ứng làm bằng Godot 2D** (không dùng HyperFrames). Tập mẫu: `kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot/`. Các phần build.mjs / plan.mjs / beat / fx HyperFrames ở dưới chỉ còn để tham khảo tập cũ.
+
+- Mỗi tập có project Godot riêng `<tap>/godot/` (Godot 4.7.2: `E:/tool/Godot/Godot_v4.7.2-stable_win64_console.exe`). Tập tự thiết kế khung dựng, bộ bút, máy quay, nhân vật. **Không chép engine của tập trước** mà chỉ đọc để học. Muốn dùng lại một ý thì viết lại theo kiểu của tập mới.
+- Kịch bản `godot/loi.txt`: mỗi câu đọc là một dòng `[id] lời`. Mọi dòng khác (ví dụ `## kNN ghi chú`) để GDScript của tập tự đọc.
+- Giọng đọc: `bash kiem-hiep/_tools/slot.sh "<tập> giọng" node SKILL/scripts/gd-voice.mjs <tap>` ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
+- Mặt: `node SKILL/scripts/gd-mat.mjs <tap>` dùng `<tap>/ve.mjs` riêng của tập để ra `godot/mat/<nv>/<biểu cảm>.svg`. Thân người tập tự vẽ bằng GDScript.
+- Hợp đồng với gd-render (đầu file `scripts/gd-render.mjs`):
+  - cửa sổ 1920×1080, stretch `canvas_items`;
+  - main đọc `--from= --to=`, dựng mọi thứ theo giờ t;
+  - in `DUR=` khi chạy `-- --dur`;
+  - phát giọng/nhạc/sfx bằng AudioStreamPlayer.
+- Kiểm tra cú pháp + độ dài: chạy `Godot --headless --path . -- --dur` trong `godot/`. Lỗi parse chỉ hiện từng lỗi một, sửa xong chạy lại. Hay gặp: `var x := [..][i]` không suy được kiểu, phải ghi `var x: float = …`.
+- Soi: `bash kiem-hiep/_tools/slot.sh "<tập> xem" node SKILL/scripts/gd-render.mjs <tap> --preview --from A --to B --sheet 5 --out xa` ra `work/sheet-xa.jpg`. Preview chạy khoảng 2× thời gian thật, nên chia 2 đoạn chạy song song theo 2 suất máy.
+- Bản cuối: `… gd-render.mjs <tap> --par 2` ra `renders/final.mp4`.
+- Nhạc nền: tập tự sinh (ví dụ `work/nhac.py`: đàn gảy Karplus-Strong ngũ cung + nền trầm + trống, đổi tâm trạng theo `godot/timeline.json`). Ghi wav rồi ffmpeg libvorbis ra `godot/nhac.ogg`; soundfile ghi OGG dài sẽ tràn stack.
+- Ảnh bìa: scene `godot/thumb.tscn` vẽ bằng chính bộ bút của tập, chạy có cửa sổ (không `--headless`), lưu `thumb/thumb-godot.png`. Luật thumbnail giữ nguyên: mặt không bị che, chữ to.
+- Font Palatino không có mũi tên → ↑ ↓ ✕ ✓: dùng "»" hoặc chữ. sfx thư viện tên `sfx/lib-<tên>.mp3`.
+
 ## Chống trùng lặp: vì sao mỗi tập khác nhau
 
 1. **Chủ đề:** `scripts/story-check.mjs` (xem bước 0).
@@ -319,6 +341,7 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
   - `kind:"teo"` hoặc `preset` thuộc: linh, linh-do, cao-thu, hiep-khach, thu-sinh, chuong-quy, su-phu, nu-hiep, **cai-bang** (áo vá nâu, gậy), **tang** (cà sa vàng, đầu trọc), **dao-si** (áo lam, búi đạo sĩ, kiếm), **cong-tu** (áo trắng, kiếm), **lao-quai** (áo tím sẫm, râu, gậy).
   - Ghi đè được: `robe`, `hat` (linh/bui/non/khan/none/troc/dao), `beard`, `weapon` (kiem/dao/giao/quat/gay/none), `belt`, `patch` (áo vá), `sash` (mã màu cà sa chéo).
   - Gợi ý ngoại hình cho ~20 nhân vật nổi tiếng nằm trong chu-de.md. Không vẽ giống diễn viên.
+  - **Rig 2 + sổ nhân vật chung:** `"x": { "char": "<id>", "name": "…" }` lấy nguyên look (cả robe2, pants, band, màu râu) từ `nhan-vat-chibi/data/chars.json`; khoá khác ghi cạnh `char` sẽ ghi đè. Nhân vật mới tạo bằng skill `nhan-vat-chibi` (có sheet soi) rồi mới đưa vào cast.
   - `w`: bề rộng; mặc định teo 250, npc 190. `side:"hero"`: đồng minh của Tèo.
 - **scenes[]:**
   - `set` thuộc: san-tap, rung-truc, mai-ngoi, quan-tro, nui-tuyet, ben-song, cau-go, thao-nguyen, hang-dong, tang-kinh-cac, dinh-nui, pho-cho (bảng quy đổi địa danh trong truyện → set nằm ở chu-de.md).
@@ -359,6 +382,28 @@ Thêm `"rig": 2` vào tap.json (hoặc `build.mjs <dir> --rig 2`) → nhân vậ
 - Lệnh cũ trong fx (POSE R RS BROW KO RUN ATTR FLAP(p,t0,t1) BLINK) chạy qua `engine/compat2.js`: armF→uaF, foreF→faF, armB→uaB, foreB→faB, legR→thF, legL→thB, head/all/tail giữ tên; BROW→EX gian/vui, KO→EX ko. `PIV`/`org()` KHÔNG có ở rig 2.
 - fx viết mới cho rig 2 nên gọi thẳng runtime2: `J(id,t,d,góc,dx,dy,ease)`, `JS`, `EX(p,t,"vui|binh|gian|buon|soc|dac-y|ngai|quyet-tam|ko")`, `SWAY`, `NOD`, `PUFF`, `TRAIL`; khớp: all torso head uaF faF hdF uaB faB hdB thF shF ftF thB shB ftB wpF(vũ khí, 180 = nối dài cẳng tay) flapF flapB hairB tail. Rẽ nhánh bằng `ctx.v2`.
 - fx chèn đồ vào `<p>-armF` (chổi, gậy…) phải đổi sang `<p>-hdF` (bàn tay, gốc 0,0 toạ độ khớp) khi `ctx.v2`.
+- cast rig 2 còn nhận: `eyes` `eyes2` (màu phản sáng đáy mắt) `fem` (nữ; mặc định = có váy) `hair` {style,color} `age` ("gia") `mat` (trục mặt cho ve.mjs).
+
+### Mặt riêng từng tập: `<dir>/ve.mjs` (BẮT BUỘC với tập mới / làm lại)
+Không có một kiểu mặt chung cho mọi tập. Mỗi tập tự vẽ đầu nhân vật — mắt, mũi, khuôn mặt, miệng, lông mày — theo một kiểu riêng, và trong tập mỗi nhân vật một mặt khác. Engine chỉ giữ thân, khớp, vũ khí; mặt mặc định của engine chỉ là dự phòng (build cảnh báo khi tập rig 2 thiếu ve.mjs).
+- Có `ve.mjs` thì build tự dùng cho mọi rig của tập (cảnh, `ctx.rig`, thumbnail). Cần `"rig": 2`.
+- Viết: `export default function ve(p, o, kit) { return svgĐầu; }`
+  - toạ độ đầu 300×420: đỉnh tóc y=38, tâm mặt x=150, cằm ~y 265–285 (khớp chỗ đặt sẵn trong thân).
+  - `o`: id (cast id) mat (= cast.mat) skin hair{style,color} eyes eyes2 fem age beard beardColor hat hatColor glasses expr.
+  - `kit`: dk lt hx toHex st EXPRS SKIN, và tóc/mũ/râu dựng sẵn của engine (hairBack hairFront HAIR beard hat) — dùng hay tự vẽ tuỳ tập; mắt/mũi/khuôn mặt/miệng thì tự vẽ.
+- Nhóm bắt buộc (build kiểm, thiếu là dừng):
+  - `<p>-mat`: khuôn mặt + mũi (+ tai).
+  - `<p>-ex-<e>` cho mỗi e trong vui binh gian buon soc dac-y ngai quyet-tam ko; chỉ nhóm `o.expr || "vui"` có opacity 1, còn lại 0. Mỗi nhóm chứa `<p>-mc-<e>` (miệng khép) và `<p>-mo-<e>` (miệng mở, opacity 0) — runtime bật/tắt khi nói.
+  - `<p>-blink` (opacity 0): mí phủ khi chớp.
+  - Đặt id gradient/def theo prefix `p` (vd `${p}-ig`) để các nhân vật không đè nhau.
+- Chống trùng (build dừng, báo tên):
+  - 2 nhân vật cùng tập trùng hình `<p>-mat` hoặc `<p>-ex-binh` (màu không tính) → phân biệt bằng `o.id` hoặc cast `"mat": {...}`.
+  - Trùng nhân vật bất kỳ ở tập cùng thư mục cha (`work/ve-fp.json` mỗi tập ghi lại) → tập phải vẽ khác.
+  - Giống hệt `examples/ve-mau.mjs` → mẫu chỉ để xem cấu trúc, không chép.
+- Mẫu: `examples/ve-mau.mjs` (moe anime: mắt gradient nhiều lớp, mi dày, má gạch; trục `mat: {khuon: tron|xoan|nhon|vuong, mui: cham|moc|bong|lo, mat: tron|hanh|xech|sac|cup}`, không ghi thì băm theo id). Tập khác nên đổi hẳn cách vẽ (mắt nét mực, mắt chấm, mặt dài thuỷ mặc, mũi đổ bóng…), không chỉ đổi tham số.
+- Luật render vẫn áp dụng: không filter/clipPath/3D trong ve.mjs; gradient tĩnh được.
+- Kiểm nhanh không dựng: `node scripts/build.mjs <dir> --ve-check` (chỉ kiểm nhóm + chống trùng, ghi `work/ve-fp.json`). Băm id thì dịch bằng `>>>` (không dùng `>>` — ra chỉ số âm).
+- Kiểu đã dùng ở 9 tập hiện có (tập mới tránh lặp): 01 nét bút mực · 02 anime thập niên 90 · 03 mặt tuồng · 04 hình học tối giản · 05 manhua noir nét chì · 06 đất nặn · 07 khắc gỗ Đông Hồ · 08 hoạt hình hạt đậu · 09 màu nước không viền.
 
 ## Viết hiệu ứng local `fx/<tên>.mjs`
 

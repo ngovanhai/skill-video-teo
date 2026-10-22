@@ -7,8 +7,8 @@ import { join, resolve } from "path";
 import { spawnSync } from "child_process";
 import { spoken, keyOf, voOf, DEFAULT_VOICE } from "../engine/voice.mjs";
 
-const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
-const VIENEU = (process.env.VIENEU_DIR || "__VIENEU_DIR__");
+const KIT = "__MUSE_ROOT__/kit";
+const VIENEU = "__VIENEU_DIR__";
 const VIENEU_PY = join(VIENEU, ".venv/Scripts/python.exe");
 // GPU (AMD RX 6600 XT qua DirectML), giống kit/make.mjs: nhanh ~1,5×. Tắt bằng --no-gpu hoặc file kit/gpu-off. GPU lỗi → tự chạy lại bằng CPU (cache giữ câu đã xong).
 const VIENEU_DML_PY = join(VIENEU, ".venv-dml/Scripts/python.exe");

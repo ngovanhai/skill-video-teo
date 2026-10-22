@@ -1,6 +1,6 @@
 // Đồng bộ gói đăng <dir>/youtube/ lên Google Drive qua ứng dụng Google Drive for desktop (ổ G:, thư mục "My Drive").
 //   node <SKILL>/scripts/drive-sync.mjs <dir> [<dir2> …]
-// Chép mọi file trong youtube/ vào <DRIVE_ROOT>/<slug>/ (ghi ra file .part rồi đổi tên, để Drive không đồng bộ file dở).
+// Chép mọi file trong youtube/ (kể cả thư mục con như shorts/) vào <DRIVE_ROOT>/<slug>/ (ghi ra file .part rồi đổi tên, để Drive không đồng bộ file dở).
 // File đã có cùng kích thước và không cũ hơn bản gốc thì bỏ qua; file trên Drive khác mà MỚI hơn thì không đè, chỉ cảnh báo. Ứng dụng Drive tự tải lên mây ở nền.
 // Đổi thư mục đích bằng biến môi trường TEO_DRIVE_DIR. pack.mjs tự gọi sau khi đóng gói thành công.
 import { existsSync, mkdirSync, readdirSync, statSync, copyFileSync, renameSync, rmSync } from "fs";
@@ -18,10 +18,15 @@ export function syncToDrive(dir) {
   const dest = join(DRIVE_ROOT, basename(dir));
   mkdirSync(dest, { recursive: true });
   let copied = 0, skipped = 0; const newer = [];
-  for (const f of readdirSync(src)) {
+  // cả thư mục con (youtube/shorts/, youtube/shorts/NN-ten/), giữ nguyên cấu trúc
+  const walk = (rel) => readdirSync(join(src, rel)).flatMap((f) => {
+    const r = rel ? `${rel}/${f}` : f;
+    return statSync(join(src, r)).isDirectory() ? walk(r) : f.endsWith(".part") ? [] : [r];
+  });
+  for (const f of walk("")) {
     const a = join(src, f), b = join(dest, f);
     const sa = statSync(a);
-    if (!sa.isFile()) continue;
+    mkdirSync(join(b, ".."), { recursive: true });
     if (existsSync(b)) { const sb = statSync(b); if (sb.size === sa.size && sb.mtimeMs >= sa.mtimeMs - SLACK) { skipped++; continue; }
       if (sb.mtimeMs > sa.mtimeMs + SLACK) { newer.push(f); continue; } } // bản trên Drive mới hơn bản gốc: không đè
     const part = b + ".part";

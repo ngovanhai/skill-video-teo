@@ -65,7 +65,7 @@ export function lookOf(tap) {
     thumb: { layout: tap.thumb?.layout || "vs", text: tap.thumb?.text || tap.hook || "" },
   };
 }
-const KH_DIR = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kiem-hiep";
+const KH_DIR = "__MUSE_ROOT__/kiem-hiep";
 // look của tập cũ: history mới có sẵn; tập ghi trước khi có trường này thì đọc lại tap.json của nó
 export function lookOfHist(h) {
   if (h.look) return h.look;

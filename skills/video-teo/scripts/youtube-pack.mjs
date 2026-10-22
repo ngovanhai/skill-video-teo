@@ -108,6 +108,24 @@ function pack(dir) {
   writeFileSync(join(yt, "mo-ta.txt"), desc + "\n");
   writeFileSync(join(yt, "tags.txt"), tags.join(", ") + "\n");
   writeFileSync(join(yt, "phu-de.vi.srt"), srt);
+  // Shorts do build-short.mjs đóng gói vào youtube/shorts/<NN-ten>.mp4 + .txt (dòng sau "TIÊU ĐỀ:" là tiêu đề)
+  const sd = join(yt, "shorts");
+  const shorts = existsSync(sd) ? readdirSync(sd).filter((f) => f.endsWith(".mp4")).sort().map((f) => {
+    const n = f.slice(0, -4), tf = join(sd, `${n}.txt`);
+    const t = existsSync(tf) ? (readFileSync(tf, "utf8").split("\n")[1] || "").trim() : "(chưa có .txt — chạy build-short --stage pack)";
+    return `| \`shorts/${f}\` (${ts(parseFloat(probe(join(sd, f), "format=duration").split("=")[1]))}) | ${t.replace(/\|/g, "\\|")} | \`shorts/${n}.txt\` |`;
+  }) : [];
+  const shortsMd = shorts.length ? `
+## Shorts (${shorts.length})
+Đăng mỗi short thành một video riêng (dọc, dưới 3 phút nên YouTube tự xếp vào Shorts). Đăng sau bản dài, mỗi short cách nhau 1–2 ngày.
+
+| Video | Tiêu đề | Mô tả + tag |
+|---|---|---|
+${shorts.join("\n")}
+
+- Trong Studio, đặt **Video liên quan** của mỗi short là "${titles[0]}" để người xem bấm sang bản đầy đủ.
+- Hình thu nhỏ: chọn một khung hình trong trình chỉnh Shorts (không cần PNG riêng).
+` : "";
   writeFileSync(join(yt, "DANG-YOUTUBE.md"), `# ${titles[0]}
 
 Gói đăng YouTube — tạo bởi skill video-teo (youtube-pack). Sửa \`seo.json\` rồi chạy lại script để cập nhật.
@@ -127,7 +145,7 @@ Gói đăng YouTube — tạo bởi skill video-teo (youtube-pack). Sửa \`seo.
 - Màn hình kết thúc: Đăng ký + 1 video khác của kênh (20 giây cuối) · Thẻ: video liên quan ở giữa video
 - **Đối tượng người xem ("Dành cho trẻ em?")** là quyết định pháp lý của chủ kênh (COPPA). Chọn "Có" thì YouTube tắt bình luận, chuông thông báo, thẻ, màn hình kết thúc và hình mờ của video đó.
 - Trước khi đăng, mở video xem lướt đầu – giữa – cuối.
-
+${shortsMd}
 ## Dữ kiện nên kiểm lại
 ${p.notes || "(không có ghi chú)"}
 ${problems.length ? `\n## ⚠ Cần sửa\n${problems.map((x) => `- ${x}`).join("\n")}\n` : ""}`);

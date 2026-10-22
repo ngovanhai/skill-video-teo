@@ -82,7 +82,7 @@ ${div(u + "-t", { left: 0, top: 80, width: 1920, opacity: 0 }, `<div style="${ti
 ${div(u + "-s", { left: 0, top: 880, width: 1920, textAlign: "center", opacity: 0 }, `<span class="chip">${esc(b.sub)}</span>`)}`);
   ctx.js(`tl.fromTo("#${u}-a", { x: -1500, y: -400 }, { x: 0, y: 0, duration: 0.45, ease: "power3.in" }, ${t + 0.3});
 tl.fromTo("#${u}-b", { x: 1500, y: -400 }, { x: 0, y: 0, duration: 0.45, ease: "power3.in" }, ${t + 0.3});
-tl.fromTo("#${u}-sp", { opacity: 1, scale: 0.3 }, { scale: 1.6, rotation: 25, duration: 0.5, ease: "power3.out", ...NF }, ${t + 0.75}); tl.to("#${u}-sp", { opacity: 0, duration: 0.3 }, ${t + 1.1});
+tl.fromTo("#${u}-sp", { opacity: 1, scale: 0.3 }, { opacity: 1, scale: 1.6, rotation: 25, duration: 0.5, ease: "power3.out", ...NF }, ${t + 0.75}); tl.to("#${u}-sp", { opacity: 0, duration: 0.3 }, ${t + 1.1});
 FLASH(${t + 0.75}, 0.8, 0.35); SHAKE("#${ctx.S}-shake", ${t + 0.75}, 0.4, 30);
 tl.fromTo("#${u}-t", { y: -300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out", ...NF }, ${t + 1.3});
 POP("#${u}-s", ${t + 2.1});

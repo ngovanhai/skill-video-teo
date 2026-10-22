@@ -164,7 +164,8 @@ function head(p, o) {
 }
 
 // ---------------------------------------------------------------- toàn thân
-// o: skin hair eyes robe robe2 pants belt boots weapon hand(F|B) band glasses beard hat age oneArm skirt flaps(bool) expr
+// o.ve: hàm vẽ đầu riêng của tập (ve.mjs, xem SKILL.md "Mặt riêng từng tập") thay cho head() mặc định
+// o: id mat skin hair eyes eyes2 fem robe robe2 pants belt boots weapon hand(F|B) band glasses beard hat age oneArm skirt flaps(bool) expr
 export function figure(p, w, o = {}) {
   const skin = o.skin || SKIN.vang, robe = o.robe || "#5C6B7A", robe2 = o.robe2 || lt(robe, 0.5), pants = o.pants || dk(robe, 0.35), belt = o.belt || "#3B2A1A", boots = o.boots || "#3A2A22";
   const hair = o.hair || { style: "ngan", color: "#3A2A22" }, eyes = o.eyes || "#6B4A3A";
@@ -183,7 +184,7 @@ export function figure(p, w, o = {}) {
   const tail = o.band ? G(`${p}-tail`, -90, -120, `<path d="M0 0 Q-30 10 -46 44 Q-28 36 -14 42 Q-10 20 0 0Z" fill="${o.band}" ${st(o.band)}/><path d="M0 4 Q-34 36 -40 78 Q-22 60 -8 64 Q-12 34 0 4Z" fill="${o.band}" ${st(o.band)}/>`) : "";
   const hairB = hair.style === "duoi-ngua" ? G(`${p}-hairB`, 70, -110, `<path d="M0 0 C44 8 52 90 26 158 C34 92 20 44 -6 18Z" fill="${hair.color}" ${st(hair.color)}/><circle cx="2" cy="4" r="8" fill="#E2483D" ${st("#E2483D")}/>`) : "";
   const headG = G(`${p}-head`, 0, -112, `<rect x="-14" y="-14" width="28" height="26" fill="${dk(skin, 0.12)}"/>` + hairB + tail +
-    `<g id="${p}-face" transform="translate(0 -92) scale(0.95) translate(-150 -172)">${head(p, { skin, hair, eyes, beard: o.beard, beardColor: o.beardColor, hat: o.hat, hatColor: o.hatColor, glasses: o.glasses, age: o.age, expr: o.expr })}${band}</g>`);
+    `<g id="${p}-face" transform="translate(0 -92) scale(0.95) translate(-150 -172)">${(o.ve || head)(p, { id: o.id, mat: o.mat || {}, skin, hair, eyes, eyes2: o.eyes2, fem: o.fem ?? !!o.skirt, beard: o.beard, beardColor: o.beardColor, hat: o.hat, hatColor: o.hatColor, glasses: o.glasses, age: o.age, expr: o.expr }, KIT)}${band}</g>`);
   const body = (o.oneArm ? emptySleeve(-58) : arm("B", -58)) + headG + arm("F", 58);
   return `<svg viewBox="0 0 400 620" width="${w}" height="${h}" style="display:block;overflow:visible" data-rig="v2">
 ${G(`${p}-all`, 200, 430, `<ellipse cy="118" rx="80" ry="12" fill="#000" opacity=".14"/>` +
@@ -191,6 +192,8 @@ ${G(`${p}-all`, 200, 430, `<ellipse cy="118" rx="80" ry="12" fill="#000" opacity
     G(`${p}-torso`, 0, 0, `<g id="${p}-breath" transform="scale(1 1)">${skirt}${torso}${o.flaps !== false && !o.skirt ? flap("F", 48) : ""}${body}</g>`))}
 </svg>`;
 }
+// đồ nghề cho ve.mjs: màu + tóc/mũ/râu dựng sẵn (mắt, mũi, khuôn mặt, miệng thì tập tự vẽ)
+export const KIT = { dk, lt, hx, toHex, st, EXPRS, SKIN, hairBack, hairFront, HAIR, beard, hat };
 // tỉ lệ chibi ~2,3 đầu: hông (200,430), vai y=332, chân chạm y≈548 (FEET), đầu to (mặt anime thu 0,95)
 export const FEET = 548;
 export const JOINTS = ["all", "torso", "head", "uaF", "faF", "hdF", "uaB", "faB", "hdB", "thF", "shF", "ftF", "thB", "shB", "ftB", "wpF", "wpB", "flapF", "flapB", "hairB", "tail"];

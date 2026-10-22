@@ -1,8 +1,9 @@
-# Bộ skill Tèo: `video-teo` + `teo-kiem-hiep`
+# Bộ skill Tèo: `video-teo` + `teo-kiem-hiep` + `teo-kiem-hiep-godot`
 
 Hai skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo, phụ đề, thumbnail và gói upload.
 - `teo-kiem-hiep`: tập kiếm hiệp hoạt hình (HyperFrames + GSAP), đọc bằng giọng VieNeu "Lóng".
+- `teo-kiem-hiep-godot`: tập kiếm hiệp dựng toàn bộ bằng Godot 2D (cần Godot 4.7, sửa đường dẫn Godot/ffmpeg trong `SKILL.md` và `scripts/` nếu máy khác).
 
 > Hai skill này chạy trên máy của bạn: giọng đọc, render và ffmpeg đều chạy tại máy.
 > Vì vậy **không dùng được trong chat claude.ai**, chỉ dùng được trong **Claude Code** (CLI hoặc tab Code của app Claude).

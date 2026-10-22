@@ -9,13 +9,18 @@ import { figure, PRESETS as PRESETS2, WEAPONS as WEAPONS2, JPOS, EXPRS, FEET } f
 import { POSES as POSES2 } from "../engine/moves2.mjs";
 import { SETS, GROUND, WEATHER, STAGES } from "../engine/sets.mjs";
 import { execFileSync } from "child_process";
+import { createHash } from "crypto";
 import { loadLibrary, SKILL } from "../engine/library.mjs";
+import { homedir } from "os";
+// sổ nhân vật chung (skill nhan-vat-chibi): cast {"char": id} lấy nguyên look rig2 từ đó
+const CHARLIB = join(homedir(), ".claude/skills/nhan-vat-chibi/scripts/lib.mjs");
+const CHARBOOK = existsSync(CHARLIB) ? await import(pathToFileURL(CHARLIB).href) : null;
 import { makePlan, printPlan } from "./plan.mjs";
 import { PLANNED } from "../engine/slots.mjs";
 import { loadVoice, voOf } from "../engine/voice.mjs";
 import { printSlow } from "../engine/slow.mjs";
 
-const KIT = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit";
+const KIT = "__MUSE_ROOT__/kit";
 const SFX_LEN = { chime: 2.5, click: 0.37, error: 1.62, "glitch-1": 2.64, "impact-bass-1": 2.12, "impact-bass-2": 2.59, pop: 0.72, riser: 10.03, sparkle: 1.8, "whoosh-cinematic": 5.54, "whoosh-short": 0.57, whoosh: 0.57 };
 const BGM = { file: "playful-pizzicato.mp3", len: 67 };
 // mức nhạc nền theo cảnh (scene.music); "on" = như cũ
@@ -42,38 +47,95 @@ function castOf(tap) {
   const cast = {};
   for (const [id, c] of Object.entries(tap.cast || {})) {
     const kind = c.kind || (id === "teo" ? "teo" : "npc");
+    if (c.char) {
+      if (!V2) die(`cast.${id}: "char" chỉ dùng với rig 2 ("rig": 2)`);
+      if (!CHARBOOK) die(`cast.${id}: chưa có skill nhan-vat-chibi (${CHARLIB})`);
+      const book = CHARBOOK.loadChars();
+      if (!book[c.char]) die(`cast.${id}: không có "${c.char}" trong sổ nhan-vat-chibi (có: ${Object.keys(book).join(", ")})`);
+      const over = Object.fromEntries(Object.entries(c).filter(([k]) => !["char", "kind", "name", "w", "side", "preset", "x", "face", "hidden"].includes(k)));
+      if (over.weapon) over.weapon = WP2(over.weapon);
+      cast[id] = { id, kind: "npc", look: { ...CHARBOOK.lookOf(c.char, book), ...over, _v2: true, id }, name: c.name || book[c.char].name, w: c.w || 190, side: c.side || "foe" };
+      continue;
+    }
     const look = kind === "teo" ? { band: c.band ?? "#D7263D", weapon: c.weapon || "kiem", jacket: c.jacket || "#5B8DEF" } : { ...(PRESETS[c.preset] || {}), ...Object.fromEntries(Object.entries(c).filter(([k]) => ["robe", "hat", "beard", "weapon", "skin", "belt", "patch", "sash"].includes(k))) };
     if (c.preset && !PRESETS[c.preset]) die(`cast.${id}: preset "${c.preset}" không có (có: ${Object.keys(PRESETS).join(", ")})`);
     if (kind !== "teo" && look.hat && !HATS.includes(look.hat)) die(`cast.${id}: hat "${look.hat}" không có (có: ${HATS.join(", ")})`);
     if (look.weapon && !WEAPONS.includes(look.weapon)) die(`cast.${id}: weapon "${look.weapon}" không có (có: ${WEAPONS.join(", ")})`);
-    cast[id] = { id, kind, look: V2 ? look2(kind, kind === "teo" ? look : Object.fromEntries(Object.entries(c).filter(([k]) => ["robe", "hat", "beard", "weapon", "skin", "belt", "sash"].includes(k))), c.preset) : look, name: c.name || id, w: c.w || (kind === "teo" ? 250 : 190), side: c.side || (kind === "teo" ? "hero" : "foe") };
+    cast[id] = { id, kind, look: V2 ? { ...look2(kind, kind === "teo" ? { ...look, ...pickV2(c) } : Object.fromEntries(Object.entries(c).filter(([k]) => ["robe", "hat", "beard", "weapon", "skin", "belt", "sash", ...V2_ONLY].includes(k))), c.preset), id } : look, name: c.name || id, w: c.w || (kind === "teo" ? 250 : 190), side: c.side || (kind === "teo" ? "hero" : "foe") };
   }
   return cast;
 }
+// cast đã quy về rig 2 (cho công cụ xem mặt ve.mjs ngoài build)
+export function castV2(tap) { const v = V2; V2 = true; try { return castOf(tap); } finally { V2 = v; } }
 const rigH = (type, w) => (type === "teo" ? Math.round((w * 760) / 500) : Math.round(w * 1.5));
 // rig 2 (tap.rig = 2 hoặc --rig 2): hình v2 (engine/rig2.mjs) vẽ trong đúng hộp w×rigH của rig cũ — chân chạm đáy hộp, đỉnh tóc chạm
 // đỉnh hộp — nên vị trí diễn viên, bong bóng, koHead và fx dùng a.top/a.h không đổi. Lệnh v1 trong fx chạy qua engine/compat2.js.
 let V2 = false;
+let VE = null; // <dir>/ve.mjs: hàm vẽ đầu riêng của tập (rig 2)
 const V2_TOP = 99; // đỉnh tóc (toạ độ viewBox 400×620); chân ở FEET
 const HAT2 = { non: "non-la", dao: "tram", bui: undefined, none: undefined, linh: "linh", khan: "khan", troc: "troc" };
+// trường chỉ rig 2 hiểu (mặt riêng ve.mjs dùng mat/fem/age/eyes2): chép thẳng từ cast
+const V2_ONLY = ["eyes", "eyes2", "fem", "hair", "age", "mat"];
+const pickV2 = (c) => Object.fromEntries(Object.entries(c).filter(([k]) => V2_ONLY.includes(k)));
 const WP2 = (w) => (w === undefined ? undefined : WEAPONS2.includes(w) ? w : "kiem");
 // diện mạo v1 (cast cũ hoặc look viết tay trong fx) → v2; look đã là v2 (_v2) thì giữ
 function look2(type, look = {}, preset) {
   if (look._v2) return look;
   const def = (o) => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined));
-  if (type === "teo") return { ...PRESETS2.teo, ...def({ band: look.band, weapon: WP2(look.weapon), robe: look.jacket }), _v2: true };
+  if (type === "teo") return { ...PRESETS2.teo, ...def({ band: look.band, weapon: WP2(look.weapon), robe: look.jacket }), ...pickV2(look), _v2: true };
   const o = { ...(PRESETS2[preset] || PRESETS2[String(preset).replace(/-.*/, "")] || {}) };
   if (look.robe) o.robe = look.robe;
   if ("hat" in look) { o.hat = HAT2[look.hat] ?? (look.hat in HAT2 ? undefined : look.hat); if (look.hat === "dao") o.hair = { style: "bui-cao", color: o.hair?.color || "#1E1A1A" }; if (look.hat === "bui" && !o.hair) o.hair = { style: "bui-toi", color: "#2B2220" }; }
   if ("beard" in look) { if (!look.beard) delete o.beard; else { o.beard = o.beard || "rau-dai"; if (typeof look.beard === "string" && look.beard.startsWith("#")) o.beardColor = look.beard; } }
   if (look.weapon) o.weapon = WP2(look.weapon);
-  for (const k of ["skin", "belt", "sash"]) if (look[k]) o[k] = look[k];
+  for (const k of ["skin", "belt", "sash", ...V2_ONLY]) if (look[k] !== undefined) o[k] = look[k];
   return { ...o, _v2: true };
+}
+// ---------------------------------------------------------------- mặt riêng từng tập (ve.mjs)
+async function loadVe(file) {
+  const fn = (await import(pathToFileURL(file).href + "?t=" + Date.now())).default;
+  if (typeof fn !== "function") die(`${file}: cần export default function (p, o, kit) → svg đầu`);
+  return fn;
+}
+// lấy nguyên khối <g id="..."> (kể cả g lồng) trong svg
+function grabG(svg, id) {
+  const i = svg.indexOf(`id="${id}"`); if (i < 0) return null;
+  const a = svg.lastIndexOf("<g", i); let d = 0;
+  for (const m of svg.slice(a).matchAll(/<g[\s>]|<\/g>/g)) { d += m[0] === "</g>" ? -1 : 1; if (!d) return svg.slice(a, a + m.index + 4); }
+  return null;
+}
+// dấu vân mặt: bỏ prefix + màu → so được hình dáng (mắt/mũi/khuôn mặt) giữa các nhân vật và các tập
+const veFp = (g, p) => createHash("sha1").update(g.split(p).join("P").replace(/#[0-9a-fA-F]{3,8}/g, "#")).digest("hex").slice(0, 12);
+function veFace(fn, c) {
+  const p = "vechk", svg = figure(p, 400, { ...look2(c.kind, c.look), ve: fn, expr: "binh" });
+  const need = [`${p}-mat`, `${p}-blink`, ...EXPRS.flatMap((e) => [`${p}-ex-${e}`, `${p}-mc-${e}`, `${p}-mo-${e}`])];
+  const miss = need.filter((id) => !svg.includes(`id="${id}"`)).map((id) => id.replace(p, "<p>"));
+  if (miss.length) die(`ve.mjs (${c.id}): thiếu nhóm ${miss.slice(0, 6).join(", ")}${miss.length > 6 ? "…" : ""} — xem SKILL.md "Mặt riêng từng tập"`);
+  return { mat: veFp(grabG(svg, `${p}-mat`), p), mat2: veFp(grabG(svg, `${p}-ex-binh`), p) };
+}
+async function checkVe(dir, cast) {
+  const fp = Object.fromEntries(Object.values(cast).map((c) => [c.id, veFace(VE, c)]));
+  const ids = Object.keys(fp), what = { mat: "khuôn mặt/mũi (nhóm <p>-mat)", mat2: "mắt/mày/miệng (nhóm <p>-ex-binh)" };
+  const clash = (fpA, fpB) => ["mat", "mat2"].find((k) => fpA[k] === fpB[k]);
+  for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) { const k = clash(fp[ids[i]], fp[ids[j]]);
+    if (k) die(`ve.mjs: ${ids[i]} và ${ids[j]} trùng ${what[k]} — mỗi nhân vật phải có mặt riêng (dùng o.id / cast.mat)`); }
+  // không chép mẫu: cùng cast, vẽ bằng examples/ve-mau.mjs mà ra cùng dấu vân → chép nguyên
+  const mau = join(SKILL, "examples/ve-mau.mjs");
+  if (existsSync(mau)) { const fnM = await loadVe(mau);
+    for (const c of Object.values(cast)) { const k = clash(fp[c.id], veFace(fnM, c)); if (k) die(`ve.mjs: ${c.id} có ${what[k]} giống hệt examples/ve-mau.mjs — mẫu chỉ để tham khảo, tập phải tự vẽ`); } }
+  // không trùng tập khác (các thư mục tập cùng cấp có work/ve-fp.json)
+  const up = resolve(dir, ".."), self = basename(dir);
+  for (const d of readdirSync(up)) { const f = join(up, d, "work/ve-fp.json"); if (d === self || !existsSync(f)) continue;
+    const o = JSON.parse(readFileSync(f, "utf8"));
+    for (const [oid, ofp] of Object.entries(o.chars || {})) for (const [id, cur] of Object.entries(fp)) { const k = clash(cur, ofp);
+      if (k) die(`ve.mjs: ${id} trùng ${what[k]} với ${d}/${oid} — mỗi tập vẽ mặt riêng, không dùng chung`); } }
+  mkdirSync(join(dir, "work"), { recursive: true });
+  writeFileSync(join(dir, "work/ve-fp.json"), JSON.stringify({ tap: self, chars: fp }, null, 1));
 }
 function rigSvg(type, p, w, look) {
   if (!V2) return type === "teo" ? teo(p, w, look) : npc(p, w, look);
   const h = rigH(type, w), k = h / (FEET - V2_TOP), w2 = 400 * k;
-  return `<div style="position:relative;width:${w}px;height:${h}px"><div style="position:absolute;left:${f2((w - w2) / 2)}px;top:${f2(-V2_TOP * k)}px">${figure(p, f2(w2), look2(type, look))}</div></div>`;
+  return `<div style="position:relative;width:${w}px;height:${h}px"><div style="position:absolute;left:${f2((w - w2) / 2)}px;top:${f2(-V2_TOP * k)}px">${figure(p, f2(w2), { ...look2(type, look), ...(VE ? { ve: VE } : {}) })}</div></div>`;
 }
 const HEAD1 = { teo: 0.24, npc: 0.33 }, HEAD2 = { teo: 0.283, npc: 0.283 };
 let HEAD = HEAD1;
@@ -467,12 +529,17 @@ export async function build(dir, opts = {}) {
   const rig = opts.rig ?? tap.rig ?? 1;
   if (![1, 2].includes(+rig)) die(`rig "${rig}" không có (1 | 2)`);
   V2 = +rig === 2; HEAD = V2 ? HEAD2 : HEAD1;
+  VE = existsSync(join(dir, "ve.mjs")) ? await loadVe(join(dir, "ve.mjs")) : null;
+  if (VE && !V2) die("ve.mjs (mặt riêng của tập) chỉ chạy với rig 2 — thêm \"rig\": 2 vào tap.json");
+  // --ve-check: chỉ kiểm mặt riêng (nhóm bắt buộc + chống trùng, ghi work/ve-fp.json), không dựng index.html
+  if (opts.veCheck) { if (!VE) die(`${dir}: thiếu ve.mjs`); await checkVe(dir, castOf(tap)); console.log(`ve.mjs OK · ${Object.keys(tap.cast || {}).length} nhân vật`); return null; }
   if (!Array.isArray(tap.scenes) || !tap.scenes.length) die("tap.json: cần ít nhất 1 cảnh trong scenes");
   const lib = await loadLibrary(dir);
   const plan = await makePlan(dir, opts);
   const theme = lib.THEMES[plan.theme] || die(`theme "${plan.theme}" không có`);
   const rnd = mulberry(plan.seed);
   const cast = castOf(tap);
+  if (VE) await checkVe(dir, cast);
   const base = {
     v2: V2, plan, lib, theme, cast, rnd, range: (a, b) => a + rnd() * (b - a), pick: (arr) => arr[Math.floor(rnd() * arr.length)],
     RIG: {}, code: [], over: [], sfxList: [], used: [], beatsLog: [], n: 0,
@@ -519,7 +586,8 @@ ${voiceTags(base.voiceList, total)}`;
   if (!opts.quiet) {
     printPlan(plan, lib);
     console.log(`build: ${basename(dir)}/index.html · ${f2(total)} s · ${tap.scenes.length} cảnh · ${base.sfxList.length} sfx · hiệu ứng tự chế: ${local.length ? [...new Set(local.map((u) => u.id))].join(", ") : "KHÔNG CÓ"}`);
-    if (V2) console.log("build: rig 2 (engine/rig2.mjs + compat2.js)");
+    if (V2) console.log(`build: rig 2 (engine/rig2.mjs + compat2.js)${VE ? " · mặt riêng ve.mjs" : ""}`);
+    if (V2 && !VE) console.warn("build: CẢNH BÁO — tập chưa có ve.mjs: nhân vật dùng mặt chung của engine. Mỗi tập phải tự vẽ mắt/mũi/khuôn mặt (SKILL.md \"Mặt riêng từng tập\")");
     if (base.voice) console.log(`build: giọng ${base.voice.voice} · ${base.voiceList.length} câu · ${f2(base.voiceList.reduce((a, v) => a + v.dur, 0))} s`);
     else console.warn("build: CẢNH BÁO chưa có giọng đọc — chạy scripts/voice.mjs <dir> trước rồi build lại");
     if (base.voiceMiss.length) console.warn(`build: CẢNH BÁO ${base.voiceMiss.length} câu chưa có giọng (sửa chữ sau khi chạy voice.mjs) — chạy lại voice.mjs: ${base.voiceMiss.slice(0, 3).map((x) => JSON.stringify(x)).join(", ")}`);
@@ -532,7 +600,7 @@ ${voiceTags(base.voiceList, total)}`;
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
-  const dir = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a)) || die("dùng: node build.mjs <dir> [--replan] [--seed N] [--rig 1|2]");
+  const dir = args.find((a) => !a.startsWith("--") && !/^\d+$/.test(a)) || die("dùng: node build.mjs <dir> [--replan] [--seed N] [--rig 1|2] [--ve-check]");
   const si = args.indexOf("--seed"), ri = args.indexOf("--rig");
-  await build(dir, { replan: args.includes("--replan"), quiet: args.includes("--quiet"), seed: si >= 0 ? Number(args[si + 1]) : null, rig: ri >= 0 ? Number(args[ri + 1]) : undefined });
+  await build(dir, { replan: args.includes("--replan"), quiet: args.includes("--quiet"), veCheck: args.includes("--ve-check"), seed: si >= 0 ? Number(args[si + 1]) : null, rig: ri >= 0 ? Number(args[ri + 1]) : undefined });
 }
