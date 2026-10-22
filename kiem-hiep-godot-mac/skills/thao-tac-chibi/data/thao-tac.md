@@ -262,3 +262,29 @@ Extra: `col, life, land (y chạm đất), on_land (Callable nhận q), z (0.45 
 ### nan_bot — Tèo nặn: `tay_tho(c, p, s, ang)` (tay bột to có vân tay) đưa vào/ra theo `kk(id)`; tượng `pop` cùng lúc. Mẫu: `o/quay.gd`, short `03-hai-ban/canh/sach.gd` (đặt sách).
 ### om_dau / om_tai / kiet — dict trong `mam.gd`: OM_DAU (bỏ chạy, ghép `["run",0.6]`), OM_TAI (nghe tiêu, `all` hạ 16), KIET (kiệt sức chống gối, `all` hạ 30; ôm nhau cười = tay `{-60,-40}` + `rot` ±`sin(t*9)*0.07`). Mẫu: `o/cuoi.gd` k22, short `02-oan-gia/canh/oan.gd`.
 - **Bài học tập 03**: khối bột co về 0 (mộ, lá gói) làm `triangulate_polygon` lỗi → `bot()` lùi về bao lồi khi tam giác hoá rỗng. Short mới tạo phải chạy `--import` một lần, không thì font/mp3 null.
+
+---
+
+## J. Thêm từ tap-05 Cổ Long (2026-10-22, mẫu: kiem-hiep `tap-05-co-long/godot/khuon/*.gd`, khung xưởng in đêm)
+### ngoi_ghe — ngồi ghế đẩu: `{"thF":-70,"shF":80,"thB":-70,"shB":80,"all":[0,60,0]}` trộn với `rest`, đứng dậy bằng cách giảm w về 0. Mẫu: `gan_sang.gd` (k17).
+### chong_cam — chống cằm chờ: `{"uaF":-60,"faF":-150,"head":12}` khi đang ngồi. Mẫu: `gan_sang.gd` k17-02b.
+### thao_tap_de — vòng hai tay ra sau lưng: `{"uaF":40,"faF":-60,"uaB":40,"faB":-60,"head":10}` khoảng 2.4 s, rồi vẽ tạp dề treo lên ghế ở `_near`. Mẫu: `gan_sang.gd` k17-07b.
+### dat_len_ke — với tay đặt đồ lên giá cao: `{"uaF":-150+sin(t*6)*20,"faF":-20}`, x đi theo vật thứ n đang đặt (`nbot()`). Mẫu: `gan_sang.gd` k17-05.
+### nem_dau_chi — ném dấu chì vào ô bảng: vật bay theo parabol từ `a.node.hand(c,"F")` tới ô, chạm thì nảy chữ đỏ. Mẫu: `bang_diem.gd` (k14).
+### khoa_khuon_run — khoá khuôn tay run: tay F + `sin(t*30)*4` ở `faF`, nét mặt "soc"/"quyet-tam". Mẫu: `trang_muc.gd` k13-05.
+### keo_hoc — kéo hộc tủ lần lượt: hộc i mở từ `L(id)+i*0.72`, đồ vật trồi lên từ trong hộc. Mẫu: `bay_hoc.gd` (k15).
+### quy_xuong — quỳ sau khi thua: `["kneel", w]` + kiếm vẽ tay trượt xuống mái ngói, có toé lửa. Mẫu: `trang_sau.gd` k13c.
+- **Bài học tập 05**: nét mặt "ko" ra mắt X, nên dùng binh/buon/soc. Chữ ở `_front` trôi khi camera lia, nên đổi toạ độ màn hình bằng `scr()` (parallax 1.3) hoặc chuyển sang `_near`. Đặt `[["point",1.0],0.0]` trong `extra` sẽ lỗi "Invalid access" vì phần tử phải là `[pose, w]`.
+
+---
+
+## K. Thêm từ tap-07 Ỷ Thiên Đồ Long (2026-10-22, mẫu: kiem-hiep `tap-07-y-thien-do-long/godot/ben/*.gd`, khung hải trình trên hải đồ)
+### nam_ngu — nằm ngủ / ngồi dậy: `nam(a, k, huong)` (ben.gd) xoay `a.rot` ±PI/2 và hạ `pos.y`; ngồi dậy = giảm k về 0 kèm `["kneel",0.35]`. Mẫu: `k17.gd` (đảo hoang, thuốc mê).
+### cheo_can_dai — chèo bằng mái dài: `can_dai(c, a, 70, 260)` vẽ cán theo hai tay; hai tay `hold` F/B lệch pha `sin(ph)` / `sin(ph+0.6)`. Mẫu: `k02.gd`, `k18.gd`.
+### quai_bua_nhip — quai búa theo danh sách nhát: `_nhat()` trả các giây nện, `_bua_k()` 1 = giơ cao → 0 = nện; `hold F` lerp (60,-150)→(120,-10); vật trên đe liền dần theo số nhát đã nện. Mẫu: `k19.gd`.
+### nhac_dao_mot_tay — nhấc vật trăm cân như cành củi: `prop(a,"dao","tay")` + `["raise", w]` nhanh 0.3 s, không nhún (khác vật nặng thường). Mẫu: `k10.gd`.
+### chuyen_gay — chuyền gậy qua tay ba người: gậy vẽ tay ở `_near`, gốc lerp giữa `tay(a,"F")` của người trước và người sau theo `qua(id)`; đặt lệch `30*face` để khỏi che mặt. Mẫu: `k18.gd` (Đả Cẩu Bổng).
+### doi_actor_mu — đổi nhân vật sang bản mù giữa tập: hai actor cùng chỗ (`nv("tt")` / `nv("ta-ton-mu")`), bật `vis` chéo nhau ở mốc câu. Nhớ đặt lại `vis=true` đầu `_story` cho mọi actor có thể bị ẩn ở mốc trước (không thì ẩn vĩnh viễn khi tua). Mẫu: `k16.gd`, `k17.gd`, `k20b.gd`.
+### thut_nut_chi — sợi chỉ đỏ nối hai người rồi thắt nút (thù khép lại): polyline võng giữa hai `head_of`, độ võng và sóng giảm theo `qua`, nút = arc + chấm ở giữa. Mẫu: `k20b.gd`.
+### toc_rung_la — tóc rụng thành lá (quy y): `roi(head_of(a)+…, v0, t0, y_dat, quay)` cho từng lá, lệch giờ 0.3 s. Mẫu: `k20b.gd`.
+- **Bài học tập 07**: biểu cảm không có "buon" (dùng "ngai"); hình chữ nhật làm mờ lộ cạnh → dùng làn khói/blob; nhãn đặt ở `_d_screen` không trôi theo máy quay. Biểu thức lấy từ Array/Dict phải khai kiểu (`var ang: float = …`).

@@ -2,7 +2,7 @@
 //   node <SKILL>/scripts/gd-voice.mjs <tap> [--voice Lóng] [--dry] [--local] [--no-gpu]   (mặc định đọc trên Colab: kiem-hiep/_tools/colab-tts)
 // loi.txt: mỗi câu đọc là một dòng "[id] lời đọc" (id: chữ thường/số/gạch, không trùng). Mọi dòng khác (tiêu đề, ghi chú dựng,
 // đánh dấu cảnh…) công cụ này bỏ qua — cấu trúc kịch bản do từng tập tự đặt và tự đọc trong GDScript của tập.
-// Có cache: câu nào chữ không đổi và còn wav thì không đọc lại. Chạy trong suất máy: bash kiem-hiep/_tools/slot.sh "<tập> giọng" node …
+// Có cache: câu nào chữ không đổi và còn wav thì không đọc lại. Gọi thẳng, không qua slot.sh. Colab lỗi thì dừng; chỉ --local mới đọc máy nhà (tự xin suất).
 import { readFileSync, writeFileSync, mkdirSync, existsSync, openSync, readSync, closeSync, unlinkSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -46,16 +46,22 @@ if (todo.length) {
   // Đọc trên Colab không cần suất máy, nên gọi gd-voice thẳng (không qua slot.sh); lùi về máy nhà thì tự xin suất ở đây.
   // Vẫn được gọi qua slot.sh (lệnh cũ): khi đó đã có suất, không xin thêm.
   const SLOT = "__MUSE_ROOT__/kiem-hiep/_tools/slot.sh";
-  const anc = spawnSync("powershell", ["-NoProfile", "-c", `$p=${process.ppid}; for($i=0;$i -lt 5 -and $p;$i++){ $x=Get-CimInstance Win32_Process -Filter "ProcessId=$p"; $x.CommandLine; $p=$x.ParentProcessId }`], { encoding: "utf8" }).stdout || "";
-  const who = anc.includes("slot.sh") ? null : dir.split(/[\\/]/).slice(-3).join("/") + " giọng (máy nhà)";
-  const run = (py, e) => (who
-    ? spawnSync("bash", [SLOT, who, py, join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })
-    : spawnSync(py, [join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })).status;
+  let who;
+  const run = (py, e) => {
+    if (who === undefined) { // chỉ dò cây tiến trình khi thật sự lùi về máy nhà
+      const anc = spawnSync("powershell", ["-NoProfile", "-c", `$p=${process.ppid}; for($i=0;$i -lt 5 -and $p;$i++){ $x=Get-CimInstance Win32_Process -Filter "ProcessId=$p"; $x.CommandLine; $p=$x.ParentProcessId }`], { encoding: "utf8" }).stdout || "";
+      who = anc.includes("slot.sh") ? null : dir.split(/[\\/]/).slice(-3).join("/") + " giọng (máy nhà)";
+    }
+    return (who
+      ? spawnSync("bash", [SLOT, who, py, join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })
+      : spawnSync(py, [join(KIT, "py/tts.py"), job], { stdio: "inherit", cwd: VIENEU, env: e })).status;
+  };
   // Mặc định đọc trên Google Colab (GPU T4, colab CLI); lỗi hoặc --local thì đọc ở máy nhà (GPU DirectML rồi CPU).
   let st = -1;
   if (!argv.includes("--local") && existsSync(COLAB_TTS)) {
     st = spawnSync(process.execPath, [COLAB_TTS, job], { stdio: "inherit", env }).status;
-    if (st !== 0) console.log("gd-voice: ! Colab lỗi (exit " + st + ") — đọc ở máy nhà");
+    // Người dùng chốt: Colab lỗi thì sửa Colab, không tự lùi về máy nhà (chỉ đọc máy nhà khi gọi --local)
+    if (st !== 0) die("Colab lỗi (exit " + st + ") — xem bảng 'Lỗi Colab TTS' trong skill teo-kiem-hiep-godot, sửa rồi chạy lại; chỉ dùng --local khi người dùng cho phép");
   }
   const gpu = st !== 0 && !argv.includes("--no-gpu") && !existsSync(join(KIT, "gpu-off")) && existsSync(PY_DML);
   if (gpu) st = run(PY_DML, { ...env, VIENEU_ORT_PROVIDERS: "DmlExecutionProvider", VIENEU_ORT_GPU_PARTS: "pre,dec,codec" });
