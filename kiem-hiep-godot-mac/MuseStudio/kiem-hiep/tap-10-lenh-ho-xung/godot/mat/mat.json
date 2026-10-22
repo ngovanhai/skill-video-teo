@@ -1,0 +1,112 @@
+{
+ "scale": 1.5,
+ "viewBox": [
+  -50,
+  -70,
+  400,
+  540
+ ],
+ "neck": [
+  300,
+  508.5
+ ],
+ "size": [
+  600,
+  810
+ ],
+ "cast": {
+  "lhx": {
+   "name": "Lệnh Hồ Xung",
+   "robe": "#2F6F8F",
+   "hair": "#1A1414",
+   "skin": "#FBD3B0"
+  },
+  "dien": {
+   "name": "Điền Bá Quang",
+   "robe": "#6B2A2A",
+   "hair": "#1E1A1A",
+   "skin": "#E2A578"
+  },
+  "teo": {
+   "name": "Tèo",
+   "robe": "#E8DCC0",
+   "hair": "#6B3F26",
+   "skin": "#FFE3CF"
+  },
+  "nghilam": {
+   "name": "Nghi Lâm",
+   "robe": "#9A9A98",
+   "hair": "#1A1414"
+  },
+  "nhac": {
+   "name": "Nhạc Bất Quần",
+   "robe": "#3D4E6E",
+   "hair": "#1A1A1A",
+   "skin": "#FBD3B0"
+  },
+  "phong": {
+   "name": "Phong Thanh Dương",
+   "robe": "#8A8A86",
+   "hair": "#DADADA"
+  },
+  "doanh": {
+   "name": "Nhậm Doanh Doanh",
+   "robe": "#2B2B4B",
+   "hair": "#1A1414",
+   "skin": "#FFE3CF"
+  },
+  "luu": {
+   "name": "Lưu Chính Phong",
+   "robe": "#3E6E5A",
+   "hair": "#2A2A2A"
+  },
+  "khuc": {
+   "name": "Khúc Dương",
+   "robe": "#4A2E2E",
+   "hair": "#9A9A9A"
+  },
+  "linhsan": {
+   "name": "Nhạc Linh San",
+   "robe": "#E89AA8",
+   "hair": "#1A1414"
+  },
+  "lam": {
+   "name": "Lâm Bình Chi",
+   "robe": "#F4F1EA",
+   "hair": "#2B2220"
+  },
+  "batgioi": {
+   "name": "Bất Giới",
+   "robe": "#8A6A44",
+   "hair": "#3A2A22",
+   "skin": "#E2A578"
+  },
+  "luctruc": {
+   "name": "Lục Trúc Ông",
+   "robe": "#4E7A4A",
+   "hair": "#DADADA"
+  },
+  "huong": {
+   "name": "Hướng Vấn Thiên",
+   "robe": "#5A3A1E",
+   "hair": "#1E1A1A",
+   "skin": "#E2A578"
+  },
+  "phuong": {
+   "name": "Phương Chứng",
+   "robe": "#E3A21A",
+   "hair": "#3A2A22"
+  },
+  "dongphuong": {
+   "name": "Đông Phương Bất Bại",
+   "robe": "#C2185B",
+   "hair": "#1A1414",
+   "skin": "#FFE3CF"
+  },
+  "nham": {
+   "name": "Nhậm Ngã Hành",
+   "robe": "#1F3A2E",
+   "hair": "#1A1A1A"
+  }
+ }
+}

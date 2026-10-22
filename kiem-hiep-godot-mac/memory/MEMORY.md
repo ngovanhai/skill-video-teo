@@ -1,0 +1,18 @@
+- [Kiếm hiệp → Godot](kiem-hiep-godot.md) — Godot 2D dựng toàn bộ video, bỏ beat+planner, kịch bản/code riêng mỗi tập; thử 1 tập trước (2026-10-21)
+- [Skill teo-kiem-hiep-godot](teo-kiem-hiep-godot-skill.md) — tập kiếm hiệp Godot: new-tap (hạ tầng), gd-check, pack, history.json chống lặp (2026-10-21)
+- [Kiếm hiệp phá khuôn](kiem-hiep-creative.md) — khung tự thiết kế; mỗi phần một kiểu dựng (không template, không tranh thế giới); nhiều hoạt ảnh cơ thể (2026-10-21)
+- [Kiếm hiệp mặt riêng từng video](kiem-hiep-face-per-video.md) — không áp 1 kiểu mặt chung vào engine; mỗi video tự vẽ mắt/mũi/khuôn mặt khác (2026-10-21)
+- [Kiếm hiệp luôn chibi](kiem-hiep-luon-chibi.md) — tập Godot: nhân vật luôn dạng chibi, mặt/nét riêng từng tập (2026-10-21)
+- [Kiếm hiệp video ≥20 phút](kiem-hiep-video-20-phut.md) — teo-kiem-hiep: each video ≥20 min, 1 main + 4–6 sub-topics from chu-de.md
+- [Kiếm hiệp giọng Lóng](kiem-hiep-voice-long.md) — teo-kiem-hiep: always narrate with VieNeu Lóng via scripts/voice.mjs before build
+- [Skill chuong-2d](chuong-2d-skill.md) — chiêu/chưởng Godot 2D: dùng skill chuong-2d (engine trong skill), rule nhịp/màu/cơ chế không trùng, check.sh (2026-10-21)
+- [Skill nhan-vat-chibi](nhan-vat-chibi-skill.md) — tạo nhân vật chibi: tả → look trong sổ chung chars.json → sheet soi; chuong-2d + teo-kiem-hiep {"char": id} (2026-10-21)
+- [Skill thao-tac-chibi](thao-tac-chibi-skill.md) — sổ động tác chibi v2 + vật phẩm (kiếm/ô/đèn/hồ lô), truyện mới tra sổ theo kịch bản, thiếu thì làm mới rồi ghi sổ (2026-10-22)
+- [Rig v2 ở mọi nơi](chibi-rig-v2-everywhere.md) — chibi.gd v2 của thao-tac-chibi cho mọi cảnh, kể cả chuong-2d (2026-10-22)
+- [Mặt chibi tròn, sáng tạo theo nhân vật](chibi-mat-tron.md) — cấm cằm nhọn/V/vuông; mặt thiết kế từ vai/tính cách nhân vật kịch bản (2026-10-22)
+- [Colab TTS](colab-tts.md) — VieNeu Lóng (gd-voice) + Kokoro tiếng Anh (make.mjs lang=en) mặc định trên Colab T4 qua colab CLI, lỗi thì lùi CPU (2026-10-22)
+- [3 Shorts dọc mỗi video](shorts-doc-3-moi-video.md) — video-teo (build-short, SKILL 6c) + kiếm hiệp Godot (new-short): 3 short 1080×1920 dựng riêng (2026-10-22)
+- [No chapter cards](no-chapter-cards.md) — one continuous video: no chapter scenes, never say "Chương X"/"Chương sau"
+- [Hook + greeting + CTA standard](script-hook-greeting-cta.md) — hook = custom scene from the script's best image, beat-synced; Tèo visible at greeting; CTA 25–75% + end
+- [Creative frames / anti-template](creative-frames.md) — each episode: frame + voice_role + theme + thumb layout, differ from last 3–5 (2026-10-20)
+- [Thumbnail + SEO standard](thumbnail-seo-standard.md) — render+inspect thumb, faces uncovered, titles ≤60 ending "| Tèo Kể", youtube/ upload pack

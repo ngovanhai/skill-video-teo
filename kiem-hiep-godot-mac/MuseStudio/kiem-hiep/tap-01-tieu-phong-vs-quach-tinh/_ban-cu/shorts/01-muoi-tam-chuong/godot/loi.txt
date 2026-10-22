@@ -1,0 +1,14 @@
+# tap-01-tieu-phong-vs-quach-tinh · short 01-muoi-tam-chuong (dọc 1080×1920) — tự kể trọn, ≤ 60 s
+
+## s01 hook | con rồng mực 28 vảy đỏ cuộn kín khung, chữ "28" đóng triện {pre=0.3 post=1.1}
+[s01-01] Mười tám chưởng của Quách Tĩnh, ngày xưa là hai mươi tám.
+
+## s02 than | lấy từ tập: k09-06..k09-11 (bỏ k09-09), vảy rụng 28 → 18 → 12 {pre=0.2 post=0.6}
+[s02-01] Theo bản truyện Kim Dung sửa lại về sau, Hàng Long thời Tiêu Phong có đủ hai mươi tám chưởng.
+[k09-07] Cũng theo bản sửa ấy, Tiêu Phong cùng người em kết nghĩa Hư Trúc ngồi bàn với nhau, bỏ bớt những chiêu rườm rà, rút lại còn mười tám chưởng tinh tuý nhất.
+[k09-08] Vì thế bộ chưởng mới mang tên Thập Bát Chưởng, tức mười tám chưởng, và chính mười tám chưởng ấy truyền xuống tới Hồng Thất Công rồi tới Quách Tĩnh.
+[k09-10] Và bộ chưởng không giữ được mãi. Trăm năm sau nữa, sang thời Ỷ Thiên Đồ Long Ký, bang chủ Cái Bang là Sử Hoả Long chỉ còn biết mười hai chưởng.
+[k09-11] Một con rồng mười tám vảy, qua mấy đời người, rụng dần từng chiếc. Võ công trong truyện Kim Dung cũng già đi như con người vậy.
+
+## s03 ket | Tèo cầm chiếc vảy cuối, mời đăng ký {pre=0.3 post=1.2}
+[s03-01] Còn nhiều chuyện võ công Kim Dung lắm, đăng ký Tèo Kể để nghe tiếp nhé.

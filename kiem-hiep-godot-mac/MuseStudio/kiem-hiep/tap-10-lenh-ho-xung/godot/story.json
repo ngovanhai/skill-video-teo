@@ -1,0 +1,56 @@
+{
+  "tap": "tap-10-lenh-ho-xung",
+  "format": "cuoc-doi",
+  "subjects": [
+    "Lệnh Hồ Xung"
+  ],
+  "khung": "chín lần rót đầy hồ lô ở quầy rượu Hồi Nhạn lâu",
+  "teo_role": "tiểu nhị quán rượu Hồi Nhạn lâu ở Hành Dương",
+  "but": "rig chibi mảng phẳng viền nâu đậm, bóng đổ bằng vạch khắc chéo kiểu nhãn hũ in ván gỗ",
+  "may_quay": "nhìn ra từ sau quầy, đổi đoạn bằng dòng rượu chảy quét ngang màn hình",
+  "palette": "hổ phách rượu, gỗ trầm nâu, xanh ngọc đêm, điểm đỏ son nhãn hũ",
+  "nhac": "sáo trúc tổng hợp sin có tiếng thở trên drone dây trầm và mõ gỗ, điệu thức đổi theo lần rót",
+  "thumb": "Tèo rót rượu bên trái, Lệnh Hồ Xung ngửa cổ uống bên phải, chữ to giữa",
+  "mat": "mắt hạt dưa nghiêng có vạch mi khắc, má hổ phách, mũi gạch ngắn",
+  "font": "Constantia",
+  "doan": {
+    "k01": "quán rượu nhìn qua khe ván quầy, cắt cận chân ghế",
+    "k03": "nhà tranh trên núi Hoa Sơn lúc chiều",
+    "k04": "sân khấu tách đôi: đồng hồ cát và mũi kiếm",
+    "k05": "khuông nhạc bay giữa rừng đêm",
+    "k06": "vách đá khắc chiêu trong hang tuyết",
+    "k09": "chiêu Độc Cô Cửu Kiếm trong khung nhãn hũ",
+    "k11": "mặt cắt cơ thể với tám dòng chân khí",
+    "k12": "mành trúc và bóng người sau mành",
+    "k15": "mặt cắt dọc hồ, ngục dưới đáy",
+    "k16": "cổng chùa, cuốn kinh, đoàn người đi núi",
+    "k18": "sân khấu tối, mặt nạ nứt đôi",
+    "k19": "bàn khách cãi nhau với ba cái chén",
+    "k20": "bờ sông trăng, nốt cầm tiêu bay thành chữ",
+    "k21": "kệ rượu sau quầy, đèn quán"
+  },
+  "facts": "xem y-tuong.md, bảng dữ kiện (≥2 nguồn mỗi dòng)",
+  "edition": "khúc nhạc dựa Quảng Lăng Tán (chi tiết đào mộ) theo bản cũ; còn lại chung mọi bản",
+  "seo": {
+    "title": "Lệnh Hồ Xung: Chín Lần Rót Rượu, Chín Khúc Đời | Tèo Kể",
+    "mo_ta": "Tiểu nhị Hồi Nhạn lâu kể lại cuộc đời Lệnh Hồ Xung qua chín lần rót đầy hồ lô rượu: trận đấu ngồi với Điền Bá Quang, Độc Cô Cửu Kiếm trên vách sám hối, 'bà bà' sau mành trúc hoá ra Nhậm Doanh Doanh, ngục Mai Trang, hai lần từ chối Thiếu Lâm và Nhật Nguyệt thần giáo, nỗi đắng mang tên Nhạc Bất Quần, và khúc Tiếu Ngạo Giang Hồ cuối cùng được hợp tấu trọn vẹn. Dựa trên Tiếu Ngạo Giang Hồ của Kim Dung, kể bằng lời của Tèo; hình vẽ chibi tự dựng, nhạc tự sinh.",
+    "chan": "🍶 Quầy rượu Tèo Kể luôn chừa một chỗ cho khách quen: bấm đăng ký để ghi tên vào sổ, và để lại bình luận gọi món — nhân vật giang hồ nào khách quan muốn nghe kể lần sau?",
+    "tags": [
+      "Lệnh Hồ Xung",
+      "Tiếu Ngạo Giang Hồ",
+      "Kim Dung",
+      "Độc Cô Cửu Kiếm",
+      "Nhậm Doanh Doanh",
+      "Nhạc Bất Quần",
+      "Phong Thanh Dương",
+      "Điền Bá Quang",
+      "kiếm hiệp",
+      "Tèo Kể",
+      "truyện kiếm hiệp",
+      "cuộc đời nhân vật"
+    ]
+  },
+  "chieu": [
+    "doc_co"
+  ]
+}

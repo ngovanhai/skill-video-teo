@@ -1,0 +1,1603 @@
+{
+ "tieu-phong": {
+  "name": "Tiêu Phong",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "đại hán Khiết Đan, khăn đỏ, râu ngắn",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#3E5C8A",
+   "robe2": "#E8E2D0",
+   "pants": "#2B2D42",
+   "belt": "#C9A227",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1E1A1A"
+   },
+   "beard": "rau-de",
+   "eyes": "#5A3A2A",
+   "band": "#B8322C",
+   "weapon": "none"
+  }
+ },
+ "lao-ma": {
+  "name": "Lão ma đầu",
+  "truyen": "chung",
+  "note": "phản diện già áo tím",
+  "look": {
+   "preset": "lao-quai",
+   "weapon": "none",
+   "eyes": "#7A2A8A"
+  }
+ },
+ "doan-du": {
+  "name": "Đoàn Dự",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "công tử Đại Lý áo trắng viền lục",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#EEF3EA",
+   "robe2": "#9CC8A8",
+   "belt": "#3E8E5A",
+   "weapon": "none",
+   "eyes": "#3A6A4A"
+  }
+ },
+ "cuu-ma-tri": {
+  "name": "Cưu Ma Trí",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "quốc sư Thổ Phồn, cà sa đỏ",
+  "look": {
+   "preset": "tang",
+   "robe": "#C8372D",
+   "sash": "#E3A21A",
+   "belt": "#E3A21A",
+   "eyes": "#8A2A1E"
+  }
+ },
+ "nham-nga-hanh": {
+  "name": "Nhậm Ngã Hành",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "giáo chủ Nhật Nguyệt, râu dài đen, áo lục thẫm",
+  "look": {
+   "robe": "#1F3A2E",
+   "robe2": "#8FBF9F",
+   "pants": "#14241C",
+   "belt": "#C9A227",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#1A1A1A"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#2A2A2A",
+   "eyes": "#2E8A5A",
+   "weapon": "none"
+  }
+ },
+ "cao-thu": {
+  "name": "Cao thủ",
+  "truyen": "chung",
+  "note": "đối thủ áo đen",
+  "look": {
+   "preset": "cao-thu",
+   "weapon": "none"
+  }
+ },
+ "vi-nhat-tieu": {
+  "name": "Vi Nhất Tiếu",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "Thanh Dực Bức Vương, da tái, áo lam băng",
+  "look": {
+   "robe": "#D8E6F2",
+   "robe2": "#7FA8CC",
+   "pants": "#3A5A78",
+   "belt": "#2E6FB7",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#2A3442"
+   },
+   "skin": "#FFE3CF",
+   "eyes": "#4A8BE0",
+   "weapon": "none"
+  }
+ },
+ "hiep-khach": {
+  "name": "Hiệp khách",
+  "truyen": "chung",
+  "note": "đối thủ áo nâu đỏ",
+  "look": {
+   "preset": "hiep-khach",
+   "robe": "#8A3A2A",
+   "weapon": "none"
+  }
+ },
+ "truong-vo-ky": {
+  "name": "Trương Vô Kỵ",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "giáo chủ Minh giáo trẻ, áo trắng viền lam ngọc",
+  "look": {
+   "robe": "#F2EEE4",
+   "robe2": "#2E9A9A",
+   "pants": "#24485A",
+   "belt": "#2E9A9A",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1E1A1A"
+   },
+   "eyes": "#2E8A9A",
+   "weapon": "none"
+  }
+ },
+ "thanh-con": {
+  "name": "Thành Côn",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "Viên Chân, sư trọc áo xám, mắt đỏ gian",
+  "look": {
+   "preset": "tang",
+   "robe": "#6E6878",
+   "sash": "#8A1E2A",
+   "belt": "#8A1E2A",
+   "eyes": "#B02A3A",
+   "beard": "rau-de",
+   "beardColor": "#5A5050"
+  }
+ },
+ "diet-tuyet": {
+  "name": "Diệt Tuyệt sư thái",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "chưởng môn Nga Mi, ni cô già, mũ ni xám, mặt lạnh, Ỷ Thiên Kiếm",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#C9CCD2",
+   "robe2": "#3A3D48",
+   "pants": "#4A4D58",
+   "belt": "#2A2C34",
+   "boots": "#2A2C34",
+   "hair": {
+    "style": "troc",
+    "color": "#8A8A8A"
+   },
+   "hat": "khan",
+   "hatColor": "#5E626C",
+   "eyes": "#34466E",
+   "age": "gia",
+   "weapon": "kiem",
+   "fem": true
+  }
+ },
+ "lenh-ho-xung": {
+  "name": "Lệnh Hồ Xung",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "đại đệ tử Hoa Sơn, tóc xoã phóng khoáng, áo lam ngọc, dây đỏ đeo hồ lô",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#2F6F8F",
+   "robe2": "#E8E2D0",
+   "pants": "#1E2B36",
+   "belt": "#B8322C",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#1A1414"
+   },
+   "eyes": "#5A3A2A",
+   "weapon": "none",
+   "band": "#B8322C"
+  }
+ },
+ "dien-ba-quang": {
+  "name": "Điền Bá Quang",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "tay đao khinh công, áo đỏ sẫm, ria mép, da rám",
+  "look": {
+   "skin": "#E2A578",
+   "robe": "#6B2A2A",
+   "robe2": "#D9C9A8",
+   "pants": "#2A1A1A",
+   "belt": "#1E1A1A",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1E1A1A"
+   },
+   "beard": "ria",
+   "eyes": "#8A3A2A",
+   "weapon": "none"
+  }
+ },
+ "teo-tieu-nhi": {
+  "name": "Tèo (tiểu nhị)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo làm tiểu nhị quán rượu: khăn đầu, áo vải mộc, thắt lưng nâu",
+  "look": {
+   "preset": "teo",
+   "hat": "khan",
+   "robe": "#E8DCC0",
+   "robe2": "#8A5A2A",
+   "pants": "#5A4030",
+   "belt": "#8A5A2A",
+   "weapon": "none"
+  }
+ },
+ "nghi-lam": {
+  "name": "Nghi Lâm",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "tiểu ni cô Hằng Sơn, đầu trọc, áo xám, hiền",
+  "look": {
+   "preset": "nu-hiep",
+   "hair": {
+    "style": "troc",
+    "color": "#1A1414"
+   },
+   "hat": "troc",
+   "robe": "#9A9A98",
+   "robe2": "#E8E6E0",
+   "pants": "#6A6A68",
+   "belt": "#7A7A78",
+   "skirt": true,
+   "eyes": "#5A4A3A",
+   "weapon": "none"
+  }
+ },
+ "nhac-bat-quan": {
+  "name": "Nhạc Bất Quần",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "chưởng môn Hoa Sơn, Quân Tử Kiếm, búi cao cài trâm, râu dài đen, áo lam đá",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#3D4E6E",
+   "robe2": "#E8E2D0",
+   "pants": "#232C3E",
+   "belt": "#C9A227",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#1A1A1A"
+   },
+   "hat": "tram",
+   "beard": "rau-dai",
+   "beardColor": "#2A2A2A",
+   "eyes": "#4A3A5A",
+   "weapon": "none"
+  }
+ },
+ "phong-thanh-duong": {
+  "name": "Phong Thanh Dương",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "thái sư thúc Kiếm tông ẩn cư, áo xám, râu trắng dài, gầy",
+  "look": {
+   "preset": "su-phu",
+   "robe": "#8A8A86",
+   "robe2": "#D8D6CE",
+   "pants": "#5A5A56",
+   "age": "gia",
+   "hair": {
+    "style": "tien-ong",
+    "color": "#DADADA"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#DADADA",
+   "eyes": "#4A6A8A",
+   "weapon": "none"
+  }
+ },
+ "doanh-doanh": {
+  "name": "Nhậm Doanh Doanh",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "Thánh cô Nhật Nguyệt, tóc dài thẳng, áo chàm tím, đai đỏ",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#2B2B4B",
+   "robe2": "#C9A0DC",
+   "pants": "#1A1A30",
+   "belt": "#D7263D",
+   "hair": {
+    "style": "dai-thang",
+    "color": "#1A1414"
+   },
+   "eyes": "#3A2A4A",
+   "skin": "#FFE3CF",
+   "weapon": "none"
+  }
+ },
+ "luu-chinh-phong": {
+  "name": "Lưu Chính Phong",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "cao thủ Hành Sơn thổi tiêu, áo lục rêu, râu chòm",
+  "look": {
+   "robe": "#3E6E5A",
+   "robe2": "#E8E2D0",
+   "pants": "#24402F",
+   "belt": "#8A6A44",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#2A2A2A"
+   },
+   "beard": "rau-de",
+   "beardColor": "#3A3A3A",
+   "eyes": "#5A3A2A",
+   "weapon": "none"
+  }
+ },
+ "khuc-duong": {
+  "name": "Khúc Dương",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "trưởng lão Nhật Nguyệt chơi cầm, già, áo nâu đỏ, râu xám",
+  "look": {
+   "robe": "#4A2E2E",
+   "robe2": "#D9C9A8",
+   "pants": "#2A1A1A",
+   "belt": "#C9A227",
+   "age": "gia",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#9A9A9A"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#9A9A9A",
+   "eyes": "#6A4A2A",
+   "weapon": "none"
+  }
+ },
+ "nhac-linh-san": {
+  "name": "Nhạc Linh San",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "tiểu sư muội Hoa Sơn, tóc đuôi ngựa, áo hồng",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#E89AA8",
+   "robe2": "#FFF2F4",
+   "pants": "#8A4A5A",
+   "belt": "#3D4E6E",
+   "hair": {
+    "style": "duoi-ngua",
+    "color": "#1A1414"
+   },
+   "eyes": "#5A3A2A",
+   "weapon": "none"
+  }
+ },
+ "lam-binh-chi": {
+  "name": "Lâm Bình Chi",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "thiếu gia tiêu cục Phúc Uy, công tử áo trắng cổ chàm",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#F4F1EA",
+   "robe2": "#3A3A6A",
+   "pants": "#2A2A4A",
+   "belt": "#3A3A6A",
+   "eyes": "#3A2A5A",
+   "weapon": "none"
+  }
+ },
+ "bat-gioi": {
+  "name": "Bất Giới",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "hoà thượng to xác, cha Nghi Lâm, cà sa nâu bạc, râu chòm",
+  "look": {
+   "preset": "tang",
+   "robe": "#8A6A44",
+   "skin": "#E2A578",
+   "beard": "rau-de",
+   "beardColor": "#2A2A2A",
+   "eyes": "#5A3A2A",
+   "weapon": "none"
+  }
+ },
+ "luc-truc-ong": {
+  "name": "Lục Trúc Ông",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "ông già sành nhạc ngõ trúc Lạc Dương, áo lục trúc, râu trắng",
+  "look": {
+   "preset": "su-phu",
+   "robe": "#4E7A4A",
+   "robe2": "#E8E2D0",
+   "pants": "#2E4A2C",
+   "age": "gia",
+   "beard": "rau-de",
+   "beardColor": "#DADADA",
+   "eyes": "#5A4A2A",
+   "weapon": "none"
+  }
+ },
+ "huong-van-thien": {
+  "name": "Hướng Vấn Thiên",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "hảo hán Nhật Nguyệt, râu dài đen, áo nâu đất, khăn trán vàng",
+  "look": {
+   "skin": "#E2A578",
+   "robe": "#5A3A1E",
+   "robe2": "#D9C9A8",
+   "pants": "#2A1A0E",
+   "belt": "#C9A227",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1E1A1A"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#1E1A1A",
+   "band": "#C9A227",
+   "eyes": "#4A2A1A",
+   "weapon": "none"
+  }
+ },
+ "phuong-chung": {
+  "name": "Phương Chứng",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "phương trượng Thiếu Lâm, già hiền, cà sa vàng, râu trắng",
+  "look": {
+   "preset": "tang",
+   "robe": "#E3A21A",
+   "age": "gia",
+   "beard": "rau-dai",
+   "beardColor": "#DADADA",
+   "eyes": "#5A4A2A",
+   "weapon": "none"
+  }
+ },
+ "dong-phuong-bat-bai": {
+  "name": "Đông Phương Bất Bại",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "giáo chủ nhanh như bóng ma, áo đỏ hồng, tóc dài, mắt đỏ",
+  "look": {
+   "skin": "#FFE3CF",
+   "robe": "#C2185B",
+   "robe2": "#F4C6D8",
+   "pants": "#5A0A2A",
+   "belt": "#1A1A1A",
+   "hair": {
+    "style": "dai-thang",
+    "color": "#1A1414"
+   },
+   "eyes": "#B02A3A",
+   "weapon": "none"
+  }
+ },
+ "duong-qua": {
+  "name": "Dương Quá",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Thần Điêu Đại Hiệp cụt tay phải, áo xám tro bạc màu, tóc xoã buộc dải đen, Huyền Thiết trọng kiếm đen",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#6E6A64",
+   "robe2": "#D9D2C3",
+   "pants": "#2A2826",
+   "belt": "#1A1A1A",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#141010"
+   },
+   "band": "#2A2A2A",
+   "eyes": "#3A2A20",
+   "oneArm": true,
+   "weapon": "trong-kiem",
+   "hand": "F"
+  }
+ },
+ "teo-tho-ren": {
+  "name": "Tèo (thợ rèn)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo học việc lò rèn: khăn trán cam, tạp dề da nâu sẫm, áo cộc vải xám, búa tay",
+  "look": {
+   "preset": "teo",
+   "robe": "#5E6268",
+   "robe2": "#7A4A28",
+   "pants": "#2E2A26",
+   "belt": "#7A4A28",
+   "band": "#E2702A",
+   "weapon": "none"
+  }
+ },
+ "teo-nuoi-ong": {
+  "name": "Tèo (nuôi ong)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo nuôi ong Bách Hoa Cốc: nón lưới vàng mật, áo vải trắng ngà cổ vàng mật, thắt lưng nâu mật, ống khói tay",
+  "look": {
+   "preset": "teo",
+   "robe": "#EDE3C8",
+   "robe2": "#D9A33A",
+   "pants": "#6A5236",
+   "belt": "#9A6A2A",
+   "band": "#E6B84A",
+   "hat": "non-la",
+   "weapon": "none"
+  }
+ },
+ "duong-qua-nho": {
+  "name": "Dương Quá (thiếu niên)",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Dương Quá 14–20 tuổi ở Cổ Mộ: còn hai tay, áo lam xám Toàn Chân cũ, tóc buộc đuôi ngắn, mắt lanh",
+  "look": {
+   "preset": "hiep-khach",
+   "skin": "#FBD3B0",
+   "robe": "#5A7A9A",
+   "robe2": "#E6E0D2",
+   "pants": "#2E3440",
+   "belt": "#2A2A2A",
+   "hair": {
+    "style": "duoi-ngua",
+    "color": "#141010"
+   },
+   "eyes": "#3A2A20",
+   "weapon": "none",
+   "hand": "F"
+  }
+ },
+ "lam-trieu-anh": {
+  "name": "Lâm Triều Anh",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "tổ sư Cổ Mộ phái: áo tím nhạt cổ trắng, tóc búi cao cài trâm ngọc, mắt lam lạnh, kiêu",
+  "look": {
+   "preset": "nu-hiep",
+   "skin": "#FFE3CF",
+   "robe": "#B6A6CF",
+   "robe2": "#F4F1EA",
+   "pants": "#6A5A82",
+   "belt": "#4A3A6A",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#121010"
+   },
+   "hat": "tram",
+   "eyes": "#3A5A9A",
+   "fem": true,
+   "skirt": true,
+   "weapon": "none"
+  }
+ },
+ "cong-ton-chi": {
+  "name": "Công Tôn Chỉ",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "cốc chủ Tuyệt Tình Cốc: áo lục đậm cổ đen, râu chòm đen, mặt đạo mạo, mắt gian, đao kiếm đen",
+  "look": {
+   "preset": "hiep-khach",
+   "skin": "#F0C8A0",
+   "robe": "#2F5A46",
+   "robe2": "#1A1A1A",
+   "pants": "#1E2A24",
+   "belt": "#8A6A2A",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#1A1414"
+   },
+   "beard": "rau-de",
+   "beardColor": "#1A1414",
+   "eyes": "#7A2A2A",
+   "weapon": "kiem",
+   "hand": "F"
+  }
+ },
+ "trieu-chi-kinh": {
+  "name": "Triệu Chí Kính",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "đạo sĩ Toàn Chân hẹp hòi: đạo bào lam đậm cổ trắng, búi cao, ria mép, mắt hẹp gian",
+  "look": {
+   "preset": "dao-si",
+   "robe": "#2E4E86",
+   "robe2": "#E8E4DA",
+   "pants": "#1E2A40",
+   "belt": "#A88A3A",
+   "beard": "ria",
+   "beardColor": "#1A1414",
+   "eyes": "#6A2A2A",
+   "weapon": "none"
+  }
+ },
+ "kim-luan-phap-vuong": {
+  "name": "Kim Luân Pháp Vương",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "quốc sư Mông Cổ đầu trọc, cà sa đỏ tía viền vàng, bánh xe vàng",
+  "look": {
+   "preset": "tang",
+   "skin": "#E2A578",
+   "robe": "#8A1E2A",
+   "robe2": "#E8B830",
+   "pants": "#4A1018",
+   "sash": "#E8B830",
+   "eyes": "#7A2A2A",
+   "weapon": "none"
+  }
+ },
+ "tieu-long-nu": {
+  "name": "Tiểu Long Nữ",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "chủ Cổ Mộ, áo trắng tinh, tóc dài thẳng đen, mặt lạnh hiền",
+  "look": {
+   "preset": "nu-hiep",
+   "skin": "#FFE3CF",
+   "robe": "#F6F4EE",
+   "robe2": "#BFD4DE",
+   "pants": "#C8CCD0",
+   "belt": "#9FB8C8",
+   "hair": {
+    "style": "dai-thang",
+    "color": "#121010"
+   },
+   "eyes": "#4A6A8A",
+   "fem": true,
+   "skirt": true,
+   "weapon": "none"
+  }
+ },
+ "quach-phu": {
+  "name": "Quách Phù",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "tiểu thư Đào Hoa đảo nóng tính, áo hồng đào viền vàng, tóc búi hai bên",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#E86A8A",
+   "robe2": "#F6D27A",
+   "pants": "#7A2A3A",
+   "belt": "#F6D27A",
+   "hair": {
+    "style": "duoi-ngua",
+    "color": "#1A1414"
+   },
+   "eyes": "#6A3A2A",
+   "weapon": "kiem",
+   "hand": "F"
+  }
+ },
+ "chu-ba-thong": {
+  "name": "Chu Bá Thông",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Lão Ngoan Đồng nghịch như trẻ con, tóc râu bạc bờm xờm, áo nâu vá",
+  "look": {
+   "preset": "su-phu",
+   "robe": "#A8784A",
+   "robe2": "#E8D8B0",
+   "pants": "#5A4028",
+   "age": "gia",
+   "hair": {
+    "style": "bom-gai",
+    "color": "#DADADA"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#DADADA",
+   "eyes": "#3A7A3A",
+   "weapon": "none"
+  }
+ },
+ "hoang-duoc-su": {
+  "name": "Hoàng Dược Sư",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Đông Tà đảo Đào Hoa, áo xanh lục ngọc, búi cao cài trâm, râu đen, sáo ngọc",
+  "look": {
+   "preset": "dao-si",
+   "robe": "#2E7A6A",
+   "robe2": "#E6E0C8",
+   "pants": "#163A34",
+   "belt": "#C9A23A",
+   "beard": "rau-de",
+   "beardColor": "#1A1414",
+   "eyes": "#2A4A6A",
+   "weapon": "none"
+  }
+ },
+ "teo-tho-chu": {
+  "name": "Tèo (thợ sắp chữ)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo thợ sắp chữ chì ca đêm: kính tròn, áo thợ lam xám, cổ áo mực than, thắt lưng cam đèn",
+  "look": {
+   "preset": "teo",
+   "band": "#3A4048",
+   "robe": "#8FA6BC",
+   "robe2": "#2B2F38",
+   "pants": "#2B2F38",
+   "belt": "#D9822B",
+   "weapon": "none"
+  }
+ },
+ "co-long": {
+  "name": "Cổ Long",
+  "truyen": "đời thực",
+  "note": "nhà văn Cổ Long thời trẻ: đầu to, tóc ngắn đen, áo sơ mi ngà, cổ áo than, má tròn",
+  "look": {
+   "skin": "#FBD3B0",
+   "hair": {
+    "style": "ngan",
+    "color": "#161212"
+   },
+   "eyes": "#4A3020",
+   "robe": "#EDE6D4",
+   "robe2": "#2B2F38",
+   "pants": "#3A3F4A",
+   "belt": "#3A3F4A",
+   "weapon": "none"
+  }
+ },
+ "kim-dung": {
+  "name": "Kim Dung",
+  "truyen": "đời thực",
+  "note": "nhà văn Kim Dung: kính, tóc ngắn chải gọn, áo xám tro, cổ áo trắng",
+  "look": {
+   "skin": "#FBD3B0",
+   "hair": {
+    "style": "ngan",
+    "color": "#2A2420"
+   },
+   "eyes": "#3A2A20",
+   "glasses": true,
+   "robe": "#7A8290",
+   "robe2": "#F2EEE4",
+   "pants": "#3A3F4A",
+   "belt": "#3A3F4A",
+   "weapon": "none"
+  }
+ },
+ "nghe-khuong": {
+  "name": "Nghê Khuông",
+  "truyen": "đời thực",
+  "note": "nhà văn Nghê Khuông, bạn thân Cổ Long: tóc rẽ ngôi, áo nâu đất, cổ áo kem",
+  "look": {
+   "skin": "#FBD3B0",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#1E1A18"
+   },
+   "eyes": "#4A3A2A",
+   "robe": "#8A5E3C",
+   "robe2": "#EFE4CC",
+   "pants": "#3A2A1E",
+   "belt": "#3A2A1E",
+   "weapon": "none"
+  }
+ },
+ "ly-tam-hoan": {
+  "name": "Lý Tầm Hoan",
+  "truyen": "Đa Tình Kiếm Khách Vô Tình Kiếm",
+  "note": "Tiểu Lý Phi Đao: thư sinh trung niên gầy, da tái, râu cằm lún phún, áo ngà bạc cổ nâu, dải chéo đỏ rượu",
+  "look": {
+   "preset": "thu-sinh",
+   "skin": "#FFE3CF",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#1E1A18"
+   },
+   "eyes": "#5A3A2A",
+   "beard": "rau-de",
+   "beardColor": "#2A2420",
+   "robe": "#DCD4C0",
+   "robe2": "#5A4030",
+   "pants": "#4A3A2E",
+   "belt": "#7A2A2A",
+   "sash": "#7A2A2A",
+   "weapon": "none"
+  }
+ },
+ "thuong-quan-kim-hong": {
+  "name": "Thượng Quan Kim Hồng",
+  "truyen": "Đa Tình Kiếm Khách Vô Tình Kiếm",
+  "note": "bang chủ Kim Tiền Bang: áo vàng kim, cổ đen, mắt đỏ, râu đen, đôi Long Phượng Song Hoàn",
+  "look": {
+   "preset": "lao-quai",
+   "robe": "#C8961E",
+   "robe2": "#1E1A14",
+   "pants": "#3A2A10",
+   "belt": "#1E1A14",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1A1414"
+   },
+   "beard": "rau-de",
+   "beardColor": "#1A1414",
+   "eyes": "#B02A3A",
+   "weapon": "none"
+  }
+ },
+ "ton-tieu-hong": {
+  "name": "Tôn Tiểu Hồng",
+  "truyen": "Đa Tình Kiếm Khách Vô Tình Kiếm",
+  "note": "cô gái lanh lợi, váy đỏ hồng, tóc đuôi ngựa",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#D9485A",
+   "robe2": "#F6E6D8",
+   "belt": "#7A1E2A",
+   "weapon": "none",
+   "eyes": "#4A3020"
+  }
+ },
+ "a-phi": {
+  "name": "A Phi",
+  "truyen": "Đa Tình Kiếm Khách Vô Tình Kiếm",
+  "note": "kiếm khách trẻ ít nói: áo xám tro sờn, tóc buộc gọn, kiếm không vỏ",
+  "look": {
+   "preset": "hiep-khach",
+   "robe": "#5E646C",
+   "robe2": "#C9C2B0",
+   "pants": "#2E3238",
+   "belt": "#2E3238",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#161212"
+   },
+   "eyes": "#3A3A3A",
+   "weapon": "kiem"
+  }
+ },
+ "so-luu-huong": {
+  "name": "Sở Lưu Hương",
+  "truyen": "Sở Lưu Hương hệ liệt",
+  "note": "Đạo Soái hào hoa: áo lam nhạt, cổ trắng, quạt xếp, dải tím uất kim hương",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#7B9ACC",
+   "robe2": "#F4F1EA",
+   "pants": "#2E3A5A",
+   "belt": "#7A3A8A",
+   "sash": "#7A3A8A",
+   "eyes": "#3A4A7A",
+   "weapon": "quat"
+  }
+ },
+ "luc-tieu-phung": {
+  "name": "Lục Tiểu Phụng",
+  "truyen": "Lục Tiểu Phụng hệ liệt",
+  "note": "bốn hàng lông mày: ria mép tỉa như lông mày, áo đỏ son, cổ kem, tay không",
+  "look": {
+   "preset": "hiep-khach",
+   "robe": "#C0392B",
+   "robe2": "#F3E6CC",
+   "pants": "#4A1A16",
+   "belt": "#2A1A14",
+   "hair": {
+    "style": "re-ngoi",
+    "color": "#161212"
+   },
+   "beard": "ria",
+   "beardColor": "#161212",
+   "eyes": "#4A3020",
+   "weapon": "none"
+  }
+ },
+ "hoa-man-lau": {
+  "name": "Hoa Mãn Lâu",
+  "truyen": "Lục Tiểu Phụng hệ liệt",
+  "note": "công tử mù hiền hậu: áo lục nhạt, cổ trắng, khăn búi, luôn cười",
+  "look": {
+   "preset": "thu-sinh",
+   "robe": "#9CC8A0",
+   "robe2": "#FFFFFF",
+   "pants": "#3A5A40",
+   "belt": "#C9A23A",
+   "eyes": "#6A7A6A",
+   "weapon": "none"
+  }
+ },
+ "tay-mon-xuy-tuyet": {
+  "name": "Tây Môn Xuy Tuyết",
+  "truyen": "Lục Tiểu Phụng hệ liệt",
+  "note": "kiếm thần áo trắng tuyết, mặt lạnh, mắt lam, tóc đen dài thẳng, đai đen; kiếm do engine vẽ (weapon none)",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#FFFFFF",
+   "robe2": "#1A1E26",
+   "pants": "#D8DCE2",
+   "belt": "#1A1E26",
+   "hair": {
+    "style": "dai-thang",
+    "color": "#121010"
+   },
+   "eyes": "#4A8BE0",
+   "weapon": "none"
+  }
+ },
+ "diep-co-thanh": {
+  "name": "Diệp Cô Thành",
+  "truyen": "Lục Tiểu Phụng hệ liệt",
+  "note": "thành chủ Bạch Vân thành: áo trắng ngà, cổ vàng kim, búi cao cài trâm, mắt hổ phách; kiếm do engine vẽ (weapon none)",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#F0ECE0",
+   "robe2": "#C9A23A",
+   "pants": "#8A7A5A",
+   "belt": "#C9A23A",
+   "sash": "#C9A23A",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#121010"
+   },
+   "hat": "tram",
+   "eyes": "#B07A2A",
+   "weapon": "none"
+  }
+ },
+ "quach-tinh": {
+  "name": "Quách Tĩnh",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Bắc Hiệp thật thà, mặt vuông hiền, áo nâu đất viền vàng, đai xanh thảo nguyên, búi tóc gọn",
+  "look": {
+   "preset": "hiep-khach",
+   "skin": "#E2A578",
+   "robe": "#8A5A32",
+   "robe2": "#E0C068",
+   "pants": "#3A3026",
+   "belt": "#3E7A6A",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1E1A1A"
+   },
+   "eyes": "#4A3020",
+   "weapon": "none"
+  }
+ },
+ "hoang-dung": {
+  "name": "Hoàng Dung",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "cô gái lanh lợi đảo Đào Hoa, áo vàng nhạt viền xanh lục, tóc búi hai bên cài dải, nấu ăn giỏi",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#F0D070",
+   "robe2": "#4A9A7A",
+   "pants": "#E8E0C8",
+   "belt": "#4A9A7A",
+   "hair": {
+    "style": "duoi-ngua",
+    "color": "#1A1414"
+   },
+   "eyes": "#3A2A1A",
+   "fem": true,
+   "skirt": true,
+   "weapon": "none"
+  }
+ },
+ "hong-that-cong": {
+  "name": "Hồng Thất Công",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Cửu Chỉ Thần Cái, bang chủ Cái Bang ham ăn: áo vá nâu xám, hồ lô đỏ, râu muối tiêu, gậy trúc xanh",
+  "look": {
+   "preset": "cai-bang",
+   "robe": "#7A6A52",
+   "robe2": "#C8B48A",
+   "pants": "#4A4034",
+   "belt": "#B8322C",
+   "age": "gia",
+   "hair": {
+    "style": "bom-gai",
+    "color": "#9A9A9A"
+   },
+   "beard": "rau-de",
+   "beardColor": "#A0A0A0",
+   "eyes": "#4A3020",
+   "weapon": "gay"
+  }
+ },
+ "dinh-xuan-thu": {
+  "name": "Đinh Xuân Thu",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "Tinh Tú lão quái dùng độc: áo tím than, râu trắng dài, mặt hồng hào gian, quạt lông",
+  "look": {
+   "preset": "lao-quai",
+   "robe": "#5A3A7A",
+   "robe2": "#8ABA5A",
+   "pants": "#2E2238",
+   "belt": "#8ABA5A",
+   "age": "gia",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#E0E0E0"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#E8E8E8",
+   "eyes": "#7A2A5A",
+   "weapon": "quat"
+  }
+ },
+ "teo-cai-bang": {
+  "name": "Tèo (Cái Bang một túi)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo đệ tử Cái Bang một túi: áo vá chàm, khăn trán vàng nghệ, một túi vải nâu, gậy tre ngắn",
+  "look": {
+   "preset": "teo",
+   "robe": "#4A5E8A",
+   "robe2": "#D8C8A0",
+   "pants": "#5A4A3A",
+   "belt": "#8A6A44",
+   "band": "#E0A030",
+   "sash": "#8A6A44",
+   "weapon": "none"
+  }
+ },
+ "hu-truc": {
+  "name": "Hư Trúc",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "nhà sư Thiếu Lâm hiền, đầu trọc, áo xám tro, mặt tròn ngơ ngác",
+  "look": {
+   "preset": "tang",
+   "robe": "#8A8A80",
+   "robe2": "#D8C890",
+   "pants": "#5A5A52",
+   "belt": "#C9A227",
+   "hair": {
+    "style": "troc",
+    "color": "#3A3030"
+   },
+   "hat": "troc",
+   "eyes": "#4A3020",
+   "weapon": "none"
+  }
+ },
+ "gia-luat-hong-co": {
+  "name": "Gia Luật Hồng Cơ",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "vua Liêu, áo lông vàng kim viền nâu, mũ lông, râu quai nón đen",
+  "look": {
+   "preset": "chuong-quy",
+   "robe": "#C9952A",
+   "robe2": "#6A4A2A",
+   "pants": "#3A2A1A",
+   "belt": "#8A2A2A",
+   "hair": {
+    "style": "ngan",
+    "color": "#1A1414"
+   },
+   "beard": "rau-dai",
+   "eyes": "#3A2A1A",
+   "hat": "khan",
+   "hatColor": "#6A4A2A",
+   "weapon": "none"
+  }
+ },
+ "triet-biet": {
+  "name": "Triết Biệt",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "thần tiễn Mông Cổ: áo da nâu đỏ, mũ lông, râu ria, cung",
+  "look": {
+   "preset": "linh",
+   "skin": "#E2A578",
+   "robe": "#8A4A2A",
+   "robe2": "#D8B888",
+   "pants": "#4A3020",
+   "belt": "#2A2A2A",
+   "hair": {
+    "style": "ngan",
+    "color": "#1A1414"
+   },
+   "beard": "ria",
+   "eyes": "#3A2A1A",
+   "hat": "khan",
+   "hatColor": "#5A3A22",
+   "weapon": "none"
+  }
+ },
+ "huyen-kho": {
+  "name": "Huyền Khổ",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "đại sư Thiếu Lâm, cà sa vàng sậm, râu bạc, mặt nghiêm hiền",
+  "look": {
+   "preset": "tang",
+   "robe": "#C98A2A",
+   "robe2": "#8A3A2A",
+   "pants": "#6A4A2A",
+   "belt": "#8A3A2A",
+   "age": "gia",
+   "hair": {
+    "style": "troc",
+    "color": "#3A3030"
+   },
+   "hat": "troc",
+   "beard": "rau-de",
+   "beardColor": "#D8D8D8",
+   "eyes": "#4A3020",
+   "weapon": "none"
+  }
+ },
+ "uong-kiem-thong": {
+  "name": "Uông Kiếm Thông",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "bang chủ Cái Bang đời trước: áo vá xám lam, râu dài muối tiêu, gậy trúc",
+  "look": {
+   "preset": "cai-bang",
+   "robe": "#5A6A7A",
+   "robe2": "#C8B48A",
+   "pants": "#3A3A40",
+   "belt": "#8A6A44",
+   "age": "gia",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#8A8A8A"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#B0B0B0",
+   "eyes": "#4A3020",
+   "weapon": "gay"
+  }
+ },
+ "thanh-cat-tu-han": {
+  "name": "Thành Cát Tư Hãn",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Đại Hãn Mông Cổ: áo choàng đỏ thẫm viền lông vàng, mũ lông, râu dài",
+  "look": {
+   "preset": "chuong-quy",
+   "skin": "#E2A578",
+   "robe": "#8A2A2A",
+   "robe2": "#D8B060",
+   "pants": "#3A2A1A",
+   "belt": "#D8B060",
+   "hair": {
+    "style": "ngan",
+    "color": "#2A2020"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#3A2A20",
+   "eyes": "#3A2A1A",
+   "hat": "khan",
+   "hatColor": "#7A5A3A",
+   "weapon": "none"
+  }
+ },
+ "a-tu": {
+  "name": "A Tử",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "cô gái áo tím lanh lợi, tóc búi đôi",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#7A3A9A",
+   "robe2": "#E8D0F0",
+   "pants": "#3A2A4A",
+   "belt": "#E8D0F0",
+   "hair": {
+    "style": "duoi-ngua",
+    "color": "#1A1414"
+   },
+   "eyes": "#5A2A6A",
+   "fem": true,
+   "skirt": true,
+   "weapon": "none"
+  }
+ },
+ "vuong-trung-duong": {
+  "name": "Vương Trùng Dương",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Trung Thần Thông, tổ Toàn Chân, đạo bào vàng nhạt cổ lam, búi cao cài trâm, râu dài xám, mặt bình thản",
+  "look": {
+   "preset": "dao-si",
+   "robe": "#E8C66A",
+   "robe2": "#3D5A8A",
+   "pants": "#6A5A3A",
+   "belt": "#3D5A8A",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#8A8A8A"
+   },
+   "hat": "tram",
+   "beard": "rau-dai",
+   "beardColor": "#9A9A9A",
+   "eyes": "#4A3020",
+   "weapon": "none"
+  }
+ },
+ "au-duong-phong": {
+  "name": "Âu Dương Phong",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Tây Độc núi Bạch Đà, áo trắng cổ tím than, râu chòm đen, mắt đỏ, gậy rắn",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#EDEAE2",
+   "robe2": "#3A2A3A",
+   "pants": "#4A3A4A",
+   "belt": "#7A2A8A",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1A1414"
+   },
+   "beard": "rau-de",
+   "beardColor": "#1A1414",
+   "eyes": "#B02A3A",
+   "weapon": "gay",
+   "hand": "B"
+  }
+ },
+ "doan-tri-hung": {
+  "name": "Đoàn Trí Hưng",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Nam Đế vua Đại Lý, hoàng bào đỏ cánh sen cổ vàng, búi cao trâm vàng, râu dài đen",
+  "look": {
+   "skin": "#FBD3B0",
+   "robe": "#C23B3B",
+   "robe2": "#F2D16B",
+   "pants": "#5A1E1E",
+   "belt": "#E8B830",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#1A1A1A"
+   },
+   "hat": "tram",
+   "beard": "rau-dai",
+   "beardColor": "#2A2A2A",
+   "eyes": "#5A3A2A",
+   "weapon": "none"
+  }
+ },
+ "nhat-dang": {
+  "name": "Nhất Đăng đại sư",
+  "truyen": "Xạ Điêu Anh Hùng Truyện",
+  "note": "Nam Đế sau khi xuất gia, sư già hiền, cà sa nâu đỏ dải vàng, râu trắng",
+  "look": {
+   "preset": "tang",
+   "robe": "#A8503A",
+   "sash": "#E3A21A",
+   "age": "gia",
+   "beard": "rau-dai",
+   "beardColor": "#DADADA",
+   "eyes": "#4A6A3A",
+   "weapon": "none"
+  }
+ },
+ "teo-tho-nan": {
+  "name": "Tèo (thợ nặn tò he)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo thợ nặn tò he chợ phiên: khăn trán đỏ sen, áo hồng phấn cổ lá dong, quần mòng két, thắt lưng hoa hiên",
+  "look": {
+   "preset": "teo",
+   "robe": "#F2C9C9",
+   "robe2": "#6BA36B",
+   "pants": "#2F6A6A",
+   "belt": "#E8B830",
+   "band": "#D9536F",
+   "weapon": "none"
+  }
+ },
+ "teo-thu-dong": {
+  "name": "Tèo (thư đồng kỳ phổ)",
+  "truyen": "Tèo Kể",
+  "note": "Tèo thư đồng chép kỳ phổ ở đình Bán Sơn: khăn đầu lam lục, áo ngà, đai nghệ",
+  "look": {
+   "preset": "teo",
+   "hat": "khan",
+   "robe": "#EDE4CC",
+   "robe2": "#2E6E62",
+   "pants": "#3E4A44",
+   "belt": "#E0A21E",
+   "weapon": "none",
+   "band": "#2E6E62", "hatColor": "#2E6E62"
+  }
+ },
+ "lao-tang-ky": {
+  "name": "Lão hoà thượng kỳ thủ",
+  "truyen": "Tèo Kể (tưởng tượng)",
+  "note": "lão hoà thượng cầm quân đen ở đình Bán Sơn, cà sa vàng mật, ria bạc, hiền vui",
+  "look": {
+   "preset": "tang",
+   "robe": "#D9A441",
+   "sash": "#7A3A20",
+   "age": "gia",
+   "beard": "ria",
+   "beardColor": "#DADADA",
+   "eyes": "#6A4A2A",
+   "weapon": "none"
+  }
+ },
+ "lao-dao-ky": {
+  "name": "Lão đạo kỳ thủ",
+  "truyen": "Tèo Kể (tưởng tượng)",
+  "note": "lão đạo trưởng cầm quân trắng ở đình Bán Sơn, áo lam hồ, búi bạc cài trâm, râu chòm bạc",
+  "look": {
+   "preset": "dao-si",
+   "robe": "#3A6E8E",
+   "robe2": "#F2EEE4",
+   "pants": "#24465A",
+   "belt": "#E0A21E",
+   "age": "gia",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#DADADA"
+   },
+   "hat": "tram",
+   "beard": "rau-de",
+   "beardColor": "#DADADA",
+   "eyes": "#3A5A4A",
+   "weapon": "none"
+  }
+ },
+ "giac-vien": {
+  "name": "Giác Viễn",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "sư trông Tàng Kinh Các, hiền, cà sa vải cũ vàng xám, râu dài xám, đeo xích sắt gánh đôi thùng sắt",
+  "look": {
+   "preset": "tang",
+   "robe": "#C9B48A",
+   "robe2": "#8A7A5A",
+   "sash": "#6A6A6A",
+   "age": "gia",
+   "beard": "rau-dai",
+   "beardColor": "#9A9A9A",
+   "eyes": "#5A4A2A",
+   "weapon": "none"
+  }
+ },
+ "truong-quan-bao": {
+  "name": "Trương Quân Bảo",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "cậu bé hầu sách Tàng Kinh Các (Trương Tam Phong thời nhỏ), búi tó, áo xám lục",
+  "look": {
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1A1A1A"
+   },
+   "robe": "#A8B89A",
+   "robe2": "#4A5A3A",
+   "pants": "#3A3A2A",
+   "belt": "#8A6A44",
+   "eyes": "#4A3A2A",
+   "weapon": "none",
+   "skin": "#FBD3B0",
+   "boots": "#3A2A1A"
+  }
+ },
+ "quach-tuong": {
+  "name": "Quách Tương",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Tiểu Đông Tà, con gái Quách Tĩnh, tóc đuôi ngựa, áo lục ngọc, đai vàng",
+  "look": {
+   "preset": "nu-hiep",
+   "robe": "#7FB8A8",
+   "robe2": "#F4EEDC",
+   "pants": "#3E6A60",
+   "belt": "#D7A23A",
+   "eyes": "#5A3A2A",
+   "weapon": "none"
+  }
+ },
+ "vo-sac": {
+  "name": "Vô Sắc",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "sư La Hán đường Thiếu Lâm, trung niên, cà sa vàng sẫm, dải đỏ nâu, râu chòm đen",
+  "look": {
+   "preset": "tang",
+   "robe": "#B8862A",
+   "sash": "#8A2A1A",
+   "beard": "rau-de",
+   "beardColor": "#2A2A2A",
+   "eyes": "#4A3A2A",
+   "weapon": "none"
+  }
+ },
+ "ha-tuc-dao": {
+  "name": "Hà Túc Đạo",
+  "truyen": "Thần Điêu Hiệp Lữ",
+  "note": "Côn Lôn Tam Thánh: giỏi đàn cờ kiếm, áo tím, búi cao cài trâm, kiếm đeo lưng",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#6A4A8A",
+   "robe2": "#E8E0F0",
+   "pants": "#3A2A4A",
+   "belt": "#C9A23A",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#1A1A1A"
+   },
+   "hat": "tram",
+   "eyes": "#3A2A5A",
+   "weapon": "kiem",
+   "sheath": true
+  }
+ },
+ "truong-tam-phong": {
+  "name": "Trương Tam Phong",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "tổ sư Võ Đang trăm tuổi, áo bạc xám, búi trắng cài trâm, râu dài trắng, gầy hiền",
+  "look": {
+   "preset": "su-phu",
+   "robe": "#DCE4E6",
+   "robe2": "#3A5A6A",
+   "pants": "#5A6A70",
+   "belt": "#3A5A6A",
+   "age": "gia",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#EDEDED"
+   },
+   "hat": "tram",
+   "beard": "rau-dai",
+   "beardColor": "#EDEDED",
+   "eyes": "#4A6A5A",
+   "weapon": "none"
+  }
+ },
+ "a-tam": {
+  "name": "A Tam",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "thủ hạ Triệu Mẫn, Đại Lực Kim Cương Chỉ, áo đỏ nâu, khăn trán cam, ria đen, da rám",
+  "look": {
+   "preset": "cao-thu",
+   "skin": "#E2A578",
+   "robe": "#8A3A2A",
+   "robe2": "#2A1A1A",
+   "pants": "#3A1A14",
+   "belt": "#D06A2A",
+   "band": "#D06A2A",
+   "hair": {
+    "style": "bui-toi",
+    "color": "#1A1A1A"
+   },
+   "beard": "ria",
+   "beardColor": "#1A1A1A",
+   "eyes": "#8A3A2A",
+   "weapon": "none"
+  }
+ },
+ "do-ach": {
+  "name": "Độ Ách",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "lão tăng Thiếu Lâm canh Tạ Tốn, cà sa nâu xám, râu dài trắng, cầm roi dài",
+  "look": {
+   "preset": "tang",
+   "robe": "#6A5A4A",
+   "sash": "#3A2A1A",
+   "age": "gia",
+   "beard": "rau-dai",
+   "beardColor": "#EDEDED",
+   "eyes": "#3A3A2A",
+   "weapon": "none"
+  }
+ },
+ "do-kiep": {
+  "name": "Độ Kiếp",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "lão tăng Thiếu Lâm canh Tạ Tốn, cà sa xám rêu, râu chòm trắng, cầm roi dài",
+  "look": {
+   "preset": "tang",
+   "robe": "#5A5E4A",
+   "sash": "#2A3A2A",
+   "age": "gia",
+   "beard": "rau-de",
+   "beardColor": "#EDEDED",
+   "eyes": "#3A4A3A",
+   "weapon": "none"
+  }
+ },
+ "do-nan": {
+  "name": "Độ Nạn",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "lão tăng Thiếu Lâm canh Tạ Tốn, cà sa nâu đất, ria trắng, cầm roi dài",
+  "look": {
+   "preset": "tang",
+   "robe": "#7A5A3A",
+   "sash": "#4A2A1A",
+   "age": "gia",
+   "beard": "ria",
+   "beardColor": "#EDEDED",
+   "eyes": "#4A3A2A",
+   "weapon": "none"
+  }
+ },
+ "tao-dia-tang": {
+  "name": "Tảo Địa Tăng",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "ông sư quét lá Tàng Kinh Các, áo xám bạc màu, râu chòm trắng, gầy, cầm chổi",
+  "look": {
+   "preset": "tang",
+   "robe": "#8A8A7A",
+   "sash": "#5A5A4A",
+   "age": "gia",
+   "beard": "rau-de",
+   "beardColor": "#DADADA",
+   "eyes": "#5A5A3A",
+   "weapon": "none"
+  }
+ },
+ "xung-hu": {
+  "name": "Xung Hư đạo trưởng",
+  "truyen": "Tiếu Ngạo Giang Hồ",
+  "note": "chưởng môn Võ Đang, áo lam đậm, búi xám cài trâm, râu dài xám, kiếm đeo lưng",
+  "look": {
+   "preset": "dao-si",
+   "robe": "#2E4E7A",
+   "robe2": "#EDE6D6",
+   "pants": "#1E3050",
+   "belt": "#C9A23A",
+   "age": "gia",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#9A9A9A"
+   },
+   "hat": "tram",
+   "beard": "rau-dai",
+   "beardColor": "#9A9A9A",
+   "eyes": "#3A4A6A",
+   "weapon": "kiem",
+   "sheath": true
+  }
+ },
+ "truong-thuy-son": {
+  "name": "Trương Thuý Sơn",
+  "truyen": "Ỷ Thiên Đồ Long Ký",
+  "note": "Ngân Câu Thiết Hoạch, đệ ngũ Võ Đang, thư sinh áo trắng cổ lam, búi cao cài trâm",
+  "look": {
+   "preset": "cong-tu",
+   "robe": "#F2F0E8",
+   "robe2": "#3D6FA8",
+   "pants": "#5A6A80",
+   "belt": "#3D6FA8",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#141414"
+   },
+   "hat": "tram",
+   "eyes": "#4A3A2A",
+   "weapon": "none"
+  }
+ },
+ "vi-tieu-bao": {
+  "name": "Vi Tiểu Bảo",
+  "truyen": "Lộc Đỉnh Ký",
+  "note": "cậu bé lanh lợi khoác cà sa Hối Minh: cà sa vàng tươi rộng, dải đỏ, mắt đen láu lỉnh",
+  "look": {
+   "preset": "tang",
+   "robe": "#EDB52E",
+   "robe2": "#B03A2A",
+   "sash": "#C0302A",
+   "eyes": "#1A1A1A",
+   "weapon": "none"
+  }
+ },
+ "to-tinh-ha": {
+  "name": "Tô Tinh Hà",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "Thông Biện tiên sinh giữ ván Trân Lung, áo lục xám, búi bạc, râu dài trắng",
+  "look": {
+   "preset": "su-phu",
+   "robe": "#6A7A5A",
+   "robe2": "#E8E4D4",
+   "pants": "#3E4A36",
+   "age": "gia",
+   "hair": {
+    "style": "bui-cao",
+    "color": "#DADADA"
+   },
+   "beard": "rau-dai",
+   "beardColor": "#DADADA",
+   "eyes": "#4A5A3A",
+   "weapon": "none"
+  }
+ },
+ "doan-dien-khanh": {
+  "name": "Đoàn Diên Khánh",
+  "truyen": "Thiên Long Bát Bộ",
+  "note": "lão chống gậy sắt, áo xám tro sẫm, tóc bờm xám, mặt lạnh",
+  "look": {
+   "preset": "cao-thu",
+   "robe": "#3A3A46",
+   "robe2": "#8A8A96",
+   "pants": "#24242C",
+   "hair": {
+    "style": "bom-gai",
+    "color": "#7A7A7A"
+   },
+   "eyes": "#7A2A2A",
+   "weapon": "gay"
+  }
+ },
+ "teo-tho-sach": {"name":"Tèo (thợ vá sách)","truyen":"Tèo Kể","note":"Tèo thợ phục chế sách cổ: khăn trán chàm, tạp dề vải kem, áo nghệ nhạt cổ chàm, kính lúp đeo cổ","look":{"preset":"teo","glasses":false,"band":"#2C3E66","robe":"#E9B44C","robe2":"#2C3E66","pants":"#3A3328","belt":"#B3262E","weapon":"none"}},
+ "hoang-thuong": {"name":"Hoàng Thường","truyen":"Xạ Điêu Anh Hùng Truyện","note":"quan văn đời Tống viết Cửu Âm Chân Kinh: áo quan lam chàm cổ kem, mũ khăn, râu chòm xám, mắt trầm","look":{"preset":"thu-sinh","robe":"#3A4E7A","robe2":"#EFE6CF","pants":"#2A2F44","belt":"#C9A24A","hat":"khan","hatColor":"#1E2230","beard":"rau-de","beardColor":"#6A6A6A","eyes":"#3A3A4A","weapon":"none"}},
+ "phung-hanh": {"name":"Phùng Hành","truyen":"Xạ Điêu Anh Hùng Truyện","note":"vợ Hoàng Dược Sư, trí nhớ phi thường: áo lục nhạt cổ trắng, tóc búi cài trâm, mắt hiền nâu","look":{"preset":"nu-hiep","robe":"#A9CBB0","robe2":"#F6F2E6","pants":"#5A7A62","belt":"#3E6A50","hair":{"style":"bui-cao","color":"#141010"},"hat":"tram","eyes":"#6A4A30","fem":true,"skirt":true,"weapon":"none"}},
+ "tran-huyen-phong": {"name":"Trần Huyền Phong","truyen":"Xạ Điêu Anh Hùng Truyện","note":"Đồng Thi, Hắc Phong Song Sát: da sạm, áo đen cổ tro, tóc bờm, ria, mắt đỏ","look":{"preset":"cao-thu","skin":"#A86B45","robe":"#24242A","robe2":"#7A7A82","pants":"#141418","hair":{"style":"bom-gai","color":"#141010"},"beard":"ria","beardColor":"#141010","eyes":"#B02A3A","weapon":"none"}},
+ "mai-sieu-phong": {"name":"Mai Siêu Phong","truyen":"Xạ Điêu Anh Hùng Truyện","note":"Thiết Thi, Hắc Phong Song Sát, mù: áo đen tím cổ xám, tóc xoã dài, da tái, mắt nhạt mờ","look":{"preset":"nu-hiep","skin":"#FFE3CF","robe":"#2E2436","robe2":"#8A8296","pants":"#1C1622","belt":"#6A2A3A","hair":{"style":"dai-thang","color":"#141010"},"eyes":"#9A9AA6","fem":true,"skirt":true,"weapon":"none"}},
+ "hac-but-ong": {"name":"Hạc Bút Ông","truyen":"Ỷ Thiên Đồ Long Ký","note":"Huyền Minh nhị lão, cầm bút đầu hạc: áo lam băng cổ trắng, tóc râu xám, mắt lam lạnh, mặt gầy gian","look":{"preset":"lao-quai","skin":"#FFE3CF","robe":"#5A86A8","robe2":"#E8EEF2","pants":"#2A3E52","belt":"#1E2A38","age":"gia","hair":{"style":"bui-cao","color":"#9A9A9A"},"beard":"rau-dai","beardColor":"#9A9A9A","eyes":"#4A8BE0","weapon":"none"}},
+ "loc-truong-khach": {"name":"Lộc Trượng Khách","truyen":"Ỷ Thiên Đồ Long Ký","note":"Huyền Minh nhị lão, gậy đầu hươu: áo lam xám đậm cổ trắng, đầu hói tóc xám hai bên, râu chòm","look":{"preset":"lao-quai","skin":"#FFE3CF","robe":"#3E5468","robe2":"#DDE4EA","pants":"#22303E","belt":"#5A86A8","age":"gia","hair":{"style":"tien-ong","color":"#8A8A8A"},"beard":"rau-de","beardColor":"#8A8A8A","eyes":"#4A8BE0","weapon":"gay"}},
+ "chu-chi-nhuoc": {"name":"Chu Chỉ Nhược","truyen":"Ỷ Thiên Đồ Long Ký","note":"chưởng môn Nga Mi: áo xám bạc cổ tím, tóc dài cài trâm, mắt tím lạnh","look":{"preset":"nu-hiep","robe":"#C8C6D0","robe2":"#5A3A7A","pants":"#4A4256","belt":"#5A3A7A","hair":{"style":"dai-thang","color":"#121010"},"hat":"tram","eyes":"#7A2A8A","fem":true,"skirt":true,"weapon":"none"}},
+ "co-gai-ao-vang": {"name":"Cô gái áo vàng","truyen":"Ỷ Thiên Đồ Long Ký","note":"cô gái bí ẩn dùng Cửu Âm chính tông: áo vàng nghệ cổ trắng, tóc búi cao dải trắng, mắt nâu điềm tĩnh","look":{"preset":"nu-hiep","robe":"#F2C230","robe2":"#FBF8EE","pants":"#B8902A","belt":"#FBF8EE","hair":{"style":"bui-cao","color":"#121010"},"eyes":"#6A4A30","fem":true,"skirt":true,"weapon":"none"}},
+ "tieu-tuong-tu": {"name":"Tiêu Tương Tử","truyen":"Thần Điêu Hiệp Lữ","note":"kẻ trộm Lăng Già Kinh, mặt như xác chết: da tái xanh, áo xám tro dài, tóc xoã, mắt lục","look":{"preset":"cao-thu","skin":"#E8E4D4","robe":"#6A6E68","robe2":"#2A2C28","pants":"#3A3C38","hair":{"style":"re-ngoi","color":"#2A2A2A"},"eyes":"#3A8A5A","weapon":"none"}},
+ "doan-khac-tay": {"name":"Doãn Khắc Tây","truyen":"Thần Điêu Hiệp Lữ","note":"thương nhân Tây Vực trộm Lăng Già Kinh: áo đỏ nâu viền vàng, khăn trán vàng, râu quai, mũi to","look":{"preset":"chuong-quy","skin":"#E2A578","robe":"#8A3A2A","robe2":"#D9A84A","pants":"#4A2A1E","band":"#D9A84A","hair":{"style":"bui-toi","color":"#3A2A1E"},"beard":"rau-de","beardColor":"#3A2A1E","eyes":"#3A6A9A","weapon":"none"}},
+ "kha-tran-ac": {"name":"Kha Trấn Ác","truyen":"Xạ Điêu Anh Hùng Truyện","note":"đại quái Giang Nam thất quái, mù, gậy sắt: áo nâu xám, râu chòm đen, mắt nhắm","look":{"preset":"hiep-khach","robe":"#6A5A48","robe2":"#2A2420","pants":"#3A3028","belt":"#2A2420","hair":{"style":"bui-toi","color":"#1E1A1A"},"beard":"rau-de","beardColor":"#1E1A1A","eyes":"#3A3A3A","weapon":"gay"}},
+ "tieu-vien-son": {"name": "Tiêu Viễn Sơn", "truyen": "Thiên Long Bát Bộ", "note": "cha Tiêu Phong, hắc y nhân ba mươi năm: áo đen than cổ vàng đồng, khăn trán đỏ sẫm, tóc búi muối tiêu, râu chòm xám", "look": {"skin": "#F0C8A0", "robe": "#34303A", "robe2": "#C9A23A", "pants": "#1E1C22", "belt": "#C9A23A", "band": "#7A2A20", "hair": {"style": "bui-toi", "color": "#7A7470"}, "beard": "rau-de", "beardColor": "#8A8480", "age": "gia", "eyes": "#4A6A8A", "weapon": "none"}},
+ "mo-dung-bac": {"name": "Mộ Dung Bác", "truyen": "Thiên Long Bát Bộ", "note": "lão quý tộc Cô Tô mưu phục quốc Đại Yên, giả chết: áo tím than cổ ngà, búi cao cài trâm, râu dài xám, mắt tím gian", "look": {"preset": "lao-quai", "robe": "#4A3A5E", "robe2": "#E8E0C8", "pants": "#2A2236", "belt": "#C9A23A", "hair": {"style": "bui-cao", "color": "#8A8A8A"}, "hat": "tram", "beard": "rau-dai", "beardColor": "#9A9A9A", "age": "gia", "eyes": "#7A2A8A", "weapon": "none"}},
+ "mo-dung-phuc": {"name": "Mộ Dung Phục", "truyen": "Thiên Long Bát Bộ", "note": "công tử Cô Tô, Nam Mộ Dung: áo lam nhạt cổ chàm đậm, búi cao cài trâm, kiếm đeo lưng, mắt lam kiêu", "look": {"preset": "cong-tu", "robe": "#BCD0E4", "robe2": "#2E4E7A", "pants": "#1E3050", "belt": "#2E4E7A", "hair": {"style": "bui-cao", "color": "#1E1A1A"}, "hat": "tram", "eyes": "#3A4A7A", "weapon": "kiem", "sheath": true}},
+ "vuong-ngu-yen": {"name": "Vương Ngữ Yên", "truyen": "Thiên Long Bát Bộ", "note": "tiểu thư Mạn Đà Sơn Trang thuộc bí kíp không biết võ: váy lục ngọc nhạt cổ trắng, tóc dài thẳng, dải hồng sơn trà", "look": {"preset": "nu-hiep", "robe": "#CFE4DA", "robe2": "#F6F2EA", "pants": "#7A9A8A", "belt": "#D8708A", "skirt": true, "hair": {"style": "dai-thang", "color": "#1E1A1A"}, "eyes": "#5A4A3A", "weapon": "none"}},
+ "teo-cam-do": {"name": "Tèo (chủ tiệm cầm đồ)", "truyen": "Tèo Kể", "note": "Tèo chủ tiệm cầm đồ trấn Đăng Phong: áo đỏ son cổ vàng thếp, quần đen sơn, thắt lưng xanh rêu, cầm kính lúp", "look": {"preset": "teo", "band": "#D9A84A", "robe": "#9A2A22", "robe2": "#D9A84A", "pants": "#221A18", "belt": "#4E6A3A", "weapon": "none"}},
+ "huyen-tu": {"name": "Huyền Từ", "truyen": "Thiên Long Bát Bộ", "note": "phương trượng Thiếu Lâm, đại ca dẫn đầu năm xưa: cà sa vàng nghệ dải đỏ son, râu dài trắng, mặt khắc khổ", "look": {"preset": "tang", "robe": "#D9A21A", "robe2": "#A0302A", "sash": "#A0302A", "pants": "#7A5A2A", "belt": "#A0302A", "age": "gia", "hair": {"style": "troc", "color": "#3A3030"}, "hat": "troc", "beard": "rau-dai", "beardColor": "#E0E0E0", "eyes": "#4A3020", "weapon": "none"}},
+ "kho-vinh": {"name": "Khô Vinh đại sư", "truyen": "Thiên Long Bát Bộ", "note": "cao tăng chùa Thiên Long Đại Lý, ngồi thiền khô gầy: cà sa nâu đất dải vàng úa, râu chòm bạc", "look": {"preset": "tang", "robe": "#7A5A3A", "robe2": "#C9A86A", "sash": "#C9A86A", "pants": "#4A3A2A", "belt": "#C9A86A", "age": "gia", "hair": {"style": "troc", "color": "#3A3030"}, "hat": "troc", "beard": "rau-de", "beardColor": "#CFCFCF", "eyes": "#5A4A2A", "weapon": "none"}},
+ "a-bich": {"name": "A Bích", "truyen": "Thiên Long Bát Bộ", "note": "thị nữ họ Mộ Dung trung thành: váy lục bích cổ trắng, tóc búi hai bên, hiền", "look": {"preset": "nu-hiep", "robe": "#5E9A7A", "robe2": "#F2EEE2", "pants": "#3A6A52", "belt": "#E8C860", "skirt": true, "hair": {"style": "bui-toi", "color": "#1E1A1A"}, "eyes": "#3A5A4A", "weapon": "none"}},
+ "vo-nhai-tu": {"name": "Vô Nhai Tử", "truyen": "Thiên Long Bát Bộ", "note": "chưởng môn Tiêu Dao bày ván Trân Lung: áo trắng ngà cổ lam xám, tóc râu trắng dài, gầy thanh", "look": {"preset": "su-phu", "robe": "#EDE8DC", "robe2": "#6A7A8A", "pants": "#8A8A80", "belt": "#6A7A8A", "age": "gia", "beard": "rau-dai", "beardColor": "#EAEAEA", "eyes": "#4A5A6A", "weapon": "none"}},
+ "truong-vo-ky-nho": {"name":"Trương Vô Kỵ (thiếu niên)","truyen":"Ỷ Thiên Đồ Long Ký","note":"Vô Kỵ 12–20 tuổi trúng hàn độc, ở thung lũng Côn Lôn: áo vải xám lam bạc màu vá, tóc xoã buộc dải trắng, da tái, mắt lam ngọc","look":{"preset":"teo","band":"#E8E4D8","glasses":false,"skin":"#FFE3CF","robe":"#8A9AA8","robe2":"#E8E4D8","pants":"#3E4A56","belt":"#2E9A9A","hair":{"style":"re-ngoi","color":"#1E1A1A"},"eyes":"#2E8A9A","weapon":"none"}},
+ "ho-thanh-nguu": {"name":"Hồ Thanh Ngưu","truyen":"Ỷ Thiên Đồ Long Ký","note":"Điệp Cốc Y Tiên, thần y: áo lục rêu cổ nâu, khăn búi, râu chòm đen, mắt nâu hiền","look":{"preset":"thu-sinh","robe":"#6A7A4A","robe2":"#5A3A22","pants":"#3A4228","belt":"#A8823A","hat":"khan","hatColor":"#3A3020","beard":"rau-de","beardColor":"#1E1A1A","eyes":"#5A3A20","weapon":"none"}},
+ "teo-lai-thuyen": {"name":"Tèo (lão lái thuyền)","truyen":"Tèo Kể","note":"Tèo lão lái thuyền hải trình: nón lá, áo nâu gụ cổ chàm biển, thắt lưng đỏ gỉ, quần nâu đen","look":{"preset":"teo","band":"#23406A","hat":"non-la","hatColor":"#C9A86A","robe":"#7A4E2A","robe2":"#23406A","pants":"#2A2018","belt":"#A8432A","weapon":"none"}},
+ "ta-ton": {"name":"Tạ Tốn","truyen":"Ỷ Thiên Đồ Long Ký","note":"Kim Mao Sư Vương: tóc bờm vàng óng, râu dài vàng, áo nâu đỏ sẫm cổ vàng đồng, mắt mù nhạt màu","look":{"skin":"#E2A578","robe":"#6A2A1E","robe2":"#C8A040","pants":"#2E1A12","belt":"#C8A040","hair":{"style":"bom-gai","color":"#E0B840"},"beard":"rau-dai","beardColor":"#E0B840","eyes":"#C8C4B8","weapon":"none"}},
+ "an-to-to": {"name":"Ân Tố Tố","truyen":"Ỷ Thiên Đồ Long Ký","note":"con gái Ân Thiên Chính, Thiên Ưng giáo: áo trắng ngà cổ đỏ mận, tóc búi cao cài trâm, mắt nâu lanh, kim châm","look":{"preset":"nu-hiep","robe":"#EEE6D6","robe2":"#8A2A3A","pants":"#5A2A30","belt":"#8A2A3A","hair":{"style":"bui-cao","color":"#141010"},"hat":"tram","eyes":"#5A3020","fem":true,"skirt":true,"weapon":"none"}},
+ "trieu-man": {"name":"Triệu Mẫn","truyen":"Ỷ Thiên Đồ Long Ký","note":"Thiệu Mẫn quận chúa Mông Cổ, hay mặc nam trang: áo lam đậm cổ vàng kim, búi cài trâm, mắt đen sắc, cười tinh nghịch","look":{"preset":"nu-hiep","robe":"#1E4E7A","robe2":"#E0B84A","pants":"#1A2A3E","belt":"#E0B84A","hair":{"style":"bui-cao","color":"#141010"},"hat":"tram","eyes":"#2A1A14","fem":true,"skirt":true,"weapon":"none"}},
+ "tieu-chieu": {"name":"Tiểu Chiêu","truyen":"Ỷ Thiên Đồ Long Ký","note":"thị nữ lai Ba Tư, con Đại Ỷ Ty: áo kem cát cổ lam biển, tóc dài thẳng, mắt xanh biển, hiền","look":{"preset":"nu-hiep","robe":"#E6D6B4","robe2":"#2A6A8A","pants":"#3A4A56","belt":"#2A6A8A","hair":{"style":"dai-thang","color":"#2A1A10"},"eyes":"#3A8AC0","fem":true,"skirt":true,"weapon":"none"}},
+ "hao-han-hai-sa": {"name":"Hảo hán Hải Sa phái","truyen":"Ỷ Thiên Đồ Long Ký","note":"hảo hán phái Hải Sa ở hội Dương Đao Lập Uy: da rám, áo lục biển cổ cát, khăn trán xám, râu chòm, mắt đỏ gian","look":{"skin":"#E2A578","robe":"#2E7A6A","robe2":"#D8C8A0","pants":"#1E3A34","belt":"#8A8A80","band":"#8A8A80","hair":{"style":"bui-toi","color":"#1E1A1A"},"beard":"rau-de","beardColor":"#1E1A1A","eyes":"#B02A3A","weapon":"none"}},
+ "kim-hoa-ba-ba": {"name":"Kim Hoa bà bà","truyen":"Ỷ Thiên Đồ Long Ký","note":"Tử Sam Long Vương cải trang bà lão: tóc bạc búi thấp, áo tím than cổ hoa vàng, chống gậy, ho khục khặc, mắt tím sắc","look":{"preset":"nu-hiep","age":"gia","robe":"#4A2E5C","robe2":"#E0C04A","pants":"#2A1E30","belt":"#E0C04A","hair":{"style":"bui-toi","color":"#DADADA"},"eyes":"#7A2A8A","fem":true,"skirt":true,"weapon":"gay"}},
+ "su-gia-ba-tu": {"name":"Sứ giả Ba Tư","truyen":"Ỷ Thiên Đồ Long Ký","note":"một trong ba sứ Minh giáo Ba Tư (Lưu Vân, Diệu Phong, Huy Nguyệt): khăn trán đỏ son, áo trắng cổ đỏ son, râu xoăn nâu, mắt lục nhạt","look":{"skin":"#E2A578","robe":"#F2EEE4","robe2":"#B8261C","pants":"#5A3A2A","belt":"#B8261C","band":"#B8261C","hair":{"style":"ngan","color":"#5A3A22"},"beard":"rau-de","beardColor":"#5A3A22","eyes":"#5A9A6A","weapon":"none"}},
+ "ngo-kinh-thao": {"name":"Ngô Kính Thảo","truyen":"Ỷ Thiên Đồ Long Ký","note":"chưởng kỳ sứ Duệ Kim kỳ Minh giáo, xuất thân thợ rèn: khăn trán trắng bạc, áo xám thép cổ trắng, râu chòm đen, tay búa","look":{"skin":"#E2A578","robe":"#6A7280","robe2":"#E8E8E0","pants":"#2A2E36","belt":"#E8E8E0","band":"#E8E8E0","hair":{"style":"bui-toi","color":"#1E1A1A"},"beard":"rau-de","beardColor":"#1E1A1A","eyes":"#3A2A1A","weapon":"none"}},
+ "tan-nhien": {"name":"Tân Nhiên","truyen":"Ỷ Thiên Đồ Long Ký","note":"chưởng kỳ sứ Liệt Hỏa kỳ Minh giáo, giỏi dùng lửa: áo đỏ cam cổ đen, khăn trán vàng lửa, ria mép, mắt cam","look":{"skin":"#FBD3B0","robe":"#C8501E","robe2":"#2A1A14","pants":"#3A1A10","belt":"#E8B030","band":"#E8B030","hair":{"style":"ngan","color":"#1E1A1A"},"beard":"ria","beardColor":"#1E1A1A","eyes":"#C86A1E","weapon":"none"}}
+}

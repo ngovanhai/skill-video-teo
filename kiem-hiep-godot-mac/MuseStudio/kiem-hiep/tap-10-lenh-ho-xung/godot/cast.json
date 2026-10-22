@@ -1,0 +1,19 @@
+{
+ "lhx": {"char": "lenh-ho-xung", "name": "Lệnh Hồ Xung"},
+ "dien": {"char": "dien-ba-quang", "name": "Điền Bá Quang"},
+ "teo": {"char": "teo-tieu-nhi", "name": "Tèo"},
+ "nghilam": {"char": "nghi-lam", "name": "Nghi Lâm"},
+ "nhac": {"char": "nhac-bat-quan", "name": "Nhạc Bất Quần"},
+ "phong": {"char": "phong-thanh-duong", "name": "Phong Thanh Dương"},
+ "doanh": {"char": "doanh-doanh", "name": "Nhậm Doanh Doanh"},
+ "luu": {"char": "luu-chinh-phong", "name": "Lưu Chính Phong"},
+ "khuc": {"char": "khuc-duong", "name": "Khúc Dương"},
+ "linhsan": {"char": "nhac-linh-san", "name": "Nhạc Linh San"},
+ "lam": {"char": "lam-binh-chi", "name": "Lâm Bình Chi"},
+ "batgioi": {"char": "bat-gioi", "name": "Bất Giới"},
+ "luctruc": {"char": "luc-truc-ong", "name": "Lục Trúc Ông"},
+ "huong": {"char": "huong-van-thien", "name": "Hướng Vấn Thiên"},
+ "phuong": {"char": "phuong-chung", "name": "Phương Chứng"},
+ "dongphuong": {"char": "dong-phuong-bat-bai", "name": "Đông Phương Bất Bại"},
+ "nham": {"char": "nham-nga-hanh", "name": "Nhậm Ngã Hành"}
+}

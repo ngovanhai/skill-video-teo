@@ -1,0 +1,244 @@
+# tap-10-lenh-ho-xung (dựng Godot) — chín lần rót đầy hồ lô
+# Khung: Tèo là tiểu nhị Hồi Nhạn lâu, người rót đầy hồ lô cho Lệnh Hồ Xung lần đầu. Mỗi lần hồ lô được rót đầy là một khúc đời; màu rượu = tự do hay bị trói. Máy quay từ trong quầy nhìn ra; chuyển đoạn bằng dòng rượu rót quét màn hình.
+# Cú pháp: "## kNN tên | ghi chú dựng {pre=0.6 post=1.0}" mở một đoạn; "[id] lời" là một câu Tèo đọc.
+
+## k01 hook-ghe | Hồi Nhạn lâu: hai cái ghế, đấu ngồi; Tèo nấp sau quầy, chỉ thấy chân ghế + tiếng đao {pre=1.6 post=0.8}
+[k01-01] Hai cái ghế, một vò rượu, và một luật chơi nghe xong ai cũng tưởng là chuyện đùa.
+[k01-02] Hai người ngồi đối diện nhau mà đánh, kẻ nào nhấc mông khỏi ghế trước, kẻ đó thua.
+[k01-02b] Tèo đứng sau quầy rượu, run tới mức làm đổ nửa vò, vì quán này chưa từng có ai dám đánh nhau kiểu đó.
+[k01-03] Một bên là Điền Bá Quang, tay đao nhanh như gió, nổi tiếng khắp vùng là kẻ không ai cản nổi.
+[k01-04] Bên kia là một gã trẻ tuổi người phái Hoa Sơn, mặt đỏ vì rượu, kiếm pháp thì kém hơn hẳn.
+[k01-05] Gã trẻ ấy đứng ra chỉ vì một chuyện: Điền Bá Quang đang giữ một tiểu ni cô tên Nghi Lâm, không cho về.
+[k01-05b] Người trong quán chạy hết, chỉ còn mấy cái bàn đổ chỏng chơ, và Tèo thì nấp sau quầy, hé mắt nhìn qua khe ván.
+[k01-05c] Gã trẻ biết đứng mà đánh thì chắc chắn thua, nên mới bày ra cái luật ngồi, tính kéo cuộc đấu về chỗ mình có lợi.
+[k01-06] Đao chém tới tấp, áo gã trẻ rách tả tơi, người lảo đảo mấy lần mà mông vẫn dính chặt trên ghế.
+[k01-07] Rồi gã cười hề hề, nói một câu gì đó trêu tức, và Điền Bá Quang tức mình bật dậy trước.
+[k01-08] Thua là thua. Điền Bá Quang giữ lời, thả Nghi Lâm ra và hứa từ đó không quấy rầy nàng nữa.
+[k01-09] Gã trẻ kia ngồi lại, thở phì phò, giơ cái hồ lô rỗng lên và gọi to: tiểu nhị, rót đầy cho ta.
+
+## k02 tieu-nhi | Tèo ló đầu khỏi quầy, ôm vò rượu: lộ vai tiểu nhị; lần rót thứ 1 (rượu trắng trong) {pre=0.6 post=1.0}
+[k02-01] Cái người lúc đó run run ôm vò rượu chạy ra, chính là Tèo, tiểu nhị của Hồi Nhạn lâu ở thành Hành Dương.
+[k02-02] Gã trẻ ấy tên là Lệnh Hồ Xung, đại đệ tử phái Hoa Sơn, nhân vật chính của bộ Tiếu Ngạo Giang Hồ.
+[k02-03] Kim Dung đăng truyện này trên Minh Báo từ năm một nghìn chín trăm sáu mươi bảy đến năm sáu mươi chín, tổng cộng bốn mươi hồi.
+[k02-04] Hôm đó Tèo rót đầy hồ lô cho chàng, không lấy tiền, vì chưa thấy ai liều mạng cứu người mà còn cười tươi như vậy.
+[k02-05] Từ hôm ấy, Tèo cứ nghe ngóng tin chàng từ khách qua đường, như kiểu dõi theo một ông khách quen.
+[k02-06] Và Tèo để ý một điều lạ: đi tới đâu chàng cũng cần rượu, mà mỗi lần hồ lô được rót đầy, đời chàng lại rẽ sang một ngả khác.
+[k02-07] Tính ra, cái hồ lô ấy được rót đầy chín lần đáng nhớ. Hôm nay, khách quan ngồi xuống đây, Tèo kể cho nghe từng lần một.
+[k02-08] Lần thứ nhất là rượu trắng ở Hồi Nhạn lâu, trong veo, giống y một người chưa biết sợ là gì.
+[k02-09] Còn tám lần sau, rượu đổi màu, đổi vị, và người cầm hồ lô cũng đổi theo, mỗi lần một chút.
+
+## k03 hoa-son | lần rót thứ 2: rượu mang về núi Hoa Sơn; mồ côi, thầy nuôi, tiểu sư muội; cảnh nhà tranh trên núi {pre=1.2 post=0.8}
+[k03-01] Muốn hiểu vì sao chàng liều như thế, phải quay về ngọn núi đã nuôi chàng lớn: núi Hoa Sơn.
+[k03-02] Lệnh Hồ Xung là đứa trẻ mồ côi, được chưởng môn Nhạc Bất Quần và vợ là Ninh Trung Tắc nhận về nuôi từ nhỏ.
+[k03-03] Chàng gọi hai người là sư phụ, sư nương, nhưng trong lòng thì coi như cha mẹ ruột.
+[k03-04] Vì vào núi sớm nhất, chàng thành đại sư huynh, đứng đầu cả đám đệ tử Hoa Sơn.
+[k03-04b] Sư nương Ninh Trung Tắc thì thương chàng như con đẻ, mỗi lần thầy nổi giận phạt nặng, người đứng ra nói đỡ cho chàng thường là bà.
+[k03-05] Nhạc Bất Quần nổi tiếng giang hồ với biệt hiệu Quân Tử Kiếm, lúc nào cũng nói chuyện đạo nghĩa, lễ phép, khuôn phép.
+[k03-06] Còn đệ tử cả của ông thì ngược lại, mê rượu, thích đùa, gặp ai hợp tính là kết bạn, chẳng cần biết người đó chính hay tà.
+[k03-07] Ngày bé chàng hay chơi cùng con gái thầy là Nhạc Linh San, cô tiểu sư muội mà chàng thầm thương suốt bao năm.
+[k03-08] Lần rót thứ hai vì thế là rượu mang về núi, uống lén sau lưng thầy, vị hơi ngọt, kiểu một tuổi trẻ còn được che chở.
+
+## k03b nguoi-toi-sau | người tới sau: Lâm Bình Chi gia nhập Hoa Sơn; tiểu sư muội đi bên người mới; hồ lô treo một mình {pre=0.8 post=0.8}
+[k03b-01] Rồi một ngày, núi Hoa Sơn có thêm một đệ tử mới, một thiếu gia tên Lâm Bình Chi, con nhà tiêu cục Phúc Uy.
+[k03b-02] Nhà cậu ta vừa bị phái Thanh Thành kéo tới tàn phá, chỉ vì người ta đồn nhà họ Lâm giữ một bí kíp tên là Tịch Tà Kiếm Phổ.
+[k03b-03] Nhạc Bất Quần nhận Lâm Bình Chi làm đồ đệ. Khi đó ai cũng khen thầy nhân hậu, cưu mang đứa trẻ gặp nạn.
+[k03b-04] Nhạc Linh San thì được giao kèm cặp sư đệ mới, ngày ngày dạy kiếm, dần dần lòng cô nghiêng về phía người tới sau.
+[k03b-05] Lệnh Hồ Xung nhìn thấy hết. Chàng không giận ai, chỉ lặng lẽ uống thêm một ngụm rượu rồi cười cho qua.
+[k03b-06] Khách quan để ý cái tên Tịch Tà Kiếm Phổ nha. Cuốn bí kíp đó sẽ còn quay lại, và lần sau nó đắng hơn nhiều.
+
+## k04 khi-kiem | chuyện cũ Hoa Sơn: Khí tông vs Kiếm tông — đồng hồ cát và mũi kiếm, sân khấu tách đôi {pre=0.8 post=0.8}
+[k04-01] Nhưng ngọn núi yên bình ấy có một vết sẹo cũ mà đám đệ tử trẻ ít khi được nghe kể.
+[k04-02] Ngày xưa, phái Hoa Sơn chia làm hai phe. Khí tông cho rằng luyện nội công mới là gốc, kiếm chiêu chỉ là ngọn.
+[k04-03] Kiếm tông thì ngược lại, cho rằng kiếm pháp tinh diệu mới là cốt lõi, nội lực luyện sau cũng được.
+[k04-04] Hai phe cãi nhau mãi không xong, cuối cùng giải quyết bằng một trận đấu lớn trên chính ngọn núi này.
+[k04-05] Khí tông thắng. Kiếm tông bị đuổi khỏi môn phái, chuyện đó xảy ra khoảng hai mươi lăm năm trước khi truyện bắt đầu.
+[k04-06] Nhạc Bất Quần thuộc phe Khí tông, nên ông dạy học trò phải coi trọng nội công hơn tất cả.
+[k04-06b] Hoa Sơn lại chỉ là một trong năm phái kiếm đặt tên theo năm ngọn núi lớn: Thái Sơn, Hoa Sơn, Hành Sơn, Tung Sơn và Hằng Sơn, gọi chung là Ngũ Nhạc kiếm phái.
+[k04-07] Khách quan nhớ giùm Tèo chi tiết này nha, vì chẳng bao lâu nữa, một ông già của phe thua sẽ thay đổi cả đời Lệnh Hồ Xung.
+
+## k05 khuc-nhac | Lưu Chính Phong (tiêu) + Khúc Dương (cầm) hợp tấu bên núi Hành Sơn, trao bản nhạc; nốt nhạc bay {pre=0.8 post=1.2}
+[k05-01] Cũng ở thành Hành Dương năm đó, có một chuyện buồn mà sau này mới thấy quan trọng nhất đời chàng.
+[k05-02] Lưu Chính Phong, cao thủ phái Hành Sơn, thổi tiêu rất giỏi, kết bạn tri âm với Khúc Dương, trưởng lão bên Nhật Nguyệt thần giáo, chơi cầm cũng rất hay.
+[k05-03] Một người phe chính, một người phe tà, vậy mà hai người cùng nhau soạn được một khúc nhạc hợp tấu tên là Tiếu Ngạo Giang Hồ.
+[k05-03b] Tiêu và cầm, một thứ thổi bằng hơi, một thứ gảy bằng tay, giống như hai người khác phe mà vẫn hoà được một bản nhạc.
+[k05-04] Lưu Chính Phong định làm lễ rửa tay gác kiếm để rời giang hồ, nhưng phái Tung Sơn kéo tới, kết tội ông vì dám làm bạn với người Ma giáo.
+[k05-05] Hai người bạn bị dồn vào đường cùng, chạy lên núi, hợp tấu khúc nhạc ấy lần cuối, và Lệnh Hồ Xung tình cờ có mặt.
+[k05-06] Thấy chàng là người có nghĩa khí, họ trao lại cho chàng cuốn cầm phổ và cuốn tiêu phổ, dặn tìm người xứng đáng để khúc nhạc không bị thất truyền.
+[k05-06b] Tèo nghĩ, một cuốn nhạc mà phải nhờ người lạ giữ hộ, nghĩa là cả giang hồ lúc đó chẳng có chỗ nào cho tình bạn của hai người.
+[k05-07] Theo bản truyện cũ, khúc nhạc được viết dựa trên Quảng Lăng Tán, một khúc đàn cổ đã mất, mà hai người phải đi lục tìm mới thấy.
+[k05-08] Chàng nhét bản nhạc vào ngực áo, cạnh cái hồ lô. Lúc đó chàng không biết đọc nhạc, cũng chẳng biết mình vừa nhận một món quà lớn đến cỡ nào.
+
+## k06 vach-hoi | lần rót thứ 3: rượu lên vách sám hối Tư Quá Nhai; tuyết, hang đá, vách khắc chiêu ngũ nhạc {pre=1.2 post=0.8}
+[k06-01] Lần rót thứ ba là thứ rượu mang lên chỗ cao nhất và lạnh nhất của núi Hoa Sơn.
+[k06-02] Vì phạm quá nhiều giới luật, kết bạn lung tung, lại dính vào chuyện ở Hồi Nhạn lâu, chàng bị thầy phạt lên vách núi sám hối suốt một năm.
+[k06-03] Chỗ đó gọi là Tư Quá Nhai, nghĩa là vách núi để ngồi nghĩ về lỗi lầm của mình, gió thổi quanh năm, chẳng có ai bầu bạn.
+[k06-04] Người duy nhất hay lên thăm là tiểu sư muội, mang cơm và thỉnh thoảng giấu theo một bình rượu nhỏ.
+[k06-05] Một hôm buồn tay, chàng gõ vào vách đá và phát hiện phía sau là một cái hang bí mật.
+[k06-06] Trên vách hang khắc chi chít chiêu thức của cả năm phái Ngũ Nhạc kiếm phái, và ngay bên cạnh là cách phá từng chiêu một.
+[k06-06b] Về sau mới biết, những nét khắc ấy là của mười vị trưởng lão Nhật Nguyệt thần giáo, bị nhốt trong hang cho tới chết, trước khi đi đã khắc lại hết cách phá kiếm của năm phái.
+[k06-07] Chàng ngồi nhìn mà toát mồ hôi, vì những chiêu kiếm mà sư môn coi là tinh hoa, trên vách này đều đã bị người ta tìm ra chỗ hở.
+
+## k07 dien-len-nui | Điền Bá Quang lên núi đòi đưa chàng đi; đánh – thua – vào hang – ra lại; nhịp lặp hài {pre=0.8 post=0.8}
+[k07-01] Đúng lúc ấy, một vị khách không mời mà tới, lại chính là Điền Bá Quang, người thua trận đấu ngồi năm nào.
+[k07-01b] Hắn có ngoại hiệu là Vạn Lý Độc Hành, khinh công cực giỏi, đao pháp cực nhanh, một mình đi ngàn dặm mà chẳng mấy ai đuổi kịp.
+[k07-02] Lần này hắn bị hoà thượng Bất Giới, cha của Nghi Lâm, ép đi tìm Lệnh Hồ Xung, bắt phải đưa chàng xuống núi gặp con gái ông.
+[k07-03] Lệnh Hồ Xung đang chịu phạt, nhất quyết không chịu đi, thế là hai người lại rút binh khí.
+[k07-04] Đánh thật thì chàng không phải là đối thủ của tay đao ấy, mới mấy chục chiêu đã bị dí sát vào vách đá.
+[k07-05] Chàng xin nghỉ một lát, chui vào hang nhìn vách khắc, rồi đi ra đánh tiếp, và lại thua.
+[k07-06] Cứ thế, thua rồi vào hang, ra hang rồi lại thua, nhưng mỗi lần ra, kiếm pháp của chàng lại khác đi một chút.
+[k07-07] Điền Bá Quang bắt đầu nghi trong hang có cao nhân nào đó đang lén chỉ bài. Và hắn đoán đúng một nửa.
+[k07-08] Tèo nghe kể lại mà phục cái lì của chàng, thua cả chục trận liền mà vẫn cười, vẫn xin đánh tiếp như người đi chơi.
+
+## k08 phong-thanh-duong | ông già áo xám hiện ra, chỉ kiếm; 9 thức hiện thành 9 nét trên đá; giảng vô chiêu {pre=0.8 post=0.8}
+[k08-01] Một ông già áo xám, gầy gò, từ đâu bước ra, vừa xem hai người đánh vừa lắc đầu chê cách chàng múa kiếm.
+[k08-02] Đó là Phong Thanh Dương, thái sư thúc tổ của phái Hoa Sơn, tức là bậc trên cả thầy của thầy chàng, người thuộc phe Kiếm tông, ẩn trên núi này đã nhiều năm.
+[k08-03] Chính ông là ông già của phe thua mà nãy Tèo dặn khách quan nhớ đó.
+[k08-04] Ông truyền cho Lệnh Hồ Xung một môn kiếm pháp do kiếm khách Độc Cô Cầu Bại để lại, tên là Độc Cô Cửu Kiếm.
+[k08-04b] Cái tên Độc Cô Cầu Bại nghĩa là một người cô độc đi tìm thất bại, vì cả đời không gặp ai đánh thắng nổi mình.
+[k08-04c] Truyện kể ông đi khắp thiên hạ mà không ai địch nổi, chỉ mong một lần được thua mà cũng không có.
+[k08-04d] Ai từng đọc Thần Điêu Hiệp Lữ sẽ thấy cái tên này quen lắm, vì Dương Quá từng tìm tới mộ kiếm của ông ở một sơn cốc hoang.
+[k08-04e] Trong mộ có những thanh kiếm ông từng dùng qua từng giai đoạn, từ kiếm sắc, kiếm mềm, tới kiếm nặng không lưỡi, rồi kiếm gỗ, và cuối cùng là không cần kiếm nữa.
+[k08-05] Đúng như tên gọi, môn này có chín thức. Thức đầu là Tổng Quyết Thức, giống như phần lý thuyết chung của cả bộ.
+[k08-06] Tám thức sau là tám cách phá: phá kiếm, phá đao, phá thương, phá roi, phá dây, phá chưởng, phá tên, và phá khí.
+[k08-07] Cái hay của nó không nằm ở chiêu, mà ở chỗ không có chiêu cố định nào. Đối phương ra chiêu gì, mình nhìn ra chỗ hở của chiêu đó rồi đâm thẳng vào.
+[k08-08] Ông dạy chàng đừng nhớ kiếm phổ, mà phải quên cho hết, để tay đi theo mắt, chứ không đi theo bài.
+[k08-09] Học xong, Lệnh Hồ Xung bước ra khỏi hang, cầm kiếm, và lần này thì người toát mồ hôi là Điền Bá Quang.
+
+## k09 chieu-doc-co | chiêu chuong-2d Độc Cô Cửu Kiếm vs Điền Bá Quang (12.5 s, lời nhường chỗ) {pre=0.8 post=13.2}
+[k09-01] Một nhát kiếm duy nhất, đúng vào chỗ hở mà chính Điền Bá Quang cũng không biết mình có.
+
+## k10 sau-tran | sau chiêu + CTA 1 (sổ khách quen): Điền ngồi bệt, hai người cụng hồ lô; vô chiêu thắng hữu chiêu; rượu ấm {pre=0.6 post=1.0}
+[k10-01] Điền Bá Quang bị đẩy lùi, ngồi phịch xuống tuyết, ngơ ngác nhìn thanh đao của mình như nhìn đồ của ai khác.
+[k10-02] Hắn chịu thua, không cay cú gì, còn bật cười. Về sau hai người thành bạn rượu, ai nghe cũng thấy lạ.
+[k10-02b] Chuyện về sau còn lạ hơn: hoà thượng Bất Giới bắt Điền Bá Quang xuống tóc làm đồ đệ, đặt cho pháp danh là Bất Khả Bất Giới, tức là không thể không giữ giới.
+[k10-03] Người ta hay tóm môn kiếm này bằng một ý: vô chiêu thắng hữu chiêu, không có chiêu mới thắng được người có chiêu.
+[k10-04] Nghe thì giống thiền, nhưng Tèo thấy nó giống chính tính tình Lệnh Hồ Xung: không chịu khuôn phép, thấy sao làm vậy.
+[k10-05] Thầy Nhạc Bất Quần dạy chàng sống cho đúng bài, còn ông già Kiếm tông lại dạy chàng phải biết quên bài.
+[k10-06] Lần rót thứ ba vì thế là rượu ấm giữa trời tuyết. Từ đó trên đời có thêm một kiếm khách đáng sợ, mà bản thân chàng vẫn cứ tưởng mình chỉ là thằng say.
+[k10-07] Còn tiểu sư muội thì vẫn lên núi đưa cơm, nhưng câu chuyện mỗi lần một ít đi, và người cô nhắc tới nhiều nhất là sư đệ mới.
+[k10-08] Tới đây mới được nửa chặng đường của cái hồ lô. Nếu khách quan thấy câu chuyện bên quầy rượu này đáng nghe tiếp, bấm đăng ký kênh Tèo Kể, coi như ghi tên vào sổ khách quen của quán.
+[k10-09] Còn nếu khách quan từng đọc truyện, nhắn giùm Tèo dưới phần bình luận: lần rót rượu nào của Lệnh Hồ Xung làm khách quan nhớ nhất?
+
+## k11 noi-thuong | lần rót thứ 4: rượu thuốc; 8 luồng chân khí xoắn trong người (6 + 2), Bình Nhất Chỉ lắc đầu {pre=1.2 post=0.8}
+[k11-01] Nhưng đời chàng chưa bao giờ yên được lâu. Lần rót thứ tư là một chén rượu thuốc, đắng ngắt.
+[k11-02] Sau một trận đánh, chàng bị thương nặng, và có sáu anh em kỳ quặc tên là Đào Cốc Lục Tiên xông vào đòi chữa.
+[k11-02b] Sáu người đặt tên theo sáu phần của cây đào: Đào Căn, Đào Cán, Đào Chi, Đào Diệp, Đào Hoa và Đào Thực, tức là rễ, thân, cành, lá, hoa và quả.
+[k11-03] Mỗi người dồn vào người chàng một luồng chân khí, sáu luồng cùng lúc, chạy lung tung mỗi luồng một ngả.
+[k11-04] Chưa đủ, hoà thượng Bất Giới đi ngang, thấy vậy cũng ra tay giúp, dồn thêm hai luồng chân khí nữa.
+[k11-05] Vậy là tám luồng nội lực đánh nhau ngay trong bụng chàng, giống tám ông khách say cãi nhau trong một gian quán chật.
+[k11-06] Danh y Bình Nhất Chỉ, người được đồn là chữa được cả người sắp chết, bắt mạch xong cũng đành lắc đầu chịu thua.
+[k11-06b] Bình Nhất Chỉ có biệt danh là Sát Nhân Danh Y, nổi tiếng với cái luật lạ đời: cứu một người thì phải giết một người, vậy mà gặp ca của chàng, ông cũng bó tay.
+[k11-07] Ai cũng nghĩ chàng sống không được bao lâu nữa. Còn chàng thì sao? Vẫn đòi thêm một ngụm rượu cho ấm bụng.
+[k11-08] Tèo mà là chàng thì chắc đã nằm co ro than trời. Chàng thì không, vẫn cười, vẫn đùa, như thể cái chết chỉ là một ông khách tới sớm.
+
+## k12 luc-truc | lần rót thứ 5: Lạc Dương, ngõ Lục Trúc; mành trúc, bóng người sau mành, tiếng đàn {pre=1.2 post=0.8}
+[k12-01] Lần rót thứ năm diễn ra ở thành Lạc Dương, trong một con ngõ trồng toàn trúc xanh gọi là Lục Trúc Hạng.
+[k12-02] Chàng mang theo cuốn nhạc phổ của Lưu Chính Phong và Khúc Dương, nhờ một ông già sành nhạc ở đây xem thử là thật hay giả.
+[k12-03] Ông già ấy là Lục Trúc Ông. Ông gảy thử vài đoạn thì vấp, vì khúc nhạc khó quá, đành nhờ người ở sau tấm mành trúc.
+[k12-04] Lục Trúc Ông gọi người đó là cô cô, tức là bậc cô của mình, thế là Lệnh Hồ Xung đinh ninh đó là một bà cụ.
+[k12-05] Từ sau mành trúc, tiếng đàn vang lên trọn vẹn khúc nhạc. Chàng nghe mà ngẩn người.
+[k12-06] Thấy chàng mang thương tích, người sau mành gảy thêm một khúc tên là Thanh Tâm Phổ Thiện Chú, giúp lòng người dịu lại, thương thế bớt hành.
+[k12-07] Rồi người ấy còn kiên nhẫn dạy chàng đánh đàn, từng nốt một, cách một tấm mành, suốt nhiều ngày.
+[k12-07b] Cách một tấm mành mà dạy đàn, người dạy không thấy mặt người học, người học không thấy mặt người dạy, vậy mà tiếng đàn của chàng tiến bộ từng ngày.
+[k12-08] Lệnh Hồ Xung thì cứ lễ phép gọi bà bà, kể hết chuyện buồn trong lòng cho bà nghe, kể cả chuyện cô tiểu sư muội đã thương người khác.
+[k12-09] Rồi chuyện lạ xảy ra: khắp nơi, đủ loại người giang hồ kéo tới đòi tặng thuốc, đòi chữa bệnh cho chàng, mà chàng chẳng quen ai.
+[k12-10] Hỏi ra mới biết, họ làm vậy vì nghe nói chàng là người được vị Thánh cô quý trọng. Mà Thánh cô là ai, chàng còn chưa hiểu.
+
+## k13 doanh-doanh | mành trúc vén lên: Nhậm Doanh Doanh trẻ đẹp; chàng há hốc; vị rượu hoa {pre=0.6 post=1.0}
+[k13-01] Mãi về sau chàng mới biết, bà bà ấy không già chút nào. Đó là một cô gái trẻ tên Nhậm Doanh Doanh.
+[k13-02] Nàng là con gái của Nhậm Ngã Hành, giáo chủ cũ của Nhật Nguyệt thần giáo, được người trong giáo kính nể gọi là Thánh cô.
+[k13-03] Nghĩ lại mà xem, chàng đã kể hết tâm sự thầm kín cho một cô gái mà cứ tưởng là bà cụ, chắc phải đỏ mặt mấy ngày.
+[k13-03b] Còn Doanh Doanh thì ngại tới mức về sau ra lệnh cho người giang hồ, ai dám bàn chuyện nàng với chàng thì phải coi chừng. Thánh cô mà cũng biết xấu hổ.
+[k13-04] Phe chính phái coi người của Nhật Nguyệt thần giáo là ma đầu. Nhưng người đầu tiên thật lòng chữa thương cho chàng lại là cô gái ấy.
+[k13-05] Lần rót thứ năm là rượu thơm mùi hoa ở Lạc Dương, vị dịu, giống một người lần đầu được nghe hiểu mà không bị dạy đời.
+
+## k14 truc-xuat | lần rót thứ 6 mở: bị trục xuất khỏi Hoa Sơn — cánh cổng đóng, bóng đi xuống bậc đá {pre=1.2 post=0.8}
+[k14-01] Còn ở núi Hoa Sơn, mọi chuyện ngày càng tệ. Chàng giao du với người tà phái, lại có tin đồn chàng giấu bí kíp võ công của người khác.
+[k14-02] Nhạc Bất Quần tuyên bố trục xuất Lệnh Hồ Xung khỏi môn phái, gửi thư báo cho cả giang hồ biết.
+[k14-03] Đứa con nuôi từ tấm bé, đại đệ tử của cả phái, giờ thành kẻ không nhà, ai gặp cũng có thể coi như kẻ thù.
+[k14-04] Khách quan biết không, Tèo nghe tin đó mà buồn mất mấy hôm, vì cái gã liều mạng cứu người ở quán Tèo đâu phải người xấu.
+[k14-04b] Chàng không cãi một lời, chỉ quay về hướng núi mà vái mấy cái, rồi đi xuống, lưng vẫn đeo cái hồ lô cũ.
+[k14-05] Hồ lô lúc đó gần cạn, mà chẳng còn sư môn nào để về rót lại. Từ đây, chàng phải tự đi tìm quán của riêng mình.
+
+## k15 mai-trang | rượu Tây Hồ: Mai Trang, 4 trang chủ mê đàn cờ chữ tranh; ngục dưới đáy hồ; tấm sắt khắc chữ {pre=0.8 post=0.8}
+[k15-01] Lần rót thứ sáu là rượu Tây Hồ, ở một trang viện tên Mai Trang, bên bờ hồ ở Hàng Châu.
+[k15-02] Chàng đi cùng Hướng Vấn Thiên, một hảo hán bên Nhật Nguyệt thần giáo, tới gặp bốn vị trang chủ mê đàn, mê cờ, mê chữ và mê tranh.
+[k15-02c] Bốn vị ấy được gọi là Giang Nam Tứ Hữu: Hoàng Chung Công mê đàn, Hắc Bạch Tử mê cờ, Ngốc Bút Ông mê thư pháp, và Đan Thanh Sinh mê vẽ tranh.
+[k15-02d] Hướng Vấn Thiên mang theo bốn món quà đánh trúng sở thích từng người: một bản đàn Quảng Lăng Tán, một cuốn kỳ phổ, một bức thiếp chữ của Trương Húc, và một bức tranh sơn thuỷ của Phạm Khoan.
+[k15-02b] Mỗi vị trang chủ có một sở thích, và Lệnh Hồ Xung lần lượt đấu kiếm với từng người, thắng hết, khiến cả trang viện nể phục.
+[k15-03] Bên dưới trang viện ấy có một nhà ngục nằm sâu dưới đáy hồ, giam giữ một người rất đặc biệt: Nhậm Ngã Hành, cha của Doanh Doanh.
+[k15-04] Qua một màn đánh tráo khó tin, Nhậm Ngã Hành trốn thoát, còn Lệnh Hồ Xung bị nhốt lại trong ngục thay chỗ của ông.
+[k15-04b] Sau này Lệnh Hồ Xung mới ngẫm ra, cái bọc đồ trên lưng Hướng Vấn Thiên từ hôm hai người mới gặp đã là một kế hoạch sắp sẵn từ trước.
+[k15-05] Trong bóng tối, chàng sờ thấy trên tấm sắt dưới chỗ nằm có khắc chữ. Đó là khẩu quyết của Hấp Tinh Đại Pháp.
+[k15-06] Đó là môn võ hút nội lực của người khác vào người mình. Chàng nằm không cũng chẳng biết làm gì, nên cứ lần theo chữ mà luyện.
+[k15-07] Ai ngờ tám luồng chân khí đang quậy trong người chàng được hút về một mối, chàng khỏi cái chết trước mắt, nhưng lại mang theo một mầm hoạ mới.
+
+## k16 thieu-lam | lần rót thứ 7: rượu chay ngoài cổng chùa; Phương Chứng đưa cuốn kinh, chàng lắc đầu {pre=1.2 post=0.8}
+[k16-01] Lần rót thứ bảy là chuyện ngoài cổng chùa Thiếu Lâm, nơi mà đến hồ lô rượu cũng phải để ở bên ngoài.
+[k16-02] Hấp Tinh Đại Pháp giữ được mạng nhưng để lại hậu hoạ, nội lực lạ trong người chàng sớm muộn sẽ phát tác.
+[k16-03] Phương trượng Phương Chứng của Thiếu Lâm thương chàng, đưa ra một lời đề nghị mà người giang hồ nằm mơ cũng không có.
+[k16-04] Chỉ cần chàng nhập môn Thiếu Lâm, ông sẽ truyền cho Dịch Cân Kinh, thứ nội công có thể hoá giải hết hậu hoạ ấy.
+[k16-05] Lệnh Hồ Xung nghĩ một lúc rồi từ chối. Chàng không muốn bỏ thầy, cũng không muốn đổi tự do lấy một mạng sống phải theo luật chùa.
+[k16-05b] Đổi lại một môn nội công ai cũng thèm, chàng chỉ cần gật đầu một cái. Vậy mà cái gật đầu ấy, chàng nhất định không cho đi.
+[k16-06] Một người đã bị đuổi khỏi môn phái, mà vẫn không chịu đổi sang nhà khác, khách quan nghĩ coi, cứng đầu tới cỡ nào.
+[k16-07] Chuyện về sau mới cảm động: Phương Chứng không nói ra, nhưng vẫn âm thầm truyền nội công ấy cho chàng, chẳng đòi chàng phải trả gì.
+
+## k16b hai-lan-tu-choi | Doanh Doanh ở lại Thiếu Lâm đổi lấy việc chữa cho chàng; chàng dẫn giang hồ tới đón; Nhậm Ngã Hành mời vào giáo — lại từ chối {pre=0.8 post=0.8}
+[k16b-01] Có một chuyện chàng biết muộn: trước đó, Doanh Doanh đã cõng chàng tới Thiếu Lâm và xin ở lại chùa làm con tin, chỉ để phương trượng chịu ra tay cứu chàng.
+[k16b-02] Một Thánh cô của Nhật Nguyệt thần giáo, tự nguyện bị giữ lại trong chùa của phe chính phái, chỉ vì một gã say của Hoa Sơn.
+[k16b-03] Biết chuyện, Lệnh Hồ Xung dẫn cả một đoàn hảo hán giang hồ kéo tới Thiếu Lâm, nhất quyết đón nàng ra.
+[k16b-04] Rồi tới lượt Nhậm Ngã Hành, cha nàng, mời chàng gia nhập Nhật Nguyệt thần giáo, hứa cho chức cao và gả con gái cho chàng.
+[k16b-05] Chàng lại từ chối, dù người chàng thương đang đứng ngay bên cạnh. Chàng không muốn quỳ lạy ai để đổi lấy hạnh phúc.
+[k16b-06] Một lần từ chối Thiếu Lâm, một lần từ chối Nhật Nguyệt thần giáo. Phe chính lẫn phe tà đều mời, chàng đều lắc đầu.
+[k16b-07] Lần rót thứ bảy vì thế là rượu nhạt mà trong. Người khác uống rượu cho quên, còn chàng uống để giữ mình tỉnh mà tự chọn đường đi.
+
+## k17 hang-son | chưởng môn Hằng Sơn: một gã say đứng giữa đoàn ni cô; phái toàn ni cô {pre=0.8 post=1.2}
+[k17-01] Và đây là cảnh mà Tèo tưởng tượng hoài vẫn thấy buồn cười: Lệnh Hồ Xung làm chưởng môn phái Hằng Sơn.
+[k17-02] Phái Hằng Sơn toàn là các sư thái và ni cô. Sư thái Định Nhàn trước lúc mất đã gửi gắm môn phái cho chàng.
+[k17-03] Vậy là một gã đàn ông mê rượu, vừa bị đuổi khỏi Hoa Sơn, giờ đứng đầu cả một phái toàn ni cô, trong đó có cả Nghi Lâm.
+[k17-04] Chàng nhận lời không phải vì muốn làm lớn, mà vì không nỡ bỏ mặc những người đã từng tin mình.
+[k17-04b] Thế là năm phái Ngũ Nhạc, giờ có một vị chưởng môn trẻ nhất và say nhất, lại chẳng giống ai trong số những người ngồi chung chiếu.
+
+## k18 mat-na | lần rót thứ 8: rượu đắng; Nhạc Bất Quần — mặt nạ quân tử nứt đôi, sân khấu tối {pre=1.2 post=0.8}
+[k18-01] Lần rót thứ tám là chén rượu đắng nhất đời chàng, và nó tới từ chính người chàng kính nhất.
+[k18-02] Cái biệt hiệu Quân Tử Kiếm của Nhạc Bất Quần, hoá ra chỉ là một tấm mặt nạ.
+[k18-03] Ông âm thầm tranh đoạt Tịch Tà Kiếm Phổ, một bí kíp kiếm pháp mà ai cũng thèm muốn, rồi lại đổ cho học trò mình lấy cắp.
+[k18-04] Ông thu nhận đệ tử, gả con gái, tính toán từng bước, chỉ để leo lên ghế đứng đầu Ngũ Nhạc kiếm phái.
+[k18-04b] Người cùng tham vọng ấy là Tả Lãnh Thiền, chưởng môn Tung Sơn, minh chủ của năm phái, muốn gộp cả năm phái Ngũ Nhạc thành một để mình đứng đầu.
+[k18-04c] Ngày gộp phái trên núi Tung Sơn, ai cũng tưởng Tả Lãnh Thiền nắm chắc phần thắng. Ai ngờ người đánh bại ông lại là Nhạc Bất Quần, bằng một thứ kiếm pháp nhanh tới khó tin.
+[k18-04d] Thứ kiếm pháp ấy chính là Tịch Tà Kiếm Phổ, cuốn bí kíp mà ông từng đổ cho học trò mình lấy cắp.
+[k18-05] Người đời sau gọi ông bằng ba chữ: nguỵ quân tử, tức là kẻ đóng vai quân tử mà lòng thì không.
+[k18-06] Nhiều độc giả vẫn cãi nhau, ông xấu từ đầu, hay bị tham vọng kéo trượt dần. Tèo thì thấy, cái đáng sợ là ông tin mình đang làm điều đúng.
+[k18-07] Kết cục của Nhạc Bất Quần rất buồn, Tèo xin không kể chi tiết. Chỉ biết rằng tới phút cuối, Lệnh Hồ Xung vẫn không nỡ ra tay với người thầy đã nuôi mình.
+[k18-08] Bị thầy phụ, bị môn phái đuổi, vậy mà chàng chưa từng nói một lời nặng nề về sư phụ. Rượu đắng, chàng uống một mình.
+[k18-09] Tèo nghĩ, có lẽ đó là lúc chàng hiểu ra, cái khuôn phép thầy dạy năm xưa chưa chắc đã là đạo nghĩa thật.
+
+## k19 ai-manh | bàn khách cãi nhau: LHX có mạnh nhất? Tèo nói rõ là ý riêng; ba cái chén trên bàn {pre=0.8 post=0.8}
+[k19-01] Khách ngồi quán Tèo hay cãi nhau một câu: vậy rốt cuộc Lệnh Hồ Xung có phải người mạnh nhất Tiếu Ngạo Giang Hồ không?
+[k19-02] Có người nói Độc Cô Cửu Kiếm cộng thêm Hấp Tinh Đại Pháp thì không ai địch nổi. Người khác nhắc tới Đông Phương Bất Bại, kẻ nhanh như bóng ma.
+[k19-02d] Đông Phương Bất Bại luyện Quỳ Hoa Bảo Điển, cuốn bí kíp mà truyện cho biết là cùng một gốc với Tịch Tà Kiếm Phổ, và chỉ dùng một cây kim thêu làm vũ khí.
+[k19-02b] Trận đánh trên Hắc Mộc Nhai, khi Lệnh Hồ Xung cùng Nhậm Ngã Hành, Hướng Vấn Thiên và Doanh Doanh vây đánh Đông Phương Bất Bại, là trận nhiều người nhắc nhất.
+[k19-02c] Bốn người đánh một mà vẫn chật vật, đủ thấy cái nhanh của Đông Phương Bất Bại đáng sợ cỡ nào.
+[k19-03] Đây là ý riêng của Tèo thôi nha: chàng mạnh nhất ở chỗ không muốn thắng ai. Chàng đánh để cứu người, xong việc là quay về với vò rượu.
+[k19-04] Một kiếm khách không ham danh, không ham ghế, thì chẳng ai mua chuộc được, cũng chẳng ai doạ được. Trong giang hồ của Tiếu Ngạo, đó mới là thứ hiếm.
+
+## k20 tieu-ngao | lần rót thứ 9: hai chén; cầm + tiêu; Doanh Doanh giảng hoà, 3 năm, ẩn cư; nốt nhạc thành chữ tên truyện {pre=1.2 post=0.8}
+[k20-01] Và giờ tới lần rót thứ chín. Lần này Tèo không rót vào một cái chén, mà rót vào hai.
+[k20-02] Sau bao nhiêu biến cố, Doanh Doanh lên nắm Nhật Nguyệt thần giáo, và việc đầu tiên nàng làm là giảng hoà với các phái chính đạo.
+[k20-01b] Trước đó, Nhậm Ngã Hành giành lại được ngôi giáo chủ, nhưng đúng lúc quyền lực cao nhất thì ông lâm bệnh qua đời đột ngột.
+[k20-03] Ba năm sau, nàng giao lại chức giáo chủ cho Hướng Vấn Thiên, rồi thành thân với Lệnh Hồ Xung, hai người rời xa giang hồ.
+[k20-04] Còn cuốn nhạc phổ mà chàng nhét trong ngực áo năm nào, giờ đã tìm được hai người xứng đáng để thổi, để gảy.
+[k20-05] Một người phe chính, một người từng bị gọi là phe tà, ngồi cạnh nhau, chơi trọn khúc Tiếu Ngạo Giang Hồ.
+[k20-06] Lưu Chính Phong và Khúc Dương phải lén lút làm bạn, tới phút cuối mới được hợp tấu. Lệnh Hồ Xung và Doanh Doanh thì được chơi nhạc cả đời.
+[k20-06b] Truyện kể rằng ngày thành thân, hai người ngồi cạnh nhau, một người thổi tiêu, một người gảy cầm, chơi trọn khúc nhạc mà hai ông bạn năm xưa để lại.
+[k20-07] Tên khúc nhạc cũng là tên bộ truyện. Tiếu ngạo, tức là cười một cách ngạo nghễ, coi nhẹ cả những tranh giành ồn ào của giang hồ.
+[k20-08] Kim Dung có viết rằng truyện này cố ý không gắn với triều đại nào, vì thứ ông muốn kể là tính tham quyền của con người, đời nào cũng có.
+[k20-09] Những Nhạc Bất Quần, những kẻ tranh ngôi đứng đầu, đời nào cũng gặp. Còn người như Lệnh Hồ Xung thì hiếm hơn nhiều.
+
+## k21 ke-ho-lo | Tèo lau chén, đặt hồ lô lên kệ, quán vẫn sáng đèn; CTA 2 {pre=0.6 post=3.5}
+[k21-01] Hồi Nhạn lâu bây giờ vẫn mở cửa. Trên kệ sau quầy, Tèo vẫn để dành một cái hồ lô rỗng.
+[k21-02] Biết đâu một ngày nào đó, có một gã say cười hề hề bước vào, giơ tay gọi rót đầy, Tèo sẽ nhận ra ngay.
+[k21-02a] Khách bây giờ hỏi Tèo, gã đó có gì hay mà Tèo nhớ mãi. Tèo chỉ nói: vì gã sống đúng như cái tên của khúc nhạc, cười mà đi qua giang hồ.
+[k21-02b] Chín lần rót đầy, chín khúc đời: rượu trắng, rượu ngọt, rượu ấm, rượu thuốc, rượu hoa, rượu hồ, rượu nhạt, rượu đắng, và cuối cùng là hai chén chia đôi.
+[k21-03] Nếu khách quan thích cách Tèo kể chuyện giang hồ bên quầy rượu, đừng quên đăng ký Tèo Kể, và để lại bình luận xem lần sau muốn nghe về nhân vật nào.
+[k21-04] Còn bây giờ, Tèo đi lau chén đây. Chén của khách quan, Tèo vẫn để nguyên chỗ cũ.

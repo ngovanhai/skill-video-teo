@@ -1,0 +1,105 @@
+{
+ "scale": 1.5,
+ "viewBox": [
+  -50,
+  -70,
+  400,
+  540
+ ],
+ "neck": [
+  300,
+  508.5
+ ],
+ "size": [
+  600,
+  810
+ ],
+ "cast": {
+  "teo": {
+   "name": "Tèo",
+   "robe": "#8A5A34",
+   "hair": "#6B3F26",
+   "skin": "#FFE3CF"
+  },
+  "tieu": {
+   "name": "Tiêu Phong",
+   "robe": "#5A3A22",
+   "hair": "#2B2220"
+  },
+  "quach": {
+   "name": "Quách Tĩnh",
+   "robe": "#2E6FB7",
+   "hair": "#2B2220"
+  },
+  "triet": {
+   "name": "Triết Biệt",
+   "robe": "#6B4A2B",
+   "hair": "#1E1A1A"
+  },
+  "daihan": {
+   "name": "Thành Cát Tư Hãn",
+   "robe": "#8A2A1E",
+   "hair": "#1E1A1A"
+  },
+  "huyenkho": {
+   "name": "Huyền Khổ",
+   "robe": "#E3A21A",
+   "hair": "#3A2A22"
+  },
+  "uong": {
+   "name": "Uông Kiếm Thông",
+   "robe": "#6E5A3E",
+   "hair": "#5A4A3A"
+  },
+  "hong": {
+   "name": "Hồng Thất Công",
+   "robe": "#8A7A5C",
+   "hair": "#5A4A3A"
+  },
+  "dung": {
+   "name": "Hoàng Dung",
+   "robe": "#6FA86F",
+   "hair": "#1E1A1A"
+  },
+  "chu": {
+   "name": "Chu Bá Thông",
+   "robe": "#7A6FA8",
+   "hair": "#9A9A9A"
+  },
+  "hao1": {
+   "name": "Hào kiệt",
+   "robe": "#4A4E69",
+   "hair": "#1E1A1A"
+  },
+  "hao2": {
+   "name": "Hào kiệt",
+   "robe": "#5C6B7A",
+   "hair": "#2B2220"
+  },
+  "hao3": {
+   "name": "Hào kiệt",
+   "robe": "#3D6FA8",
+   "hair": "#1E1A1A"
+  },
+  "hu": {
+   "name": "Hư Trúc",
+   "robe": "#C9A45C",
+   "hair": "#3A2A22"
+  },
+  "doan": {
+   "name": "Đoàn Dự",
+   "robe": "#E8E2D0",
+   "hair": "#2B2220"
+  },
+  "mo": {
+   "name": "Mộ Dung Phục",
+   "robe": "#E8E4D8",
+   "hair": "#2B2220"
+  },
+  "hongco": {
+   "name": "Gia Luật Hồng Cơ",
+   "robe": "#2B3E6B",
+   "hair": "#1E1A1A"
+  }
+ }
+}

@@ -49,6 +49,13 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 
 Script cài sẽ thay `__MUSE_ROOT__` / `__VIENEU_DIR__` / `__WHISPER_PY__` / `__GODOT__` / `__FFMPEG__` trong skill, kit và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `VIENEU_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
 
+## Gói riêng cho Mac: `kiem-hiep-godot-mac/`
+
+Chỉ cần làm tập kiếm hiệp Godot trên Mac thì dùng thư mục `kiem-hiep-godot-mac/` (5 skill Godot bản mới nhất, colab-tts, tập mẫu tap-10, memory luật làm tập). Xem `kiem-hiep-godot-mac/README.md`:
+```bash
+cd kiem-hiep-godot-mac && node install.mjs
+```
+
 ## Lưu ý
 
 - Lần đầu render, `npx hyperframes@0.8.172` sẽ tự tải trình duyệt headless nên cần có mạng.

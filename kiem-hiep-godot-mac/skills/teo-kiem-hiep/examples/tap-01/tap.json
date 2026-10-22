@@ -1,0 +1,86 @@
+{
+  "ep": 1,
+  "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?",
+  "hook": "AI MẠNH HƠN?",
+  "theme": "auto",
+  "opener": { "title": "TÈO KỂ KIẾM HIỆP", "sub": "Tiêu Phong vs Quách Tĩnh" },
+  "ender": { "next": "Lệnh Hồ Xung vs Dương Quá: kiếm ai nhanh hơn" },
+  "thumb": { "text": "AI MẠNH HƠN?", "vs": ["tieu", "quach"], "pose": "palm", "pose2": "palm" },
+  "bgm_volume": 0.1,
+  "cast": {
+    "teo": { "kind": "teo", "name": "Tèo", "band": "#D7263D", "weapon": "kiem", "w": 220 },
+    "tieu": { "preset": "hiep-khach", "name": "Tiêu Phong", "robe": "#5A3A22", "hat": "none", "weapon": "none", "belt": "#C9A45C", "w": 210 },
+    "quach": { "preset": "hiep-khach", "name": "Quách Tĩnh", "robe": "#2E6FB7", "hat": "khan", "weapon": "none", "belt": "#F3EAD2", "w": 200 }
+  },
+  "scenes": [
+    {
+      "set": "quan-tro", "time": "ngay",
+      "actors": [ { "id": "teo", "x": 560 }, { "id": "tieu", "x": 1420, "hidden": true } ],
+      "beats": [
+        { "do": "say", "who": "teo", "text": "Cùng một bộ Hàng Long Thập Bát Chưởng, ai đánh mạnh hơn?", "tone": "shout" },
+        { "do": "say", "who": "teo", "text": "Chào các bạn, lại là Tèo đây! Hôm nay Tèo làm trọng tài một trận trong mơ." },
+        { "do": "enter", "who": "tieu", "from": "right" },
+        { "do": "intro", "who": "tieu", "name": "TIÊU PHONG", "title": "Bang chủ Cái Bang" },
+        { "do": "card", "side": "left", "title": "Tiêu Phong", "sub": "Thiên Long Bát Bộ · Kim Dung",
+          "lines": ["Bang chủ Cái Bang thời Bắc Tống", "Ngoài 30 tuổi đã được coi là đệ nhất võ lâm", "Tuyệt kỹ: Hàng Long Thập Bát Chưởng"] }
+      ]
+    },
+    {
+      "set": "nui-tuyet", "time": "ngay",
+      "actors": [ { "id": "teo", "x": 250, "w": 190 }, { "id": "tieu", "x": 760 }, { "id": "quach", "x": 1500, "hidden": true } ],
+      "beats": [
+        { "do": "enter", "who": "quach", "from": "right" },
+        { "do": "intro", "who": "quach", "name": "QUÁCH TĨNH", "title": "Đệ tử Hồng Thất Công" },
+        { "do": "card", "side": "right", "title": "Quách Tĩnh", "sub": "Xạ Điêu Anh Hùng Truyện · Kim Dung",
+          "lines": ["Sống thời Nam Tống, sau Tiêu Phong", "Học Hàng Long từ Hồng Thất Công, lúc đầu 15 chưởng", "Về sau dùng Cửu Âm chân kinh thêm biến hoá"] },
+        { "do": "say", "who": "teo", "text": "Hiệp 1: Hàng Long đấu Hàng Long!", "tone": "shout" },
+        { "do": "attack", "who": "tieu", "target": "quach", "name": "Hàng Long Thập Bát Chưởng" },
+        { "do": "react", "who": "quach" },
+        { "do": "attack", "who": "quach", "target": "tieu", "name": "Chưởng thêm nhu kình" },
+        { "do": "react", "who": "tieu" },
+        { "do": "caption", "text": "Thấy hay thì bấm Đăng ký kênh Tèo Kể nha!" },
+        { "do": "say", "who": "teo", "text": "Điểm này Tèo chấm cho vui, không phải nguyên tác nha.", "tone": "whisper" },
+        { "do": "stat", "left": "tieu", "right": "quach", "total": true,
+          "rows": [ { "label": "Hàng Long", "l": 10, "r": 9 }, { "label": "Thực chiến", "l": 10, "r": 8 }, { "label": "Biến hoá", "l": 8, "r": 9 } ] },
+        { "do": "say", "who": "teo", "text": "Chi tiết ít người biết: bộ chưởng này từng có tới 28 chiêu!" },
+        { "do": "local:rong-chuong", "who": "tieu", "target": "quach" },
+        { "do": "attack", "who": "tieu", "target": "quach", "name": "Rồng vàng xuất chưởng", "finisher": true },
+        { "do": "react", "who": "quach" },
+        { "do": "say", "who": "teo", "text": "Tèo nghiêng về Tiêu Phong vì thực chiến nhiều hơn. Nhưng đây chỉ là ý kiến riêng!" },
+        { "do": "say", "who": "teo", "text": "Còn bạn nghĩ ai mạnh hơn? Bình luận cho Tèo biết nhé!", "tone": "shout" },
+        { "do": "caption", "text": "Đăng ký kênh để xem trận tiếp theo!" }
+      ]
+    }
+  ],
+  "story": {
+    "format": "doi-dau",
+    "logline": "Tiêu Phong và Quách Tĩnh cùng dùng Hàng Long Thập Bát Chưởng, Tèo làm trọng tài so ai mạnh hơn",
+    "subjects": ["Tiêu Phong", "Quách Tĩnh"],
+    "works": ["Thiên Long Bát Bộ", "Xạ Điêu Anh Hùng Truyện"],
+    "authors": ["Kim Dung"],
+    "edition": "bản tân tu (sửa lần 3) — chi tiết 28 chưởng rút còn 18 chỉ có ở bản này",
+    "verdict": "Ý kiến của Tèo: nghiêng về Tiêu Phong nhờ kinh nghiệm thực chiến; Quách Tĩnh biến hoá hơn. Truyện không có trận nào giữa hai người.",
+    "facts": [
+      { "claim": "Bản tân tu Thiên Long Bát Bộ: Tiêu Phong cùng Hư Trúc rút Hàng Long từ 28 chưởng còn 18",
+        "src": ["https://cafebiz.vn/28-chieu-tinh-giam-con-18-hang-long-thap-bat-chuong-uy-luc-ra-sao-so-sanh-cach-dung-cua-3-cao-thu-de-co-ket-qua-176250722173554434.chn", "https://jinyong.fandom.com/wiki/Eighteen_Dragon-Subduing_Palms"] },
+      { "claim": "Quách Tĩnh học Hàng Long từ Hồng Thất Công, lúc đầu được dạy 15 chưởng",
+        "src": ["https://wuxia.fandom.com/wiki/Guo_Jing", "https://jinyong.fandom.com/wiki/Eighteen_Dragon-Subduing_Palms"] },
+      { "claim": "Quách Tĩnh về sau dùng lý luận Cửu Âm chân kinh thêm biến hoá và nhu kình vào Hàng Long",
+        "src": ["https://wuxia.fandom.com/wiki/18_Dragon_Subduing_Palms", "https://wuxia.fandom.com/wiki/Guo_Jing"] },
+      { "claim": "Tiêu Phong (Kiều Phong) khoảng 30 tuổi đã được coi là cao thủ mạnh nhất võ lâm, nổi tiếng nhờ Hàng Long",
+        "src": ["https://en.wikipedia.org/wiki/Qiao_Feng", "https://jinyong.fandom.com/wiki/Qiao_Feng"] },
+      { "claim": "Hàng Long Thập Bát Chưởng được coi là võ công ngoại gia (dương cương) mạnh nhất trong truyện Kim Dung",
+        "src": ["https://jinyong.fandom.com/wiki/Eighteen_Dragon-Subduing_Palms", "https://wuxia.fandom.com/wiki/18_Dragon_Subduing_Palms"] },
+      { "claim": "Tiêu Phong sống thời Bắc Tống, Quách Tĩnh thời Nam Tống (sau Tiêu Phong)",
+        "src": ["https://en.wikipedia.org/wiki/Qiao_Feng", "https://en.wikipedia.org/wiki/Guo_Jing"] }
+    ],
+    "sources": ["https://soha.vn/28-chieu-tinh-giam-con-18-hang-long-thap-bat-chuong-uy-luc-ra-sao-so-sanh-cach-dung-cua-3-cao-thu-de-co-ket-qua-19825072120510734.htm", "https://baike.baidu.com/en/item/18%20Dragon-Strike%20Palms/1539413"]
+  },
+  "seo": {
+    "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?",
+    "alts": ["Hàng Long Thập Bát Chưởng: ai dùng mạnh nhất?", "Tiêu Phong hay Quách Tĩnh mới là số 1?"],
+    "description": "Tiêu Phong (Thiên Long Bát Bộ) và Quách Tĩnh (Xạ Điêu Anh Hùng Truyện) cùng dùng Hàng Long Thập Bát Chưởng của Kim Dung. Tèo làm trọng tài, so từng tiêu chí và nói ý kiến riêng. Bạn nghĩ ai mạnh hơn?",
+    "tags": ["tiêu phong", "quách tĩnh", "hàng long thập bát chưởng", "kim dung", "thiên long bát bộ", "xạ điêu anh hùng truyện", "ai mạnh hơn", "kiếm hiệp kim dung"],
+    "hashtags": ["#TeoKe", "#KiemHiep", "#KimDung"]
+  }
+}
