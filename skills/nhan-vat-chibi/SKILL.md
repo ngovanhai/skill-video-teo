@@ -102,3 +102,17 @@ Các lệnh char.mjs kit|list|look|sheet|lineup hiện tại vẫn là workflow 
 ## DeepSeek-only drawing mode
 
 Khi dùng profile wuxia-storybook-hybrid, chỉ dùng DeepSeek làm model AI. DeepSeek sinh SVG vector chi tiết theo HYBRID-PIPELINE.md; không gọi model tạo ảnh bên ngoài. Không chấp nhận SVG dạng stick figure/icon hoặc placeholder vài hình học. Mỗi nhân vật cần identity lock, semantic layers, pivot metadata và preview render. Nếu endpoint không có vision thì không giả vờ đã nhìn thấy ảnh; yêu cầu người dùng review hoặc dùng endpoint DeepSeek có vision.
+
+
+## Local SVG Character Builder (DeepSeek-only)
+
+For the Hybrid profile, use the local builder in `builder/` from the repository root:
+
+```powershell
+node skills/nhan-vat-chibi/builder/builder.mjs init <character-id>
+node skills/nhan-vat-chibi/builder/builder.mjs generate <character-id> --brief "..."
+node skills/nhan-vat-chibi/builder/builder.mjs validate <character-id>
+node skills/nhan-vat-chibi/builder/builder.mjs preview <character-id>
+```
+
+Set `DEEPSEEK_API_KEY` in the current shell before generate. The builder saves timestamped SVG revisions under `art/characters/<id>/source/`; it never overwrites approved art. Validation is structural only and preview requires human visual review. Read `builder/README.md` for requirements and current v1 limitations. This tool does not yet extract individual layer files, create pivots, export PNG or import a rig into Godot.
