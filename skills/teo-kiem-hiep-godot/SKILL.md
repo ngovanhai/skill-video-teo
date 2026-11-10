@@ -10,11 +10,12 @@ description: >-
 
 # Tèo Kiếm Hiệp × Godot 2D: mỗi tập một kịch bản, một khung, một bộ code hình
 
-`SKILL = thư mục chứa file này` · `KH = ~/.claude/skills/teo-kiem-hiep` · `LOCK = bash __MUSE_ROOT__/kiem-hiep/_tools/slot.sh`
+`SKILL = thư mục chứa file này` · `KH = __SKILLS_DIR__/teo-kiem-hiep` · `LOCK = bash __MUSE_ROOT__/kiem-hiep/_tools/slot.sh`
 Godot 4.7.2: `__GODOT__` · Tập mẫu (chỉ đọc để học): `kiem-hiep/tap-10-lenh-ho-xung/godot/ (bản cũ hơn: kiem-hiep/_lab/mau-godot-tap-01/)`
 
 Skill này lo **quy trình Godot**. Luật nội dung vẫn là của `teo-kiem-hiep`, phải đọc và theo:
 - mục "Luật cứng" (bản quyền, chính xác ≥2 nguồn, tôn trọng, ≥20 phút, không chia chương);
+- mục "Model AI" (người dùng chốt 2026-11-08: cố định sử dụng Gemini 3.8 Flash (High));
 - mục "Quy trình một tập", bước 0 (research, chọn chủ đề từ `KH/data/chu-de.md`, 1 chủ đề chính + 4–6 chủ đề phụ);
 - mục "Khung dựng" (kịch bản thô → phân tích → khung; mở đầu, kết, CTA).
 
@@ -29,9 +30,12 @@ Phần HyperFrames trong teo-kiem-hiep (tap.json beat, build.mjs, plan.mjs, fx l
 | `node KH/scripts/gd-mat.mjs <tap>` | Mặt từng nhân vật bằng `<tap>/ve.mjs` → `godot/mat/<nv>/<biểu cảm>.svg`, đọc `godot/cast.json`. |
 | `node SKILL/scripts/gd-chieu.mjs <tap> <id chiêu> [id …]` | Đưa chiêu đã làm xong bên `chuong-2d` (có trong `moves.json`) vào tập: chép engine + chiêu + nhân vật vào `godot/chuong/` (đổi đường `res://`), cầu nối `chuong/chieu.gd`, sfx thiếu; ghi `story.chieu`; đổi project sang renderer `forward_plus` (chiêu làm trên Forward+, gl_compatibility lệch màu). Sửa chiêu bên chuong-2d xong thì chạy lại. |
 | `node SKILL/scripts/gd-check.mjs <tap>` | Soát: id, chữ "Chương", hook/Tèo/lời mời đầu video/CTA, giọng khớp chữ, parse Godot, DUR ≥ 20:00, phim.gd đã dựng, story.json khác 5 tập trước, cast có trong sổ. `--no-godot` bỏ bước Godot. |
+| `python3 __SKILLS_DIR__/kiem-tra-video/scripts/smoke-test.py <tap>` | **Smoke Test siêu tốc 15s:** Kiểm tra cú pháp Godot headless, soát thời lượng >= 20 phút, soát 170+ biểu cảm Chibi SVG, chụp 4 snapshot preview để duyệt mắt trước khi render dài. |
 | `LOCK "<tap> xem" node KH/scripts/gd-render.mjs <tap> --preview --from A --to B --sheet 5 --out xa` | Preview 960×540 + `work/sheet-xa.jpg`. |
-| `LOCK "<tap> render" node KH/scripts/gd-render.mjs <tap> --par 2` | Bản cuối `renders/final.mp4`. Render bằng **ffmpeg, không dùng Movie Maker**: `KH/scripts/gdrec.gd` được gắn tạm làm autoload qua `override.cfg`, đọc ảnh viewport đẩy qua pipe sang libx264; tiếng dựng lại từ `lines`/`cues`/`nhac` của main (giọng, sfx theo kênh, nhạc). Nhạc tự lọc dưới 120 Hz và tự hạ khi có giọng; `--nhac-db D` chỉnh thêm, `--no-duck` tắt hạ. |
-| `node SKILL/scripts/pack.mjs <tap>` | `youtube/`: mp4, thumbnail.png 1280×720, tieu-de, mo-ta (seo.mo_ta + seo.chan), tags. Không có chân mô tả cố định. |
+| `LOCK "<tap> render" node KH/scripts/gd-render.mjs <tap> --par 2` | Bản cuối `renders/final.mp4`. Render bằng **ffmpeg song song 2 nửa qua pipe**, không dùng Movie Maker. |
+| `node KH/scripts/gd-render.mjs <tap> --audio-only` | **Audio Remuxing trong 3 giây:** Khi chỉ sửa LUFS, nhạc nền, SFX ducking, ffmpeg giữ nguyên video stream `-c:v copy` và chỉ thay audio trong 3s (tăng tốc x400, không re-render 20 phút). |
+| `node SKILL/scripts/pack.mjs <tap>` | `youtube/`: mp4, thumbnail.png 1280×720, tieu-de, mo-ta, tags. |
+| `python3 __SKILLS_DIR__/kiem-tra-video/scripts/check-tong-the.py <tap>` | **Quality Gate chốt chặn:** Kiểm tra toàn diện Kịch bản, Hình ảnh, Âm thanh (-20 LUFS, Peak -0.5), Gói YouTube. Khi 100% PASS tự động cấp chứng chỉ `youtube/.READY_TO_UPLOAD`. |
 | `node SKILL/scripts/gd-check.mjs <tap> --log` | Sau bản cuối: ghi story.json vào `SKILL/data/history.json`. |
 
 Việc nặng ở máy nhà (render, preview, check chiêu) luôn chạy qua `LOCK`; giọng đọc trên Colab thì không: máy chỉ có 2 suất. Lệnh dài chạy nền.
@@ -43,6 +47,26 @@ Việc nặng ở máy nhà (render, preview, check chiêu) luôn chạy qua `LO
    Đọc `SKILL/data/history.json` trước khi chọn khung: khung, vai Tèo, bút, máy quay, palette, nhạc, thumbnail, mặt, font, chân mô tả đều phải khác. gd-check so theo tỉ lệ từ chung: giống ≥60% là lỗi, ≥40% là cảnh báo; đổi thứ tự chữ hay thêm bớt một từ không qua được.
 2. **Khung project:** `new-tap.mjs <tap> --ten "<tên khung>"`.
 3. **Kịch bản `godot/loi.txt`.**
+   - **BẮT BUỘC HEADER METADATA HỢP ĐỒNG (Executive Production Directive):** 5 dòng đầu tiên của file phải khai báo chuẩn:
+     ```text
+     # GENRE: VO_DAI_SO_KEO | TRINH_THAM_KY_AN | LAT_NGUOC_DINH_KIEN | HO_SO_MAT | HUNG_CA_BI_TRANG
+     # HOOK_TYPE: PARADOX | CONFLICT | INVERTED | SECRET | PROPHECY
+     # TEO_SKIN: teo_tieu_nhi | teo_thu_sinh | teo_hiep_khach | teo_lao_gia
+     # TEO_SOCKET: none | kinh_lup | but_long | gay_truc | ho_lo_ruou | the_bai | quat_long_vu
+     # TEO_ROLE: <Vai trò cụ thể của Tèo trong tập>
+     ```
+     *(review-kich-ban.py và tao-storyboard.py sẽ đọc trực tiếp header này để nạp tài nguyên và kiểm tra chống trùng lặp 5 tập. Thiếu header sẽ bị đánh trượt ngay lập tức).*
+   - **TỶ LỆ PHÂN BỔ VÀNG 65 / 35 (Chống nhàm chán & Bảo vệ thuật toán YouTube):**
+     - **65% Nhóm Nòng Cốt:** *Võ Đài So Kèo* & *Trinh Thám Kỳ Án* (giữ vững bản sắc "Tửu Lâu luận kiếm", nhịp retention cao nhất).
+     - **35% Nhóm Gia Vị:** *Lật Ngược Định Kiến* (minh oan nhân vật), *Hồ Sơ Mật* (thâm cung bí sử), *Hùng Ca Bi Tráng* (đại chiến huyết lệ).
+     - *Quy tắc luân chuyển: Cứ 2 tập Nòng cốt xen kẽ 1 tập Gia vị.*
+   - **4 CHIẾC NEO THƯƠNG HIỆU BẤT BIẾN CỦA TÈO:** Dù biến hóa vai diễn nào, 4 yếu tố sau tuyệt đối không đổi:
+     1. Giọng Tiến Đạt (-20 LUFS) ấm áp, có duyên ngầm.
+     2. Bản tính tếu táo, thông thái, xưng "Tèo" - gọi "huynh đệ/chư vị".
+     3. Nét mặt Chibi tròn, nụ cười tinh quái, gãi đầu quen thuộc.
+     4. Câu chốt cạn ly/nâng chén rượu cuối video.
+     - **LƯU Ý CỐT TỬ VỀ TÊN KÊNH:** Kênh YouTube kiếm hiệp là **Tèo Tửu Lâu** (`@teoTuuLau`). Trong lời thoại (`k02`, `k12`, CTA) **BẮT BUỘC** nói *"đăng ký kênh Tèo Tửu Lâu"* (hoặc *"ghé quán Tèo Tửu Lâu"*). **TUYỆT ĐỐI KHÔNG** nói *"đăng ký kênh Tèo Kể"* (vì 'Tèo Kể' chỉ là hậu tố tiêu đề SEO `| Tèo Kể` và con dấu triện, không phải tên kênh).
+   - **MẬT ĐỘ HÀNH ĐỘNG THỊ GIÁC (Visual Action Density - ADS):** Kịch bản phải chứa tối thiểu $\ge 15$ động từ hành động (`chem_kiem`, `dap_ban`, `hoc_mau`, `ban_cung`, `cuoi_ngua`, `chuong_phap`) để kích hoạt thư viện võ đạo `hanh_dong.gd`. Nghiêm cấm để cảnh tĩnh quá 8 giây.
    - `## kNN tên | ghi chú dựng {pre=… post=…}` mở một đoạn; `[id] lời` là một câu Tèo đọc. Viết cả bài, mỗi câu một dòng.
    - 6–8 đoạn lớn, mỗi đoạn 2,5–4 phút; muốn cắt nhỏ để dựng thì chia thêm `## kNN` (mẫu cũ `_lab/mau-godot-tap-01` có 30 khung). Không thẻ chương, không nói "Chương".
    - Đoạn đầu là **hook**: dựng riêng cảnh đắt nhất của kịch bản, khớp nhịp, khớp chữ thumbnail. Tèo giới thiệu theo vai trong khoảng 60 s đầu.
@@ -124,7 +148,7 @@ Mỗi short là **một project Godot dọc riêng** ở `<tap>/shorts/<NN-ten>/
 |---|---|
 | `node SKILL/scripts/new-short.mjs <tap> <NN-ten> --tu kA-01..kB-05 [--tu …] [--nhac <giây>]` | Tạo `S/godot/` dọc 1080×1920. Chép font/, mat/, chars/, chuong/, sfx/, các file vẽ `.gd` của tập (trừ main/phim/thumb) và cast.json. Câu `--tu` vào `loi.txt` (đoạn `s02 than`) kèm wav và voice.json, nên không phải đọc lại. Có sẵn chỗ viết hook `s01` và kết `s03`. Thêm `story.json` (kieu, phu_de, seo), `phude.gd` (phụ đề 2–4 chữ, y≈1490) và `nhac.ogg` cắt 70 s từ nhạc tập (mặc định 10 s trước câu đầu). |
 | `node KH/scripts/gd-voice.mjs S` (không qua LOCK) | Chỉ đọc câu mới hoặc câu đã sửa chữ. |
-| `node SKILL/scripts/gd-check.mjs S` | Chế độ short (tự nhận theo khung dọc). **Lỗi:** quá 60 s, thiếu "đăng ký" trong 30% cuối, kieu trống hoặc giống short khác của tập ≥60%, title quá 60 ký tự sau khi gắn đuôi (không tính #Shorts), có emoji hoặc viết HOA toàn bộ, thiếu mo_ta. **Cảnh báo:** hook > 12 chữ, hook dài > 12 s, thiếu "Tèo Kể", dưới 20 s. Không dùng `--log`. |
+| `node SKILL/scripts/gd-check.mjs S` | Chế độ short (tự nhận theo khung dọc). **Lỗi:** quá 60 s, thiếu "đăng ký" trong 30% cuối, kieu trống hoặc giống short khác của tập ≥60%, title quá 60 ký tự sau khi gắn đuôi (không tính #Shorts), có emoji hoặc viết HOA toàn bộ, thiếu mo_ta. **Cảnh báo:** hook > 12 chữ, hook dài > 12 s, thiếu tên kênh "Tèo Tửu Lâu", dưới 20 s. Không dùng `--log`. |
 | `LOCK "<tap> sNN xem" node KH/scripts/gd-render.mjs S --preview --sheet 2` | Preview 540×960 + `S/work/sheet-preview.jpg`. |
 | `LOCK "<tap> sNN render" node KH/scripts/gd-render.mjs S` | `S/renders/final.mp4` 1080×1920. Short ngắn, không cần `--par`. |
 | `node SKILL/scripts/pack.mjs S` | Kiểm 1080×1920, ra `<tap>/youtube/shorts/<NN-ten>.mp4` + `.txt` (tiêu đề `#Shorts`, mô tả + hashtag, tag, link bản đầy đủ). Không cần ảnh bìa. |
@@ -136,7 +160,7 @@ Mỗi short là **một project Godot dọc riêng** ở `<tap>/shorts/<NN-ten>/
 3. **Lời** (`S/godot/loi.txt`):
    - `[s01-01]` hook ≤ 12 chữ, vào thẳng điểm đắt.
    - Câu nối hoặc giới thiệu lại tên người, tên môn võ nếu đoạn cắt giữa chừng. Viết câu mới thay câu tập bắt đầu bằng "Còn…", "Vì thế…" trơ trọi.
-   - `[s03-01]` kết một câu, có "đăng ký" và "Tèo Kể".
+   - `[s03-01]` kết một câu, có "đăng ký" và "Tèo Tửu Lâu" (kèm triện "Tèo Kể").
    - Điền `story.json`: kieu, seo.title (≤ 51 ký tự, không ghi đuôi: pack tự gắn " #Shorts | Tèo Kể"; Viết Hoa Từng Chữ; **mỗi short tự tìm tên riêng** (luật cứng ở bước tiêu đề): chạy `__MUSE_ROOT__/yt-auto/tools/tu-khoa.py` với tên neo của đoạn short, đặt cụm đúng nghĩa ngay đầu tiêu đề), mo_ta, tags. Sửa `phu_de` (font, cỡ, màu) theo bút của tập nếu cần.
 4. Chạy `gd-voice` (không qua LOCK), rồi `gd-check S`.
 5. **Viết `S/godot/phim.gd` dọc**, dùng các hàm vẽ của tập (mẫu cũ `_lab/mau-godot-tap-01`: `But`, `Canh`, `Nguoi`). Lấy giờ từng câu ở `main.lines` (id → t0, dur) để hình khớp lời.
@@ -147,7 +171,7 @@ Mỗi short là **một project Godot dọc riêng** ở `<tap>/shorts/<NN-ten>/
    - Muốn có chưởng thì gọi chiêu đã có bằng `preload("res://chuong/chieu.gd")` như ở tập, đặt chiêu vào khung dọc.
 6. Preview `--sheet 2`, soi theo checklist dưới, sửa rồi chạy lại. Xong thì render bản cuối, `pack.mjs S`, kiểm mp4 1080×1920 có tiếng. Không đăng.
 
-**Checklist short:** hook có hình đắt ngay giây đầu · hình không chạm vùng phụ đề và nút (dưới y 1350, mép phải) · phụ đề đọc được, không đè mặt · hình khớp đúng câu đang đọc · 3 short của tập khác kiểu, khác ý hình · ≤ 60 s · kết có Tèo + đăng ký + Tèo Kể.
+**Checklist short:** hook có hình đắt ngay giây đầu · hình không chạm vùng phụ đề và nút (dưới y 1350, mép phải) · phụ đề đọc được, không đè mặt · hình khớp đúng câu đang đọc · 3 short của tập khác kiểu, khác ý hình · ≤ 60 s · kết có Tèo + đăng ký + Tèo Tửu Lâu (triện góc "Tèo Kể").
 
 ## Hợp đồng với gd-render (main.gd sinh sẵn đã đúng)
 

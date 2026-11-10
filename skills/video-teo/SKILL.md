@@ -36,8 +36,14 @@ Xong video này thì làm ngay video kế. Cho các việc chạy chồng lên n
 - **Luật âm thanh (người dùng chốt 2026-10-24, `kit/lib/mix.mjs`):** không sfx "ùm ùm tùm tùm" gây giật mình; sfx luôn nhỏ hơn giọng; nhạc nền nhỏ hơn hẳn giọng. `kit/sfx` là bản êm (`kit/sfx-soft.mjs`: lọc trầm < 180 Hz, ≤ -26 LUFS, đỉnh ≤ -12 dBFS; bản gốc ở `kit/sfx/_goc/`), build tự chép đè vào `assets/sfx` và kẹp `vol` sfx ≤ 0,6; nhạc nền tự đo và kẹp ≤ -40 LUFS (thấp hơn giọng ≥ 20 dB) — `bgm_volume` chỉ hạ được, không vượt trần. Không thêm sfx mới chưa qua `sfx-soft.mjs`.
 - Mỗi video xong thì báo người dùng ngắn gọn (mẫu ở mục 9), rồi làm tiếp.
 - **Chỉ tiêu hàng ngày (người dùng chốt 2026-11-06):** Giới hạn **1 video / ngày** cho kênh Lại Là Tèo Đây (cùng với 1 video / ngày cho Tèo Tửu Lâu, tổng 2 video/ngày cho cả hệ thống). Chạy vào ca tối hàng ngày (19:00 tạo video, 20:00 đăng video).
+- **Model AI cố định (người dùng chốt 2026-11-08):** Toàn bộ pipeline nghiên cứu, kịch bản, và điều phối cố định sử dụng **Gemini 3.8 Flash (High)**.
 - **KHÔNG LÀM SHORTS (chủ kênh chốt 2026-10-29):** Kênh Lại Là Tèo Đây bỏ toàn bộ các bước làm Short (kịch bản short, giọng short, dựng short, render short). `yt-auto` cấu hình `min_shorts = 0` và `"tat_shorts": true`. Gói `youtube/` hoàn chỉnh khi có video dài + thumbnail.png + tieu-de.txt + mo-ta.txt + tags.txt.
 - **Lời mời tương tác ngay sau hook (người dùng chốt 2026-11-05):** Ngay sau đoạn hook mở đầu, luôn có một câu hỏi người xem muốn kênh làm về ai hoặc sự kiện/ý tưởng nào thì comment để kênh làm, kết hợp kêu gọi like và follow/đăng ký kênh.
+- **Quy trình kiểm soát chất lượng 5 tầng & Smoke Test (người dùng chốt 2026-11-08):**
+  1. *Tiền kỳ kịch bản:* Chạy `python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban.py <dir>` (đếm >= 4.500 từ, duyệt hook <= 35s, CTA).
+  2. *Smoke Test trước khi render:* Chạy `python3 __SKILLS_DIR__/kiem-tra-video/scripts/smoke-test.py <dir>` (test cú pháp JS/JSON trong 15s).
+  3. *Audio Remux 3 giây:* Khi sửa LUFS/nhạc nền, dùng `node kit/remix-audio.mjs <dir>` hoặc ffmpeg `-c:v copy` (xong trong 3 giây, cấm render lại cả video 20 phút).
+  4. *Quality Gate Chốt chặn xuất bản:* Trước khi đồng bộ lên Drive, bắt buộc chạy `python3 __SKILLS_DIR__/kiem-tra-video/scripts/check-tong-the.py <dir>`. Khi 100% PASS sẽ cấp chứng chỉ `youtube/.READY_TO_UPLOAD`. Tiến trình `yt-sync` chỉ đồng bộ khi có file chứng chỉ này.
 - Trước khi tạo `videos/<slug>`, phải kiểm tra slug chưa có ai làm (thư mục chưa tồn tại, DA-LAM chưa có dòng đó). Không ghi vào thư mục của session khác.
 - Cứ 2 tiếng báo cáo người dùng một lần: số video đã xong hôm nay trên chỉ tiêu 10, từng video đang ở bước nào, dự kiến xong lúc mấy giờ, lỗi nếu có.
 

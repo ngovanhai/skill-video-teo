@@ -16,7 +16,7 @@ import { ganDuoi, kiemTieuDe } from "__MUSE_ROOT__/yt-auto/tools/tieu-de.mjs"; /
 const SKILL = dirname(dirname(fileURLToPath(import.meta.url)));
 const GODOT = process.env.GODOT || "__GODOT__";
 const HIST = join(SKILL, "data/history.json");
-const CHARS = join(homedir(), ".claude/skills/nhan-vat-chibi/data/chars.json");
+const CHARS = join("__SKILLS_DIR__", "nhan-vat-chibi/data/chars.json");
 const args = process.argv.slice(2);
 const has = (k) => { const i = args.indexOf(k); if (i < 0) return false; args.splice(i, 1); return true; };
 const noGodot = has("--no-godot"), doLog = has("--log");
@@ -99,7 +99,7 @@ if (SHORT) {
   if (hw > 12) warn.push(`câu hook [${lines[0].id}] ${hw} chữ — nên ≤ 12`);
   if (segs[0] && segs[0].t1 > 12.5) warn.push(`đoạn hook ${segs[0].kid} dài ${segs[0].t1.toFixed(1)} s — nên ≤ 12 s`);
   if (!lines.some((l) => /đăng ký/i.test(l.text) && l.t0 >= DUR * 0.7)) err.push("short phải kết bằng câu mời đăng ký (trong 30% cuối)");
-  if (!lines.some((l) => /tèo kể/i.test(l.text))) warn.push('không câu nào nhắc tên kênh "Tèo Kể"');
+  if (!lines.some((l) => /(tèo tửu lâu|tèo kể)/i.test(l.text))) warn.push('không câu nào nhắc tên kênh "Tèo Tửu Lâu"');
 }
 const greet = SHORT || lines.find((l) => /tèo/i.test(l.text));
 if (!greet) warn.push("không câu nào nhắc tên Tèo — Tèo phải tự giới thiệu theo vai");
@@ -181,7 +181,7 @@ if (existsSync(join(G, "cast.json")) && existsSync(CHARS)) {
 
 // ---- chiêu: làm bằng chuong-2d (có trong sổ) và đã gd-chieu vào tập
 if (existsSync(join(G, "story.json"))) {
-  const MV = join(homedir(), ".claude/skills/chuong-2d/data/moves.json");
+  const MV = join("__SKILLS_DIR__", "chuong-2d/data/moves.json");
   const mbook = existsSync(MV) ? JSON.parse(readFileSync(MV, "utf8")) : [];
   const ok = new Set((Array.isArray(mbook) ? mbook : Object.values(mbook)).map((m) => m.id));
   const ch = JSON.parse(read("story.json")).chieu || [];

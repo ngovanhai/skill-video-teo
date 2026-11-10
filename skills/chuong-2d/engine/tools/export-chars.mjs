@@ -7,7 +7,7 @@ import { pathToFileURL } from "url";
 import os from "os";
 
 // Nhân vật lấy từ sổ chung của skill nhan-vat-chibi (data/chars.json); thêm/sửa nhân vật ở đó.
-const LIB = path.join(os.homedir(), ".claude/skills/nhan-vat-chibi/scripts/lib.mjs");
+const LIB = path.join("__SKILLS_DIR__", "nhan-vat-chibi/scripts/lib.mjs");
 const { rig, loadChars, lookOf, lint } = await import(pathToFileURL(LIB).href);
 const { figure, JOINTS } = rig;
 const BOOK = loadChars();

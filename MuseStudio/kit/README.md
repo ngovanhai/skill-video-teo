@@ -138,7 +138,7 @@ Thêm fx mới: tạo `kit/fx/<ten>.mjs` export `{id, cat, label, run(ctx, o)}` 
 
 Thư viện có sẵn: `kit/chars/library/` (thần Hy Lạp). Nhân vật mới thì vẽ vào `<video>/chars/<key>.svg`, đúng phong cách:
 
-- `viewBox="0 0 300 420"`, kiểu **chibi phẳng (kiểu cũ)**: đầu to tròn, thân ngắn, tô màu phẳng, viền đen `#111` dày 6, mắt chấm đen có đốm sáng, má hồng. Bộ vẽ chuẩn: `~/.claude/skills/video-teo/scripts/gen-chars.template.mjs`. Không dùng bộ anime (từ 2026-10-21).
+- `viewBox="0 0 300 420"`, kiểu **chibi phẳng (kiểu cũ)**: đầu to tròn, thân ngắn, tô màu phẳng, viền đen `#111` dày 6, mắt chấm đen có đốm sáng, má hồng. Bộ vẽ chuẩn: `__SKILLS_DIR__/video-teo/scripts/gen-chars.template.mjs`. Không dùng bộ anime (từ 2026-10-21).
 - Trang phục và đạo cụ nói rõ thân phận (long bào, mũ cánh chuồn, áo tứ thân, giáp, nón lá, toga, áo blouse…). Đạo cụ cũng có thể là một "nhân vật" riêng (gươm, rùa…) để dùng trong `moment` hoặc thumbnail.
 - Biểu cảm (đổi lông mày / miệng) là file riêng `<key>-<expr>.svg`, khai báo thành key riêng trong `cast`.
 - Muốn nhân vật mấp máy môi khi nói (`talk`, `intro.speaks`) thì vẽ 2 nhóm: `<g id="mouth-closed">…</g>` và `<g id="mouth-open" opacity="0">…</g>`.

@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from "url";
 
 export const SKILL = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 export const CHARS_FILE = path.join(SKILL, "data/chars.json");
-const KH = path.join(os.homedir(), ".claude/skills/teo-kiem-hiep/engine");
+const KH = path.join("__SKILLS_DIR__", "teo-kiem-hiep/engine");
 export const rig = await import(pathToFileURL(path.join(KH, "rig2.mjs")).href);
 export const { POSES } = await import(pathToFileURL(path.join(KH, "moves2.mjs")).href);
 

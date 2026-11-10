@@ -12,6 +12,9 @@ Không làm Shorts. Chỉ chạy trong **Claude Code** (CLI hoặc tab Code củ
 | `skills/chuong-2d` | engine chiêu/chưởng Godot + sổ chiêu `data/moves.json` |
 | `skills/nhan-vat-chibi` | sổ nhân vật chung `data/chars.json` + sheet soi |
 | `skills/thao-tac-chibi` | sổ động tác + rig chibi v2 |
+| `skills/kiem-tra-video` | soát 5 tầng: review kịch bản, smoke test 15 s, check hình/âm thanh, quality gate `youtube/.READY_TO_UPLOAD` |
+| `skills/hoat-anh-kich-ban` | kịch bản → storyboard + mã hoạt cảnh Godot (vũ đạo hành động chibi) |
+| `skills/tim-chu-de-ke` | tìm chủ đề mới bằng cách ké video đang lên, chống trùng |
 | `../MuseStudio/kit` | (lấy từ bộ root) fx, sfx êm, font, nhạc nền, `lib/mix.mjs`, `py/tts-zerotts.py` (ZeroTTS tại máy) |
 | `MuseStudio/kiem-hiep/_tools` | `slot.sh` (2 suất máy), `colab-tts/` (đọc giọng + căn chữ trên Colab T4) |
 | `MuseStudio/kiem-hiep/tap-10…`, `tap-01…/_ban-cu`, `_lab/…` | tập mẫu, **chỉ có code + hình** (không giọng/nhạc/video), để đọc học |

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Cài skill "teo-kiem-hiep-godot" (+ teo-kiem-hiep, chuong-2d, nhan-vat-chibi, thao-tac-chibi) và phần MuseStudio nó cần, cho macOS.
+// Cài skill "teo-kiem-hiep-godot" (+ teo-kiem-hiep, chuong-2d, nhan-vat-chibi, thao-tac-chibi, kiem-tra-video, hoat-anh-kich-ban, tim-chu-de-ke) và phần MuseStudio nó cần, cho macOS.
 //   node install.mjs [--muse-root <thư mục>] [--zerotts-dir <thư mục>] [--godot <đường dẫn Godot>] [--skip-zerotts] [--skip-colab] [--no-env] [--no-memory]
 import { cpSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync, writeFileSync, renameSync, copyFileSync, appendFileSync, rmSync } from "node:fs";
 import { join, resolve, dirname, extname } from "node:path";
@@ -16,7 +16,7 @@ const MUSE = resolve(opt("muse-root", join(homedir(), "MuseStudio")));
 const ZEROTTS = resolve(opt("zerotts-dir", join(homedir(), "Projects", "ZeroTTS-src")));
 const ZEROTTS_VER = "0.1.5"; // bản kit đang chạy ổn
 const SKILLS = join(homedir(), ".claude", "skills");
-const SKILL_NAMES = ["teo-kiem-hiep-godot", "teo-kiem-hiep", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi"];
+const SKILL_NAMES = ["teo-kiem-hiep-godot", "teo-kiem-hiep", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke"];
 const GODOT_VER = "4.7.2";
 const stamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 15);
 const step = (m) => console.log(`\n==> ${m}`);
@@ -102,13 +102,13 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 const WHISPER_PY = join(MUSE, ".whisper/.venv/bin/python");
 const WHISPER_DML = join(dirname(MUSE), "whisper-dml/Scripts/python.exe");
 const fill = (s) => s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__ZEROTTS_DIR__", ZEROTTS).replaceAll("__WHISPER_PY__", WHISPER_PY)
-  .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT);
+  .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT).replaceAll("__SKILLS_DIR__", SKILLS);
 let n = 0;
 for (const root of [...SKILL_NAMES.map((s) => join(SKILLS, s)), join(MUSE, "kit"), join(MUSE, "kiem-hiep"), join(MUSE, "ideas"), join(MUSE, "yt-auto")])
   for (const f of walk(root)) {
     if (!TEXT.has(extname(f))) continue;
     const s = readFileSync(f, "utf8");
-    if (!/__(MUSE_ROOT|ZEROTTS_DIR|WHISPER_PY|WHISPER_DML_PY|GODOT)__/.test(s)) continue;
+    if (!/__(MUSE_ROOT|ZEROTTS_DIR|WHISPER_PY|WHISPER_DML_PY|GODOT|SKILLS_DIR)__/.test(s)) continue;
     writeFileSync(f, fill(s)); n++;
   }
 for (const f of walk(join(MUSE, "kiem-hiep/_tools")).concat(walk(SKILLS).filter((f) => SKILL_NAMES.some((s) => f.startsWith(join(SKILLS, s))))))

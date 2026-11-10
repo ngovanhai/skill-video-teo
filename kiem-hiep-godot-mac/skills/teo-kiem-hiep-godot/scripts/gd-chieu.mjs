@@ -7,8 +7,8 @@ import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ENG = join(homedir(), ".claude/skills/chuong-2d/engine");
-const MOVES = join(homedir(), ".claude/skills/chuong-2d/data/moves.json");
+const ENG = join("__SKILLS_DIR__", "chuong-2d/engine");
+const MOVES = join("__SKILLS_DIR__", "chuong-2d/data/moves.json");
 const die = (m) => { console.error("gd-chieu: " + m); process.exit(1); };
 const [tapArg, ...ids] = process.argv.slice(2);
 if (!tapArg || !ids.length) die("dùng: gd-chieu.mjs <tap> <id chiêu> [id …]");

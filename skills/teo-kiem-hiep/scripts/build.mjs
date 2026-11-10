@@ -13,7 +13,7 @@ import { createHash } from "crypto";
 import { loadLibrary, SKILL } from "../engine/library.mjs";
 import { homedir } from "os";
 // sổ nhân vật chung (skill nhan-vat-chibi): cast {"char": id} lấy nguyên look rig2 từ đó
-const CHARLIB = join(homedir(), ".claude/skills/nhan-vat-chibi/scripts/lib.mjs");
+const CHARLIB = join("__SKILLS_DIR__", "nhan-vat-chibi/scripts/lib.mjs");
 const CHARBOOK = existsSync(CHARLIB) ? await import(pathToFileURL(CHARLIB).href) : null;
 import { makePlan, printPlan } from "./plan.mjs";
 import { PLANNED } from "../engine/slots.mjs";

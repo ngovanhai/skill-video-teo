@@ -76,7 +76,7 @@ if (tman && picked.length && !existsSync(manFile)) {
 put("loi.txt", `# ${basename(TAP)} · short ${name} (dọc 1080×1920) — tự kể trọn, ≤ 60 s (khoảng 200–230 chữ)
 # Cú pháp như loi.txt của tập. Câu chép từ tập giữ nguyên id → dùng lại giọng sẵn; sửa chữ thì gd-voice đọc lại câu đó.
 # Viết thêm (bỏ dấu # đầu dòng): hook ≤ 12 s (câu đầu ≤ 12 chữ, hình đắt nhất trong 2 s đầu), câu nối nếu cắt giữa chừng,
-# câu kết có "đăng ký" và "Tèo Kể". Người xem short chưa xem tập: tên người, môn võ phải tự giới thiệu lại trong short.
+# câu kết có "đăng ký" và "Tèo Tửu Lâu". Người xem short chưa xem tập: tên người, môn võ phải tự giới thiệu lại trong short.
 
 ## s01 hook | <hình đắt nhất của short, hiện trong 2 s đầu>
 # [s01-01] <câu hook ≤ 12 chữ>
@@ -84,8 +84,8 @@ put("loi.txt", `# ${basename(TAP)} · short ${name} (dọc 1080×1920) — tự 
 ## s02 than | lấy từ tập: ${tus.join(", ") || "<id>"}
 ${picked.map((l) => `[${l.id}] ${l.text}`).join("\n") || "# [s02-01] <lời>"}
 
-## s03 ket | <Tèo chốt một câu + mời đăng ký Tèo Kể>
-# [s03-01] <câu kết có "đăng ký" và "Tèo Kể">
+## s03 ket | <Tèo chốt một câu + mời đăng ký kênh Tèo Tửu Lâu>
+# [s03-01] <câu kết có "đăng ký" và "Tèo Tửu Lâu">
 `);
 
 const tieuDe = join(TAP, "youtube/tieu-de.txt");

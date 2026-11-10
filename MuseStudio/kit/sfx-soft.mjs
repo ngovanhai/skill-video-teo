@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 const KIT = dirname(fileURLToPath(import.meta.url));
 const HP = 180, TARGET = -26, PEAK = -12;
 const HPF = Array(3).fill(`highpass=f=${HP}:poles=2`).join(","); // 3 tầng = dốc 36 dB/quãng tám: tiếng nổ bass gốc quá mạnh, 1 tầng còn sót ù
-const dirs = process.argv.slice(2).length ? process.argv.slice(2) : [join(KIT, "sfx"), join(process.env.HOME, ".claude/skills/chuong-2d/engine/sfx")];
+const dirs = process.argv.slice(2).length ? process.argv.slice(2) : [join(KIT, "sfx"), join("__SKILLS_DIR__/chuong-2d/engine/sfx")];
 
 const lufs = (f) => {
   const r = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-i", f, "-af", `${HPF},ebur128`, "-f", "null", "-"], { encoding: "utf8" });

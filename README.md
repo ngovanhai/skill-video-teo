@@ -1,4 +1,4 @@
-# Bộ skill Tèo: `video-teo` + `teo-kiem-hiep` + `teo-kiem-hiep-godot` + `chuong-2d` + `nhan-vat-chibi` + `thao-tac-chibi`
+# Bộ skill Tèo: `video-teo` + `teo-kiem-hiep` + `teo-kiem-hiep-godot` + `chuong-2d` + `nhan-vat-chibi` + `thao-tac-chibi` + `kiem-tra-video` + `hoat-anh-kich-ban` + `tim-chu-de-ke`
 
 Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo (ZeroTTS, giọng **Tiến Đạt**), phụ đề, thumbnail và gói upload. Không làm Shorts.
@@ -7,6 +7,9 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `chuong-2d`: tạo chiêu/chưởng Godot 2D (engine nằm trong skill), dùng cho tập kiếm hiệp Godot.
 - `nhan-vat-chibi`: tạo nhân vật chibi, lưu look vào sổ chung `chars.json`.
 - `thao-tac-chibi`: sổ động tác chibi (rig v2) + vật phẩm (kiếm/ô/đèn/hồ lô).
+- `kiem-tra-video`: bộ soát 5 tầng (review kịch bản, smoke test 15 s, check hình/âm thanh, quality gate cấp `youtube/.READY_TO_UPLOAD`).
+- `hoat-anh-kich-ban`: phân tích kịch bản → storyboard + sinh mã hoạt cảnh Godot (vũ đạo hành động chibi, chống slide chữ tĩnh).
+- `tim-chu-de-ke`: tìm chủ đề mới bằng cách ké video đang lên (`kiem-hang.py --dang-len`, `tu-khoa.py`), chống trùng chủ đề đã làm.
 
 > Các skill này chạy trên máy của bạn: render, ffmpeg và (khi không có Colab) giọng đọc đều chạy tại máy.
 > Vì vậy **không dùng được trong chat claude.ai**, chỉ dùng được trong **Claude Code** (CLI hoặc tab Code của app Claude).
@@ -15,7 +18,7 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 
 | Thư mục | Nội dung |
 |---|---|
-| `skills/` | 6 skill, được chép vào `~/.claude/skills/`, `~/.config/opencode/skills/`… |
+| `skills/` | 9 skill, được chép vào `~/.claude/skills/`, `~/.gemini/config/skills/`, `~/.agents/skills/`, `~/.config/opencode/skills/` |
 | `MuseStudio/kit` | công cụ dựng video (`make.mjs`, cảnh, fx, font, nhạc nền, sfx êm, `lib/mix.mjs`, `py/tts-zerotts.py`) |
 | `MuseStudio/avatar` | avatar, banner, watermark của kênh |
 | `MuseStudio/ideas` | `DA-LAM.md` (đã làm), `HOOK-MO-DAU.md`, `TIEU-DE-ANH-BIA.md` (luật hook, tiêu đề, ảnh bìa) |
@@ -49,7 +52,7 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
    - `--godot <file>`: dùng file chạy Godot 4.7.2 có sẵn thay vì tải. `--skip-godot`: bỏ qua Godot (khi không làm tập Godot).
 3. Mở terminal **mới**, `cd` vào MuseRoot, chạy `claude` rồi gõ `/video-teo`, `/teo-kiem-hiep` hoặc `/teo-kiem-hiep-godot`.
 
-Script cài sẽ thay `__MUSE_ROOT__` / `__ZEROTTS_DIR__` / `__WHISPER_PY__` / `__WHISPER_DML_PY__` / `__GODOT__` / `__FFMPEG__` trong skill, kit và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `ZEROTTS_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Lần đọc giọng đầu tiên, ZeroTTS tự tải weights (~1 GB) từ HuggingFace nên cần mạng. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
+Script cài sẽ thay `__MUSE_ROOT__` / `__ZEROTTS_DIR__` / `__WHISPER_PY__` / `__WHISPER_DML_PY__` / `__GODOT__` / `__FFMPEG__` / `__SKILLS_DIR__` (thư mục skills đang cài) trong skill, kit, ideas, yt-auto và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `ZEROTTS_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Lần đọc giọng đầu tiên, ZeroTTS tự tải weights (~1 GB) từ HuggingFace nên cần mạng. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
 
 ## Gói riêng cho Mac: `kiem-hiep-godot-mac/`
 

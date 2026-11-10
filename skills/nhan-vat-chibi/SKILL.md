@@ -11,7 +11,7 @@ description: >-
 
 `SKILL = thư mục chứa file này`
 - Sổ nhân vật: `SKILL/data/chars.json`, nguồn duy nhất cho mọi engine.
-- Bộ vẽ: `~/.claude/skills/teo-kiem-hiep/engine/rig2.mjs`, kiểu chibi phẳng mặt anime. Skill này không sửa rig2.
+- Bộ vẽ: `__SKILLS_DIR__/teo-kiem-hiep/engine/rig2.mjs`, kiểu chibi phẳng mặt anime. Skill này không sửa rig2.
 - Lệnh: `node SKILL/scripts/char.mjs <kit|list|look|sheet|lineup>`. Code ngoài lấy look qua `lookOf(id)` trong `scripts/lib.mjs`.
 
 ## Quy trình

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Cài 6 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi) và kit MuseStudio. Chạy được trên macOS và Windows.
+// Cài 9 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi, kiem-tra-video, hoat-anh-kich-ban, tim-chu-de-ke) và kit MuseStudio. Chạy được trên macOS và Windows.
 //   node install.mjs [--muse-root <thư mục>] [--zerotts-dir <thư mục>] [--godot-dir <thư mục>] [--godot <file chạy Godot có sẵn>]
 //                    [--skip-zerotts] [--skip-godot] [--no-env]
 import { cpSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync, writeFileSync, renameSync, copyFileSync, appendFileSync, rmSync } from "node:fs";
@@ -21,7 +21,7 @@ const ZEROTTS_VER = "0.1.5"; // bản kit đang chạy ổn
 const WHISPER_DML = fwd(opt("whisper-dml-py", join(dirname(MUSE), "whisper-dml/Scripts/python.exe"))); // Windows + DirectML (tuỳ chọn)
 const GODOT_DIR = fwd(opt("godot-dir", join(dirname(MUSE), "Godot")));
 const GODOT_VER = "4.7.2-stable"; // bản các skill Godot đã chạy ổn
-const SKILLS = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi"];
+const SKILLS = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke"];
 const SKILL_DIRS = [
   join(homedir(), ".claude", "skills"),
   join(homedir(), ".gemini", "config", "skills"),
@@ -132,13 +132,16 @@ const TEXT = new Set([".md", ".mjs", ".js", ".py", ".json", ".txt", ".sh"]);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 let n = 0;
 const skillRoots = SKILL_DIRS.flatMap((dir) => SKILLS.map((s) => join(dir, s))).filter(existsSync);
+// __SKILLS_DIR__ = thư mục skills đang cài skill này (mỗi máy một khác: ~/.claude/skills, ~/.gemini/config/skills…)
+const sdOf = (root) => SKILL_DIRS.find((d) => root.startsWith(d + "/") || root.startsWith(d + "\\")) || SKILL_DIRS[0];
+const fill = (s, sd) => s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__ZEROTTS_DIR__", ZEROTTS).replaceAll("__WHISPER_PY__", WHISPER)
+  .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT).replaceAll("__FFMPEG__", FFMPEG).replaceAll("__SKILLS_DIR__", sd);
 for (const root of [...skillRoots, join(MUSE, "kit"), join(MUSE, "avatar"), join(MUSE, "kiem-hiep/_tools"), join(MUSE, "ideas"), join(MUSE, "yt-auto")])
   for (const f of walk(root)) {
     if (!TEXT.has(extname(f))) continue;
     const s = readFileSync(f, "utf8");
-    if (!/__(MUSE_ROOT|ZEROTTS_DIR|WHISPER_PY|WHISPER_DML_PY|GODOT|FFMPEG)__/.test(s)) continue;
-    writeFileSync(f, s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__ZEROTTS_DIR__", ZEROTTS).replaceAll("__WHISPER_PY__", WHISPER)
-      .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT).replaceAll("__FFMPEG__", FFMPEG));
+    if (!/__(MUSE_ROOT|ZEROTTS_DIR|WHISPER_PY|WHISPER_DML_PY|GODOT|FFMPEG|SKILLS_DIR)__/.test(s)) continue;
+    writeFileSync(f, fill(s, sdOf(root)));
     n++;
   }
 console.log(`  ${n} file`);
