@@ -255,7 +255,11 @@ async function main() {
     const ids = [...svg.matchAll(/\bid=["']([^"']+)["']/g)].map(x => x[1]);
     if (new Set(ids).size !== ids.length) errors.push('Duplicate IDs');
     const required = ['shadow','hair_back','torso','robe_back','thigh_L','shin_L','foot_L','thigh_R','shin_R','foot_R','upper_arm_L','forearm_L','hand_L','upper_arm_R','forearm_R','hand_R','neck','head','hair_front','robe_front','weapon'];
-    for (const name of required) if (!new RegExp('id=["\\']' + name + '["\\']').test(svg)) errors.push('Missing full-body rig group: ' + name);
+    for (const name of required) {
+      if (!svg.includes('id="' + name + '"') && !svg.includes("id='" + name + "'")) {
+        errors.push('Missing full-body rig group: ' + name);
+      }
+    }
     if ((svg.match(/<path\b/g) || []).length < 25) warnings.push('Fewer than 25 vector paths; inspect detail');
     const report = 'Result: ' + (errors.length ? 'FAIL' : 'STRUCTURE PASS') +
       '\n\nErrors:\n' + (errors.join('\n') || 'None') +
