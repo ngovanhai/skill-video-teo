@@ -16,7 +16,7 @@ const MUSE = resolve(opt("muse-root", join(homedir(), "MuseStudio")));
 const ZEROTTS = resolve(opt("zerotts-dir", join(homedir(), "Projects", "ZeroTTS-src")));
 const ZEROTTS_VER = "0.1.5"; // bản kit đang chạy ổn
 const SKILLS = join(homedir(), ".claude", "skills");
-const SKILL_NAMES = ["teo-kiem-hiep-godot", "teo-kiem-hiep", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke"];
+const SKILL_NAMES = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke"];
 const GODOT_VER = "4.7.2";
 const stamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 15);
 const step = (m) => console.log(`\n==> ${m}`);
@@ -63,8 +63,11 @@ if (!GODOT) {
 console.log(`  ${GODOT}  (${ver(GODOT)})`);
 
 step(`Chép MuseStudio -> ${MUSE}`);
-const SRC = join(HERE, "..", "MuseStudio"); // kit, yt-auto và ảnh bìa dùng chung với bộ root trong cùng repo
+const SRC = join(HERE, "..", "MuseStudio"); // tài nguyên MuseStudio dùng chung với bộ root trong cùng repo
+const SRC_SKILLS = join(HERE, "..", "skills"); // nguồn chuẩn duy nhất cho cả 9 skill
 if (!existsSync(SRC)) die(`không thấy ${SRC} — chép cả repo rồi chạy lại (đừng tách riêng thư mục kiem-hiep-godot-mac)`);
+if (!existsSync(SRC_SKILLS)) die(`không thấy ${SRC_SKILLS} — cần thư mục skills/ gốc của repo`);
+for (const s of SKILL_NAMES) if (!existsSync(join(SRC_SKILLS, s))) die(`thiếu skill nguồn: ${join(SRC_SKILLS, s)}`);
 mkdirSync(MUSE, { recursive: true });
 cpSync(join(SRC, "kit"), join(MUSE, "kit"), { recursive: true, force: true });
 cpSync(join(HERE, "MuseStudio", "kiem-hiep"), join(MUSE, "kiem-hiep"), { recursive: true, force: true }); // _tools + tập mẫu (chỉ code)
@@ -78,7 +81,7 @@ mkdirSync(SKILLS, { recursive: true });
 for (const s of SKILL_NAMES) {
   const dst = join(SKILLS, s);
   if (existsSync(dst)) { renameSync(dst, `${dst}.bak-${stamp}`); console.log(`  bản cũ -> ${s}.bak-${stamp}`); }
-  cpSync(join(HERE, "skills", s), dst, { recursive: true });
+  cpSync(join(SRC_SKILLS, s), dst, { recursive: true });
 }
 
 if (!flag("skip-zerotts")) {
