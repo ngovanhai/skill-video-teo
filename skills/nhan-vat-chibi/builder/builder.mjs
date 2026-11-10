@@ -10,6 +10,7 @@ async function identity() { return JSON.parse(await fs.readFile(path.join(dir, '
 async function main() {
   if (!command || !id || !validId.test(id)) throw new Error('Usage: node skills/nhan-vat-chibi/builder/builder.mjs init|prompt|generate|validate|preview <id>');
   if (command === 'init') {
+    await fs.mkdir(root, { recursive: true });
     await fs.mkdir(dir, { recursive: false });
     for (const name of ['source', 'approved', 'layers', 'review', 'prompts']) await fs.mkdir(path.join(dir, name));
     await fs.writeFile(path.join(dir, 'identity.json'), JSON.stringify({ character_id:id, profile:'wuxia-storybook-hybrid', status:'draft', design_brief:'', palette:{ink:'#49352f',skin:'#f2c6a5',robe:'#587b78',accent:'#c98d52'}, face_id:{}, hair_id:{}, costume_id:{}, weapon_id:{}, asymmetry:[], approved_revision:null }, null, 2));
