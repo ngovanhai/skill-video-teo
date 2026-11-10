@@ -9,7 +9,8 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `thao-tac-chibi`: sổ động tác chibi (rig v2) + vật phẩm (kiếm/ô/đèn/hồ lô).
 - `kiem-tra-video`: bộ soát 5 tầng (review kịch bản, smoke test 15 s, check hình/âm thanh, quality gate cấp `youtube/.READY_TO_UPLOAD`).
 - `hoat-anh-kich-ban`: phân tích kịch bản → storyboard + sinh mã hoạt cảnh Godot (vũ đạo hành động chibi, chống slide chữ tĩnh).
-- `tim-chu-de-ke`: tìm chủ đề mới bằng cách ké video đang lên (`kiem-hang.py --dang-len`, `tu-khoa.py`), chống trùng chủ đề đã làm.\n- `art-director-2d`: xây Art Bible, palette và quy tắc mỹ thuật thống nhất cho cả tập.\n- `cinematic-scene-2d`: bố cục cảnh, camera, parallax, chiều sâu và ánh sáng.\n- `godot-visual-effects`: thiết kế VFX 2D như kiếm khí, chưởng lực, khói, lửa, băng và shader.\n- `godot-visual-review`: render contact sheet, soi frame thật và lập danh sách lỗi hình ảnh trước khi xuất bản.
+- `tim-chu-de-ke`: tìm chủ đề mới bằng cách ké video đang lên (`kiem-hang.py --dang-len`, `tu-khoa.py`), chống trùng chủ đề đã làm.
+- `art-director-2d`: xây Art Bible, palette và quy tắc mỹ thuật thống nhất cho cả tập.\n- `cinematic-scene-2d`: bố cục cảnh, camera, parallax, chiều sâu và ánh sáng.\n- `godot-visual-effects`: thiết kế VFX 2D như kiếm khí, chưởng lực, khói, lửa, băng và shader.\n- `godot-visual-review`: render contact sheet, soi frame thật và lập danh sách lỗi hình ảnh trước khi xuất bản.
 
 > Các skill này chạy trên máy của bạn: render, ffmpeg và (khi không có Colab) giọng đọc đều chạy tại máy.
 > Vì vậy **không dùng được trong chat claude.ai**, chỉ dùng được trong **Claude Code** (CLI hoặc tab Code của app Claude).
