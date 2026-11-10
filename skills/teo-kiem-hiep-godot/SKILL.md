@@ -266,3 +266,11 @@ Từ 2026-11-03 phiên Colab cài ZeroTTS (`setup-zerotts.py`, dấu `/content/.
 - Secondary motion: tóc/vạt áo/dây/vũ khí theo quán tính, không rung vô cớ.
 - Preview phải có contact sheet gồm key pose và frame giữa các pha. Chưa xem render thật thì không được PASS.
 - So sánh song song ít nhất một cảnh cùng nội dung: rig2-legacy và hybrid; chỉ chuyển mặc định sau khi hybrid thắng về độ đẹp, ổn định và chi phí render.
+
+
+## DeepSeek-only implementation rule
+
+- Hybrid art authoring dùng DeepSeek duy nhất: sinh SVG source, semantic layer groups, pivots, rig metadata, key poses và animation code.
+- Không dùng dịch vụ/model sinh ảnh ngoài DeepSeek. Không tuyên bố DeepSeek trả PNG; Godot/SVG renderer mới rasterize vector thành texture.
+- Nếu model endpoint không hỗ trợ vision, yêu cầu review hình render bởi người dùng; không tự nhận đã kiểm tra hình.
+- Thêm bước validate SVG và render preview trước khi chấp nhận asset. Giữ rig2-legacy không đổi.
