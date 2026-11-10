@@ -14,7 +14,8 @@ Không làm Shorts. Chỉ chạy trong **Claude Code** (CLI hoặc tab Code củ
 | `skills/thao-tac-chibi` | sổ động tác + rig chibi v2 |
 | `skills/kiem-tra-video` | soát 5 tầng: review kịch bản, smoke test 15 s, check hình/âm thanh, quality gate `youtube/.READY_TO_UPLOAD` |
 | `skills/hoat-anh-kich-ban` | kịch bản → storyboard + mã hoạt cảnh Godot (vũ đạo hành động chibi) |
-| `skills/tim-chu-de-ke` | tìm chủ đề mới bằng cách ké video đang lên, chống trùng |\n| `skills/art-director-2d` | Art Bible, palette và kiểm soát mỹ thuật thống nhất |\n| `skills/cinematic-scene-2d` | bố cục, camera, parallax, chiều sâu và ánh sáng |\n| `skills/godot-visual-effects` | VFX 2D: kiếm khí, chưởng lực, khói, lửa, băng, shader |\n| `skills/godot-visual-review` | review frame/contact sheet, lập lỗi và quality gate hình ảnh |
+| `skills/tim-chu-de-ke` | tìm chủ đề mới bằng cách ké video đang lên, chống trùng |
+| `skills/art-director-2d` | Art Bible, palette và kiểm soát mỹ thuật thống nhất |\n| `skills/cinematic-scene-2d` | bố cục, camera, parallax, chiều sâu và ánh sáng |\n| `skills/godot-visual-effects` | VFX 2D: kiếm khí, chưởng lực, khói, lửa, băng, shader |\n| `skills/godot-visual-review` | review frame/contact sheet, lập lỗi và quality gate hình ảnh |
 | `../MuseStudio/kit` | (lấy từ bộ root) fx, sfx êm, font, nhạc nền, `lib/mix.mjs`, `py/tts-zerotts.py` (ZeroTTS tại máy) |
 | `MuseStudio/kiem-hiep/_tools` | `slot.sh` (2 suất máy), `colab-tts/` (đọc giọng + căn chữ trên Colab T4) |
 | `MuseStudio/kiem-hiep/tap-10…`, `tap-01…/_ban-cu`, `_lab/…` | tập mẫu, **chỉ có code + hình** (không giọng/nhạc/video), để đọc học |
@@ -40,7 +41,8 @@ Không làm Shorts. Chỉ chạy trong **Claude Code** (CLI hoặc tab Code củ
    - tải **Godot 4.7.2** bản macOS vào `~/Applications/Godot_v4.7.2.app` (nếu chưa có đúng bản này);
    - chép MuseStudio vào `~/MuseStudio`, gồm kit + avatar, 13 skill vào `~/.claude/skills/` (bản cũ trùng tên đổi thành `*.bak-<giờ>`);
    - cài **ZeroTTS** vào `~/Projects/ZeroTTS-src/.venv` (`uv pip install zerotts==0.1.5`; weights tự tải từ HuggingFace, hoặc dùng bản int8 nếu thư mục `models/zerotts-int8` có sẵn);
-   - cài `colab` CLI (`uv tool install google-colab-cli`);\n   - tạo venv Whisper riêng tại `~/MuseStudio/.whisper` để skill `video-teo` căn thời gian phụ đề;
+   - cài `colab` CLI (`uv tool install google-colab-cli`);
+   - tạo venv Whisper riêng tại `~/MuseStudio/.whisper` để skill `video-teo` căn thời gian phụ đề;
    - điền đường dẫn thật, ghi `MUSE_ROOT`, `ZEROTTS_DIR`, `GODOT` vào `~/.zshrc`, chép memory luật làm tập.
 
    Tuỳ chọn: `--muse-root <thư mục>`, `--zerotts-dir <thư mục>`, `--godot <đường dẫn binary Godot>`,
