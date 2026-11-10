@@ -97,3 +97,8 @@ Từ nay nhân vật mới mặc định dùng profile **wuxia-storybook-hybrid*
 ### Lệnh và khả năng thực tế
 
 Các lệnh char.mjs kit|list|look|sheet|lineup hiện tại vẫn là workflow rig2. Không được bịa thêm lệnh như hybrid-export hoặc auto-rig nếu repo chưa có script tương ứng. Khi triển khai một pipeline asset mới, trước tiên kiểm tra công cụ có thật trong repo; thiếu công cụ thì tạo checklist/manual handoff và nêu rõ bước thủ công.
+
+
+## DeepSeek-only drawing mode
+
+Khi dùng profile wuxia-storybook-hybrid, chỉ dùng DeepSeek làm model AI. DeepSeek sinh SVG vector chi tiết theo HYBRID-PIPELINE.md; không gọi model tạo ảnh bên ngoài. Không chấp nhận SVG dạng stick figure/icon hoặc placeholder vài hình học. Mỗi nhân vật cần identity lock, semantic layers, pivot metadata và preview render. Nếu endpoint không có vision thì không giả vờ đã nhìn thấy ảnh; yêu cầu người dùng review hoặc dùng endpoint DeepSeek có vision.
