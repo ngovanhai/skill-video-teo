@@ -298,3 +298,112 @@ Extra: `col, life, land (y chạm đất), on_land (Callable nhận q), z (0.45 
 ### cui_nhan_thua — cúi đầu nhận thua: `{"torso": 40, "head": 24, "uaF": -64, "faF": -78, "uaB": -54, "faB": -84, "all": [0, 0, 30]}` blend 0.8 s. Mẫu: `k07.gd` (Khâu Xứ Cơ).
 ### bong_goi_ten — nhân vật hiện sẵn dạng bóng một màu, được gọi tên thì "thêu màu" vào: `a.bong = 0.85*(1 - sm(t_goi-0.1, t_goi+0.35))` mỗi khung (shader thêu có tham số `bong`). Mẫu: `k01.gd`.
 - **Bài học tập 12**: chữ Hán (醉仙樓…) với font Latin (Lora) ra ô vuông — gắn `FontFile.fallbacks = [Hiragino Sans GB.ttc chép vào godot/font]` (SystemFont fallback báo lỗi FreeType); `draw_multiline` với mảng rỗng báo lỗi, luôn kiểm `size() >= 2`; vân lụa trong hình tròn: `draw_colored_polygon(pts, màu, uv, tex)` + `texture_repeat` thay vì `draw_texture_rect` (lộ ô vuông).
+
+
+---
+
+# Hybrid Action Library v1 — danh mục mở rộng
+
+Đây là **catalogue thiết kế** để chuẩn hóa động tác; không có nghĩa mọi clip đã được code sẵn. Trước khi dùng, tra scene mẫu và API thật của engine. Mỗi động tác mới phải được dựng, render và duyệt trước khi đánh dấu implemented.
+
+## Hợp đồng animation clip
+
+Mỗi clip ghi các trường:
+- id, category, profile (hybrid / legacy), duration, loop, root_motion.
+- start_pose, anticipation, action_pose(s), contact_pose hoặc release_pose, follow_through, recovery_pose.
+- face, gaze_target, weapon_hand, contact_point, secondary_motion, sfx_cues.
+- review_frames: frame đầu, anticipation, action peak, contact, follow-through, recovery.
+- Mọi clip phải ghi rõ hướng nhân vật (screen-left/right), chân trụ và điều kiện blend/transition.
+
+## Nguyên tắc chuyển động
+1. **Anticipation:** dồn trọng tâm ngược hướng lực, hạ trọng tâm hoặc kéo tay/vũ khí về sau.
+2. **Action:** gia tốc rõ; đường đi có cung và mục tiêu, không nội suy đều từ A đến B.
+3. **Contact / release:** có pose đọc được; vũ khí không xuyên mục tiêu; thêm hit-stop rất ngắn nếu hợp cảnh.
+4. **Follow-through:** thân, vai, cổ tay, tóc, tay áo và vũ khí tiếp tục theo quán tính.
+5. **Recovery:** trọng tâm được thu lại, chân trụ ổn định, chuyển mượt sang pose kế tiếp.
+6. Không phải động tác nào cũng cần va chạm; với né/di chuyển dùng **passing point** thay contact.
+7. Giữ chân trụ hoặc có root motion rõ; không để bàn chân trượt vô cớ.
+8. Mỗi đòn có hướng lực, mục tiêu và phản ứng đối thủ riêng. Không dùng một animation slash chung cho mọi loại kiếm/đao.
+9. Tốc độ: anticipation thường dài hơn contact; contact ngắn và rõ; recovery đủ để người xem đọc kết quả. Điều chỉnh theo shot, không khóa cứng một thời lượng cho mọi đòn.
+10. Secondary motion trễ sau chuyển động chính; không cho tất cả layer chuyển động đồng pha.
+
+## Danh mục tối thiểu 36 clip cần xây dựng
+
+### A. Locomotion (8)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| idle_breath | Đứng thở | Loop nhẹ; vai/ngực, tóc và vạt áo |
+| walk_start | Bắt đầu đi | Dồn trọng tâm trước bước đầu |
+| walk_cycle | Đi bộ | Contact / passing / lift; chân không trượt |
+| walk_stop | Dừng bước | Hãm thân trước, vạt áo còn quán tính |
+| run_start | Bắt đầu chạy | Hạ thân, đẩy chân sau |
+| run_cycle | Chạy | Lean theo hướng chạy, nhịp tay đối chân |
+| jump_takeoff | Bật nhảy | Nén gối → đạp đất → rời đất |
+| jump_land_roll | Tiếp đất / lăn | Hấp thụ lực, một chân hoặc tay chống đất |
+
+### B. Evasion & movement (6)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| dash_side | Lướt ngang | Root motion rõ, thân nghiêng |
+| dash_forward | Lao tới | Đầu/thân dẫn hướng, chân đạp sau |
+| backstep | Lùi tránh | Chân sau nhận trọng lượng |
+| duck_low | Cúi né | Đầu và vai thoát khỏi đường đòn |
+| lean_dodge | Ngả người né | Hông giữ trụ, đầu đi khỏi quỹ đạo |
+| spin_evade | Xoay né | Xoay trục, giữ hướng nhìn mục tiêu |
+
+### C. Unarmed attacks (6)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| palm_thrust | Đẩy chưởng | Hông → vai → khuỷu → lòng bàn tay |
+| palm_double | Song chưởng | Hai tay không đồng nhất tuyệt đối; có nhịp thân |
+| straight_punch | Đấm thẳng | Vai xoay, tay còn lại thủ |
+| hook_punch | Đấm móc | Cung ngang, xoay hông |
+| high_kick | Đá cao | Giữ thăng bằng, chân trụ rõ |
+| spinning_kick | Đá xoay | Xoay trục, kiểm soát điểm kết |
+
+### D. Weapon attacks (6)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| draw_sword | Rút kiếm | Tay mở vỏ, tay rút; không teleport |
+| sword_slash_h | Chém ngang | Cung chém ngang, follow-through |
+| sword_slash_v | Chém dọc | Tải lực trên vai, chém qua mục tiêu |
+| sword_thrust | Đâm kiếm | Mũi kiếm đi theo đường thẳng có kiểm soát |
+| sword_combo_3 | Liên hoàn 3 thức | Ba nhịp khác góc, có chuyển thế |
+| sheathe_sword | Tra kiếm | Canh miệng vỏ, đưa kiếm vào đúng trục |
+
+### E. Defense & reaction (6)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| guard_high | Đỡ cao | Cẳng tay bảo vệ đầu, vai chịu lực |
+| guard_sword | Gạt kiếm | Vũ khí giao nhau đúng điểm |
+| parry_counter | Gạt rồi phản công | Defense chuyển trực tiếp thành attack |
+| hit_recoil | Trúng đòn / bật lùi | Điểm trúng dẫn phản ứng, không bay vô cớ |
+| stagger | Choáng loạng choạng | Bước cứu thăng bằng |
+| fall_getup | Ngã rồi đứng dậy | Chạm đất, chống tay, thu chân, đứng lên |
+
+### F. Performance & secondary (4)
+| ID | Clip | Ghi chú |
+|---|---|---|
+| turn_look | Quay đầu nhìn | Mắt dẫn trước, đầu và thân theo sau |
+| angry_taunt | Giận dữ / khiêu khích | Mày, mắt, vai, bàn tay phối hợp |
+| charge_power | Vận công | Hơi thở, trọng tâm, tay và vạt áo |
+| hair_cloth_react | Tóc/vải phản lực | Secondary motion có hướng và giảm chấn |
+
+## Quy tắc combo và diễn xuất trận đấu
+
+- Combo không được là danh sách clip nối cứng. Phải có transition pose và điều kiện chuyển: hit/miss/block/dodge.
+- Một chuỗi tối thiểu nên có: approach → feint hoặc setup → attack → defense/reaction → counter hoặc retreat → recovery.
+- Đòn trúng phải truyền lực qua thân người nhận; không chỉ đổi biểu cảm hoặc dịch chuyển cả node.
+- Tạo nhịp: nhanh ở chuyển động dẫn, chậm/đọc rõ ở khoảnh khắc quyết định, ngắt ngắn sau impact, rồi recovery.
+- Hai nhân vật phải có khoảng cách và screen direction nhất quán; kiểm tra 180-degree rule khi camera đổi phía.
+- Vũ khí có grip/pivot riêng; không gắn cứng vào tâm bàn tay nếu cổ tay xoay.
+
+## Checklist duyệt từng clip
+- [ ] Nhìn silhouette vẫn hiểu động tác khi thu nhỏ.
+- [ ] Đủ anticipation → action → contact/release → follow-through → recovery.
+- [ ] Trọng tâm, chân trụ, root motion hợp lý; không foot sliding.
+- [ ] Tay, bàn tay, vũ khí không xuyên thân hoặc mục tiêu.
+- [ ] Mặt và hướng nhìn diễn đúng ý đồ.
+- [ ] Tóc, tay áo, vạt áo, dây và vũ khí có secondary motion đúng hướng.
+- [ ] Không giật ở đầu/cuối clip; transition sang clip kế tiếp hợp lý.
+- [ ] Có contact sheet và preview render thật đã được xem.

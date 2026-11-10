@@ -93,3 +93,15 @@ Nhân vật lấy từ `engine/chars/<id>.json`. Nhân vật mới thì tạo b�
 - [ ] Vật cầm nằm giữa lòng bàn tay và ngón; đổi chỗ (hông ↔ tay) không giật
 - [ ] Nhân vật tương phản với nền (cảnh đêm có `char_tint`, không chìm)
 - [ ] Không có vệt trắng hoặc khối bloom cứng; đa giác không mất hình
+
+
+## Hybrid character pipeline (bổ sung, không thay engine cũ)
+
+- Profile mặc định cho nhân vật mới: wuxia-storybook-hybrid. Profile cũ: rig2-legacy.
+- Đọc skills/nhan-vat-chibi/HYBRID-PIPELINE.md (đường dẫn theo bộ skills đã cài; nếu không tìm thấy, tra __SKILLS_DIR__/nhan-vat-chibi/HYBRID-PIPELINE.md).
+- Động tác phải dùng đúng character asset đã duyệt. Không để AI tái tạo hình nhân vật cho từng cảnh.
+- Hybrid runtime gồm sprite layers có pivot + Skeleton2D/Bone2D hoặc rig tương đương + AnimationPlayer/AnimationTree/Tween; lựa chọn node phải khớp cấu trúc project thực tế. Không giả định đã có plugin hoặc auto-rigger.
+- Tạo animation clip theo key pose và curve; tween chỉ dùng cho chuyển động phụ/đơn giản, không thay toàn bộ diễn xuất.
+- Nếu có nhiều hướng nhìn, phải có asset hướng tương ứng hoặc giới hạn camera; không lật ngang nhân vật có dấu hiệu bất đối xứng (huy hiệu, vũ khí, tóc, vết sẹo).
+- Mọi thao tác mới phải có: pose đầu, anticipation, action, contact/release, follow-through, recovery; thời lượng, root motion, điểm tiếp xúc, biểu cảm, secondary motion và mốc kiểm tra.
+- Giữ rig2 làm fallback. Chuyển một nhân vật sang Hybrid chỉ khi asset được duyệt và có test scene đạt.

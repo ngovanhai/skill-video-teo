@@ -75,3 +75,25 @@ description: >-
 - **teo-kiem-hiep (rig 2):** trong `cast` của tap.json ghi `"x": { "char": "<id>", "name": "…" }`.
   build.mjs lấy nguyên look từ sổ (giữ cả robe2, pants, band, beardColor). Các khoá khác ghi cạnh `char` sẽ ghi đè lên look.
   Mặt riêng của tập (ve.mjs) vẫn áp lên như cũ.
+
+
+## Profile mới: Wuxia Chibi Storybook (Hybrid)
+
+Từ nay nhân vật mới mặc định dùng profile **wuxia-storybook-hybrid**; nhân vật cũ giữ nguyên profile **rig2-legacy** cho đến khi người dùng yêu cầu nâng cấp. Rule chi tiết và schema nằm ở HYBRID-PIPELINE.md.
+
+### Luật bắt buộc cho nhân vật mới
+
+1. Tạo **Character Identity Sheet** trước khi tạo asset: silhouette, tỷ lệ, khuôn mặt, tóc, costume, bảng màu, vật liệu, vũ khí, dấu hiệu nhận dạng. Khóa các đặc điểm không được đổi.
+2. AI tạo concept sheet và pose sheet theo cùng một character reference; không dùng prompt độc lập không có ảnh tham chiếu cho từng pose. Không lấy sheet ghép nhiều góc làm sprite sheet animation.
+3. Character sheet tối thiểu: front / 3-4 view / side / back; 12 biểu cảm; 12 action key poses; costume & weapon details; palette swatches. Các view phải cùng tỷ lệ và trang phục.
+4. Chọn một **hero view** (3/4 view) làm chuẩn. Duyệt khuôn mặt, tóc, trang phục, silhouette và tỷ lệ trước khi tách lớp.
+5. Tách asset theo layer có pivot rõ: head, hair_back, hair_front, torso, collar, sleeve_F/B, upper_arm_F/B, forearm_F/B, hand_F/B, belt, sash, robe_panels, pants, thigh/shin/foot_F/B, weapon, sheath, shadow. Layer không có trong thiết kế thì bỏ; không tạo layer giả.
+6. Giữ một bản gốc bất biến: art/character/<id>/source/; file đã duyệt ở approved/; file runtime/export ở runtime/. Không ghi đè source khi sửa.
+7. AI không tự đổi mặt, màu, tóc, hoa văn, tỷ lệ, tay cầm vũ khí giữa các asset. Nếu asset lệch identity sheet, phải sửa asset trước khi rig.
+8. Rig2 cũ vẫn được dùng cho cast legacy, preview nhanh và cảnh không cần độ chi tiết cao. Không âm thầm chuyển nhân vật cũ sang hybrid.
+9. Ưu tiên sprite layer + pivot + bone/IK + tween cho chuyển động; chỉ dùng frame-by-frame sprite khi động tác cần biến dạng vải/tóc hoặc silhouette không thể đạt bằng rig. Không sinh ảnh mới cho mọi frame.
+10. Chỉ đưa asset vào cast khi đạt checklist trong HYBRID-PIPELINE.md; nếu chưa đạt, đánh dấu WIP và không dùng ở render cuối.
+
+### Lệnh và khả năng thực tế
+
+Các lệnh char.mjs kit|list|look|sheet|lineup hiện tại vẫn là workflow rig2. Không được bịa thêm lệnh như hybrid-export hoặc auto-rig nếu repo chưa có script tương ứng. Khi triển khai một pipeline asset mới, trước tiên kiểm tra công cụ có thật trong repo; thiếu công cụ thì tạo checklist/manual handoff và nêu rõ bước thủ công.

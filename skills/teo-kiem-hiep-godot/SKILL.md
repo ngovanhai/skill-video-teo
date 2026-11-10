@@ -236,3 +236,33 @@ Từ 2026-11-03 phiên Colab cài ZeroTTS (`setup-zerotts.py`, dấu `/content/.
 - [ ] Màu và bút giữ một chất suốt video (một bộ bút riêng của tập).
 - [ ] Chiêu thức (nếu có) có tụ khí → đòn → hậu quả, đối thủ "thua" chỉ lùi / choáng, không bị hạ nhục.
 - [ ] `gd-check` OK; khung, vai Tèo, bút, máy quay, palette, nhạc, thumbnail, mặt, font, chân mô tả khác các tập trong history.json.
+
+
+## Hybrid Character & Action Pipeline (bắt buộc cho nhân vật mới)
+
+**Mục tiêu mỹ thuật:** Wuxia Chibi Storybook — lấy cảm hứng từ chibi võ hiệp anime vẽ tay, nhưng thiết kế nhận diện, trang phục, màu và chi tiết riêng cho kênh. Không sao chép nguyên mẫu nhân vật trong ảnh tham khảo.
+
+### Luồng nhân vật
+1. Gọi nhan-vat-chibi; đọc HYBRID-PIPELINE.md.
+2. Viết identity sheet + khóa silhouette, face ID, hair ID, costume ID, palette, weapon grip và scale.
+3. Tạo concept / turnaround / expression / action pose sheets bằng cùng reference; duyệt trước khi tạo asset.
+4. Tách sprite layers và đặt pivot; lưu source / approved / runtime tách biệt.
+5. Dựng rig/test scene; kiểm tra idle, walk, run, jump, land, attack, hit, guard và turn. Không đạt thì quay lại asset/rig.
+6. Chỉ sau khi đạt mới đăng ký nhân vật trong cast của tập. Nhân vật cũ không có hybrid asset tiếp tục dùng rig2-legacy.
+
+### Luồng hoạt cảnh
+- Gọi thao-tac-chibi để tra action library. Mỗi hành động có anticipation → action → contact/release → follow-through → recovery.
+- Cảnh chiến đấu phải có mục tiêu, hướng lực, điểm tiếp xúc, phản ứng của đối thủ và hậu quả nhìn thấy được; không lặp một slash pose bằng cách chỉ đổi góc camera.
+- Một chuỗi đánh nhau phải phối hợp locomotion, attack, defense, reaction, recovery và secondary motion; thay đổi nhịp nhanh/chậm có chủ đích.
+- Chuyển động tóc, dây buộc, tay áo, vạt áo, đai và vũ khí có độ trễ/quán tính; không rung ngẫu nhiên.
+- Dùng sprite frame-by-frame có chọn lọc cho biến dạng khó; rig/bone/tween cho chuyển động có thể tái sử dụng. Không render AI image cho từng frame.
+- Ghi rõ asset profile của từng nhân vật trong story/cast. Không trộn legacy và hybrid trong cùng cảnh mà không kiểm tra scale, line weight, shading và màu.
+
+### Quality gate mới
+- Identity continuity: khuôn mặt, tóc, trang phục, màu và vũ khí không đổi giữa shot.
+- Silhouette: pose đọc được khi thu nhỏ; tay/vũ khí không dính vào thân.
+- Motion: đủ 5 pha, trọng tâm hợp lý, có anticipation và recovery; không teleport, foot sliding hoặc weapon drift.
+- Contact: tay/vũ khí chạm đúng mục tiêu; đối thủ phản ứng đúng thời điểm.
+- Secondary motion: tóc/vạt áo/dây/vũ khí theo quán tính, không rung vô cớ.
+- Preview phải có contact sheet gồm key pose và frame giữa các pha. Chưa xem render thật thì không được PASS.
+- So sánh song song ít nhất một cảnh cùng nội dung: rig2-legacy và hybrid; chỉ chuyển mặc định sau khi hybrid thắng về độ đẹp, ổn định và chi phí render.
