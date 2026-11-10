@@ -94,7 +94,6 @@ func play_action(keyframes: Array, fps: float = 24.0) -> void:
         var frame: Dictionary = ordered[i]
         var at := float(frame.get("at", previous_time))
         var duration := maxf(0.001, at - previous_time)
-        tween.tween_interval(duration)
         var pose: Dictionary = frame.get("pose", {})
         for part_name in pose:
             if part_nodes.has(part_name):
