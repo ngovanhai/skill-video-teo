@@ -21,6 +21,8 @@ Skill này lo **quy trình Godot**. Luật nội dung vẫn là của `teo-kiem-
 
 Phần HyperFrames trong teo-kiem-hiep (tap.json beat, build.mjs, plan.mjs, fx local, pack.mjs) **không dùng** cho tập Godot.
 
+**Biên tập kịch bản:** đọc thêm `__SKILLS_DIR__/video-teo/SCRIPT-EDITORIAL-V2.md` trước khi viết. Giữ nguyên `story.frame`; kiểm tra claim theo từng dị bản; mỗi segment cần mục đích kể chuyện và payoff. Sau khi có `loi.txt`, chạy `python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban-v2.py <tap>` như reviewer tĩnh bổ sung cho `gd-check.mjs`.
+
 ## Công cụ
 
 | lệnh | việc |
