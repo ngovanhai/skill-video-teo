@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Cài 9 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi, kiem-tra-video, hoat-anh-kich-ban, tim-chu-de-ke) và kit MuseStudio. Chạy được trên macOS và Windows.
+// Cài 13 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi, kiem-tra-video, hoat-anh-kich-ban, tim-chu-de-ke) và kit MuseStudio. Chạy được trên macOS và Windows.
 //   node install.mjs [--muse-root <thư mục>] [--zerotts-dir <thư mục>] [--godot-dir <thư mục>] [--godot <file chạy Godot có sẵn>]
 //                    [--skip-zerotts] [--skip-godot] [--no-env]
 import { cpSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync, writeFileSync, renameSync, copyFileSync, appendFileSync, rmSync } from "node:fs";
@@ -21,7 +21,7 @@ const ZEROTTS_VER = "0.1.5"; // bản kit đang chạy ổn
 const WHISPER_DML = fwd(opt("whisper-dml-py", join(dirname(MUSE), "whisper-dml/Scripts/python.exe"))); // Windows + DirectML (tuỳ chọn)
 const GODOT_DIR = fwd(opt("godot-dir", join(dirname(MUSE), "Godot")));
 const GODOT_VER = "4.7.2-stable"; // bản các skill Godot đã chạy ổn
-const SKILLS = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke"];
+const SKILLS = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi", "kiem-tra-video", "hoat-anh-kich-ban", "tim-chu-de-ke", "art-director-2d", "cinematic-scene-2d", "godot-visual-effects", "godot-visual-review"];
 const SKILL_DIRS = [
   join(homedir(), ".claude", "skills"),
   join(homedir(), ".gemini", "config", "skills"),

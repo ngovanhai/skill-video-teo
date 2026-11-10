@@ -1,4 +1,4 @@
-# Bộ skill Tèo: `video-teo` + `teo-kiem-hiep` + `teo-kiem-hiep-godot` + `chuong-2d` + `nhan-vat-chibi` + `thao-tac-chibi` + `kiem-tra-video` + `hoat-anh-kich-ban` + `tim-chu-de-ke`
+# Bộ skill Tèo: 13 skill sản xuất video + hoạt hình Godot
 
 Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo (ZeroTTS, giọng **Tiến Đạt**), phụ đề, thumbnail và gói upload. Không làm Shorts.
@@ -10,6 +10,7 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 - `kiem-tra-video`: bộ soát 5 tầng (review kịch bản, smoke test 15 s, check hình/âm thanh, quality gate cấp `youtube/.READY_TO_UPLOAD`).
 - `hoat-anh-kich-ban`: phân tích kịch bản → storyboard + sinh mã hoạt cảnh Godot (vũ đạo hành động chibi, chống slide chữ tĩnh).
 - `tim-chu-de-ke`: tìm chủ đề mới bằng cách ké video đang lên (`kiem-hang.py --dang-len`, `tu-khoa.py`), chống trùng chủ đề đã làm.
+- `art-director-2d`: xây Art Bible, palette và quy tắc mỹ thuật thống nhất cho cả tập.\n- `cinematic-scene-2d`: bố cục cảnh, camera, parallax, chiều sâu và ánh sáng.\n- `godot-visual-effects`: thiết kế VFX 2D như kiếm khí, chưởng lực, khói, lửa, băng và shader.\n- `godot-visual-review`: render contact sheet, soi frame thật và lập danh sách lỗi hình ảnh trước khi xuất bản.
 
 > Các skill này chạy trên máy của bạn: render, ffmpeg và (khi không có Colab) giọng đọc đều chạy tại máy.
 > Vì vậy **không dùng được trong chat claude.ai**, chỉ dùng được trong **Claude Code** (CLI hoặc tab Code của app Claude).
@@ -18,7 +19,7 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
 
 | Thư mục | Nội dung |
 |---|---|
-| `skills/` | 9 skill, được chép vào `~/.claude/skills/`, `~/.gemini/config/skills/`, `~/.agents/skills/`, `~/.config/opencode/skills/` |
+| `skills/` | 13 skill, được chép vào `~/.claude/skills/`, `~/.gemini/config/skills/`, `~/.agents/skills/`, `~/.config/opencode/skills/` |
 | `MuseStudio/kit` | công cụ dựng video (`make.mjs`, cảnh, fx, font, nhạc nền, sfx êm, `lib/mix.mjs`, `py/tts-zerotts.py`) |
 | `MuseStudio/avatar` | avatar, banner, watermark của kênh |
 | `MuseStudio/ideas` | `DA-LAM.md` (đã làm), `HOOK-MO-DAU.md`, `TIEU-DE-ANH-BIA.md` (luật hook, tiêu đề, ảnh bìa) |
@@ -56,7 +57,7 @@ Script cài sẽ thay `__MUSE_ROOT__` / `__ZEROTTS_DIR__` / `__WHISPER_PY__` / `
 
 ## Gói riêng cho Mac: `kiem-hiep-godot-mac/`
 
-Chỉ cần làm tập kiếm hiệp Godot trên Mac thì dùng thư mục `kiem-hiep-godot-mac/` (5 skill Godot bản mới nhất, colab-tts, tập mẫu tap-10, memory luật làm tập — nội dung y như bộ root, chỉ khác là chỉ cài cho Mac). Xem `kiem-hiep-godot-mac/README.md`:
+Chỉ cần làm tập kiếm hiệp Godot trên Mac thì dùng thư mục `kiem-hiep-godot-mac/` (13 skill bản mới nhất, gồm bộ sản xuất video, Godot và visual; lấy trực tiếp từ `skills/` gốc, kèm kit, avatar, colab-tts, tập mẫu và memory — chỉ cài cho Mac). Xem `kiem-hiep-godot-mac/README.md`:
 ```bash
 cd kiem-hiep-godot-mac && node install.mjs
 ```
