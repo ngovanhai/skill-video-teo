@@ -1,0 +1,17 @@
+{
+  "character_id": "teo-kiem-khach",
+  "profile": "wuxia-storybook-hybrid",
+  "status": "draft",
+  "design_brief": "Thieu hiep tre, toc den buoc cao, ao xanh ngoc nhieu lop, deo truong kiem",
+  "palette": {
+    "ink": "#49352f",
+    "skin": "#f2c6a5",
+    "robe": "#587b78",
+    "accent": "#c98d52"
+  },
+  "face_id": {},
+  "hair_id": {},
+  "costume_id": {},
+  "weapon_id": {},
+  "asymmetry": []
+}
