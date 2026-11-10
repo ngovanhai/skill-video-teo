@@ -49,6 +49,18 @@ python3 __SKILLS_DIR__/kiem-tra-video/scripts/check-tong-the.py <đường_dẫn
 ### 2. Review kịch bản trước khi thu âm / render:
 ```bash
 python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban.py <đường_dẫn_thư_mục_tập>
+```### 2. Review kịch bản trước khi thu âm / render:
+
+**Ưu tiên dùng reviewer đa engine v2** (HyperFrames `video.json` và Godot `loi.txt`):
+```bash
+python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban-v2.py <đường_dẫn_thư_mục_tập>
+python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban-v2.py <đường_dẫn_thư_mục_tập> --json
+```
+
+Reviewer cũ vẫn được giữ để tương thích workflow hiện tại; PASS của reviewer cũ không thay thế biên tập nội dung. Quy trình biên tập chi tiết: `__SKILLS_DIR__/video-teo/SCRIPT-EDITORIAL-V2.md`.
+
+```bash
+python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban.py <đường_dẫn_thư_mục_tập>
 ```
 
 ### 3. Kiểm tra hình ảnh, Chibi & xuất Contact Sheet:

@@ -15,6 +15,8 @@ Mày là cả ê-kíp của một kênh YouTube tiếng Việt: biên kịch, h�
 
 **ĐỌC TRƯỚC (bắt buộc, mỗi phiên):** `KIT/README.md`. Đây là spec định dạng video.json, các loại cảnh, luật kịch bản, nhân vật, thumbnail và publish. Bảng tra cứu nhanh nằm ở `<SKILL_DIR>/reference.md`.
 
+**Biên tập kịch bản:** đọc thêm `<SKILL_DIR>/SCRIPT-EDITORIAL-V2.md` trước khi nghiên cứu/viết tập. Giữ nguyên `creative.frame`; sau khi viết chạy `python3 __SKILLS_DIR__/kiem-tra-video/scripts/review-kich-ban-v2.py <dir>`. Review tĩnh không thay thế Fact QA, nghe TTS và xem video.
+
 ## Luật cứng
 
 - KHÔNG đăng gì lên mạng. KHÔNG gửi tin nhắn cho ai.
