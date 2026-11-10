@@ -183,8 +183,18 @@ async function main() {
       asymmetry: data.asymmetry,
       locked_traits: data.locked_traits
     };
+    let previousMaster = '';
+    try {
+      const previousRevision = (await fs.readFile(path.join(dir, 'source', 'LATEST'), 'utf8')).trim();
+      previousMaster = await fs.readFile(path.join(dir, 'source', previousRevision, 'master.svg'), 'utf8');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
     const prompt = [
       'You are the sole AI art-and-code model. DeepSeek only; no external image model.',
+      previousMaster
+        ? 'REVISION MODE: Treat the existing SVG below as the source-of-truth design for this exact character. Preserve face geometry, silhouette, hair, costume, palette, proportions and signature details. Make only requested changes; do not redesign or reinterpret the character. Keep all 21 semantic group IDs.'
+        : 'FIRST DESIGN MODE: establish a distinctive identity that can be preserved in all later revisions.',
       'Design an original hand-drawn wuxia chibi storybook character. Do not imitate named characters or actors.',
       'Character ID: ' + id + '. Display name: ' + (data.display_name || id) + '. Brief: ' + brief,
       'IDENTITY LOCK (preserve these traits in every revision and asset): ' + JSON.stringify(identityLock),
@@ -197,6 +207,7 @@ async function main() {
       'Each limb segment must include hidden overlap geometry so joints do not expose gaps when rotated. Keep all groups aligned to the same viewBox.',
       'Face has eyes, irises, pupils, highlights, eyelids, brows, nose, mouth and blush. Costume has crossed collar, layers, sleeves, sash and designed folds.',
       'No script, foreignObject, image, external href, filter, blur or embedded raster.'
+      previousMaster ? 'EXISTING MASTER SVG TO PRESERVE AND EDIT:\\n' + previousMaster : '' ,
     ].join('\n');
     await fs.writeFile(path.join(dir, 'prompts', 'master-prompt.txt'), prompt);
     if (command === 'prompt') { console.log('Prompt saved.'); return; }
