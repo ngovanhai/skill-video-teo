@@ -69,7 +69,8 @@ if (!existsSync(SRC)) die(`không thấy ${SRC} — chép cả repo rồi chạy
 if (!existsSync(SRC_SKILLS)) die(`không thấy ${SRC_SKILLS} — cần thư mục skills/ gốc của repo`);
 for (const s of SKILL_NAMES) if (!existsSync(join(SRC_SKILLS, s))) die(`thiếu skill nguồn: ${join(SRC_SKILLS, s)}`);
 mkdirSync(MUSE, { recursive: true });
-cpSync(join(SRC, "kit"), join(MUSE, "kit"), { recursive: true, force: true });\ncpSync(join(SRC, "avatar"), join(MUSE, "avatar"), { recursive: true, force: true });
+cpSync(join(SRC, "kit"), join(MUSE, "kit"), { recursive: true, force: true });
+cpSync(join(SRC, "avatar"), join(MUSE, "avatar"), { recursive: true, force: true });
 cpSync(join(HERE, "MuseStudio", "kiem-hiep"), join(MUSE, "kiem-hiep"), { recursive: true, force: true }); // _tools + tập mẫu (chỉ code)
 cpSync(join(SRC, "yt-auto", "tools"), join(MUSE, "yt-auto", "tools"), { recursive: true, force: true }); // luật tiêu đề + từ khoá + độ cạnh tranh
 mkdirSync(join(MUSE, "ideas"), { recursive: true });
@@ -99,10 +100,17 @@ if (!flag("skip-colab")) {
   else run("uv", ["tool", "install", "google-colab-cli==0.7.5"]);
 }
 
-step("Whisper (căn thời gian chữ cho video-teo)");\nconst WHISPER_PY = join(MUSE, ".whisper/.venv/bin/python");\nif (!existsSync(WHISPER_PY)) {\n  const wd = join(MUSE, ".whisper");\n  if (!existsSync(join(wd, ".venv/bin/python"))) run("uv", ["venv", "--python", "3.11", join(wd, ".venv")]);\n  run("uv", ["pip", "install", "--python", WHISPER_PY, "openai-whisper"]);\n} else console.log("  đã có Whisper venv, bỏ qua");\n\nstep("Điền đường dẫn vào skill + MuseStudio");
+const WHISPER_PY = join(MUSE, ".whisper/.venv/bin/python");
+step("Whisper (căn thời gian chữ cho video-teo)");
+if (!existsSync(WHISPER_PY)) {
+  const wd = join(MUSE, ".whisper");
+  if (!existsSync(join(wd, ".venv/bin/python"))) run("uv", ["venv", "--python", "3.11", join(wd, ".venv")]);
+  run("uv", ["pip", "install", "--python", WHISPER_PY, "openai-whisper"]);
+} else console.log("  đã có Whisper venv, bỏ qua");
+
+step("Điền đường dẫn vào skill + MuseStudio");
 const TEXT = new Set([".md", ".mjs", ".js", ".py", ".json", ".txt", ".sh", ".gd", ".godot", ".tscn"]);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
-const WHISPER_PY = join(MUSE, ".whisper/.venv/bin/python");
 const WHISPER_DML = join(dirname(MUSE), "whisper-dml/Scripts/python.exe");
 const fill = (s) => s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__ZEROTTS_DIR__", ZEROTTS).replaceAll("__WHISPER_PY__", WHISPER_PY)
   .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT).replaceAll("__SKILLS_DIR__", SKILLS);
