@@ -61,7 +61,9 @@ Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo �
 
 ## Dựng bằng Godot 2D (cách làm hiện tại, từ 2026-10-21; thay HyperFrames + beat/planner)
 
-**Quy trình đầy đủ + công cụ (new-tap, gd-check, pack, sổ chống lặp) ở skill `teo-kiem-hiep-godot`; làm tập Godot thì theo skill đó.**
+
+
+**Biên tập kịch bản:** trước khi viết, áp dụng `skills/video-teo/SCRIPT-EDITORIAL-V2.md` (cùng hợp đồng `story.frame`, Fact QA, Narrative Beat, Retention QA). Sau khi có `loi.txt`, chạy `review-kich-ban-v2.py` như một kiểm tra tĩnh bổ sung; không thay thế `story-check.mjs`.
 
 Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dựng riêng, không template chung, hiệu ứng làm bằng Godot 2D** (không dùng HyperFrames). Tập mẫu: `kiem-hiep/tap-10-lenh-ho-xung/godot/ (bản cũ hơn: kiem-hiep/_lab/mau-godot-tap-01/)`. Các phần build.mjs / plan.mjs / beat / fx HyperFrames ở dưới chỉ còn để tham khảo tập cũ.
 
