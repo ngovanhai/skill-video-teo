@@ -143,3 +143,10 @@ python skills/nhan-vat-chibi/builder/split_full_body.py path\to\master.svg --out
 ```
 
 Copy the output into Godot `res://`, attach `builder/godot/full_body_rig.gd` to a Node2D, and set `manifest_path`. This rig supports separate upper/lower arms, hands, thighs, shins and feet. Pivots are generic starter coordinates and must be adjusted per character. Starter sword actions are in `builder/actions/sword_actions.json`; load a selected action's `keyframes` and pass them to `play_action()`. See `builder/FULL-BODY-RIG.md` for limitations. Keep the original rig2 and v1 path as fallback until a real Godot test scene passes.
+
+
+## Wuxia Action Library (33 reusable actions)
+
+Use `builder/actions/wuxia_action_library.json` with the segmented Full Body Rig. It contains 33 keyframe actions across movement, swordplay, defense, qinggong and acting. Attach `builder/godot/action_library.gd` to a Node, configure `library_path` and `rig_path`, then call `$ActionLibrary.play("slash_horizontal")`. See `builder/actions/README.md` for IDs and integration.
+
+Camera and FX fields are cues for the scene director only; they are not automatically executed. Match contact/peak keyframes with sword trails, impact sounds and camera shake. Always inspect the motion at multiple timestamps and adjust angles for the character's facing direction and proportions. This is a reusable motion-blocking library, not a finished choreography pack.

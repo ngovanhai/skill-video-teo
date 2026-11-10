@@ -94,11 +94,16 @@ func play_action(keyframes: Array, fps: float = 24.0) -> void:
         var frame: Dictionary = ordered[i]
         var at := float(frame.get("at", previous_time))
         var duration := maxf(0.001, at - previous_time)
-        tween.tween_interval(duration)
         var pose: Dictionary = frame.get("pose", {})
+        var first_tweener := true
         for part_name in pose:
             if part_nodes.has(part_name):
-                tween.parallel().tween_property(part_nodes[part_name], "rotation", deg_to_rad(float(pose[part_name])), duration)
+                var target_rotation := deg_to_rad(float(pose[part_name]))
+                if first_tweener:
+                    tween.tween_property(part_nodes[part_name], "rotation", target_rotation, duration)
+                    first_tweener = false
+                else:
+                    tween.parallel().tween_property(part_nodes[part_name], "rotation", target_rotation, duration)
         previous_time = at
 
 func reset_pose(duration: float = 0.18) -> void:

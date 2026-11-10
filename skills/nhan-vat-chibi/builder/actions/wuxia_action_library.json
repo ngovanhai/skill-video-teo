@@ -1,0 +1,2056 @@
+{
+  "schema_version": 1,
+  "rig": "full_body_rig_v1",
+  "units": {
+    "time": "seconds",
+    "rotation": "degrees"
+  },
+  "action_count": 33,
+  "usage": "Load one action and pass its keyframes array to FullBodyRig.play_action(). Camera and fx cues are metadata for the scene director; they are not auto-executed.",
+  "actions": {
+    "walk_ready": {
+      "category": "Di chuyển",
+      "description": "Bước vào thế chuẩn bị",
+      "expression": "binh",
+      "camera": {
+        "cue": "tracking"
+      },
+      "fx": {
+        "cue": "dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": -3,
+            "thigh_L": -12,
+            "thigh_R": 8,
+            "shin_L": 18,
+            "upper_arm_L": -8,
+            "upper_arm_R": 8
+          }
+        },
+        {
+          "at": 0.38,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 2,
+            "thigh_L": 8,
+            "thigh_R": -12,
+            "shin_R": 18,
+            "upper_arm_L": 8,
+            "upper_arm_R": -8
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "run_forward": {
+      "category": "Di chuyển",
+      "description": "Chạy lao về phía trước",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "tracking"
+      },
+      "fx": {
+        "cue": "dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -8,
+            "thigh_L": -22,
+            "thigh_R": 20,
+            "shin_L": 28,
+            "shin_R": -18,
+            "upper_arm_L": -25,
+            "upper_arm_R": 28,
+            "forearm_L": 35,
+            "forearm_R": -35
+          }
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": -12,
+            "thigh_L": 20,
+            "thigh_R": -22,
+            "shin_L": -18,
+            "shin_R": 30,
+            "upper_arm_L": 28,
+            "upper_arm_R": -25
+          }
+        },
+        {
+          "at": 0.32,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -8,
+            "thigh_L": -22,
+            "thigh_R": 20,
+            "shin_L": 28,
+            "shin_R": -18,
+            "upper_arm_L": -25,
+            "upper_arm_R": 28
+          }
+        },
+        {
+          "at": 0.55,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "stop_skid": {
+      "category": "Di chuyển",
+      "description": "Phanh trượt, hạ trọng tâm",
+      "expression": "soc",
+      "camera": {
+        "cue": "pan"
+      },
+      "fx": {
+        "cue": "dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -10,
+            "thigh_L": -18,
+            "thigh_R": 25,
+            "shin_L": 35,
+            "shin_R": -20
+          }
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": 16,
+            "thigh_L": -35,
+            "thigh_R": 28,
+            "shin_L": 48,
+            "shin_R": -15,
+            "upper_arm_L": -28,
+            "upper_arm_R": 25
+          }
+        },
+        {
+          "at": 0.4,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 5,
+            "thigh_L": -12,
+            "thigh_R": 10,
+            "upper_arm_L": -8,
+            "upper_arm_R": 8
+          }
+        },
+        {
+          "at": 0.7,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "turn_around": {
+      "category": "Di chuyển",
+      "description": "Xoay người đổi hướng",
+      "expression": "binh",
+      "camera": {
+        "cue": "orbit"
+      },
+      "fx": {
+        "cue": "cloth"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 0,
+            "head": 0
+          }
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": 28,
+            "head": -18,
+            "upper_arm_L": -15,
+            "upper_arm_R": 15
+          }
+        },
+        {
+          "at": 0.38,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 75,
+            "head": 22,
+            "thigh_L": 18,
+            "thigh_R": -18
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "head": 0
+          }
+        }
+      ]
+    },
+    "kneel_respect": {
+      "category": "Di chuyển",
+      "description": "Quỳ gối hành lễ",
+      "expression": "binh",
+      "camera": {
+        "cue": "push_in"
+      },
+      "fx": {
+        "cue": "cloth"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.22,
+          "phase": "action",
+          "pose": {
+            "torso": 8,
+            "thigh_L": -30,
+            "thigh_R": 35,
+            "shin_L": 55,
+            "shin_R": 70,
+            "upper_arm_L": -18,
+            "upper_arm_R": 18
+          }
+        },
+        {
+          "at": 0.48,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 28,
+            "head": 20,
+            "thigh_L": -75,
+            "thigh_R": 70,
+            "shin_L": 95,
+            "shin_R": 95,
+            "upper_arm_L": -40,
+            "forearm_L": -35,
+            "upper_arm_R": 40,
+            "forearm_R": -35
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "recovery",
+          "pose": {
+            "torso": 18,
+            "head": 12
+          }
+        }
+      ]
+    },
+    "sword_draw": {
+      "category": "Kiếm thuật",
+      "description": "Rút kiếm khỏi vỏ",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "push_in"
+      },
+      "fx": {
+        "cue": "sword_glint"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -5,
+            "upper_arm_R": 12,
+            "forearm_R": 35,
+            "hand_R": -8
+          }
+        },
+        {
+          "at": 0.25,
+          "phase": "action",
+          "pose": {
+            "torso": -12,
+            "upper_arm_R": 45,
+            "forearm_R": -65,
+            "hand_R": 8,
+            "upper_arm_L": -12
+          }
+        },
+        {
+          "at": 0.52,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 8,
+            "upper_arm_R": 20,
+            "forearm_R": -25,
+            "hand_R": 0
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "upper_arm_R": 0,
+            "forearm_R": 0,
+            "hand_R": 0
+          }
+        }
+      ]
+    },
+    "slash_horizontal": {
+      "category": "Kiếm thuật",
+      "description": "Chém ngang từ phải sang trái",
+      "expression": "gian",
+      "camera": {
+        "cue": "whip_pan"
+      },
+      "fx": {
+        "cue": "slash_trail"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -12,
+            "upper_arm_R": 55,
+            "forearm_R": -70,
+            "hand_R": -8,
+            "thigh_L": -12,
+            "thigh_R": 12
+          }
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": -18,
+            "upper_arm_R": 78,
+            "forearm_R": -95,
+            "hand_R": -12
+          }
+        },
+        {
+          "at": 0.36,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 24,
+            "upper_arm_R": -72,
+            "forearm_R": 48,
+            "hand_R": 16,
+            "thigh_L": 18,
+            "thigh_R": -12
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 5,
+            "upper_arm_R": -18,
+            "forearm_R": 16
+          }
+        },
+        {
+          "at": 0.85,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "slash_vertical": {
+      "category": "Kiếm thuật",
+      "description": "Bổ kiếm từ trên xuống",
+      "expression": "gian",
+      "camera": {
+        "cue": "shake"
+      },
+      "fx": {
+        "cue": "slash_trail"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -8,
+            "upper_arm_R": 65,
+            "forearm_R": -80,
+            "hand_R": 0
+          }
+        },
+        {
+          "at": 0.22,
+          "phase": "action",
+          "pose": {
+            "torso": -16,
+            "upper_arm_R": 90,
+            "forearm_R": -110,
+            "thigh_L": -10,
+            "thigh_R": 10
+          }
+        },
+        {
+          "at": 0.38,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 26,
+            "upper_arm_R": -48,
+            "forearm_R": 42,
+            "thigh_L": 16,
+            "thigh_R": -14
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 4,
+            "upper_arm_R": -12,
+            "forearm_R": 12
+          }
+        },
+        {
+          "at": 0.86,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "thrust_forward": {
+      "category": "Kiếm thuật",
+      "description": "Đâm kiếm thẳng về trước",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "push_in"
+      },
+      "fx": {
+        "cue": "speed_line"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -10,
+            "upper_arm_R": 40,
+            "forearm_R": -55
+          }
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": -18,
+            "upper_arm_R": 55,
+            "forearm_R": -72,
+            "thigh_L": -16,
+            "thigh_R": 18
+          }
+        },
+        {
+          "at": 0.36,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -22,
+            "upper_arm_R": -18,
+            "forearm_R": 8,
+            "hand_R": 0,
+            "thigh_L": -22,
+            "thigh_R": 24
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -5,
+            "upper_arm_R": -5,
+            "forearm_R": 5
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "backhand_slash": {
+      "category": "Kiếm thuật",
+      "description": "Phản kiếm chém ngược",
+      "expression": "gian",
+      "camera": {
+        "cue": "whip_pan"
+      },
+      "fx": {
+        "cue": "slash_trail"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 12,
+            "upper_arm_R": -55,
+            "forearm_R": 70
+          }
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": 22,
+            "upper_arm_R": -75,
+            "forearm_R": 92
+          }
+        },
+        {
+          "at": 0.38,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -25,
+            "upper_arm_R": 62,
+            "forearm_R": -45,
+            "thigh_L": 12,
+            "thigh_R": -12
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -4,
+            "upper_arm_R": 10,
+            "forearm_R": -10
+          }
+        },
+        {
+          "at": 0.82,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "double_slash": {
+      "category": "Kiếm thuật",
+      "description": "Liên hoàn hai nhát chém",
+      "expression": "gian",
+      "camera": {
+        "cue": "shake"
+      },
+      "fx": {
+        "cue": "double_trail"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -10,
+            "upper_arm_R": 60,
+            "forearm_R": -65
+          }
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": 20,
+            "upper_arm_R": -65,
+            "forearm_R": 48
+          }
+        },
+        {
+          "at": 0.34,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -18,
+            "upper_arm_R": 75,
+            "forearm_R": -85
+          }
+        },
+        {
+          "at": 0.5,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 25,
+            "upper_arm_R": -78,
+            "forearm_R": 58
+          }
+        },
+        {
+          "at": 0.78,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "spin_slash": {
+      "category": "Kiếm thuật",
+      "description": "Xoay người chém vòng",
+      "expression": "gian",
+      "camera": {
+        "cue": "orbit"
+      },
+      "fx": {
+        "cue": "circular_trail"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -15,
+            "thigh_L": -18,
+            "thigh_R": 18,
+            "upper_arm_R": 45,
+            "forearm_R": -55
+          }
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": 70,
+            "thigh_L": 25,
+            "thigh_R": -25
+          }
+        },
+        {
+          "at": 0.42,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 155,
+            "upper_arm_R": -70,
+            "forearm_R": 55,
+            "thigh_L": -20,
+            "thigh_R": 20
+          }
+        },
+        {
+          "at": 0.64,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 250,
+            "upper_arm_R": -25,
+            "forearm_R": 20
+          }
+        },
+        {
+          "at": 0.88,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "sword_guard": {
+      "category": "Kiếm thuật",
+      "description": "Dựng kiếm thủ thế",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "slow_push"
+      },
+      "fx": {
+        "cue": "guard_glint"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": -4,
+            "upper_arm_R": -35,
+            "forearm_R": 55,
+            "hand_R": 10,
+            "upper_arm_L": 30,
+            "forearm_L": -55,
+            "hand_L": -8
+          }
+        },
+        {
+          "at": 0.42,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -2,
+            "upper_arm_R": -42,
+            "forearm_R": 62,
+            "upper_arm_L": 36,
+            "forearm_L": -62
+          }
+        },
+        {
+          "at": 0.65,
+          "phase": "recovery",
+          "pose": {
+            "torso": -2,
+            "upper_arm_R": -38,
+            "forearm_R": 58,
+            "upper_arm_L": 32,
+            "forearm_L": -58
+          }
+        }
+      ]
+    },
+    "parry_high": {
+      "category": "Kiếm thuật",
+      "description": "Gạt đòn lên cao",
+      "expression": "soc",
+      "camera": {
+        "cue": "impact"
+      },
+      "fx": {
+        "cue": "metal_spark"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "upper_arm_R": 5,
+            "forearm_R": 0
+          }
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": -8,
+            "upper_arm_R": -45,
+            "forearm_R": 65,
+            "upper_arm_L": 12
+          }
+        },
+        {
+          "at": 0.3,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 8,
+            "upper_arm_R": -60,
+            "forearm_R": 80,
+            "hand_R": 12
+          }
+        },
+        {
+          "at": 0.55,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 0,
+            "upper_arm_R": -25,
+            "forearm_R": 25
+          }
+        },
+        {
+          "at": 0.72,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "parry_low": {
+      "category": "Kiếm thuật",
+      "description": "Gạt đòn xuống thấp",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "tilt_down"
+      },
+      "fx": {
+        "cue": "metal_spark"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": 8,
+            "upper_arm_R": 30,
+            "forearm_R": -35,
+            "thigh_L": -10,
+            "thigh_R": 10
+          }
+        },
+        {
+          "at": 0.34,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 18,
+            "upper_arm_R": 55,
+            "forearm_R": -65,
+            "thigh_L": -22,
+            "thigh_R": 24
+          }
+        },
+        {
+          "at": 0.58,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 3,
+            "upper_arm_R": 12,
+            "forearm_R": -12
+          }
+        },
+        {
+          "at": 0.75,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "dodge_left": {
+      "category": "Phòng thủ",
+      "description": "Né nhanh sang trái",
+      "expression": "soc",
+      "camera": {
+        "cue": "pan_left"
+      },
+      "fx": {
+        "cue": "afterimage"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": -8,
+            "thigh_L": -18,
+            "thigh_R": 22,
+            "shin_L": 32,
+            "shin_R": -12,
+            "upper_arm_L": -20,
+            "upper_arm_R": 28
+          }
+        },
+        {
+          "at": 0.34,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -18,
+            "thigh_L": -28,
+            "thigh_R": 30,
+            "shin_L": 48,
+            "shin_R": -18
+          }
+        },
+        {
+          "at": 0.58,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 4,
+            "thigh_L": 8,
+            "thigh_R": -8
+          }
+        },
+        {
+          "at": 0.85,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "dodge_right": {
+      "category": "Phòng thủ",
+      "description": "Né nhanh sang phải",
+      "expression": "soc",
+      "camera": {
+        "cue": "pan_right"
+      },
+      "fx": {
+        "cue": "afterimage"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": 8,
+            "thigh_L": 18,
+            "thigh_R": -22,
+            "shin_L": -12,
+            "shin_R": 32,
+            "upper_arm_L": 28,
+            "upper_arm_R": -20
+          }
+        },
+        {
+          "at": 0.34,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 18,
+            "thigh_L": 28,
+            "thigh_R": -30,
+            "shin_L": -18,
+            "shin_R": 48
+          }
+        },
+        {
+          "at": 0.58,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -4,
+            "thigh_L": -8,
+            "thigh_R": 8
+          }
+        },
+        {
+          "at": 0.85,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "duck_evade": {
+      "category": "Phòng thủ",
+      "description": "Cúi thấp tránh đường kiếm",
+      "expression": "soc",
+      "camera": {
+        "cue": "tilt_down"
+      },
+      "fx": {
+        "cue": "speed_line"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.15,
+          "phase": "action",
+          "pose": {
+            "torso": 15,
+            "head": 18,
+            "thigh_L": -15,
+            "thigh_R": 18,
+            "shin_L": 22,
+            "shin_R": 20
+          }
+        },
+        {
+          "at": 0.34,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 32,
+            "head": 25,
+            "thigh_L": -28,
+            "thigh_R": 30,
+            "shin_L": 38,
+            "shin_R": 35,
+            "upper_arm_L": -12,
+            "upper_arm_R": 12
+          }
+        },
+        {
+          "at": 0.58,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 8,
+            "head": 5
+          }
+        },
+        {
+          "at": 0.78,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "lean_evade": {
+      "category": "Phòng thủ",
+      "description": "Nghiêng thân né đòn sát mặt",
+      "expression": "soc",
+      "camera": {
+        "cue": "pan"
+      },
+      "fx": {
+        "cue": "afterimage"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.14,
+          "phase": "action",
+          "pose": {
+            "torso": -22,
+            "head": 18,
+            "upper_arm_L": -10,
+            "upper_arm_R": 10
+          }
+        },
+        {
+          "at": 0.32,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -35,
+            "head": 28,
+            "thigh_L": -8,
+            "thigh_R": 10
+          }
+        },
+        {
+          "at": 0.56,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -5,
+            "head": 4
+          }
+        },
+        {
+          "at": 0.72,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "hit_recoil": {
+      "category": "Phòng thủ",
+      "description": "Trúng đòn, bật ngược ra sau",
+      "expression": "soc",
+      "camera": {
+        "cue": "shake"
+      },
+      "fx": {
+        "cue": "impact"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.12,
+          "phase": "action",
+          "pose": {
+            "torso": 18,
+            "head": -22,
+            "upper_arm_L": -45,
+            "upper_arm_R": 45,
+            "forearm_L": 35,
+            "forearm_R": -35
+          }
+        },
+        {
+          "at": 0.28,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 32,
+            "head": -30,
+            "thigh_L": 18,
+            "thigh_R": -18,
+            "shin_L": -20,
+            "shin_R": 20
+          }
+        },
+        {
+          "at": 0.5,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 12,
+            "head": -8
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "block_impact": {
+      "category": "Phòng thủ",
+      "description": "Đỡ đòn mạnh và chịu lực",
+      "expression": "gian",
+      "camera": {
+        "cue": "shake"
+      },
+      "fx": {
+        "cue": "impact"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "upper_arm_L": 20,
+            "forearm_L": -30,
+            "upper_arm_R": -20,
+            "forearm_R": 30
+          }
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": -12,
+            "thigh_L": -12,
+            "thigh_R": 14,
+            "upper_arm_L": -48,
+            "forearm_L": 72,
+            "upper_arm_R": 48,
+            "forearm_R": -72
+          }
+        },
+        {
+          "at": 0.28,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 8,
+            "thigh_L": -18,
+            "thigh_R": 18
+          }
+        },
+        {
+          "at": 0.52,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 0,
+            "upper_arm_L": -25,
+            "forearm_L": 35,
+            "upper_arm_R": 25,
+            "forearm_R": -35
+          }
+        },
+        {
+          "at": 0.75,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "stagger_recover": {
+      "category": "Phòng thủ",
+      "description": "Loạng choạng rồi lấy lại thăng bằng",
+      "expression": "soc",
+      "camera": {
+        "cue": "handheld"
+      },
+      "fx": {
+        "cue": "dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": -18,
+            "head": 18,
+            "thigh_L": 16,
+            "thigh_R": -12,
+            "upper_arm_L": 32,
+            "upper_arm_R": -28
+          }
+        },
+        {
+          "at": 0.36,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 20,
+            "head": -15,
+            "thigh_L": -12,
+            "thigh_R": 18,
+            "upper_arm_L": -28,
+            "upper_arm_R": 35
+          }
+        },
+        {
+          "at": 0.58,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -8,
+            "head": 6
+          }
+        },
+        {
+          "at": 0.82,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "jump_up": {
+      "category": "Khinh công",
+      "description": "Bật nhảy lên cao",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "tilt_up"
+      },
+      "fx": {
+        "cue": "wind"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "thigh_L": -8,
+            "thigh_R": 8
+          }
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": -12,
+            "thigh_L": -35,
+            "thigh_R": 35,
+            "shin_L": 45,
+            "shin_R": 40,
+            "upper_arm_L": -30,
+            "upper_arm_R": 30
+          }
+        },
+        {
+          "at": 0.38,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 0,
+            "thigh_L": -20,
+            "thigh_R": 20,
+            "shin_L": 28,
+            "shin_R": 28,
+            "upper_arm_L": -45,
+            "upper_arm_R": 45
+          }
+        },
+        {
+          "at": 0.62,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 8,
+            "thigh_L": 18,
+            "thigh_R": -18
+          }
+        },
+        {
+          "at": 0.82,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "air_kick": {
+      "category": "Khinh công",
+      "description": "Đá trên không",
+      "expression": "gian",
+      "camera": {
+        "cue": "tracking"
+      },
+      "fx": {
+        "cue": "wind"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -8,
+            "thigh_L": -20,
+            "thigh_R": 20,
+            "shin_L": 25,
+            "shin_R": 20
+          }
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": -18,
+            "thigh_L": -35,
+            "thigh_R": 40,
+            "shin_L": 35,
+            "shin_R": -75,
+            "upper_arm_L": -25,
+            "upper_arm_R": 25
+          }
+        },
+        {
+          "at": 0.36,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": -10,
+            "thigh_L": 10,
+            "thigh_R": -55,
+            "shin_R": -90,
+            "upper_arm_L": 35,
+            "upper_arm_R": -35
+          }
+        },
+        {
+          "at": 0.6,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 0,
+            "thigh_L": -10,
+            "thigh_R": 10
+          }
+        },
+        {
+          "at": 0.82,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "land_heavy": {
+      "category": "Khinh công",
+      "description": "Tiếp đất mạnh, bụi tung",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "shake"
+      },
+      "fx": {
+        "cue": "landing_dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 0,
+            "thigh_L": -15,
+            "thigh_R": 15
+          }
+        },
+        {
+          "at": 0.16,
+          "phase": "action",
+          "pose": {
+            "torso": 22,
+            "thigh_L": -45,
+            "thigh_R": 48,
+            "shin_L": 55,
+            "shin_R": 60,
+            "upper_arm_L": -30,
+            "upper_arm_R": 30
+          }
+        },
+        {
+          "at": 0.32,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 28,
+            "head": 12,
+            "thigh_L": -35,
+            "thigh_R": 38
+          }
+        },
+        {
+          "at": 0.56,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 8,
+            "thigh_L": -8,
+            "thigh_R": 8
+          }
+        },
+        {
+          "at": 0.82,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "float_pose": {
+      "category": "Khinh công",
+      "description": "Giữ thế bay lơ lửng",
+      "expression": "binh",
+      "camera": {
+        "cue": "slow_push"
+      },
+      "fx": {
+        "cue": "wind"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 0,
+            "thigh_L": -15,
+            "thigh_R": 15,
+            "shin_L": 25,
+            "shin_R": 25,
+            "upper_arm_L": -25,
+            "upper_arm_R": 25
+          }
+        },
+        {
+          "at": 0.25,
+          "phase": "action",
+          "pose": {
+            "torso": -3,
+            "thigh_L": -18,
+            "thigh_R": 18,
+            "shin_L": 28,
+            "shin_R": 28
+          }
+        },
+        {
+          "at": 0.5,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 2,
+            "thigh_L": -14,
+            "thigh_R": 14
+          }
+        },
+        {
+          "at": 0.75,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "thigh_L": -15,
+            "thigh_R": 15
+          }
+        }
+      ]
+    },
+    "somersault": {
+      "category": "Khinh công",
+      "description": "Lộn vòng trên không",
+      "expression": "quyet-tam",
+      "camera": {
+        "cue": "orbit"
+      },
+      "fx": {
+        "cue": "wind"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": -12,
+            "thigh_L": -25,
+            "thigh_R": 25,
+            "shin_L": 30,
+            "shin_R": 30
+          }
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": 75,
+            "thigh_L": -40,
+            "thigh_R": 40,
+            "shin_L": 50,
+            "shin_R": 50
+          }
+        },
+        {
+          "at": 0.42,
+          "phase": "contact_or_peak",
+          "pose": {
+            "torso": 165,
+            "thigh_L": 30,
+            "thigh_R": -30,
+            "shin_L": -35,
+            "shin_R": -35
+          }
+        },
+        {
+          "at": 0.64,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 270,
+            "thigh_L": -20,
+            "thigh_R": 20
+          }
+        },
+        {
+          "at": 0.9,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "taunt": {
+      "category": "Biểu cảm",
+      "description": "Vung kiếm khiêu khích",
+      "expression": "dac-y",
+      "camera": {
+        "cue": "slow_push"
+      },
+      "fx": {
+        "cue": "cloth"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.2,
+          "phase": "action",
+          "pose": {
+            "torso": -5,
+            "head": -8,
+            "upper_arm_R": -35,
+            "forearm_R": 50,
+            "hand_R": 12,
+            "upper_arm_L": 12
+          }
+        },
+        {
+          "at": 0.48,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 5,
+            "head": -12,
+            "upper_arm_R": -48,
+            "forearm_R": 65
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "head": 0
+          }
+        }
+      ]
+    },
+    "fear_flinch": {
+      "category": "Biểu cảm",
+      "description": "Giật mình co người",
+      "expression": "soc",
+      "camera": {
+        "cue": "quick_push"
+      },
+      "fx": {
+        "cue": "impact"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.1,
+          "phase": "action",
+          "pose": {
+            "torso": 12,
+            "head": 22,
+            "upper_arm_L": -45,
+            "upper_arm_R": 45,
+            "forearm_L": 55,
+            "forearm_R": -55
+          }
+        },
+        {
+          "at": 0.28,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 8,
+            "head": 15,
+            "thigh_L": -8,
+            "thigh_R": 8
+          }
+        },
+        {
+          "at": 0.55,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "victory_pose": {
+      "category": "Biểu cảm",
+      "description": "Giơ kiếm chiến thắng",
+      "expression": "vui",
+      "camera": {
+        "cue": "crane_up"
+      },
+      "fx": {
+        "cue": "sparkle"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.22,
+          "phase": "action",
+          "pose": {
+            "torso": -5,
+            "upper_arm_R": 75,
+            "forearm_R": -25,
+            "hand_R": 5,
+            "upper_arm_L": 20,
+            "forearm_L": -25
+          }
+        },
+        {
+          "at": 0.5,
+          "phase": "follow_through",
+          "pose": {
+            "torso": -8,
+            "head": -10,
+            "upper_arm_R": 82,
+            "forearm_R": -18
+          }
+        },
+        {
+          "at": 0.9,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "upper_arm_R": 65
+          }
+        }
+      ]
+    },
+    "sheathe_sword": {
+      "category": "Kiếm thuật",
+      "description": "Tra kiếm vào vỏ",
+      "expression": "binh",
+      "camera": {
+        "cue": "push_out"
+      },
+      "fx": {
+        "cue": "sword_glint"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 0,
+            "upper_arm_R": -10,
+            "forearm_R": 15,
+            "hand_R": 0
+          }
+        },
+        {
+          "at": 0.22,
+          "phase": "action",
+          "pose": {
+            "torso": -8,
+            "upper_arm_R": 25,
+            "forearm_R": -35,
+            "upper_arm_L": -18,
+            "forearm_L": 28
+          }
+        },
+        {
+          "at": 0.5,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 4,
+            "upper_arm_R": 12,
+            "forearm_R": -12,
+            "upper_arm_L": 8,
+            "forearm_L": -8
+          }
+        },
+        {
+          "at": 0.78,
+          "phase": "recovery",
+          "pose": {}
+        }
+      ]
+    },
+    "meditate": {
+      "category": "Biểu cảm",
+      "description": "Ngồi thiền điều tức",
+      "expression": "binh",
+      "camera": {
+        "cue": "slow_push"
+      },
+      "fx": {
+        "cue": "aura"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {
+            "torso": 0,
+            "head": 4,
+            "thigh_L": -55,
+            "thigh_R": 55,
+            "shin_L": 75,
+            "shin_R": 75,
+            "upper_arm_L": -15,
+            "upper_arm_R": 15,
+            "forearm_L": 35,
+            "forearm_R": -35
+          }
+        },
+        {
+          "at": 0.4,
+          "phase": "action",
+          "pose": {
+            "torso": -2,
+            "head": 2
+          }
+        },
+        {
+          "at": 0.8,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 2,
+            "head": -2
+          }
+        },
+        {
+          "at": 1.2,
+          "phase": "recovery",
+          "pose": {
+            "torso": 0,
+            "head": 4
+          }
+        }
+      ]
+    },
+    "collapse_kneel": {
+      "category": "Biểu cảm",
+      "description": "Kiệt sức khuỵu một gối",
+      "expression": "ko",
+      "camera": {
+        "cue": "tilt_down"
+      },
+      "fx": {
+        "cue": "dust"
+      },
+      "phases": [
+        "anticipation",
+        "action",
+        "contact_or_peak",
+        "follow_through",
+        "recovery"
+      ],
+      "keyframes": [
+        {
+          "at": 0,
+          "phase": "anticipation",
+          "pose": {}
+        },
+        {
+          "at": 0.18,
+          "phase": "action",
+          "pose": {
+            "torso": 18,
+            "head": 20,
+            "thigh_L": -20,
+            "thigh_R": 30,
+            "shin_L": 45,
+            "shin_R": 65,
+            "upper_arm_L": 22,
+            "upper_arm_R": -22
+          }
+        },
+        {
+          "at": 0.42,
+          "phase": "follow_through",
+          "pose": {
+            "torso": 30,
+            "head": 28,
+            "thigh_L": -70,
+            "thigh_R": 60,
+            "shin_L": 90,
+            "shin_R": 85,
+            "upper_arm_L": -18,
+            "upper_arm_R": 18
+          }
+        },
+        {
+          "at": 0.78,
+          "phase": "recovery",
+          "pose": {
+            "torso": 20,
+            "head": 18
+          }
+        }
+      ]
+    }
+  }
+}
