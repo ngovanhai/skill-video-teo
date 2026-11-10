@@ -1,7 +1,7 @@
 ---
 name: teo-kiem-hiep
 description: >
-  Làm video hoạt hình 2D DÀI (mỗi video ≥20 phút, tiếng Việt) về KIẾM HIỆP TRUNG QUỐC KINH ĐIỂN: tác giả nổi tiếng (Kim Dung, Cổ Long, Lương Vũ Sinh…),
+  Làm video hoạt hình 2D DÀI (mỗi video ≥20 phút, tiếng Việt) về KIẾM HIỆP TRUNG QUỐC KINH ĐIỂN và mọi tác phẩm nổi tiếng Trung Quốc (Tam Quốc, Thủy Hử, Tây Du Ký, Phong Thần, Liêu Trai…; mục 7 chu-de.md): tác giả nổi tiếng (Kim Dung, Cổ Long, Lương Vũ Sinh…),
   tác phẩm kinh điển, so sánh nhân vật ("ai mạnh hơn"), so sánh võ công, môn phái, thần binh. Tèo làm MC/trọng tài, nhân vật dựng chibi
   đấu minh hoạ + thẻ thông tin + bảng chỉ số (HyperFrames + GSAP, không ffmpeg). Quy trình: TỰ RESEARCH chủ đề (web + kho chu-de.md,
   dữ kiện ≥2 nguồn, chống trùng chủ đề) → chọn KHUNG DỰNG + vai Tèo + bối cảnh/stage/thời tiết/nhạc/bố cục khác 5 tập trước
@@ -31,7 +31,7 @@ Mỗi tập là một **chủ đề có thật** trong kiếm hiệp Trung Quố
 
 Format mở rộng (chi tiết và kho chủ đề ở `chu-de.md` mục 1.9–1.17): `cuoc-doi` (cuộc đời một nhân vật), `su-that` (người thật, chuyện thật trong truyện), `neu-nhu` (what-if, cần `verdict`), `cap-doi` (tình yêu giang hồ), `su-do` (thầy trò), `phan-dien` (hồ sơ phản diện), `phim-vs-truyen` (phim khác nguyên tác: chỉ kể bằng lời, không dùng hình/nhạc phim), `dong-thoi-gian` (vũ trụ, dòng thời gian Kim Dung), `chieu-thuc` (giải nghĩa tên chiêu, tên võ công).
 
-Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo đổi theo từng tập** (`story.teo_role`, tự đặt theo khung của tập) Nhân vật kinh điển diễn minh hoạ bằng rig chibi, dữ kiện hiện trên `card`, điểm so sánh hiện trên `stat`. **Có giọng Tèo**: luôn là VieNeu "Lóng", giống kênh Tèo Kể. Vai chỉ đổi cách xưng hô và câu chữ, không đổi giọng. Mọi `say`, mọi trường `vo` và **mọi `card`** được đọc thành tiếng. Card nên có `vo` viết thành câu nói tự nhiên, phủ hết các dòng trên thẻ; không có `vo` thì Tèo đọc nguyên chữ trên thẻ (tiêu đề, dòng phụ, từng dòng).
+Tèo dẫn chuyện bằng bong bóng thoại và lời kể. **Vai của Tèo đổi theo từng tập** (`story.teo_role`, tự đặt theo khung của tập) Nhân vật kinh điển diễn minh hoạ bằng rig chibi, dữ kiện hiện trên `card`, điểm so sánh hiện trên `stat`. **Có giọng Tèo**: luôn là giọng **Tiến Đạt** (`"voice": "tiendat"`, giọng nam trẻ có sẵn của ZeroTTS; người dùng chốt 2026-11-03, trước đó là "Lóng" nạp ở `~/.zerotts/voices`), đọc bằng ZeroTTS, giống kênh Tèo Kể. Vai chỉ đổi cách xưng hô và câu chữ, không đổi giọng. Mọi `say`, mọi trường `vo` và **mọi `card`** được đọc thành tiếng. Card nên có `vo` viết thành câu nói tự nhiên, phủ hết các dòng trên thẻ; không có `vo` thì Tèo đọc nguyên chữ trên thẻ (tiêu đề, dòng phụ, từng dòng).
 
 **Mỗi tập phải khác hẳn tập trước về hình thức, không chỉ khác chủ đề.** Cụ thể là khác về: cấu trúc (khung dựng, tự thiết kế từ kịch bản của tập), vai Tèo, câu mở và câu kết, bối cảnh, stage (cách dựng khung hình), thời tiết, nhạc nền và nhịp nhạc, kiểu bong bóng, vị trí Tèo, layout thumbnail. 9 tập đầu đều chung một khuôn: chào "Chào các bạn, lại là Tèo đây", Tèo đứng góc trái, thumbnail VS, nhạc phẳng, kết "Đăng ký kênh, hẹn tập sau nha!". Khuôn này giờ bị story-check chặn.
 
@@ -67,7 +67,7 @@ Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dự
 
 - Mỗi tập có project Godot riêng `<tap>/godot/` (Godot 4.7.2: `__GODOT__`). Tập tự thiết kế khung dựng, bộ bút, máy quay, nhân vật. **Không chép engine của tập trước** mà chỉ đọc để học. Muốn dùng lại một ý thì viết lại theo kiểu của tập mới.
 - Kịch bản `godot/loi.txt`: mỗi câu đọc là một dòng `[id] lời`. Mọi dòng khác (ví dụ `## kNN ghi chú`) để GDScript của tập tự đọc.
-- Giọng đọc: `node SKILL/scripts/gd-voice.mjs <tap>` (đọc trên Colab, không qua slot.sh; Colab lỗi thì dừng báo lỗi, chỉ `--local` mới đọc máy nhà) ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
+- Giọng đọc: `node SKILL/scripts/gd-voice.mjs <tap>` (đọc trên Colab, không qua slot.sh; Colab thu hồi / không tạo được phiên GPU thì tự đọc bằng CPU máy nhà (người dùng chốt 2026-11-03), Colab lỗi khác thì dừng báo lỗi, chỉ `--local` mới đọc máy nhà) ra `godot/voice/<id>.wav` + `voice.json` với độ dài thật từng câu. Giờ trong video xếp theo độ dài này.
 - Mặt: `node SKILL/scripts/gd-mat.mjs <tap>` dùng `<tap>/ve.mjs` riêng của tập để ra `godot/mat/<nv>/<biểu cảm>.svg`. Thân người tập tự vẽ bằng GDScript.
 - Hợp đồng với gd-render (đầu file `scripts/gd-render.mjs`):
   - cửa sổ 1920×1080, stretch `canvas_items`;
@@ -77,7 +77,8 @@ Người dùng yêu cầu: **mỗi tập một kịch bản và một cách dự
 - Kiểm tra cú pháp + độ dài: chạy `Godot --headless --path . -- --dur` trong `godot/`. Lỗi parse chỉ hiện từng lỗi một, sửa xong chạy lại. Hay gặp: `var x := [..][i]` không suy được kiểu, phải ghi `var x: float = …`.
 - Soi: `bash kiem-hiep/_tools/slot.sh "<tập> xem" node SKILL/scripts/gd-render.mjs <tap> --preview --from A --to B --sheet 5 --out xa` ra `work/sheet-xa.jpg`. Preview chạy khoảng 2× thời gian thật, nên chia 2 đoạn chạy song song theo 2 suất máy.
 - Bản cuối: `… gd-render.mjs <tap> --par 2` ra `renders/final.mp4`.
-- Nhạc nền: tập tự sinh (ví dụ `work/nhac.py`: đàn gảy Karplus-Strong ngũ cung + nền trầm + trống, đổi tâm trạng theo `godot/timeline.json`). Ghi wav rồi ffmpeg libvorbis ra `godot/nhac.ogg`; soundfile ghi OGG dài sẽ tràn stack.
+- Nhạc nền: tập tự sinh (ví dụ `work/nhac.py`: nhạc cụ gảy/gõ ngũ cung, đổi tâm trạng theo `godot/timeline.json`). Ghi wav rồi ffmpeg ra `godot/nhac.ogg` (libvorbis, hoặc `vorbis -strict -2` khi ffmpeg không có libvorbis); soundfile ghi OGG dài sẽ tràn stack. **Nhạc phải nhỏ hơn hẳn giọng và không có dải trầm ù ù** (người dùng chốt 2026-10-23): không nền trầm/drone/trống bass.
+- Render: gd-render dùng ffmpeg (bộ ghi `scripts/gdrec.gd`), không dùng Movie Maker; vẫn mở cửa sổ Godot khi render.
 - Ảnh bìa: scene `godot/thumb.tscn` vẽ bằng chính bộ bút của tập, chạy có cửa sổ (không `--headless`), lưu `thumb/thumb-godot.png`. Luật thumbnail giữ nguyên: mặt không bị che, chữ to.
 - Font Palatino không có mũi tên → ↑ ↓ ✕ ✓: dùng "»" hoặc chữ. sfx thư viện tên `sfx/lib-<tên>.mp3`.
 
@@ -126,6 +127,7 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
 0. **Research & chọn chủ đề** (bắt buộc, không hỏi người dùng, tự chọn rồi đi tiếp):
    1. `node SKILL/scripts/story-check.mjs`: xem các tập trước (format, subjects, tác giả), lời hẹn `next`, thống kê format/tác giả/tác phẩm/set.
    2. Đọc `SKILL/data/chu-de.md` (kho chủ đề theo format, ngoại hình gợi ý cho nhân vật nổi tiếng, bảng quy đổi bối cảnh → set, mẫu dàn ý, mục 5 gói chủ đề cho tập 20+ phút, mục 6 series nhiều phần và tier list: đang dở series nào thì ưu tiên làm phần tiếp theo).
+   2b. **Ké video đang lên** (luật chung mục 1e của `ideas/TIEU-DE-ANH-BIA.md`): chạy `python3 __MUSE_ROOT__/yt-auto/tools/kiem-hang.py --dang-len=teo-tuu-lau`. Nếu một video đang lên (Anh Chàng IT, Thạch Sùng, Văn Vở, Tờ Bờ…) trùng chủ đề mà mình kể được góc riêng, thì ưu tiên chủ đề đó. Tiêu đề mang cụm đặc trưng của nó (vd. "2200 Năm", "81 Kiếp Nạn"), không chép nguyên tiêu đề, không ké phim hay clip. Tập tổng hợp dùng dạng "Toàn Bộ … / … Trong N Phút / Xếp Hạng …". Ghi link video đã ké vào ghi chú tập.
    3. WebSearch/WebFetch 3–6 truy vấn, tổng cộng ~10 phút:
       - Nguồn ưu tiên: vi/zh/en Wikipedia, Baidu Baike, jinyong.fandom / wuxia.fandom, báo Việt có bài phân tích (soha, cafebiz, zing…).
       - Thêm 1 truy vấn "<chủ đề> ai mạnh hơn" hoặc "<chủ đề> tranh cãi" để biết người xem đang tranh luận gì.
@@ -156,8 +158,8 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
       Đánh dấu chủ đề đã dùng trong `data/chu-de.md` bằng `(tập N)`.
 1. Chạy `fx-list.mjs` để biết nhóm hiệu ứng nào đang bị dùng nhiều.
 2. Viết `tap.json` (định dạng ở dưới, **có khối `story`**) và `fx/<tên>.mjs` (≥1 file). Chạy `node SKILL/scripts/story-check.mjs <dir>`, sửa tới khi hết mọi dòng ✗; dòng ! thì cân nhắc.
-3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` bằng VieNeu (`__VIENEU_DIR__`), giọng mặc định "Lóng", ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. Đổi giọng bằng `"voice"` trong tap.json, độ ngẫu nhiên bằng `"voice_temperature"` (mặc định 0,8).
-   - Câu dưới 6 từ VieNeu dễ đọc vội/méo; nên viết câu ≥10 từ. Sửa chữ sau khi đọc thì phải chạy lại voice.mjs (build sẽ cảnh báo câu chưa có giọng).
+3. **Giọng đọc:** `node SKILL/scripts/voice.mjs <dir>` (thêm `--dry` để chỉ ước thời lượng giọng trước khi đọc). Lệnh này đọc mọi `say` + `vo` + `card` bằng ZeroTTS, giọng mặc định Tiến Đạt (`tiendat`), ghi `<dir>/voice/*.wav` + `voice/voice.json`, có cache nên dòng không đổi chữ không đọc lại. ≥ 30 dòng cần đọc thì đọc trên Colab (`kiem-hiep/_tools/colab-tts/colab-tts.mjs`; Colab thu hồi / không tạo được phiên GPU thì colab-tts thoát mã 75 và voice.mjs tự đọc nốt bằng CPU máy nhà — người dùng chốt 2026-11-03; Colab lỗi khác thì dừng, sửa Colab), ít hơn hoặc `--local` thì đọc ở máy nhà (`kit/py/tts-zerotts.py`, CPU). Đổi giọng bằng `"voice"` trong tap.json (`voice_temperature` không còn dùng).
+   - Câu dưới 6 từ dễ đọc vội/méo; nên viết câu ≥10 từ. Sửa chữ sau khi đọc thì phải chạy lại voice.mjs (build sẽ cảnh báo câu chưa có giọng).
    - Giọng là nguồn thời lượng chính: ~4,1 từ/giây, nên 20 phút cần khoảng 4.500–5.000 từ lời đọc.
 
    Sau đó `node SKILL/scripts/build.mjs <dir>`. Lệnh này in plan, ghi `index.html`, `work/timeline.json` và `thumb/`.
@@ -181,7 +183,7 @@ Thư mục tập: `__MUSE_ROOT__/kiem-hiep/tap-<NN>-<slug>/` (slug không dấu,
    - GSAP: nếu có `SKILL/engine/vendor/gsap.min.js` (bản 3.14.2) thì build chép vào tập, render không cần mạng. Không có thì tải từ CDN jsdelivr lúc render.
    - Plan được giữ nguyên khi build lại, trừ khi đổi cấu trúc beat **hoặc** lịch sử có tập khác mới pack. Khi đó build tự lập plan mới.
 6. Viết `seo` trong tap.json rồi chạy `node SKILL/scripts/pack.mjs <dir>`. Lệnh này chụp thumbnail và tạo `youtube/`: mp4, thumbnail.png, tieu-de.txt, mo-ta.txt, tags.txt, DANG-YOUTUBE.md. Nó cũng ghi lịch sử (kể cả khối story). Nếu chỉ chạy thử thì thêm `--no-history`.
-   - **Đồng bộ Google Drive (tự động, bắt buộc):** đóng gói không lỗi xong, pack.mjs chép cả `youtube/` sang `G:\My Drive\TeoKenhYoutube\<slug>\` qua ứng dụng Google Drive for desktop (ứng dụng tự tải lên mây). Chép qua file `.part` rồi đổi tên; file đã có cùng kích thước và không cũ hơn thì bỏ qua.
+   - **Đồng bộ Google Drive (tự động, bắt buộc):** đóng gói không lỗi xong, pack.mjs chép cả `youtube/` sang `G:\My Drive\TeoTuuLau\<slug>\` qua ứng dụng Google Drive for desktop (ứng dụng tự tải lên mây). Chép qua file `.part` rồi đổi tên; file đã có cùng kích thước và không cũ hơn thì bỏ qua.
    - Không thấy `G:\My Drive` thì pack báo "CHƯA lên Drive" và thoát mã 1 (gói `youtube/` và lịch sử đã ghi xong). Mở ứng dụng Google Drive rồi chạy `node SKILL/scripts/drive-sync.mjs <dir>`.
    - Sửa thumbnail hay seo sau bước 7 thì chạy lại pack để Drive nhận bản mới. `--no-drive` chỉ dùng khi chạy thử; đổi đích bằng biến môi trường `TEO_DRIVE_DIR`.
 7. Read `youtube/thumbnail.png` để kiểm tra: mặt không bị che, chữ hook đọc được.
@@ -234,6 +236,7 @@ Lệnh `story-check` không có `<dir>` sẽ in khung của 5 tập gần nhất
 **Mở đầu:**
 - Câu đầu là hook ≤5 s, khớp chữ thumbnail.
 - **CẤM** dùng "Chào các bạn, lại là Tèo đây, hôm nay Tèo…" làm câu thứ 2 như 9 tập đầu.
+- Luật giữ chân 60 s đầu (người dùng chốt 2026-10-24, chi tiết ở `__MUSE_ROOT__/ideas/HOOK-MO-DAU.md`): hook ≤ 5 câu. Câu ≤ 15 chữ, ≤ 1 con số mỗi câu. Diễn biến đầu tiên bắt đầu trước giây 45. Tiểu sử tác giả và giải nghĩa dài để sau phút 3. Tèo tự giới thiệu ≤ 1–2 câu, bằng hành động.
 - Tèo tự giới thiệu theo vai, trong khoảng 60 s đầu. Ví dụ ý (không chép): tiểu nhị lau bàn chào khách; phóng viên giơ micro; quan toà gõ búa; hoặc nhân vật khác giới thiệu Tèo.
 - Khung nào kể bằng nhân vật khác hoặc mở bằng cái kết thì có thể vào thẳng chuyện, Tèo xuất hiện sau.
 
@@ -281,6 +284,7 @@ Lệnh `story-check` không có `<dir>` sẽ in khung của 5 tập gần nhất
   - `center`: nhân vật giữa, chữ căn giữa phía trên.
   - `thumb.set` / `thumb.time` đổi nền thumbnail.
   - Chữ thumbnail tránh lặp kiểu "AI … ?" của các tập trước.
+  - Luật chung (người dùng chốt 2026-10-24, chi tiết ở `__MUSE_ROOT__/ideas/TIEU-DE-ANH-BIA.md`): `thumb.text` 3–5 từ, khác tiêu đề. Nhân vật chính to, cảm xúc rõ. Góc dưới bên phải không có chữ. Thu ảnh về 360 px (`sips -Z 360`) và xem ở cỡ điện thoại trước khi chốt. Chữ hoặc hình trên thumbnail phải được nhắc lại trong 30 giây đầu.
 
 ## tap.json
 
@@ -288,7 +292,7 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
 
 ```json
 {
-  "ep": 1, "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?", "hook": "AI MẠNH HƠN?",
+  "ep": 1, "title": "Tiêu Phong Và Quách Tĩnh: Ai Mạnh Hơn?", "hook": "AI MẠNH HƠN?",
   "theme": "auto", "bgm": "playful-pizzicato.mp3", "bubble": "giay",
   "opener": { "title": "TÈO KỂ KIẾM HIỆP", "sub": "Tiêu Phong vs Quách Tĩnh" },
   "ender": { "next": "Lệnh Hồ Xung vs Dương Quá: kiếm ai nhanh hơn" },
@@ -318,13 +322,25 @@ Mẫu cấu trúc, đã build thử: `SKILL/examples/tap-01/` (Tiêu Phong vs Qu
     "facts": [ { "claim": "Bản tân tu: Tiêu Phong cùng Hư Trúc rút Hàng Long từ 28 chưởng còn 18", "src": ["https://…", "https://…"] } ],
     "sources": ["https://…"]
   },
-  "seo": { "title": "Tiêu Phong vs Quách Tĩnh: ai mạnh hơn?", "alts": ["…"], "description": "…", "tags": ["tiêu phong", "quách tĩnh", "kim dung"], "hashtags": ["#KimDung"] }
+  "seo": { "title": "Tiêu Phong Và Quách Tĩnh: Ai Mạnh Hơn?", "alts": ["Giáng Long Thập Bát Chưởng: Ai Đánh Mạnh Hơn?", "…"], "description": "…", "tags": ["tiêu phong", "quách tĩnh", "kim dung"], "hashtags": ["#KimDung"] }
 }
 ```
 
 - **Tiêu đề / SEO:**
-  - `seo.title` không ghi đuôi, pack tự gắn " | Tèo Kể". Tổng độ dài ≤60 ký tự.
-  - Kiểu tiêu đề: "A vs B: ai mạnh hơn?", "Vì sao X …?", "Top 5 kiếm pháp Kim Dung", "Cổ Long khác Kim Dung ở đâu?".
+  > **LUẬT CỨNG: MỖI VIDEO TỰ ĐI TÌM TÊN CỦA RIÊNG NÓ.** Video dài và **từng short** đều phải tự tìm trên YouTube (`tu-khoa.py`, video dài thêm `kiem-hang.py`) với tên neo của chính nó, rồi chọn tên dễ được tìm thấy nhất. Không chép tên hay kết quả tìm kiếm của video khác, không đặt tên theo cảm tính. Ghi lại cụm đã tìm, điểm, mức cạnh tranh và tên đã chọn của từng video.
+  - Làm đủ 4 bước của `__MUSE_ROOT__/ideas/TIEU-DE-ANH-BIA.md` mục 1, theo thứ tự:
+    1. **Từ khoá:** `python3 __MUSE_ROOT__/yt-auto/tools/tu-khoa.py "<nhân vật>" "<nhân vật + tác phẩm>" "<chủ đề>"`. Gõ cả tên gọi khác rồi lấy tên được gõ nhiều hơn. Đo ngày 2026-10-29: Kiều Phong > Tiêu Phong, Vô Danh Thần Tăng > Tảo Địa Tăng, Giáng Long > Hàng Long, Tiểu Lý Phi Đao / Lý Tầm Hoan > Cổ Long. Gợi ý game (Cửu Âm Chân Kinh gameplay, Cổ Long Naga…) bỏ bằng `--bo=…`.
+    2. **Câu hỏi người xem:** mục "Người xem đang hỏi gì". Với nhân vật kiếm hiệp, câu này thường là chết / bị giết / ai mạnh hơn / A và B. Ví dụ "giang nam thất quái **bị giết**", "nhạc bất quần **chết**". Ít nhất một phương án trả lời thẳng câu đó, nếu video trả lời được.
+    3. **Độ cạnh tranh:** `python3 __MUSE_ROOT__/yt-auto/tools/kiem-hang.py "<cụm>"`. Kiếm hiệp thường ở mức DỄ / VỪA: cụm từ khoá đứng đầu tiêu đề là video lên top 5 sau 1–2 ngày (Nhạc Bất Quần #3, Võ Đang Thất Hiệp #3).
+    4. **Viết:**
+       - Khuôn: **`<Cụm Từ Khoá>: <Lời Hứa Cụ Thể>`**, ví dụ "Hoa Sơn Luận Kiếm: Ngũ Tuyệt Ai Mạnh Nhất?", "Tiêu Phong Và Quách Tĩnh: Ai Mạnh Hơn?", "Vô Danh Thần Tăng: Sư Quét Rác Mạnh Nhất Thiếu Lâm?".
+       - **Không** mở đầu bằng ẩn dụ của khung dựng hay vai Tèo ("Bảy đêm canh lửa…", "Xem số…", "…đem cầm"). Ẩn dụ để cho chữ thumbnail và câu mở đầu.
+       - Viết Hoa Từng Chữ (trừ "vs"). Không viết HOA toàn bộ, không emoji.
+  - `seo.title` ≤ 51 ký tự, không ghi đuôi: pack tự gắn " | Tèo Kể", rồi chặn khi quá 60 ký tự, có emoji hoặc viết HOA toàn bộ. Nó cảnh báo khi chưa Viết Hoa Từng Chữ hoặc khi `thumb.text` lặp quá nửa tiêu đề.
+  - Cụm từ khoá và lời hứa nằm trong **40 ký tự đầu**, vì điện thoại cắt tiêu đề ở khoảng 45–50 ký tự. Nhãn "(Phần N/3)" CHỈ dùng khi các tập nối tiếp nhau về nội dung (tập sau kể tiếp tập trước, như series mục 6 của chu-de.md); loạt cùng chủ đề mà mỗi tập một nhân vật / chuyện riêng thì không đánh số phần. Khi dùng thì đặt cuối.
+  - `alts` là các góc khác hẳn nhau (câu hỏi người xem / con số / nghịch lý), mỗi phương án vẫn mở bằng một cụm từ khoá, để sau này thử bằng Test & Compare.
+  - Ghi cụm đã chọn, điểm và mức cạnh tranh vào ghi chú của tập. Sau khi đăng ≥ 3 ngày, `kiem-hang.py --da-dang` ghi vị trí tìm kiếm vào `yt-auto/logs/hang.jsonl`; đọc file này trước khi đặt tiêu đề cho loạt mới.
+  - `history.json` có 9 tiêu đề viết theo luật cũ (viết hoa đầu câu, mở bằng ẩn dụ). Chỉ dùng chúng để chống trùng, không lấy làm mẫu.
   - Tags gồm tên nhân vật, võ công, tác phẩm, tác giả, "ai mạnh hơn". Hashtag mặc định đã có #TeoKe và #KiemHiep; thêm tên tác giả (#KimDung, #CoLong…).
   - Mô tả nêu rõ tác phẩm/tác giả và câu "so sánh là ý kiến riêng".
 - **story:** bắt buộc.
@@ -445,5 +461,7 @@ Hiệu ứng local nào đẹp và dùng lại được thì chép vào `SKILL/e
 ## Âm thanh
 
 - **Giọng Tèo:** wav từ `voice.mjs`, build đặt vào track 14/15 (xen kẽ cho khỏi chồng), âm lượng 1. Thiếu `voice/voice.json` thì build vẫn chạy nhưng không giọng và in CẢNH BÁO; tập thật bắt buộc có giọng.
-- **BGM:** `tap.bgm` (mặc định pizzicato) lặp, 0,06 khi có giọng, 0,1 khi không (ghi đè bằng `bgm_volume`). `scenes[].music` on/low/up/off đổi âm lượng theo cảnh (build tách đoạn nhạc bằng `data-media-start`, nhạc liền mạch). Thêm nhạc: người dùng bỏ file vào `kit/bgm`, không tải từ nguồn lạ.
+- **Người dùng chốt 2026-10-29: KHÔNG hiệu ứng âm thanh nào** (whoosh, pop, chime, riser, kèn, sáo, chuông, mõ, chiêng "beng beng"…). Video chỉ có giọng đọc + nhạc nền nhỏ; nhạc nền cũng không có kèn, sáo, chuông, mõ, chiêng, trống — chỉ đàn gảy/dây êm. `kit/lib/mix.mjs` đặt `SFX_ON = false` nên mọi pipeline (kit/make.mjs, build-short, teo-kiem-hiep build, gd-render) bỏ hết sfx dù cảnh/fx/phim.sfx() có khai báo. Không tự bật lại. Video đã render mà còn sfx: `node kit/remix-audio.mjs <dir>` (video-teo; short: `<dir short> --short`) hoặc `gd-render.mjs <tap> --audio-only` (Godot) — chỉ dựng lại tiếng, giữ hình. Nhạc tập Godot chỉ đàn gảy: `python kit/py/nhac-gay.py <tap>/godot` (dùng python có numpy/soundfile, vd. VieNeu-TTS/.venv).
+- **Luật âm thanh (người dùng chốt 2026-10-24, chung mọi pipeline — `kit/lib/mix.mjs`):** không sfx "ùm ùm tùm tùm" gây giật mình; sfx luôn nhỏ hơn giọng; nhạc nền nhỏ hơn hẳn giọng. Thư viện `kit/sfx` là bản êm (`kit/sfx-soft.mjs`); build kẹp `vol` sfx ≤ 0,6 và kẹp nhạc nền (kể cả `music: up`) để ≤ -40 LUFS, tức thấp hơn giọng ≥ 20 dB — `bgm_volume` chỉ hạ được, không vượt trần.
+- **BGM:** `tap.bgm` (mặc định pizzicato) lặp, 0,06 khi có giọng, 0,1 khi không (ghi đè bằng `bgm_volume`; cả hai vẫn bị trần ở trên). `scenes[].music` on/low/up/off đổi âm lượng theo cảnh (build tách đoạn nhạc bằng `data-media-start`, nhạc liền mạch). Thêm nhạc: người dùng bỏ file vào `kit/bgm`, không tải từ nguồn lạ.
 - **sfx** theo hiệu ứng + beat `sfx` đặt tay.

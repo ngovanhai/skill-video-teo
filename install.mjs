@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Cài 6 skill Claude Code (video-teo, teo-kiem-hiep, teo-kiem-hiep-godot, chuong-2d, nhan-vat-chibi, thao-tac-chibi) và kit MuseStudio. Chạy được trên macOS và Windows.
-//   node install.mjs [--muse-root <thư mục>] [--vieneu-dir <thư mục>] [--godot-dir <thư mục>] [--godot <file chạy Godot có sẵn>]
-//                    [--gpu] [--skip-vieneu] [--skip-godot] [--no-env]
+//   node install.mjs [--muse-root <thư mục>] [--zerotts-dir <thư mục>] [--godot-dir <thư mục>] [--godot <file chạy Godot có sẵn>]
+//                    [--skip-zerotts] [--skip-godot] [--no-env]
 import { cpSync, mkdirSync, existsSync, readdirSync, statSync, readFileSync, writeFileSync, renameSync, copyFileSync, appendFileSync, rmSync } from "node:fs";
 import { join, resolve, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -16,7 +16,9 @@ const opt = (k, d) => { const i = args.indexOf("--" + k); return i >= 0 ? args[i
 const flag = (k) => args.includes("--" + k);
 const fwd = (p) => resolve(p).replace(/\\/g, "/");
 const MUSE = fwd(opt("muse-root", join(homedir(), "MuseStudio")));
-const VIENEU = fwd(opt("vieneu-dir", join(dirname(MUSE), "VieNeu-TTS")));
+const ZEROTTS = fwd(opt("zerotts-dir", join(homedir(), "Projects", "ZeroTTS-src")));
+const ZEROTTS_VER = "0.1.5"; // bản kit đang chạy ổn
+const WHISPER_DML = fwd(opt("whisper-dml-py", join(dirname(MUSE), "whisper-dml/Scripts/python.exe"))); // Windows + DirectML (tuỳ chọn)
 const GODOT_DIR = fwd(opt("godot-dir", join(dirname(MUSE), "Godot")));
 const GODOT_VER = "4.7.2-stable"; // bản các skill Godot đã chạy ổn
 const SKILLS = ["video-teo", "teo-kiem-hiep", "teo-kiem-hiep-godot", "chuong-2d", "nhan-vat-chibi", "thao-tac-chibi"];
@@ -52,6 +54,8 @@ mkdirSync(MUSE, { recursive: true });
 for (const d of ["kit", "avatar"]) cpSync(join(HERE, "MuseStudio", d), join(MUSE, d), { recursive: true, force: true });
 for (const d of ["ideas", "videos", "kiem-hiep"]) mkdirSync(join(MUSE, d), { recursive: true });
 if (!existsSync(join(MUSE, "ideas/DA-LAM.md"))) copyFileSync(join(HERE, "MuseStudio/ideas/DA-LAM.md"), join(MUSE, "ideas/DA-LAM.md"));
+for (const f of ["HOOK-MO-DAU.md", "TIEU-DE-ANH-BIA.md"]) if (!existsSync(join(MUSE, "ideas", f))) copyFileSync(join(HERE, "MuseStudio/ideas", f), join(MUSE, "ideas", f));
+cpSync(join(HERE, "MuseStudio/yt-auto/tools"), join(MUSE, "yt-auto/tools"), { recursive: true, force: true }); // luật tiêu đề + từ khoá + độ cạnh tranh
 mkdirSync(join(MUSE, "kiem-hiep/_tmp"), { recursive: true });
 cpSync(join(HERE, "MuseStudio/kiem-hiep/_tools"), join(MUSE, "kiem-hiep/_tools"), { recursive: true, force: true });
 const SAMPLE = "kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot"; // tập mẫu Godot (không kèm voice/nhạc); có rồi thì giữ nguyên
@@ -67,26 +71,20 @@ for (const skillsRoot of SKILL_DIRS) {
   }
 }
 
-if (!flag("skip-vieneu")) {
-  step(`VieNeu-TTS -> ${VIENEU}`);
-  if (!existsSync(venvPy(VIENEU))) {
-    if (!existsSync(VIENEU)) run("git", ["clone", "https://github.com/pnnbao97/VieNeu-TTS.git", VIENEU]);
-    run("git", ["-c", "advice.detachedHead=false", "checkout", "-q", "bd0f88e"], { cwd: VIENEU }); // bản đã chạy ổn với kit
-    run("uv", flag("gpu") && !MAC ? ["sync", "--extra", "cuda"] : ["sync"], { cwd: VIENEU });
+if (!flag("skip-zerotts")) {
+  step(`ZeroTTS -> ${ZEROTTS}`);
+  if (!existsSync(venvPy(ZEROTTS))) {
+    mkdirSync(ZEROTTS, { recursive: true });
+    run("uv", ["venv", "--python", "3.11", join(ZEROTTS, ".venv")]);
   } else console.log("  đã có .venv, bỏ qua");
+  // tts-zerotts.py đọc bằng CPU (model int8 nếu có sẵn trong <ZEROTTS>/models, không thì để zerotts tự tải weights từ HuggingFace)
+  run("uv", ["pip", "install", "--python", venvPy(ZEROTTS), `zerotts==${ZEROTTS_VER}`, "scipy"]);
+}
 
-  step("Giọng Lóng -> ~/.vieneu");
-  const vh = process.env.VIENEU_HOME || join(homedir(), ".vieneu");
-  const src = join(HERE, "vieneu/user_voices_v3_turbo.json"), dst = join(vh, "user_voices_v3_turbo.json");
-  mkdirSync(vh, { recursive: true });
-  if (!existsSync(dst)) copyFileSync(src, dst);
-  else {
-    copyFileSync(dst, `${dst}.bak-${stamp}`);
-    const a = JSON.parse(readFileSync(dst, "utf8")), b = JSON.parse(readFileSync(src, "utf8"));
-    a.presets = { ...(a.presets || {}), ...b.presets };
-    writeFileSync(dst, JSON.stringify(a));
-    console.log(`  đã gộp vào file giọng có sẵn (bản cũ: ${dst}.bak-${stamp})`);
-  }
+if (!flag("skip-colab")) {
+  step("colab CLI (đọc giọng + căn chữ bản dài trên GPU Colab T4)");
+  if (has("colab", "--help")) console.log("  đã có lệnh colab");
+  else run("uv", ["tool", "install", "google-colab-cli==0.7.5"]);
 }
 
 step("Whisper (căn thời gian chữ cho video-teo)");
@@ -134,24 +132,24 @@ const TEXT = new Set([".md", ".mjs", ".js", ".py", ".json", ".txt", ".sh"]);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 let n = 0;
 const skillRoots = SKILL_DIRS.flatMap((dir) => SKILLS.map((s) => join(dir, s))).filter(existsSync);
-for (const root of [...skillRoots, join(MUSE, "kit"), join(MUSE, "avatar"), join(MUSE, "kiem-hiep/_tools")])
+for (const root of [...skillRoots, join(MUSE, "kit"), join(MUSE, "avatar"), join(MUSE, "kiem-hiep/_tools"), join(MUSE, "ideas"), join(MUSE, "yt-auto")])
   for (const f of walk(root)) {
     if (!TEXT.has(extname(f))) continue;
     const s = readFileSync(f, "utf8");
-    if (!/__(MUSE_ROOT|VIENEU_DIR|WHISPER_PY|GODOT|FFMPEG)__/.test(s)) continue;
-    writeFileSync(f, s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__VIENEU_DIR__", VIENEU).replaceAll("__WHISPER_PY__", WHISPER)
-      .replaceAll("__GODOT__", GODOT).replaceAll("__FFMPEG__", FFMPEG));
+    if (!/__(MUSE_ROOT|ZEROTTS_DIR|WHISPER_PY|WHISPER_DML_PY|GODOT|FFMPEG)__/.test(s)) continue;
+    writeFileSync(f, s.replaceAll("__MUSE_ROOT__", MUSE).replaceAll("__ZEROTTS_DIR__", ZEROTTS).replaceAll("__WHISPER_PY__", WHISPER)
+      .replaceAll("__WHISPER_DML_PY__", WHISPER_DML).replaceAll("__GODOT__", GODOT).replaceAll("__FFMPEG__", FFMPEG));
     n++;
   }
 console.log(`  ${n} file`);
 
-step("Biến môi trường MUSE_ROOT / VIENEU_DIR");
+step("Biến môi trường MUSE_ROOT / ZEROTTS_DIR");
 if (flag("no-env")) console.log("  bỏ qua (--no-env)");
-else if (WIN) { run("setx", ["MUSE_ROOT", MUSE]); run("setx", ["VIENEU_DIR", VIENEU]); }
+else if (WIN) { run("setx", ["MUSE_ROOT", MUSE]); run("setx", ["ZEROTTS_DIR", ZEROTTS]); }
 else {
   const rc = join(homedir(), MAC ? ".zshrc" : ".bashrc");
   const old = existsSync(rc) ? readFileSync(rc, "utf8") : "";
-  if (!old.includes("# teo-skills")) appendFileSync(rc, `\n# teo-skills\nexport MUSE_ROOT="${MUSE}"\nexport VIENEU_DIR="${VIENEU}"\n`);
+  if (!old.includes("# teo-skills")) appendFileSync(rc, `\n# teo-skills\nexport MUSE_ROOT="${MUSE}"\nexport ZEROTTS_DIR="${ZEROTTS}"\n`);
   console.log(`  đã ghi vào ${rc}`);
 }
 

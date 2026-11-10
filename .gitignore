@@ -6,3 +6,17 @@ Thumbs.db
 # đầu ra render của chuong-2d
 skills/chuong-2d/engine/renders/
 skills/chuong-2d/engine/work/
+
+# sinh ra khi chạy thử / đo độ to
+__pycache__/
+*.pyc
+*.lufs
+
+# thư mục làm việc, đầu ra của skill (không đẩy lên repo)
+skills/thao-tac-chibi/engine/work/
+skills/thao-tac-chibi/engine/renders/
+MuseStudio/kiem-hiep/_tmp/
+MuseStudio/kiem-hiep/_tools/colab-tts/.last
+MuseStudio/kiem-hiep/_tools/colab-tts/.reap.log
+MuseStudio/kiem-hiep/_tools/colab-tts/.wait/
+MuseStudio/yt-auto/tools/__pycache__/

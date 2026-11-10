@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readdirSync, statSync, copyFileSync, renameSync,
 import { join, resolve, basename } from "path";
 import { pathToFileURL } from "url";
 
-export const DRIVE_ROOT = process.env.TEO_DRIVE_DIR || "G:/My Drive/TeoKenhYoutube";
+export const DRIVE_ROOT = process.env.TEO_DRIVE_DIR || "G:/My Drive/TeoTuuLau";
 const SLACK = 2000; // ms — Drive làm tròn mtime, lệch nhỏ vẫn coi là cùng lúc
 
 // Trả { dest, copied, skipped, newer } (newer = file trên Drive mới hơn bản gốc, KHÔNG đè — xoá tay trên Drive nếu muốn thay); ném lỗi nếu không thấy Drive hoặc thiếu youtube/.

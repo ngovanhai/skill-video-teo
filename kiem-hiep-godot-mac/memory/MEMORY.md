@@ -4,14 +4,15 @@
 - [Kiếm hiệp mặt riêng từng video](kiem-hiep-face-per-video.md) — không áp 1 kiểu mặt chung vào engine; mỗi video tự vẽ mắt/mũi/khuôn mặt khác (2026-10-21)
 - [Kiếm hiệp luôn chibi](kiem-hiep-luon-chibi.md) — tập Godot: nhân vật luôn dạng chibi, mặt/nét riêng từng tập (2026-10-21)
 - [Kiếm hiệp video ≥20 phút](kiem-hiep-video-20-phut.md) — teo-kiem-hiep: each video ≥20 min, 1 main + 4–6 sub-topics from chu-de.md
-- [Kiếm hiệp giọng Lóng](kiem-hiep-voice-long.md) — teo-kiem-hiep: always narrate with VieNeu Lóng via scripts/voice.mjs before build
+- [Kiếm hiệp giọng Tiến Đạt](kiem-hiep-voice-tiendat.md) — teo-kiem-hiep: always narrate with ZeroTTS "Tiến Đạt" ("tiendat") via scripts/voice.mjs before build
 - [Skill chuong-2d](chuong-2d-skill.md) — chiêu/chưởng Godot 2D: dùng skill chuong-2d (engine trong skill), rule nhịp/màu/cơ chế không trùng, check.sh (2026-10-21)
 - [Skill nhan-vat-chibi](nhan-vat-chibi-skill.md) — tạo nhân vật chibi: tả → look trong sổ chung chars.json → sheet soi; chuong-2d + teo-kiem-hiep {"char": id} (2026-10-21)
 - [Skill thao-tac-chibi](thao-tac-chibi-skill.md) — sổ động tác chibi v2 + vật phẩm (kiếm/ô/đèn/hồ lô), truyện mới tra sổ theo kịch bản, thiếu thì làm mới rồi ghi sổ (2026-10-22)
 - [Rig v2 ở mọi nơi](chibi-rig-v2-everywhere.md) — chibi.gd v2 của thao-tac-chibi cho mọi cảnh, kể cả chuong-2d (2026-10-22)
 - [Mặt chibi tròn, sáng tạo theo nhân vật](chibi-mat-tron.md) — cấm cằm nhọn/V/vuông; mặt thiết kế từ vai/tính cách nhân vật kịch bản (2026-10-22)
-- [Colab TTS](colab-tts.md) — VieNeu Lóng (gd-voice) + Kokoro tiếng Anh (make.mjs lang=en) mặc định trên Colab T4 qua colab CLI, lỗi thì lùi CPU (2026-10-22)
-- [3 Shorts dọc mỗi video](shorts-doc-3-moi-video.md) — video-teo (build-short, SKILL 6c) + kiếm hiệp Godot (new-short): 3 short 1080×1920 dựng riêng (2026-10-22)
+- [Colab TTS](colab-tts.md) — giọng + căn chữ bản dài trên Colab T4 (giữ phiên 15'), short/sửa ngắn <30 câu dùng CPU; Colab lỗi thì dừng (2026-10-24)
+- [Âm thanh êm](am-thanh-em.md) — không sfx ùm ùm giật mình, sfx < giọng, nhạc nền thấp hơn giọng ≥20 dB; luật ở kit/lib/mix.mjs (2026-10-24)
+- [Bỏ Shorts](shorts-doc-3-moi-video.md) — từ 2026-10-29 cả hai kênh không làm Shorts; gói youtube/ chỉ video dài + thumbnail + tiêu đề + mô tả + tags
 - [No chapter cards](no-chapter-cards.md) — one continuous video: no chapter scenes, never say "Chương X"/"Chương sau"
 - [Hook + greeting + CTA standard](script-hook-greeting-cta.md) — hook = custom scene from the script's best image, beat-synced; Tèo visible at greeting; CTA 25–75% + end
 - [Creative frames / anti-template](creative-frames.md) — each episode: frame + voice_role + theme + thumb layout, differ from last 3–5 (2026-10-20)

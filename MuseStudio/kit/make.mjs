@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Long-video pipeline: video.json -> VieNeu voice -> word timings -> per-scene compositions ->
+// Long-video pipeline: video.json -> ZeroTTS voice -> word timings -> per-scene compositions ->
 // per-chapter render -> concat -> thumbnail -> publish notes. Every stage is resumable.
-//   node kit/make.mjs <videoDir> [--stage all|scaffold|validate|tts|align|build|lint|render|thumb|publish|fxlog] [--only ch01,ch02]
+//   node kit/make.mjs <videoDir> [--stage all|scaffold|validate|tts|align|build|lint|render|thumb|publish|fxlog] [--only ch01,ch02] [--tts-local] [--align-local]
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readdirSync, statSync, rmSync } from "node:fs";
 import { join, resolve, basename } from "node:path";
 import { spawnSync, spawn } from "node:child_process";
@@ -11,15 +11,17 @@ import { TEMPLATES } from "./scenes/index.mjs";
 import { FX, sceneFx, CONTINUOUS_CAM } from "./fx/index.mjs";
 import { captionGroups, captionsComposition } from "./lib/captions.mjs";
 import { thumbnailHtml } from "./lib/thumbnail.mjs";
+import { SFX_ON, sfxVol, bgmVol, syncSfx, isShort, LONG_MIN, ZEROTTS_PY, ZEROTTS_SCRIPT, colabThenLocal } from "./lib/mix.mjs";
 
 const HF = "hyperframes@0.8.172";
-const VIENEU_DIR = process.env.VIENEU_DIR || "__VIENEU_DIR__";
-const VIENEU_PY = join(VIENEU_DIR, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
-const WHISPER_PY = process.env.WHISPER_PY || "__WHISPER_PY__";
-// GPU (AMD RX 6600 XT qua DirectML) cho tts/align, thử 2026-10-20: tts nhanh ~1,5×, align ~3× và ra y hệt CPU.
+const WHISPER_PY = process.env.WHISPER_PY || "__MUSE_ROOT__/.whisper/.venv/bin/python";
+// GPU (AMD RX 6600 XT qua DirectML) cho align, thử 2026-10-20: align ~3× và ra y hệt CPU.
 // Tắt: --no-gpu hoặc tạo file kit/gpu-off. GPU lỗi → tự chạy lại bằng CPU (cache giữ phần đã xong).
-const VIENEU_DML_PY = join(VIENEU_DIR, ".venv-dml/Scripts/python.exe");
-const WHISPER_DML_PY = process.env.WHISPER_DML_PY || join(VIENEU_DIR, "../whisper-dml/Scripts/python.exe");
+const WHISPER_DML_PY = process.env.WHISPER_DML_PY || "__WHISPER_DML_PY__"; // Windows: venv whisper-dml (install.mjs điền)
+// TTS: chỉ ZeroTTS (người dùng chốt 2026-11-03) — trên Colab qua colab-tts.mjs, ở máy nhà bằng py/tts-zerotts.py; cùng job + cùng .key.
+// Căn chữ cũng lên Colab: colab-tts.mjs --align chạy chính py/align.py trên GPU Colab, cùng key cache.
+// Chỉ bản dài mới lên Colab (người dùng chốt 2026-10-24): short (thư mục …/shorts/…) và sửa ngắn (< LONG_MIN câu sau cache,
+// colab-tts --min trả mã 75) làm luôn ở máy nhà. --tts-local / --align-local: luôn máy nhà.
 const LEAD = 0.25; // silence before the voice in each scene
 const TAIL = 0.3; // breath after it
 const STAGES = ["scaffold", "validate", "tts", "align", "build", "lint", "render", "thumb", "publish"];
@@ -174,6 +176,11 @@ function creativeChecks(warns) {
   const has = hasPhrase;
   const sig = signatureLines();
   if (!sig.opening.some((s) => has(s, "lại là tèo"))) warns.push(`greeting: say "lại là Tèo đây" somewhere in the first ~60 s (any wording, in the frame's voice)`);
+  // opening invite (user rule 2026-11-05): right after the hook, ask for topic ideas in the comments + like + subscribe/follow
+  const afterHook = scenes.findIndex((s, i) => i > 0 && s.type !== "hook" && s.hook !== true);
+  const openTxt = " " + (afterHook > 0 ? plain(spoken(scenes[afterHook])) : "") + " ";
+  const miss = [["bình luận"], ["like"], ["đăng ký", "theo dõi"]].filter((ps) => !ps.some((p) => openTxt.includes(" " + plain(p) + " "))).map((ps) => ps.join("/"));
+  if (miss.length) warns.push(`invite: the scene right after the hook must ask viewers to comment who/what idea Tèo should cover next, and to like + subscribe — missing: ${miss.join(", ")}`);
   const mid = sig.mid;
   if (!mid.some((s) => has(s, "đăng ký"))) warns.push(`cta: no subscribe call ("đăng ký") in the middle of the video (25–75%) — add one with "cta": true`);
   if (!scenes.slice(-3).some((s) => has(s, "đăng ký"))) warns.push(`cta: the closing scenes (outro or the 2 before it) must ask viewers to subscribe ("đăng ký")`);
@@ -256,12 +263,15 @@ function fxlog() {
 }
 
 function tts(subset = scenes) {
-  const job = { voice: video.voice || "Lóng", temperature: video.temperature ?? 0.8, lines: subset.map((s) => ({ id: s.id, text: spoken(s), out: wav(s) })) };
+  const job = { voice: video.voice || "tiendat", lines: subset.map((s) => ({ id: s.id, text: spoken(s), out: wav(s) })) };
   writeFileSync(P("work/tts-job.json"), JSON.stringify(job, null, 1));
-  const argv = [join(KIT, "py/tts.py"), P("work/tts-job.json")], o = { cwd: VIENEU_DIR };
-  // acoustic (≈2300 bước nhỏ/câu) chạy GPU chậm 16× nên để CPU; prefill/decode/codec lên GPU
-  const genv = { ...PYENV, VIENEU_ORT_PROVIDERS: "DmlExecutionProvider", VIENEU_ORT_GPU_PARTS: "pre,dec,codec" };
-  runGpu(useGpu(VIENEU_DML_PY) && { cmd: VIENEU_DML_PY, argv, o: { ...o, env: genv } }, { cmd: VIENEU_PY, argv, o });
+  // Chỉ ZeroTTS (người dùng chốt 2026-11-03): bản dài trên Colab; short / sửa ngắn / Colab thu hồi GPU ở máy nhà (luật chung colabThenLocal)
+  const r = colabThenLocal(!flag("tts-local") && !isShort(dir) ? [P("work/tts-job.json"), "--min", String(LONG_MIN)] : null, () => {
+    if (!existsSync(ZEROTTS_PY)) die(`không thấy ZeroTTS máy nhà: ${ZEROTTS_PY}`);
+    return run(ZEROTTS_PY, [ZEROTTS_SCRIPT, P("work/tts-job.json")], { env: PYENV, allowFail: true });
+  }, PYENV);
+  if (r.st !== 0) die(r.colab ? "Colab TTS lỗi — xem bảng 'Lỗi Colab TTS' trong skill teo-kiem-hiep-godot, sửa rồi chạy lại; chỉ dùng --tts-local khi người dùng cho phép"
+    : `tts-zerotts.py lỗi (${r.st})`);
 }
 
 function alignStage(subset = scenes) {
@@ -270,7 +280,9 @@ function alignStage(subset = scenes) {
   writeFileSync(P("work/align-job.json"), JSON.stringify(job, null, 1));
   const argv = [join(KIT, "py/align.py"), P("work/align-job.json"), video.whisper || "small"];
   const gpu = !process.env.WHISPER_PY && useGpu(WHISPER_DML_PY) && { cmd: WHISPER_DML_PY, argv, o: { env: { ...PYENV, WHISPER_DEVICE: "dml" } } };
-  runGpu(gpu, { cmd: WHISPER_PY, argv, o: {} });
+  const colab = !flag("align-local") && !isShort(dir) ? ["--align", P("work/align-job.json"), video.whisper || "small", "--min", String(LONG_MIN)] : null;
+  const r = colabThenLocal(colab, () => (runGpu(gpu, { cmd: WHISPER_PY, argv, o: {} }), 0), PYENV);
+  if (r.st !== 0) die("Colab căn chữ lỗi — xem bảng 'Lỗi Colab TTS' trong skill teo-kiem-hiep-godot, sửa rồi chạy lại; chỉ dùng --align-local khi người dùng cho phép");
 }
 
 function align() {
@@ -315,6 +327,8 @@ function layout() {
 
 function build() {
   const total = layout();
+  const nSfx = syncSfx(P("assets/sfx")); // bản sfx êm (kit/sfx-soft.mjs) thay bản cũ đã chép lúc scaffold
+  if (nSfx) log(`sfx: cập nhật ${nSfx} file từ kit/sfx (bản êm)`);
   for (const s of scenes) {
     const cues = new Cues(s.words, s.dur);
     const ctx = { video, scene: s, ns: s.id, cues, dur: s.dur };
@@ -330,7 +344,7 @@ function build() {
       try { x = FX[e.id].run({ ...ctx, bg: r.bg || s.bg, id: `${s.id}-fx${i}` }, e) || {}; } catch (err) { die(`${s.id} fx ${e.id}: ${err.message}`); }
       back += x.back || ""; over += x.over || ""; css += x.css ? "\n" + x.css : ""; js += x.js || ""; sfx.push(...(x.sfx || []));
     }
-    s.sfx = sfx.filter((x) => x.t < s.dur - 0.1);
+    s.sfx = SFX_ON ? sfx.filter((x) => x.t < s.dur - 0.1) : [];
     writeFileSync(P("compositions", `${s.id}.html`), wrapScene({ id: s.id, ns: s.id, dur: s.dur, bg: r.bg || s.bg || "paper", css, html: r.html, js, back, over, fxcam: fxl.length > 0 }));
   }
   bgm(total);
@@ -359,11 +373,11 @@ function clips(list, base, chs, global = false) {
       let tr = sfxTracks.findIndex((end) => end <= st);
       if (tr < 0) { tr = sfxTracks.length; sfxTracks.push(0); }
       sfxTracks[tr] = st + d;
-      out.push(`      <audio id="el-${s.id}-fx${k}" src="assets/sfx/${fx.file}" data-start="${st}" data-duration="${d}" data-track-index="${12 + tr}" data-volume="${fx.vol}"></audio>`);
+      out.push(`      <audio id="el-${s.id}-fx${k}" src="assets/sfx/${fx.file}" data-start="${st}" data-duration="${d}" data-track-index="${12 + tr}" data-volume="${sfxVol(fx.vol)}"></audio>`);
     }
   }
   const len = chs.reduce((a, c) => a + c.dur, 0);
-  out.push(`      <audio id="el-bgm" src="assets/bgm/bgm-full.mp3" data-start="0" data-media-start="${r3(global ? 0 : base)}" data-duration="${r3(len)}" data-track-index="11" data-volume="${video.bgm_volume ?? 0.09}"></audio>`);
+  out.push(`      <audio id="el-bgm" src="assets/bgm/bgm-full.mp3" data-start="0" data-media-start="${r3(global ? 0 : base)}" data-duration="${r3(len)}" data-track-index="11" data-volume="${BGM_VOL}"></audio>`);
   for (const c of chs) {
     const at = global ? r3(c.start) : 0;
     out.push(`      <div id="el-cap-${c.id}" class="scene" data-composition-id="cap-${c.id}" data-composition-src="compositions/cap-${c.id}.html" data-start="${at}" data-duration="${c.dur}" data-track-index="9" data-track-kind="captions"></div>`);
@@ -399,16 +413,21 @@ ${body}
 `;
 }
 
+let BGM_VOL = 0.05; // bgm() đặt lại theo độ to thật của bgm-full.mp3
 function bgm(total) {
   const out = P("assets/bgm/bgm-full.mp3");
   // video.bgm: a file in kit/bgm, or a path relative to the video folder (e.g. "assets/my-track.mp3")
   const src = video.bgm && existsSync(join(dir, video.bgm)) ? join(dir, video.bgm) : join(KIT, "bgm", video.bgm || "playful-pizzicato.mp3");
   if (!existsSync(src)) die(`bgm not found: ${video.bgm}`);
   const stamp = P("assets/bgm/bgm-full.len");
-  if (existsSync(out) && existsSync(stamp) && readFileSync(stamp, "utf8") === `${src}|${total}`) return;
   const len = r3(total + 1);
-  run("ffmpeg", ["-y", "-v", "error", "-stream_loop", "-1", "-i", src, "-t", String(len), "-af", `afade=t=in:d=1.5,afade=t=out:st=${r3(len - 3)}:d=3`, "-c:a", "libmp3lame", "-b:a", "160k", out]);
-  writeFileSync(stamp, `${src}|${total}`);
+  if (!(existsSync(out) && existsSync(stamp) && readFileSync(stamp, "utf8") === `${src}|${total}`)) {
+    run("ffmpeg", ["-y", "-v", "error", "-stream_loop", "-1", "-i", src, "-t", String(len), "-af", `afade=t=in:d=1.5,afade=t=out:st=${r3(len - 3)}:d=3`, "-c:a", "libmp3lame", "-b:a", "160k", out]);
+    writeFileSync(stamp, `${src}|${total}`);
+  }
+  // nhạc nền luôn thấp hơn giọng ≥ 20 dB (kit/lib/mix.mjs): video.bgm_volume chỉ được nhỏ hơn mức đó, không được to hơn
+  BGM_VOL = bgmVol(src, video.bgm_volume); // đo file gốc (cache cạnh file), bgm-full chỉ là bản lặp của nó
+  log(`bgm: âm lượng ${BGM_VOL}${video.bgm_volume != null && BGM_VOL < video.bgm_volume ? ` (video.bgm_volume ${video.bgm_volume} quá to, đã hạ)` : ""}`);
 }
 
 // Những thứ làm hyperframes bỏ chụp nhanh (drawElement): filter/blend/3D/clip thì bị chặn từ đầu, còn callback

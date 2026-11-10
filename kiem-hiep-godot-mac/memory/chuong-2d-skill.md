@@ -10,7 +10,7 @@ metadata:
 
 Chiêu thức / chưởng kiếm hiệp dạng Godot 2D làm bằng skill `chuong-2d`, dựng ngày 2026-10-21.
 - Bản engine chuẩn nằm ở `~/.claude/skills/chuong-2d/engine`.
-- `__MUSE_ROOT__/.tmp/godot-2d-chuong` chỉ là bản nháp cũ (4 chiêu đầu render ở đó).
+- `/Users/haingo/MuseStudio/.tmp/godot-2d-chuong` chỉ là bản nháp cũ (4 chiêu đầu render ở đó).
 - Mỗi chiêu theo rule trong SKILL.md: nhịp 5 đoạn, màu tương phản nền, cơ chế đặc trưng không trùng `data/moves.json`, SFX qua `cue()`/`sfx()`.
 - Kiểm tra bằng `scripts/check.sh`.
 

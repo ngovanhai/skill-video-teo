@@ -288,3 +288,13 @@ Extra: `col, life, land (y chạm đất), on_land (Callable nhận q), z (0.45 
 ### thut_nut_chi — sợi chỉ đỏ nối hai người rồi thắt nút (thù khép lại): polyline võng giữa hai `head_of`, độ võng và sóng giảm theo `qua`, nút = arc + chấm ở giữa. Mẫu: `k20b.gd`.
 ### toc_rung_la — tóc rụng thành lá (quy y): `roi(head_of(a)+…, v0, t0, y_dat, quay)` cho từng lá, lệch giờ 0.3 s. Mẫu: `k20b.gd`.
 - **Bài học tập 07**: biểu cảm không có "buon" (dùng "ngai"); hình chữ nhật làm mờ lộ cạnh → dùng làn khói/blob; nhãn đặt ở `_d_screen` không trôi theo máy quay. Biểu thức lấy từ Array/Dict phải khai kiểu (`var ang: float = …`).
+
+---
+
+## L. Thêm từ tap-12 Giang Nam Thất Quái (2026-10-24, mẫu: kiem-hiep `tap-12-giang-nam-that-quai/godot/doan/*.gd`, khung tấm lụa thêu; nhân vật bọc CanvasGroup shader thêu `lib/theu_nv.gdshader`)
+### go_gay_nghe — người mù gõ gậy nghe tiếng vọng: `{"uaF": -40, "faF": 10, "torso": -10, "head": 14, "all": [0, 6, 18]}` đúng nhịp gõ, xen `{"head": 16, "torso": 2}` nghiêng tai; vòng cung mũi đột lan từ chân gậy (nửa trên, `circ(o, r, n, -PI*0.95, -PI*0.05)`). Mẫu: `k05.gd`, chiêu `bien_buc`.
+### khum_tai — nấp nghe trộm: `{"head": 18, "torso": 4, "uaB": -150, "faB": -110}` + vòng cung nhỏ quanh tai. Mẫu: `k08.gd` (Thiết Thương Miếu).
+### be_con — bế đứa trẻ: `{"uaF": -40, "faF": -90, "uaB": -40, "faB": -90, "head": 10}`, vẽ bọc tã giữa hai bàn tay. Mẫu: `k05.gd` (Lý Bình).
+### cui_nhan_thua — cúi đầu nhận thua: `{"torso": 40, "head": 24, "uaF": -64, "faF": -78, "uaB": -54, "faB": -84, "all": [0, 0, 30]}` blend 0.8 s. Mẫu: `k07.gd` (Khâu Xứ Cơ).
+### bong_goi_ten — nhân vật hiện sẵn dạng bóng một màu, được gọi tên thì "thêu màu" vào: `a.bong = 0.85*(1 - sm(t_goi-0.1, t_goi+0.35))` mỗi khung (shader thêu có tham số `bong`). Mẫu: `k01.gd`.
+- **Bài học tập 12**: chữ Hán (醉仙樓…) với font Latin (Lora) ra ô vuông — gắn `FontFile.fallbacks = [Hiragino Sans GB.ttc chép vào godot/font]` (SystemFont fallback báo lỗi FreeType); `draw_multiline` với mảng rỗng báo lỗi, luôn kiểm `size() >= 2`; vân lụa trong hình tròn: `draw_colored_polygon(pts, màu, uv, tex)` + `texture_repeat` thay vì `draw_texture_rect` (lộ ô vuông).

@@ -10,7 +10,7 @@ metadata:
 
 On 2026-10-20 the user said the video-teo videos all followed the same template and asked for more creativity. (Anime characters were requested too, then reverted on 2026-10-21.) Every new episode must now:
 - Pick a `creative.frame` from the 12-frame table in SKILL 2b (ngược thời gian, phiên toà, đếm ngược, song song, phỏng vấn, nhật ký, bản tin, phá án, nếu như, trò chơi, một vật, hành trình). The frame must not repeat any of the last 3 episodes.
-- Pick a `creative.voice_role` for Tèo. It must not repeat either of the last 2 episodes. It changes only the wording; the TTS voice is always "Lóng" (user, 2026-10-20).
+- Pick a `creative.voice_role` for Tèo. It must not repeat either of the last 2 episodes. It changes only the wording; the TTS voice is always "Tiến Đạt" (ZeroTTS, user 2026-11-03).
 - Keep narrator scenes ≤20%. Tell the story in the frame's order, not birth → death.
 - Set a `theme` (giay-do / o-ly / bang-den / noir / tron) and a `thumbnail.layout` (classic / split / closeup) that each differ from recent episodes.
 - **Changed 2026-10-21:** the user asked to go back to the old character style. Draw with `scripts/gen-chars.template.mjs` (flat chibi). Do not use the anime generator or `narrator_style: "anime"`. See [[old-char-style]].

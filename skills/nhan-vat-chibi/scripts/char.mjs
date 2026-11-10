@@ -14,7 +14,7 @@ const [cmd, ...rest] = process.argv.slice(2);
 const flag = (k) => { const i = rest.indexOf(k); return i < 0 ? null : rest.splice(i, 2)[1]; };
 const WORK = path.join(SKILL, "work");
 fs.mkdirSync(WORK, { recursive: true });
-const CHROME = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"].find((f) => fs.existsSync(f));
+const CHROME = [process.env.CHROME, "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge", "/Applications/Chromium.app/Contents/MacOS/Chromium"].filter(Boolean).find((f) => fs.existsSync(f));
 
 const EXPR = rig.EXPRS; // vui binh gian buon soc dac-y ngai quyet-tam ko
 const POSE5 = [["rest", "binh"], ["palm", "quyet-tam"], ["raise", "dac-y"], ["guard", "soc"], ["crouch", "gian"]];

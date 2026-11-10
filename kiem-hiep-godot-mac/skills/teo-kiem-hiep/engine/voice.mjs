@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { createHash } from "crypto";
 
-export const DEFAULT_VOICE = "Lóng";
+export const DEFAULT_VOICE = "tiendat"; // giọng Tiến Đạt có sẵn của ZeroTTS (người dùng chốt 2026-11-03, trước là "Lóng")
 // Lời đọc = chữ đã bỏ emoji/ký hiệu, gộp khoảng trắng (VieNeu đọc số 1428 đúng nên giữ số)
 export const spoken = (s) => String(s).replace(/[\p{Extended_Pictographic}\u{FE0F}*_#~^|<>]/gu, " ").replace(/\s+/g, " ").trim();
 // Lời Tèo đọc ở một beat (lời kể vo). Card luôn được đọc: không ghi vo thì đọc tiêu đề, dòng phụ và từng dòng của thẻ.

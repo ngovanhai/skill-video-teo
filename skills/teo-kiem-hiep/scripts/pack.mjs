@@ -11,9 +11,10 @@ import { loadLibrary } from "../engine/library.mjs";
 import { HISTORY, readHistory } from "./plan.mjs";
 import { storyOf, MIN_TOTAL } from "./story-check.mjs";
 import { syncToDrive } from "./drive-sync.mjs";
+import { ganDuoi, kiemTieuDe } from "__MUSE_ROOT__/yt-auto/tools/tieu-de.mjs"; // luật tiêu đề chung: ideas/TIEU-DE-ANH-BIA.md mục 1d
 
-const BRAND = "Tèo Kể", SUFFIX = ` | ${BRAND}`, TAG_BRAND = "#TeoKe";
-const MAX_TITLE = 60, MAX_TAGS = 500, MAX_DESC = 5000;
+const BRAND = "Tèo Kể", TAG_BRAND = "#TeoKe";
+const MAX_TAGS = 500, MAX_DESC = 5000;
 const HF = "npx --yes hyperframes@0.8.172";
 
 const die = (m) => { console.error(`pack: ${m}`); process.exit(1); };
@@ -46,8 +47,12 @@ if (statSync(final).mtimeMs < statSync(join(dir, "work/timeline.json")).mtimeMs)
 
 const seo = tap.seo || {};
 const problems = [];
-const titles = [seo.title || tap.title, ...(seo.alts || [])].map((t) => t.replace(/\s*\|\s*Tèo Kể\s*$/, "").trim() + SUFFIX);
-for (const t of titles) if ([...t].length > MAX_TITLE) problems.push(`tiêu đề ${[...t].length} ký tự > ${MAX_TITLE}: ${t}`);
+const titles = [seo.title || tap.title, ...(seo.alts || [])].map((t) => ganDuoi(t));
+for (const [i, t] of titles.entries()) {
+  const k = kiemTieuDe(t, { thumb: i === 0 ? tap.thumb?.text || tap.hook : "" });
+  problems.push(...k.err);
+  for (const w of k.warn) console.log(`  ⚠ ${w}`);
+}
 
 const hashtags = [TAG_BRAND, "#KiemHiep", ...(seo.hashtags || []).map((h) => (h.startsWith("#") ? h : `#${h}`))]
   .filter((h, i, a) => a.findIndex((x) => x.toLowerCase() === h.toLowerCase()) === i).slice(0, 5);

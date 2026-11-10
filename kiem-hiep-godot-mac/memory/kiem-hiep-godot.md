@@ -10,7 +10,7 @@ metadata:
 
 Người dùng (2026-10-21): "mỗi tập sẽ có kịch bản khác nhau hoàn toàn, không dùng template chung, dùng Godot 2D thay HyperFrames".
 Đã chốt qua câu hỏi: Godot dựng TOÀN BỘ video (bỏ HyperFrames/engine HTML); bỏ khuôn beat say/pose/attack/card/stat + planner — mỗi tập tự viết cấu trúc và code dựng riêng; trước hết dựng hệ thống + làm lại 1 tập để duyệt, duyệt xong mới làm các tập còn lại.
-Godot 4.7.2 ở __GODOT__.
+Godot 4.7.2 ở /Users/haingo/Applications/Godot_v4.7.2.app/Contents/MacOS/Godot.
 
 **Why:** các tập cũ trông như cùng một khuôn dù đổi tham số.
-**How to apply:** tập kiếm hiệp mới/làm lại = project Godot riêng trong thư mục tập; chỉ dùng chung hạ tầng (giọng VieNeu, render Movie Maker → mp4), không dùng chung dàn cảnh/kịch bản. Liên quan [[kiem-hiep-creative]], [[kiem-hiep-face-per-video]], [[kiem-hiep-voice-long]].
+**How to apply:** tập kiếm hiệp mới/làm lại = project Godot riêng trong thư mục tập; chỉ dùng chung hạ tầng (giọng ZeroTTS, render Movie Maker → mp4), không dùng chung dàn cảnh/kịch bản. Liên quan [[kiem-hiep-creative]], [[kiem-hiep-face-per-video]], [[kiem-hiep-voice-tiendat]].

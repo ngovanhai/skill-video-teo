@@ -1,24 +1,26 @@
 # Bộ skill Tèo: `video-teo` + `teo-kiem-hiep` + `teo-kiem-hiep-godot` + `chuong-2d` + `nhan-vat-chibi` + `thao-tac-chibi`
 
 Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
-- `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo, phụ đề, thumbnail và gói upload.
-- `teo-kiem-hiep`: tập kiếm hiệp hoạt hình (HyperFrames + GSAP), đọc bằng giọng VieNeu "Lóng".
-- `teo-kiem-hiep-godot`: tập kiếm hiệp dựng toàn bộ bằng Godot 2D (Godot 4.7.2 do `install.mjs` tự tải; tập mẫu nằm ở `MuseStudio/kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot`, không kèm voice/nhạc).
+- `video-teo`: video dài từ 20 phút trở lên, có giọng Tèo (ZeroTTS, giọng **Tiến Đạt**), phụ đề, thumbnail và gói upload. Không làm Shorts.
+- `teo-kiem-hiep`: tập kiếm hiệp hoạt hình (HyperFrames + GSAP), đọc bằng ZeroTTS giọng "Tiến Đạt".
+- `teo-kiem-hiep-godot`: tập dựng toàn bộ bằng Godot 2D (Godot 4.7.2 do `install.mjs` tự tải; tập mẫu nằm ở `MuseStudio/kiem-hiep/tap-01-tieu-phong-vs-quach-tinh/godot`, không kèm voice/nhạc). Chủ đề: kiếm hiệp và các tác phẩm nổi tiếng Trung Quốc (Tam Quốc, Thủy Hử, Tây Du Ký, Phong Thần…).
 - `chuong-2d`: tạo chiêu/chưởng Godot 2D (engine nằm trong skill), dùng cho tập kiếm hiệp Godot.
 - `nhan-vat-chibi`: tạo nhân vật chibi, lưu look vào sổ chung `chars.json`.
 - `thao-tac-chibi`: sổ động tác chibi (rig v2) + vật phẩm (kiếm/ô/đèn/hồ lô).
 
-> Hai skill này chạy trên máy của bạn: giọng đọc, render và ffmpeg đều chạy tại máy.
+> Các skill này chạy trên máy của bạn: render, ffmpeg và (khi không có Colab) giọng đọc đều chạy tại máy.
 > Vì vậy **không dùng được trong chat claude.ai**, chỉ dùng được trong **Claude Code** (CLI hoặc tab Code của app Claude).
 
 ## Trong gói có gì
 
 | Thư mục | Nội dung |
 |---|---|
-| `skills/` | 2 skill, được chép vào `~/.claude/skills/` |
-| `MuseStudio/kit` | công cụ dựng video (`make.mjs`, cảnh, fx, font, nhạc nền, sfx) |
+| `skills/` | 6 skill, được chép vào `~/.claude/skills/`, `~/.config/opencode/skills/`… |
+| `MuseStudio/kit` | công cụ dựng video (`make.mjs`, cảnh, fx, font, nhạc nền, sfx êm, `lib/mix.mjs`, `py/tts-zerotts.py`) |
 | `MuseStudio/avatar` | avatar, banner, watermark của kênh |
-| `vieneu/` | giọng clone "Lóng", được chép vào `~/.vieneu/` |
+| `MuseStudio/ideas` | `DA-LAM.md` (đã làm), `HOOK-MO-DAU.md`, `TIEU-DE-ANH-BIA.md` (luật hook, tiêu đề, ảnh bìa) |
+| `MuseStudio/yt-auto/tools` | `tieu-de.mjs`, `tu-khoa.py`, `kiem-hang.py` (luật tiêu đề, từ khoá, độ cạnh tranh) |
+| `MuseStudio/kiem-hiep/_tools` | `slot.sh` (2 suất máy), `colab-tts/` (đọc giọng + căn chữ trên Colab T4) |
 
 ## Cài đặt (macOS hoặc Windows)
 
@@ -40,18 +42,18 @@ Bộ skill cho **Claude Code**, dùng để làm video YouTube kênh Tèo:
    ```
    Khi có bản mới: `git pull` rồi chạy lại `node install.mjs`.
    - `--muse-root <thư mục>`: nơi đặt kit và thư mục video. Mặc định là `~/MuseStudio` (Mac) hoặc `C:\Users\<tên>\MuseStudio` (Windows).
-   - `--vieneu-dir <thư mục>`: nơi cài VieNeu-TTS. Mặc định là thư mục `VieNeu-TTS` nằm cạnh MuseRoot.
-   - `--gpu`: dùng khi máy Windows có card NVIDIA, đọc giọng nhanh hơn khoảng 25 lần. Mac không cần cờ này.
-   - `--skip-vieneu`: dùng khi máy đã có VieNeu-TTS.
+   - `--zerotts-dir <thư mục>`: nơi cài ZeroTTS (venv + weights). Mặc định `~/Projects/ZeroTTS-src`.
+   - `--skip-zerotts`: dùng khi máy đã có venv ZeroTTS.
+   - `--skip-colab`: không cài `colab` CLI (khi chỉ đọc giọng ở máy nhà).
    - `--godot-dir <thư mục>`: nơi cài Godot 4.7.2 (script tự tải bản chính thức từ GitHub, kiểm tra SHA512). Mặc định là thư mục `Godot` nằm cạnh MuseRoot.
    - `--godot <file>`: dùng file chạy Godot 4.7.2 có sẵn thay vì tải. `--skip-godot`: bỏ qua Godot (khi không làm tập Godot).
 3. Mở terminal **mới**, `cd` vào MuseRoot, chạy `claude` rồi gõ `/video-teo`, `/teo-kiem-hiep` hoặc `/teo-kiem-hiep-godot`.
 
-Script cài sẽ thay `__MUSE_ROOT__` / `__VIENEU_DIR__` / `__WHISPER_PY__` / `__GODOT__` / `__FFMPEG__` trong skill, kit và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `VIENEU_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
+Script cài sẽ thay `__MUSE_ROOT__` / `__ZEROTTS_DIR__` / `__WHISPER_PY__` / `__WHISPER_DML_PY__` / `__GODOT__` / `__FFMPEG__` trong skill, kit và `kiem-hiep/_tools` bằng đường dẫn thật của máy bạn. Script cũng đặt 2 biến môi trường `MUSE_ROOT` và `ZEROTTS_DIR`: trên Windows dùng `setx`, trên Mac ghi vào `~/.zshrc`. Nếu Python của máy chưa có whisper, script tạo venv riêng ở `MuseRoot/.whisper`. Lần đọc giọng đầu tiên, ZeroTTS tự tải weights (~1 GB) từ HuggingFace nên cần mạng. Nếu máy đã có skill cùng tên, bản cũ được đổi tên thành `*.bak-<giờ>`.
 
 ## Gói riêng cho Mac: `kiem-hiep-godot-mac/`
 
-Chỉ cần làm tập kiếm hiệp Godot trên Mac thì dùng thư mục `kiem-hiep-godot-mac/` (5 skill Godot bản mới nhất, colab-tts, tập mẫu tap-10, memory luật làm tập). Xem `kiem-hiep-godot-mac/README.md`:
+Chỉ cần làm tập kiếm hiệp Godot trên Mac thì dùng thư mục `kiem-hiep-godot-mac/` (5 skill Godot bản mới nhất, colab-tts, tập mẫu tap-10, memory luật làm tập — nội dung y như bộ root, chỉ khác là chỉ cài cho Mac). Xem `kiem-hiep-godot-mac/README.md`:
 ```bash
 cd kiem-hiep-godot-mac && node install.mjs
 ```
@@ -59,6 +61,6 @@ cd kiem-hiep-godot-mac && node install.mjs
 ## Lưu ý
 
 - Lần đầu render, `npx hyperframes@0.8.172` sẽ tự tải trình duyệt headless nên cần có mạng.
-- Không có GPU NVIDIA (kể cả Mac) thì giọng đọc chạy bằng CPU: chậm hơn nhiều, nhưng vẫn ra kết quả. Mac chip M chạy tương đối ổn.
+- Bản dài đọc giọng + căn chữ trên **Google Colab GPU T4** (đăng nhập một lần: `colab sessions`). Colab thu hồi / không cấp GPU thì tự đọc bằng CPU máy nhà (chậm hơn nhưng vẫn ra); short và sửa ngắn luôn đọc ở máy nhà.
 - `teo-kiem-hiep/data/chu-de.md` có đánh dấu `(tập N)` cho các chủ đề đã làm. Nếu dùng chung một kênh thì giữ nguyên để không làm trùng chủ đề.
-- Giọng "Lóng" là giọng riêng của kênh Tèo Kể. Chỉ dùng cho kênh này, không chia sẻ ra ngoài nhóm.
+- Giọng đọc là **Tiến Đạt** (`"voice": "tiendat"`), giọng có sẵn của ZeroTTS — không cần mẫu giọng riêng, không phải xin phép ai.

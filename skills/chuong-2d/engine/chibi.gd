@@ -47,6 +47,7 @@ var spr_of := {}
 var dnodes: Array = []
 var palm_node := {}
 var cloth := {}          # vạt áo v2: side -> [a1, v1, a2, v2] (rad, + = về phía trước, hệ toạ độ nhân vật)
+var one_arm := false     # nhân vật cụt tay (look.oneArm): không có khớp uaB → dựng khớp ảo, vẽ tay áo rỗng
 var move_v := 0.0        # tốc độ đi (px/s, + = hướng mặt) — vạt bị gió cản ngược lại
 
 
@@ -115,6 +116,16 @@ func setup(id: String) -> void:
 				spr_of[j.name].append([sp, String(d.segs[idx].svg)])
 				if j.name == "head":
 					head_spr[idx] = sp
+	if not J.has("uaB") and J.has("torso"):
+		one_arm = true
+		var par: Node2D = J["torso"]
+		for jn in ["uaB", "faB", "hdB"]:
+			var n := Node2D.new()
+			n.name = jn
+			J[jn] = n
+			rest[jn] = Vector2.ZERO
+			par.add_child(n)
+			par = n
 	add_child(J["all"])
 	set_expr("binh")
 	if v2:
@@ -289,6 +300,9 @@ func _limb_pts(c: Node2D, a: Node2D, b: Node2D, e: Node2D) -> PackedVector2Array
 
 
 func _draw_arm(c: Node2D, sd: String) -> void:
+	if one_arm and sd == "B":
+		_draw_empty_sleeve(c)
+		return
 	var pts := _limb_pts(c, J["ua" + sd], J["fa" + sd], J["hd" + sd])
 	var cl: Array = limb_col.get("fa" + sd if sd == "B" else "ua" + sd, [Color.BLACK, Color.GRAY])
 	var n := pts.size()
@@ -315,6 +329,22 @@ func _draw_arm(c: Node2D, sd: String) -> void:
 	c.draw_line(cuff + nv * (cw - 1.0), cuff - nv * (cw - 1.0), cl[0], 2.4, true)
 	c.draw_line(cuff + d0 * 3.0 + nv * (cw - 2.5), cuff + d0 * 3.0 - nv * (cw - 2.5), cl[1].lightened(0.3), 2.2, true)
 	c.draw_colored_polygon(_ell(pts[n - 1], Vector2(cw * 0.3, cw - 3.0), d0.angle()), cl[0].darkened(0.2))
+
+
+# tay áo rỗng của người cụt tay: buông rủ từ vai, đung đưa theo t
+func _draw_empty_sleeve(c: Node2D) -> void:
+	var cl: Array = limb_col.get("uaF", [Color.BLACK, Color.GRAY])
+	var sh := _lp(c, J["uaB"])
+	var sw := sin(t * 2.2) * 5.0 * sway
+	var pts := chaikin(PackedVector2Array([sh, sh + Vector2(-4 + sw * 0.5, 40), sh + Vector2(-2 + sw, 78)]), 3)
+	var n := pts.size()
+	var ws := PackedFloat32Array()
+	for i in n:
+		var u := float(i) / float(n - 1)
+		ws.append(26.0 - 12.0 * u)
+	_tube(c, pts, ws, cl[0], 2.6)
+	_tube(c, pts, ws, cl[1], 0.0)
+	c.draw_line(pts[n / 2], pts[n - 1] + Vector2(3, -6), cl[0], 1.8, true)
 
 
 func _draw_leg(c: Node2D, sd: String) -> void:
@@ -464,6 +494,8 @@ func _hc(sd: String) -> Array:
 
 
 func _draw_palm(c: Node2D, sd: String) -> void:
+	if one_arm and sd == "B":
+		return
 	var hc := _hc(sd)
 	match hand_form[sd]:
 		"nam", "chi":
@@ -476,6 +508,8 @@ func _draw_palm(c: Node2D, sd: String) -> void:
 
 
 func _draw_fingers(c: Node2D, sd: String) -> void:
+	if one_arm and sd == "B":
+		return
 	var hc := _hc(sd)
 	var ln: Color = hc[0]
 	var sk: Color = hc[1]

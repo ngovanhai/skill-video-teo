@@ -2,18 +2,18 @@
 // KHÔNG chép nguyên vào tập: build so dấu vân mặt với file này và với các tập khác, trùng là dừng.
 // Mỗi tập tự viết <dir>/ve.mjs theo kiểu riêng (mắt, mũi, khuôn mặt, miệng khác hẳn); file này chỉ để xem cấu trúc:
 //   nhóm bắt buộc <p>-mat (khuôn mặt + mũi), <p>-ex-<biểu cảm> chứa <p>-mc-/<p>-mo-<biểu cảm>, <p>-blink.
-// Trong tập: mỗi nhân vật khác mặt nhờ trục khuon/mui/mat (cast "mat": {...}) hoặc tự băm theo o.id.
+// Trong tập: mặt từng nhân vật thiết kế theo vai/tính cách trong kịch bản (cast "mat": {...}); băm o.id chỉ là dự phòng. Khuôn mặt luôn tròn.
 // Lớp mắt: lòng trắng (nằm dưới mí) → mống mắt gradient tối trên/sáng dưới → bóng mí → đồng tử → ánh phản xạ đáy → highlight → mí trên dày có đuôi → mi dưới.
 // Viền màu (nâu đỏ ấm), bóng da ngả hồng, má hồng có gạch chéo, tóc chia lọn nhọn tô cel 2 tông + vệt bóng.
 const CX = 150, EY = 182, EX = 47, ERX = 29, ERY = 37;
 const stH = (c, w = 2.6) => `stroke="${dk(c, 0.42)}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`; // viền tóc nhạt, cùng tông
 const LID = "#3A2224";
-// khuôn mặt (trục "khuon"): tròn · trái xoan · cằm nhọn · hàm vuông — cùng trán/thái dương, khác cằm
+// khuôn mặt (trục "khuon"): luôn tròn chibi — tròn · bầu (má phồng) · bánh bao (đáy dẹt) · mochi (thấp, rộng); cấm cằm nhọn/V/vuông/dài
 const FACES = {
   tron: "M150 268 C122 268 60 252 52 190 C44 108 92 58 150 58 C208 58 256 108 248 190 C240 252 178 268 150 268Z",
-  xoan: "M150 278 C118 278 64 250 54 190 C46 108 92 58 150 58 C208 58 254 108 246 190 C236 250 182 278 150 278Z",
-  nhon: "M150 282 C134 278 76 246 56 196 C42 108 92 58 150 58 C208 58 258 108 244 196 C224 246 166 278 150 282Z",
-  vuong: "M150 268 C110 268 62 260 54 214 C46 112 92 58 150 58 C208 58 254 112 246 214 C238 260 190 268 150 268Z",
+  bau: "M150 270 C112 270 52 250 48 192 C44 108 92 58 150 58 C208 58 256 108 252 192 C248 250 188 270 150 270Z",
+  banhbao: "M150 266 C104 266 56 254 52 200 C46 110 92 58 150 58 C208 58 254 110 248 200 C244 254 196 266 150 266Z",
+  mochi: "M150 262 C106 262 50 244 48 196 C46 116 94 66 150 66 C206 66 254 116 252 196 C250 244 194 262 150 262Z",
 };
 // mũi (trục "mui"): chấm · móc (sống mũi cong) · bóng (mảng tối một bên) · hai lỗ mũi
 const NOSES = {

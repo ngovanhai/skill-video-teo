@@ -1,4 +1,4 @@
-# Kho chủ đề Tèo Kiếm Hiệp: kiếm hiệp Trung Quốc kinh điển
+# Kho chủ đề Tèo Kiếm Hiệp: kiếm hiệp Trung Quốc kinh điển + danh tác Trung Quốc (mục 7)
 
 Đây là kho ý tưởng cho video hoạt hình chibi **dài ít nhất 20 phút** (một chủ đề chính ghép với các chủ đề phụ, xem phần 4 và 5). Tèo làm MC, nói về tác giả, tác phẩm, so nhân vật và so võ công.
 
@@ -88,7 +88,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 | Thiên Long Bát Bộ: ba nhân vật chính, ba số phận | Thiên Long Bát Bộ | san-tap | cai-bang + thu-sinh + tang | ba vòng sáng tách ra từ một chữ "Thiên Long" |
 | Tiếu Ngạo Giang Hồ: một khúc nhạc, hai người bạn khác phe | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach (robe #2f6f8f) + nu-hiep (robe #2b2b4b) | nốt nhạc cầm và tiêu quấn vào nhau |
 | Lộc Đỉnh Ký: nhân vật chính không biết võ | Lộc Đỉnh Ký | mai-ngoi | cong-tu (robe #d4a017, hat khan) | chủy thủ sắc chém đôi cái bàn, áo giáp hộ thân bật tung đòn đánh |
-| Liên Thành Quyết: bộ truyện "đen" nhất của Kim Dung | Liên Thành Quyết | quan-tro (dem) | hiep-khach (robe #6b6b6b) | câu thơ Đường hiện ra rồi tách thành con số (bí mật kiếm phổ) |
+| Liên Thành Quyết: bộ truyện "đen" nhất của Kim Dung | Liên Thành Quyết | quan-tro (dem) | hiep-khach (robe #6b6b6b) | câu thơ Đường hiện ra rồi tách thành con số (bí mật kiếm phổ) | (tập 21)
 | Hiệp Khách Hành: người không biết chữ lại giải được bí kíp | Hiệp Khách Hành | ben-song | hiep-khach (robe #a0522d) | chữ trên vách đá biến thành hình nòng nọc nhảy múa |
 | Bích Huyết Kiếm: Kim Xà Lang Quân để lại gì? | Bích Huyết Kiếm | rung-truc | hiep-khach (robe #2e5e4e, weapon kiem) | thanh kiếm cong như con rắn vàng uốn mình |
 | Tuyết Sơn Phi Hồ: cái kết bỏ lửng nổi tiếng | Tuyết Sơn Phi Hồ | nui-tuyet | hiep-khach (robe #8b4513, weapon dao) | đao giơ lên rồi đứng hình; trên màn hình hiện "chém hay không chém?" |
@@ -150,7 +150,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 | Long Phượng Song Hoàn | Đa Tình Kiếm Khách Vô Tình Kiếm | mai-ngoi | lao-quai (robe #b8860b) | hai vòng vàng hoá rồng và phượng xoay quanh nhau |
 | Thuần Dương Vô Cực Kiếm của Yến Nam Thiên ⚠ | Tuyệt Đại Song Kiêu | nui-tuyet | hiep-khach (robe #8b0000, beard, weapon kiem) | kiếm toả hơi nóng làm tuyết tan quanh chân |
 | Bánh xe của Kim Luân Pháp Vương | Thần Điêu Hiệp Lữ | san-tap | tang (robe #b8860b, hat troc, weapon none) | năm bánh xe kim loại bay vòng như đĩa ⚠ (số bánh, chất liệu) |
-| Huyết Đao | Liên Thành Quyết | nui-tuyet | lao-quai (robe #6b0000, hat troc) | thanh đao mềm cong như rắn đỏ (không có máu) |
+| Huyết Đao | Liên Thành Quyết | nui-tuyet | lao-quai (robe #6b0000, hat troc) | thanh đao mềm cong như rắn đỏ (không có máu) | (tập 21)
 
 ### 1.8 `giai-ma`: bí ẩn / vì sao
 
@@ -158,7 +158,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 |---|---|---|---|---|
 | Vì sao lão tăng quét lá Tảo Địa Tăng mạnh nhất Thiên Long? (tập 6) | Thiên Long Bát Bộ | san-tap | tang (robe #7a6a4f, hat troc, weapon gay, beard) | lá rơi đứng lại giữa không trung khi ông quét |
 | Tịch Tà Kiếm Phổ và Quỳ Hoa Bảo Điển có chung gốc? | Tiếu Ngạo Giang Hồ | mai-ngoi (dem) | cong-tu (robe #c2185b) | hai cuốn sách bay chồng lên nhau, khớp từng trang |
-| Bên trong Ỷ Thiên Kiếm và Đồ Long Đao giấu gì? | Ỷ Thiên Đồ Long Ký ⚠ ghi bản | nui-tuyet | hiep-khach | cuộn giấy mở ra, chữ mờ trên màn hình (không ghi nội dung) |
+| Bên trong Ỷ Thiên Kiếm và Đồ Long Đao giấu gì? | Ỷ Thiên Đồ Long Ký ⚠ ghi bản | nui-tuyet | hiep-khach | cuộn giấy mở ra, chữ mờ trên màn hình (không ghi nội dung) | (tập 7)
 | Vì sao Lục Mạch Thần Kiếm của Đoàn Dự lúc được lúc không? | Thiên Long Bát Bộ | rung-truc | thu-sinh (weapon none) | sáu ngón tay chập chờn như bóng đèn sắp hỏng |
 | Vì sao Đoàn Dự uống rượu không say? | Thiên Long Bát Bộ | quan-tro | thu-sinh + cai-bang | rượu chảy ra từ đầu ngón út thành dòng nhỏ |
 | Vương Ngữ Yên thuộc làu bí kíp, sao không đánh được? | Thiên Long Bát Bộ | ben-song | nu-hiep (robe #f8d7e0, weapon none) | sách bay quanh đầu, mắt hiện chữ "biết nhưng không làm được" |
@@ -166,7 +166,7 @@ Ký hiệu trong bảng: `A vs B` là preset của bên A rồi bên B. Override
 | Ai viết Cửu Âm Chân Kinh? (tập 4) | Xạ Điêu / Thần Điêu | mai-ngoi | thu-sinh (robe #3a3a5a, beard) | ông quan đọc sách đạo tạng, chữ bay thành chiêu thức |
 | Hàng Long "Thập Bát" Chưởng vốn có 28 chưởng? (tập 1) | Thiên Long Bát Bộ, **bản tân tu** ⚠ | nui-tuyet | cai-bang + tang | 28 con rồng nhỏ nhập lại thành 18 con rồng lớn |
 | Sư phụ thật của Hư Trúc là ai? | Thiên Long Bát Bộ | rung-truc | tang (hat troc) + lao-quai (robe #f0f0f0, beard) | ván cờ Trân Lung, một nước đi tự lấp mắt cờ lại mở ra cả ván |
-| Vì sao Kim Mao Sư Vương Tạ Tốn bị mù? | Ỷ Thiên Đồ Long Ký | nui-tuyet | lao-quai (robe #c8a040, beard) | bờm vàng tung bay, tiếng gầm Sư Tử Hống thành vòng sóng âm |
+| Vì sao Kim Mao Sư Vương Tạ Tốn bị mù? | Ỷ Thiên Đồ Long Ký | nui-tuyet | lao-quai (robe #c8a040, beard) | bờm vàng tung bay, tiếng gầm Sư Tử Hống thành vòng sóng âm | (tập 7)
 | Ai là cô gái áo vàng trong Ỷ Thiên? | Ỷ Thiên Đồ Long Ký | mai-ngoi | nu-hiep (robe #f0c419) | bóng chim điêu lướt qua phía sau cô gái (gợi ý, không khẳng định) |
 | "Phá Toái Hư Không" nghĩa là gì? | Hoàng Dịch | nui-tuyet | cao-thu | bầu trời nứt như kính rồi ghép lại |
 | Vì sao Đoàn Dự cưới ai thì tuỳ bản? | Thiên Long Bát Bộ: **bản sửa** vs **bản tân tu** | mai-ngoi | thu-sinh + nu-hiep ×3 | hai cuốn sách mở ra hai cái kết song song |
@@ -239,8 +239,8 @@ Luôn ghi "giả tưởng" trên màn hình. Mỗi tập chỉ đổi đúng **m
 | Quách Tĩnh – Hoàng Dung: chàng ngốc và cô gái thông minh nhất | Xạ Điêu Anh Hùng Truyện | ben-song | hiep-khach + nu-hiep (robe #6fa86f) | bóng đèn ý tưởng bật trên đầu Hoàng Dung, dấu chấm hỏi trên đầu Quách Tĩnh |
 | Lệnh Hồ Xung – Nhậm Doanh Doanh: khúc nhạc kết duyên (tập 10) | Tiếu Ngạo Giang Hồ | rung-truc | hiep-khach + nu-hiep (robe #2b2b4b) | nốt nhạc cầm và tiêu thành hình trái tim |
 | Tiêu Phong – A Châu: lời hẹn ngoài quan ải | Thiên Long Bát Bộ | nui-tuyet | cai-bang + nu-hiep (robe #f8c8a0) | hai con ngựa đi về phía hoàng hôn (không vẽ cảnh buồn) |
-| Trương Vô Kỵ và bốn cô gái: chọn ai? | Ỷ Thiên Đồ Long Ký | mai-ngoi | hiep-khach + 4× nu-hiep | bốn cánh hoa, mỗi cánh một cái tên |
-| Đoàn Dự: Vương Ngữ Yên hay Mộc Uyển Thanh? (theo bản) | Thiên Long Bát Bộ **bản sửa vs tân tu** | ben-song | thu-sinh + nu-hiep ×2 | hai cái kết lật như trang sách |
+| Trương Vô Kỵ và bốn cô gái: chọn ai? | Ỷ Thiên Đồ Long Ký | mai-ngoi | hiep-khach + 4× nu-hiep | bốn cánh hoa, mỗi cánh một cái tên | (video 1 tiếng tinh-ai-kim-dung, lời 2026-10-28)
+| Đoàn Dự: Vương Ngữ Yên hay Mộc Uyển Thanh? (theo bản) | Thiên Long Bát Bộ **bản sửa vs tân tu** | ben-song | thu-sinh + nu-hiep ×2 | hai cái kết lật như trang sách | (video 1 tiếng tinh-ai-kim-dung, lời 2026-10-28)
 | Trác Nhất Hàng – Luyện Nghê Thường: tóc bạc vì một lời nghi ngờ | Bạch Phát Ma Nữ Truyện | nui-tuyet | dao-si + nu-hiep (robe #ffffff) | tóc chuyển trắng dần, hoa trên đỉnh núi nở |
 | Lục Tiểu Phụng – Tiết Băng ⚠ | Lục Tiểu Phụng | ben-song | hiep-khach + nu-hiep | quả ớt đỏ (tính nóng) nhảy tưng tưng |
 | Top 5 cặp đôi "khổ" nhất Kim Dung | Kim Dung | ben-song | nhiều | thanh "độ khổ" tăng dần theo hạng |
@@ -265,7 +265,7 @@ Kể vì sao họ thành phản diện. Không cổ vũ cái ác, và kết luô
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
 | Nhạc Bất Quần: "Quân Tử Kiếm" mà không quân tử | Tiếu Ngạo Giang Hồ | nui-tuyet | su-phu (robe #6a5acd, weapon kiem) | chữ "Quân Tử" trên cây quạt bị gạch chéo |
-| Mộ Dung Phục: giấc mộng phục quốc | Thiên Long Bát Bộ | ben-song | cong-tu (robe #4a6fa5, weapon kiem) | vương miện giấy bị gió thổi bay |
+| Mộ Dung Phục: giấc mộng phục quốc (tập 17) | Thiên Long Bát Bộ | ben-song | cong-tu (robe #4a6fa5, weapon kiem) | vương miện giấy bị gió thổi bay |
 | Âu Dương Phong: luyện ngược Cửu Âm đến mất trí | Xạ Điêu | nui-tuyet | lao-quai (weapon gay) | chữ trong bí kíp lộn ngược, ông đi bằng tay |
 | Đinh Xuân Thu: thích được tung hô | Thiên Long Bát Bộ | rung-truc | lao-quai (robe #2e4b2e, beard) | đệ tử thổi kèn, lời tung hô nổ thành pháo giấy |
 | Thành Côn: kẻ giật dây sau thảm kịch nhà Tạ Tốn | Ỷ Thiên Đồ Long Ký | mai-ngoi (dem) | tang (robe #4a4a4a, hat troc) | sợi dây rối nối xuống các nhân vật chibi |
@@ -292,13 +292,13 @@ Không dùng ảnh hay cảnh quay từ phim. Chỉ nói tên phim, năm, diễn
 
 | chủ đề | tác phẩm / tác giả | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|
-| Xếp 15 bộ Kim Dung theo dòng thời gian lịch sử | Kim Dung | mai-ngoi | thu-sinh (Kim Dung) | thanh thời gian chạy từ Xuân Thu đến nhà Thanh, sách cắm vào từng mốc |
+| Xếp 15 bộ Kim Dung theo dòng thời gian lịch sử | Kim Dung | mai-ngoi | thu-sinh (Kim Dung) | thanh thời gian chạy từ Xuân Thu đến nhà Thanh, sách cắm vào từng mốc | (tập 11)
 | Xạ Điêu tam bộ khúc: 100 năm, ba thế hệ | Xạ Điêu / Thần Điêu / Ỷ Thiên | nui-tuyet | hiep-khach ×3 | cây gia phả mọc nhánh qua ba cuốn sách |
 | Đả Cẩu Bổng truyền qua bao đời bang chủ? | Thiên Long → Xạ Điêu → Thần Điêu → Ỷ Thiên ⚠ | quan-tro | cai-bang ×n | cây gậy chuyền tay như gậy tiếp sức |
-| Hàng Long Thập Bát Chưởng truyền qua những ai? | Thiên Long → Ỷ Thiên ⚠ | nui-tuyet | cai-bang, hiep-khach | rồng vàng bay qua từng thế hệ |
+| Hàng Long Thập Bát Chưởng truyền qua những ai? | Thiên Long → Ỷ Thiên ⚠ | nui-tuyet | cai-bang, hiep-khach | rồng vàng bay qua từng thế hệ | (tập 11)
 | Cửu Âm Chân Kinh đi qua tay bao nhiêu người? | Xạ Điêu → Ỷ Thiên | mai-ngoi | nhiều | cuốn sách nhảy từ tay người này sang tay người kia |
 | Hậu duệ Quách Tĩnh ở đâu trong Ỷ Thiên? (Quách Tương, Nga Mi) | Thần Điêu / Ỷ Thiên | san-tap | nu-hiep (robe #f0c419) | cây gia phả rẽ sang chữ "Nga Mi" |
-| Cầu nối Thiên Long – Xạ Điêu: Nhất Dương Chỉ của họ Đoàn | Thiên Long / Xạ Điêu | ben-song | thu-sinh → tang | ngón tay sáng truyền từ ông sang cháu |
+| Cầu nối Thiên Long – Xạ Điêu: Nhất Dương Chỉ của họ Đoàn | Thiên Long / Xạ Điêu | ben-song | thu-sinh → tang | ngón tay sáng truyền từ ông sang cháu | (tập 11)
 | Tiếu Ngạo nằm ở thời nào khi truyện không ghi rõ? | Tiếu Ngạo Giang Hồ | nui-tuyet | hiep-khach | thám tử Tèo soi kính lúp vào các manh mối |
 
 ### 1.17 `chieu-thuc`: giải nghĩa tên chiêu, tên võ công (tạm dùng: `so-vo` hoặc `giai-ma`)
@@ -342,7 +342,7 @@ Dữ kiện dưới đây đã đối chiếu qua kết quả tìm kiếm (≥2 
 | Trần Cận Nam, Khang Hi → Vi Tiểu Bảo: võ kém nhất nhưng thạo Thần Hành Bách Biến do Cửu Nạn (Trưởng công chúa Trường Bình, Độc Tý Thần Ni) dạy, thoát chết vô số lần. **Dạng "Bát Giới" rõ nhất** | Lộc Đỉnh Ký | quan-tro | thu-sinh (robe #c94f2b) + tang (nữ ni) | Vi Tiểu Bảo hoá thành năm bóng mờ chạy năm hướng |
 | Quách Tĩnh → Kha Trấn Ác: mù, đại ca Giang Nam Thất Quái, thiết trượng và Độc Lăng, nghe tiếng nhận người, thầy đầu tiên của Quách Tĩnh | Xạ Điêu Anh Hùng Truyện | quan-tro | lao-quai (weapon gay, mắt nhắm) | vòng sóng âm lan ra, kẻ địch hiện thành bóng đỏ |
 | Các cao thủ biết chữ → Thạch Phá Thiên: không biết chữ nên nhìn hình trong 24 phòng đá đảo Hiệp Khách mà luyện thành Thái Huyền Kinh, trong khi người khác mải giải thơ Lý Bạch | Hiệp Khách Hành | nui-tuyet | hiep-khach (robe #8d6e63) | chữ thơ trên vách tan thành nòng nọc, bơi vào kinh mạch |
-| Nhân vật chính "chuẩn" → Địch Vân: được Đinh Điển dạy nội công trong ngục ⚠ tên "Thần Chiếu Kinh" cần kiểm thêm nguồn | Liên Thành Quyết | mai-ngoi (dem) | hiep-khach (robe #5d4037) | song sắt cong dần dưới luồng khí |
+| Nhân vật chính "chuẩn" → Địch Vân: được Đinh Điển dạy nội công trong ngục ⚠ tên "Thần Chiếu Kinh" cần kiểm thêm nguồn | Liên Thành Quyết | mai-ngoi (dem) | hiep-khach (robe #5d4037) | song sắt cong dần dưới luồng khí | (tập 21)
 | Lục Tiểu Phụng → Tư Không Trích Tinh: khinh công và cải trang bậc nhất ("vua trộm" là cách gọi phổ biến, chưa thấy nguồn ghi nguyên văn) | Lục Tiểu Phụng / Cổ Long | mai-ngoi | cong-tu + thu-sinh | mặt nạ thay liên tục, mỗi lần một khuôn mặt |
 | Lục Tiểu Phụng, Tây Môn Xuy Tuyết → Hoa Mãn Lâu: mù nhưng cảm nhận rất tinh, võ cao, ghét bạo lực | Lục Tiểu Phụng / Cổ Long | ben-song | cong-tu (robe #fafafa, weapon quat) | hoa nở theo hướng tiếng động, chỉ đúng chỗ kẻ địch |
 | Sở Lưu Hương → Hồ Thiết Hoa, Cơ Băng Nhạn: hai bạn thân luôn cứu nguy | Sở Lưu Hương / Cổ Long | ben-song | hiep-khach + cong-tu | bình rượu lăn tới, chèo thuyền lướt sóng |
@@ -510,8 +510,8 @@ Mỗi gói gồm 1 chủ đề chính và các chủ đề phụ lấy từ các
 | 10 thần binh Kim Dung | binh-khi | Ỷ Thiên vs Đồ Long (1.7) | Huyền Thiết Trọng Kiếm · Kiếm Trủng · Đả Cẩu Bổng · Kim Xà Kiếm · Quân Tử/Thục Nữ Kiếm · Huyết Đao (đều ở 1.7) |
 | Cổ Long: người viết của những kẻ cô độc | tac-gia | Cổ Long (1.3) | Lý Tầm Hoan (1.9) · Tây Môn Xuy Tuyết vs Diệp Cô Thành (1.1) · Sở Lưu Hương vs Lục Tiểu Phụng (1.1) · Thất Chủng Vũ Khí (1.7) | (tập 5)
 | Kim Dung và lịch sử thật | su-that | Khâu Xứ Cơ, Thành Cát Tư Hãn (1.10) | Đoàn Dự vua Đại Lý · Nhất Đăng · Khang Hi – Vi Tiểu Bảo · Hốt Tất Liệt (đều ở 1.10) |
-| Vũ trụ Kim Dung theo dòng thời gian | dong-thoi-gian | 15 bộ theo lịch sử (1.16) | Xạ Điêu tam bộ khúc · Đả Cẩu Bổng qua các đời · Cửu Âm qua tay ai · hậu duệ Quách Tĩnh (đều ở 1.16) |
-| Phản diện Kim Dung: vì sao họ thành ác? | phan-dien | Top 5 phản diện đáng thương (1.14) | Nhạc Bất Quần · Mộ Dung Phục · Âu Dương Phong · Thành Côn (đều ở 1.14) |
+| Vũ trụ Kim Dung theo dòng thời gian | dong-thoi-gian | 15 bộ theo lịch sử (1.16) | Xạ Điêu tam bộ khúc · Đả Cẩu Bổng qua các đời · Cửu Âm qua tay ai · hậu duệ Quách Tĩnh (đều ở 1.16) | (tập 11)
+| Phản diện Kim Dung: vì sao họ thành ác? | phan-dien | Top 5 phản diện đáng thương (1.14) | Nhạc Bất Quần · Mộ Dung Phục · Âu Dương Phong · Thành Côn (đều ở 1.14) | (tập 15: Nhạc Bất Quần, loạt Ngụy quân tử)
 | Thiếu Lâm vs Võ Đang (tập 8) | mon-phai | Thiếu Lâm vs Võ Đang (1.6) | Tảo Địa Tăng (1.8) · Trương Tam Phong (1.9) · Thái Cực Quyền vs Thất Thương Quyền (1.2) · 72 tuyệt kỹ (1.2) |
 | Ngũ đại tông sư võ hiệp | tac-gia | Ngũ đại tông sư (1.3) | Lương Vũ Sinh · Ôn Thuỵ An · Ngoạ Long Sinh · trận tỷ võ Ma Cao 1954 (đều ở 1.3) |
 | Những cặp đôi giang hồ | cap-doi | Top 5 cặp đôi khổ nhất (1.12) | Dương Quá – Tiểu Long Nữ · Quách Tĩnh – Hoàng Dung · Lệnh Hồ Xung – Doanh Doanh · Trác Nhất Hàng – Luyện Nghê Thường (đều ở 1.12) |
@@ -549,8 +549,8 @@ Một chủ đề lớn chia thành nhiều tập, mỗi tập là một phần.
 | Tier list phản diện Kim Dung | P1 "ác lộ mặt": Âu Dương Phong, Đinh Xuân Thu, Tạ Tốn (thời điên), Lý Mạc Sầu… · P2 "nguỵ quân tử, ác giấu mặt": Nhạc Bất Quần, Thành Côn, Tả Lãnh Thiền, Mộ Dung Phục, Toàn Quán Thanh… | Phản diện Kim Dung P2: Ai ác nhất? \| Tèo Kể | mai-ngoi (dem) | lao-quai, cong-tu, chuong-quy, tang | mặt nạ hiền rơi xuống, thẻ trượt vào hàng tier |
 | Tier list nữ nhân Kim Dung | P1 xếp theo võ công: Tiểu Long Nữ, Hoàng Dung, Đông Phương Bất Bại (⚠ nói rõ thân phận), Thiên Sơn Đồng Lão, Lý Thu Thuỷ, Triệu Mẫn… · P2 xếp theo trí tuệ và tình cảm | Nữ cao thủ Kim Dung P1: Ai hạng S? \| Tèo Kể | ben-song | nu-hiep (nhiều màu robe) | cánh hoa xoáy, thẻ bay vào hàng tier |
 | Xếp hạng cao thủ Cổ Long | P1 kiếm khách: Tây Môn Xuy Tuyết, Diệp Cô Thành, Yến Thập Tam, Tạ Hiểu Phong, A Phi · P2 phi đao, khinh công, kỳ nhân: Lý Tầm Hoan, Sở Lưu Hương, Lục Tiểu Phụng, Thượng Quan Kim Hồng… | Cao thủ Cổ Long P1: Kiếm ai nhanh nhất? \| Tèo Kể | rung-truc, cau-go | cong-tu, hiep-khach, cao-thu | một đường chớp sáng, đồng hồ bấm giờ dừng ở 0,01 giây |
-| Bí kíp Kim Dung bị tranh giành | P1 Cửu Âm, Cửu Dương, Dịch Cân Kinh · P2 Tịch Tà, Quỳ Hoa, Liên Thành kiếm phổ, Tứ Thập Nhị Chương Kinh | Bí kíp Kim Dung P1: Cuốn nào gây hoạ nhất? \| Tèo Kể | quan-tro | thu-sinh, lao-quai, tang | cuốn sách bị mười bàn tay giằng co, giấy bay lả tả |
-| Thần thú và kỳ vật Kim Dung | P1 thần thú: chim điêu, Mãng Cổ Chu Cáp, ong ngọc, rắn của Âu Dương Phong… · P2 kỳ vật: Thông Tê Địa Long Hoàn, Hắc Ngọc Đoạn Tục Cao, Thất Thương Quyền phổ… ⚠ | Thần thú Kim Dung P1: Con nào mạnh nhất? \| Tèo Kể | rung-truc | — (thú chibi vẽ bằng fx) | thú chibi nhảy vào bảng tier |
+| Bí kíp Kim Dung bị tranh giành | P1 Cửu Âm, Cửu Dương, Dịch Cân Kinh · P2 Tịch Tà, Quỳ Hoa, Liên Thành kiếm phổ, Tứ Thập Nhị Chương Kinh | Bí kíp Kim Dung P1: Cuốn nào gây hoạ nhất? \| Tèo Kể | quan-tro | thu-sinh, lao-quai, tang | cuốn sách bị mười bàn tay giằng co, giấy bay lả tả | (tập 21: Liên Thành kiếm phổ, mở loạt "Bí kíp gây hoạ Kim Dung")
+| Thần thú và kỳ vật Kim Dung | P1 thần thú: chim điêu, Mãng Cổ Chu Cáp, ong ngọc, rắn của Âu Dương Phong… · P2 kỳ vật: Thông Tê Địa Long Hoàn, Hắc Ngọc Đoạn Tục Cao, Thất Thương Quyền phổ… ⚠ | Thần thú Kim Dung P1: Con nào mạnh nhất? \| Tèo Kể | rung-truc | — (thú chibi vẽ bằng fx) | thú chibi nhảy vào bảng tier | (tập 24: chim điêu của Dương Quá, mở loạt "Thần thú Kim Dung") (tập 25: Mãng Cổ Chu Cáp của Đoàn Dự, phần 2/3)
 | Bang chủ Cái Bang qua các đời | P1 Uông Kiếm Thông, Tiêu Phong · P2 Hồng Thất Công, Hoàng Dung, Lỗ Hữu Cước, Sử Hoả Long… ⚠ | Bang chủ Cái Bang P1: Từ Tiêu Phong \| Tèo Kể | quan-tro | cai-bang | Đả Cẩu Bổng chuyền tay từ người này sang người khác |
 
 ### 6.2 Dàn ý một phần tier list (~22 phút)
@@ -575,12 +575,12 @@ Công thức tiêu đề: **[Toàn bộ / Xếp hạng / Tier list] + [nhóm đ�
 | series | các phần (mỗi phần ≥20 phút) | tiêu đề mẫu (≤60 ký tự) | set | preset gợi ý | ý hiệu ứng local |
 |---|---|---|---|---|---|
 | Xếp hạng cao thủ từng bộ Kim Dung | mỗi bộ một phần, top 10 trong bộ đó: P1 Thiên Long · P2 Xạ Điêu · P3 Thần Điêu · P4 Ỷ Thiên · P5 Tiếu Ngạo · P6 Lộc Đỉnh Ký (hạng "võ kém nhất" có Vi Tiểu Bảo) | Top 10 Thiên Long Bát Bộ: Kiều Phong hạng mấy? \| Tèo Kể | theo bộ (mục 3) | theo nhân vật (mục 2) | bìa sách mở ra, 10 thẻ xếp thành tháp |
-| Toàn bộ "nhóm số" trong Kim Dung | P1 Ngũ Tuyệt, Toàn Chân Thất Tử, Giang Nam Thất Quái · P2 Tứ Đại Ác Nhân, Mai Trang Tứ Hữu, Đào Cốc Lục Tiên · P3 Võ Đang Thất Hiệp, Tứ Đại Hộ Giáo Pháp Vương, Ngũ Tản Nhân (Minh Giáo) ⚠ | Tứ Đại Ác Nhân và các "bộ số" Kim Dung \| Tèo Kể | san-tap, quan-tro | nhóm chibi cùng preset, khác màu robe | con số lớn (4, 5, 7) đập xuống đất, từng người nhảy ra từ con số |
+| Toàn bộ "nhóm số" trong Kim Dung | P1 Ngũ Tuyệt, Toàn Chân Thất Tử, Giang Nam Thất Quái · P2 Tứ Đại Ác Nhân, Mai Trang Tứ Hữu, Đào Cốc Lục Tiên · P3 Võ Đang Thất Hiệp, Tứ Đại Hộ Giáo Pháp Vương, Ngũ Tản Nhân (Minh Giáo) ⚠ | Tứ Đại Ác Nhân và các "bộ số" Kim Dung \| Tèo Kể | san-tap, quan-tro | nhóm chibi cùng preset, khác màu robe | con số lớn (4, 5, 7) đập xuống đất, từng người nhảy ra từ con số | (tập 12: Giang Nam Thất Quái; tập 13: Tứ Đại Ác Nhân; tập 14: Võ Đang Thất Hiệp)
 | Tier list sư phụ Kim Dung | P1 thầy giỏi: Hồng Thất Công, Phong Thanh Dương, Trương Tam Phong, Vô Nhai Tử… · P2 thầy "có vấn đề": Nhạc Bất Quần, Đinh Xuân Thu, Giang Nam Thất Quái (dạy dở mà trò thành tài), Âu Dương Phong | Sư phụ Kim Dung: Ai dạy giỏi nhất? \| Tèo Kể | san-tap | su-phu, lao-quai, cai-bang, dao-si | thước kẻ gõ "cốc", điểm số hiện trên bảng đen |
 | Xếp hạng độ "hên" nhân vật chính | P1 cơ duyên trời cho: Hư Trúc, Đoàn Dự, Trương Vô Kỵ · P2 cơ duyên tự giành: Dương Quá, Lệnh Hồ Xung, Quách Tĩnh, Vi Tiểu Bảo | Hư Trúc hạng S nhờ may? Top độ hên Kim Dung \| Tèo Kể | rung-truc | tang, thu-sinh, hiep-khach | cỏ bốn lá và mưa vàng rơi trúng đầu |
 | Cao thủ ẩn dật: ít xuất hiện mà mạnh nhất | P1 Tảo Địa Tăng, Phong Thanh Dương, Độc Cô Cầu Bại (chỉ còn kiếm trủng), Hoàng Thường · P2 Vô Danh Lão Tăng khác, Thiên Sơn Đồng Lão, Vô Nhai Tử, Lâm Triều Anh ⚠ | Cao thủ ẩn dật Kim Dung: Ai trên Tảo Địa Tăng? \| Tèo Kể | rung-truc (dem) | tang, su-phu, lao-quai | bóng người mờ dần trong sương, chỉ còn đôi mắt |
 | Tier list ngoại hiệu (biệt danh) | P1 tứ phương: Đông Tà, Tây Độc, Nam Đế, Bắc Cái, Trung Thần Thông · P2 biệt danh "ngầu" và "hài": Kim Mao Sư Vương, Thanh Dực Bức Vương, Tử Sam Long Vương, Bạch Mi Ưng Vương, Nam Hải Ngạc Thần, Lão Ngoan Đồng… | Biệt danh Kim Dung: Cái tên nào ngầu nhất? \| Tèo Kể | quan-tro | theo nhân vật | chữ thư pháp viết dần ra, rồi đóng dấu đỏ |
-| Toàn bộ quân sư, kẻ mưu trí Kim Dung | P1 Hoàng Dung, Triệu Mẫn, Vi Tiểu Bảo · P2 mưu sĩ phản diện: Nhạc Bất Quần, Thành Côn, Tả Lãnh Thiền, Mộ Dung Bác | Ai mưu trí nhất Kim Dung? Hoàng Dung hạng mấy? \| Tèo Kể | mai-ngoi | nu-hiep, cong-tu, lao-quai | bàn cờ vây, mỗi nước đi là một mưu kế |
+| Toàn bộ quân sư, kẻ mưu trí Kim Dung | P1 Hoàng Dung, Triệu Mẫn, Vi Tiểu Bảo · P2 mưu sĩ phản diện: Nhạc Bất Quần, Thành Côn, Tả Lãnh Thiền, Mộ Dung Bác | Ai mưu trí nhất Kim Dung? Hoàng Dung hạng mấy? \| Tèo Kể | mai-ngoi | nu-hiep, cong-tu, lao-quai | bàn cờ vây, mỗi nước đi là một mưu kế | (tập 28: Hoàng Dung, mở loạt "Mưu trí Kim Dung"; tập 29: Triệu Mẫn; tập 30: Vi Tiểu Bảo, đóng loạt — bảy mưu đối chiếu truyện kể / sử chép)
 | Tier list khinh công Kim Dung và Cổ Long | P1 Kim Dung: Lăng Ba Vi Bộ, Thê Vân Tung, Đông Phương Bất Bại… · P2 Cổ Long: Sở Lưu Hương, Lục Tiểu Phụng, Tư Không Trích Tinh | Ai chạy nhanh nhất kiếm hiệp? Top khinh công \| Tèo Kể | rung-truc, mai-ngoi | thu-sinh, cong-tu, dao-si | đồng hồ bấm giờ và vệt bóng mờ |
 | Tier list khoảnh khắc buồn nhất Kim Dung | P1 Tiêu Phong – A Châu, Dương Quá chờ 16 năm, Hồng Thất Công và Âu Dương Phong · P2 Tiểu Chiêu sang Ba Tư, Lệnh Hồ Xung và Tiểu sư muội, Đoàn Dự và chuyện thân thế | Khoảnh khắc buồn nhất Kim Dung: Hạng S là? \| Tèo Kể | nui-tuyet, ben-song | theo nhân vật | tuyết rơi chậm, màu nhạt dần thành đen trắng |
 | Thế giới Kim Dung theo bản đồ | P1 Trung Nguyên: Tung Sơn, Hoa Sơn, Võ Đang · P2 phương Nam và biển: Đại Lý, Đào Hoa Đảo, Linh Xà Đảo, Băng Hoả Đảo · P3 biên cương: Liêu, Mông Cổ, Tây Vực, Thiên Sơn | Bản đồ Kim Dung P1: Trung Nguyên \| Tèo Kể | theo vùng (mục 3) | theo vùng | bản đồ giấy cuộn mở, ghim đỏ cắm từng nơi |
@@ -588,4 +588,43 @@ Công thức tiêu đề: **[Toàn bộ / Xếp hạng / Tier list] + [nhóm đ�
 | Toàn bộ cao thủ dùng độc | P1 Âu Dương Phong, Đinh Xuân Thu, Lý Mạc Sầu · P2 cao thủ y thuật giải độc: Trình Linh Tố, Hồ Thanh Ngưu, Bình Nhất Chỉ (chỉ kể chuyện, không hướng dẫn) | Độc vương Kim Dung: Ai đáng sợ nhất? \| Tèo Kể | rung-truc (dem) | lao-quai, nu-hiep, thu-sinh | khói xanh lan ra, chibi ho sặc rồi ngồi bệt (không gục chết) |
 | Hỗn chiến Kim Dung vs Cổ Long (giả tưởng) | P1 kiếm: Lệnh Hồ Xung, Độc Cô Cầu Bại vs Tây Môn Xuy Tuyết, Yến Thập Tam · P2 chưởng, ám khí: Kiều Phong vs Lý Tầm Hoan… | Kim Dung vs Cổ Long P1: Kiếm ai thắng? \| Tèo Kể | san-tap, cau-go | hiep-khach, cong-tu, cao-thu | màn hình chia đôi đỏ – xanh, thanh máu kiểu game |
 | Xếp hạng đồ đệ "vượt mặt thầy" | P1 Quách Tĩnh vượt Giang Nam Thất Quái, Lệnh Hồ Xung vượt Nhạc Bất Quần · P2 Dương Quá, Trương Vô Kỵ, Hư Trúc | Đồ đệ vượt thầy: Ai giỏi hơn sư phụ nhất? \| Tèo Kể | san-tap | su-phu + hiep-khach | mũi tên tăng trưởng, thẻ trò vượt lên trên thẻ thầy |
+| Thần y Kim Dung (loạt 3 tập) | P1 Hồ Thanh Ngưu, Điệp Cốc Y Tiên, thấy chết không cứu, Trương Vô Kỵ học y · P2 Bình Nhất Chỉ (Tiếu Ngạo): cứu một người giết một người · P3 Trình Linh Tố (Phi Hồ Ngoại Truyện) hoặc Tiết Mộ Hoa (Thiên Long) | Trương Vô Kỵ Học Y Từ Kẻ Thấy Chết Không Cứu \| Tèo Kể | rung-truc | thu-sinh, nu-hiep, lao-quai | sổ ép hoa, bướm ghim kim / rút kim | (tập 18: Hồ Thanh Ngưu) (tập 19: Bình Nhất Chỉ) (tập 20: Tiết Mộ Hoa)
 | Tier list võ công và nhân vật bị xem thường | P1 Kim Dung: Đả Cẩu Bổng, Nhất Dương Chỉ, Lăng Ba Vi Bộ, Thần Hành Bách Biến, Hư Trúc, Kha Trấn Ác… · P2 Cổ Long và Ôn Thuỵ An: A Phi, Hoa Mãn Lâu, Tư Không Trích Tinh, Vô Tình… (lấy từ 1.18) | Võ công bị xem thường P1: 36 phép mà vẫn mạnh \| Tèo Kể | san-tap, quan-tro | theo nhân vật (1.18) | thẻ "hạng C" bị lật lại, bên dưới là chữ S phát sáng |
+
+| Bí kíp gây hoạ Kim Dung (loạt 3 tập) | P1 Liên Thành kiếm phổ (Liên Thành Quyết) · P2 Thái Huyền Kinh trên vách đảo Hiệp Khách (Hiệp Khách Hành) · P3 Tứ Thập Nhị Chương Kinh (Lộc Đỉnh Ký) | Liên Thành Quyết: Kiếm Phổ Khiến Ba Trò Giết Thầy \| Tèo Kể | quan-tro, ben-song | thu-sinh, hiep-khach, lao-quai | cuốn sách in ván, khuyên son từng chữ | (tập 21: Liên Thành kiếm phổ) (tập 22: Thái Huyền Kinh)
+---
+
+## 7. Danh tác Trung Quốc ngoài kiếm hiệp (user cho phép 2026-10-28)
+
+Kênh Tèo Tửu Lâu làm cả **mọi tác phẩm nổi tiếng Trung Quốc**, không chỉ kiếm hiệp: Tam Quốc Diễn Nghĩa, Thủy Hử, Tây Du Ký,
+Phong Thần Diễn Nghĩa, Liêu Trai Chí Dị, Hồng Lâu Mộng… Vẫn khung Tèo kể, chibi, ≥20 phút, loạt 3 tập.
+
+**Luật riêng:**
+- **Truyện ≠ sử.** Tam Quốc Diễn Nghĩa (La Quán Trung) và Thủy Hử dựa trên người thật. Mỗi chi tiết phải nói rõ là "truyện kể"
+  hay "sử chép" (Tam Quốc Chí của Trần Thọ; Tống sử). Góc "sự thật về…", "có thật không" là góc người xem hay tìm nhất.
+- **Phim ≠ truyện.** Người Việt biết các bộ này chủ yếu qua phim (Tây Du Ký 1986, Tam Quốc 1994/2010, Thủy Hử 1998). Chi tiết chỉ có
+  trong phim thì ghi "trong phim".
+- Không dùng hình hay nhạc của phim; nhân vật dựng chibi như mọi tập.
+- Tây Du Ký: tập 27 đã làm "Ngộ Không thua yêu quái", không lặp góc đó.
+
+**Từ khoá đo ngày 28/10 (tu-khoa.py, điểm chỉ so trong cùng lượt):** "81 kiếp nạn tây du ký" 137 · "tổng hợp 81 kiếp nạn" 112 ·
+"ai mạnh nhất tam quốc" 127 · "108 anh hùng lương sơn" 104 · "108 anh hùng lương sơn bạc có thật không" 55 · "liêu trai chí dị" 78 ·
+"sự thật về triệu vân", "quan vũ bại trận", "vì sao lữ bố chết", "võ tòng có thật không", "lâm xung uất ức chết", "phong thần bảng là gì".
+
+| chủ đề | tác phẩm | góc |
+|---|---|---|
+| Triệu Vân: truyện tô vẽ bao nhiêu? | Tam Quốc | diễn nghĩa vs Tam Quốc Chí |
+| Quan Vũ: những trận thua truyện giấu đi | Tam Quốc | truyện vs sử |
+| Lữ Bố mạnh cỡ nào, vì sao chết | Tam Quốc | ai mạnh nhất |
+| Ai mạnh nhất Tam Quốc: xếp hạng võ tướng | Tam Quốc | top, luật chấm công khai |
+| Tào Tháo: gian hùng hay bị bôi đen (tập 31) | Tam Quốc | truyện vs sử |
+| Tống Giang có tên trong sử nhà Tống | Thủy Hử | có thật không |
+| Võ Tòng đánh hổ có thật không | Thủy Hử | có thật không |
+| Lâm Xung và Cao Cầu (Cao Cầu là người thật) | Thủy Hử | oan khuất |
+| 108 anh hùng: ai chết thế nào | Thủy Hử | đếm 1→108 |
+| Đếm lại 81 kiếp nạn | Tây Du Ký | bộ đếm, nạn cuối do Quan Âm thêm |
+| Huyền Trang thật đi Thiên Trúc | Tây Du Ký | truyện vs sử |
+| Yêu quái có chống lưng | Tây Du Ký | giải mã |
+| Đát Kỷ có thật không | Phong Thần | truyện vs sử |
+| Na Tra | Phong Thần | cuộc đời |
+| Chuyện ma Liêu Trai nổi tiếng nhất | Liêu Trai Chí Dị | kể chuyện (không rùng rợn quá) |

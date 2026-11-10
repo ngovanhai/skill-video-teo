@@ -25,6 +25,8 @@ const SFX_LEN = { chime: 2.5, click: 0.37, error: 1.62, "glitch-1": 2.64, "impac
 const BGM = { file: "playful-pizzicato.mp3", len: 67 };
 // mức nhạc nền theo cảnh (scene.music); "on" = như cũ
 const MUSIC = { on: 1, low: 0.4, off: 0, up: 1.7 };
+// luật âm thanh chung (người dùng chốt 2026-10-24): sfx êm + nhỏ hơn giọng, nhạc nền (kể cả mức "up") thấp hơn giọng ≥ 20 dB
+const { SFX_ON, sfxVol, bgmVol: bgmCap } = await import(pathToFileURL(join(KIT, "lib/mix.mjs")).href);
 // kiểu bong bóng thoại cả tập (tap.bubble); "tron" = như cũ
 const BUBBLE = {
   giay: { normal: "background:#F6EBD0;border:5px solid #5A3B1C;border-radius:8px", think: "background:#F6EBD0;border:5px dashed #5A3B1C;border-radius:8px", color: "#3B2410", tail: "#5A3B1C" },
@@ -437,23 +439,24 @@ function voiceTags(list, total) {
   return list.filter((v) => v.t < total - 0.05).map((v, i) => `<audio id="vo${i}" src="${v.file}" data-start="${f2(v.t)}" data-duration="${f2(Math.min(v.dur, total - v.t))}" data-track-index="${14 + (i % 2)}" data-volume="1"></audio>`).join("\n");
 }
 
-function audioTags(sfx, total, bgmVol, bgm = BGM, segs = null) {
+function audioTags(sfx, total, bgmWant, bgm = BGM, segs = null) {
+  const cap = bgmCap(bgm.src || join(KIT, "bgm", bgm.file)), bgmVol = Math.min(bgmWant, cap);
   const tracks = []; // greedy: không cho 2 âm thanh chồng nhau trên cùng một track
   const out = [];
-  sfx.filter((s) => s.t < total - 0.05).sort((a, b) => a.t - b.t).forEach((s, i) => {
+  (SFX_ON ? sfx : []).filter((s) => s.t < total - 0.05).sort((a, b) => a.t - b.t).forEach((s, i) => {
     const len = SFX_LEN[s.name] || die(`sfx "${s.name}" không có`);
     const d = Math.min(s.dur ?? len, len, total - s.t);
     let k = tracks.findIndex((end) => end <= s.t);
     if (k < 0) { k = tracks.length; tracks.push(0); }
     tracks[k] = s.t + d + 0.01;
-    out.push(`<audio id="sx${i}" src="assets/sfx/lib-${s.name}.mp3" data-start="${f2(Math.max(0, s.t))}" data-duration="${f2(d)}" data-track-index="${20 + k}" data-volume="${f2(s.vol)}"></audio>`);
+    out.push(`<audio id="sx${i}" src="assets/sfx/lib-${s.name}.mp3" data-start="${f2(Math.max(0, s.t))}" data-duration="${f2(d)}" data-track-index="${20 + k}" data-volume="${f2(sfxVol(s.vol))}"></audio>`);
   });
   if (!segs) for (let k = 0, t = 0; t < total - 0.1; k++, t += bgm.len) out.push(`<audio id="bgm${k}" src="assets/bgm/${bgm.file}" data-start="${f2(t)}" data-duration="${f2(Math.min(bgm.len, total - t))}" data-track-index="${12 + (k % 2)}" data-volume="${bgmVol}"></audio>`);
   else {
     // nhạc liền mạch theo đồng hồ tổng (vị trí trong bài = t % len), chỉ đổi âm lượng theo cảnh; "off" = im hẳn
     let k = 0;
     for (const g of segs) {
-      const vol = bgmVol * MUSIC[g.level];
+      const vol = Math.min(bgmVol * MUSIC[g.level], cap);
       for (let t = g.t0; vol > 0 && t < Math.min(g.t1, total) - 0.05; ) {
         const p = t % bgm.len, d = Math.min(bgm.len - p, g.t1 - t, total - t);
         out.push(`<audio id="bgm${k}" src="assets/bgm/${bgm.file}" data-start="${f2(t)}" data-duration="${f2(d)}"${p > 0.01 ? ` data-media-start="${f2(p)}"` : ""} data-track-index="${12 + (k % 2)}" data-volume="${f2(vol)}"></audio>`);

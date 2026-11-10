@@ -22,9 +22,9 @@ Cũng trong ngày, người dùng sửa tiếp:
 - Card: build/voice tự đọc chữ trên thẻ nếu không có `vo` (`engine/voice.mjs` voOf/cardVo), và thẻ giữ trên màn hình theo độ dài giọng.
 - Tập cũ chưa chạy lại voice.mjs thì card vẫn câm, nhưng output build vẫn y hệt engine cũ.
 - Các trường dựng cảnh: stage/weather/music, bgm, bubble, thumb.layout, beat sfx, 5 set mới.
-- Giọng luôn là Lóng ([[kiem-hiep-voice-long]]).
+- Giọng luôn là Tiến Đạt (ZeroTTS) ([[kiem-hiep-voice-tiendat]]).
 - Sản xuất đang dừng ([[kiem-hiep-10-video-ngay]]).
-- Backup trước khi sửa: __MUSE_ROOT__/.tmp/kh-bak/.
+- Backup trước khi sửa: /Users/haingo/MuseStudio/.tmp/kh-bak/.
 
 2026-10-21, người dùng thêm:
 - Kiếm hiệp **không** dùng kiểu tranh thế giới (world canvas) như bản thử Pompeii của video-teo.

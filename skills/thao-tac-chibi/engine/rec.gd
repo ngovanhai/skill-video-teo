@@ -23,7 +23,7 @@ func _ready() -> void:
 	var a := ["-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", "1920x1080", "-r", "30", "-i", "-"]
 	a.append_array(enc)
 	a.append_array(["-pix_fmt", "yuv420p", out])
-	var res := OS.execute_with_pipe("ffmpeg", a, false)
+	var res := OS.execute_with_pipe("ffmpeg", a, true)
 	pipe = res["stdio"]
 	pid = res["pid"]
 

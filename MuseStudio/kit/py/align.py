@@ -1,7 +1,9 @@
 # Word timings for the TTS audio: whisper word timestamps, then the known script words are matched
 # onto them (difflib); unmatched words are interpolated. Cached per scene (keyed on wav + text).
 #   python kit/py/align.py <job.json> [model]
-# job: { "names": "comma list of proper names", "lines": [{ "id", "text", "out" (wav), "words" (json out) }] }
+# job: { "names": "comma list of proper names", "lines": [{ "id", "text", "out" (wav), "words" (json out), "key"? }] }
+# "key" given = use it as the cache key (colab-tts.mjs --align computes it on the home machine; mtimes differ on Colab).
+# WHISPER_DEVICE=cuda runs on an NVIDIA GPU (Colab), =dml on AMD via DirectML, otherwise CPU.
 import sys, os, json, re, difflib, unicodedata, hashlib, time
 from pathlib import Path
 
@@ -55,7 +57,7 @@ def main():
     todo = []
     for it in job["lines"]:
         wav = Path(it["out"])
-        key = hashlib.sha1((it["text"] + "|" + str(wav.stat().st_mtime_ns) + "|" + model_name).encode("utf-8")).hexdigest()
+        key = it.get("key") or hashlib.sha1((it["text"] + "|" + str(wav.stat().st_mtime_ns) + "|" + model_name).encode("utf-8")).hexdigest()
         it["_key"] = key
         dst = Path(it["words"])
         if dst.exists():
@@ -69,7 +71,7 @@ def main():
     if not todo:
         return
     import whisper
-    model = whisper.load_model(model_name, device="cpu")
+    model = whisper.load_model(model_name, device="cuda" if os.environ.get("WHISPER_DEVICE") == "cuda" else "cpu")
     if os.environ.get("WHISPER_DEVICE") == "dml":  # GPU AMD qua torch-directml (venv E:/tool/whisper-dml)
         import torch_directml
         import whisper.timing as wt

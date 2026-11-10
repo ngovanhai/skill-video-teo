@@ -101,6 +101,12 @@ Mỗi người một kiểu ngồi theo tính cách (const pose, dùng `[[NGOI_X
 
 ---
 
+### nang_trong_kiem / con_roi_bong / co_rieng / nen_bua_dong_so — (mẫu: kiem-hiep tap-02 `godot/canh/hang.gd`, `roi.gd`, `diem.gd`)
+- **nang_trong_kiem**: quỳ `["kneel",1]` → tay nắm cán nhấc dần theo `_lift()` (0..1), thân run nhẹ `sin(t*23)*k`; kiếm nặng vẽ tay (đa giác đen mép cùn) bám `n.hand(world,"F")`, không dùng prop kiếm mảnh.
+- **con_roi_bong**: `a.tint` gần đen (`bong(a, 0.95)`) + que điều khiển vẽ từ bàn tay/đầu lên mép trên; nền tấm thép đỏ dần theo câu. Nhân vật vẫn diễn pose bình thường.
+- **co_rieng**: `a.sc` (0.7–0.8 cho trẻ con / cảnh đông người, 1.5 cho ảnh bìa) — canh.gd nhân vào `CS` (cần sửa 1 dòng `n.scale` như tap-02).
+- **nen_bua_dong_so**: `["raise", sw]` với sw dâng 0.6 s trước mốc rồi rơi về 0 đúng mốc; búa vẽ `bua(c, hand, lerp(0.2,-1.6,sw))`; số chớp đỏ rồi nguội 2.5 s.
+
 ## C. Tay cầm / IK
 
 ### giu_tay — đưa lòng bàn tay tới một điểm
@@ -111,6 +117,17 @@ Mỗi người một kiểu ngồi theo tính cách (const pose, dùng `[[NGOI_X
 ### dang_ban_tay — `a.hands = {"F": "tha|nam|xoe|chi", "B": …}` ghi đè. Tự động: cầm vật → `nam`; theo pose (FORM_OF) → palm `xoe`, point `chi`, thế võ `nam`; còn lại `tha`. Xoá ghi đè: `a.hands = {}`.
 
 ---
+
+### chap_tay_le / quy_thu_le / lay_sat_dat / xach_hai_nguoi / cam_kinh_lup — (mẫu: kiem-hiep tap-06 `godot/canh_c.gd`, `canh_a.gd`)
+```gdscript
+const CHAP := {"uaF": -30, "faF": -118, "uaB": 14, "faB": -20, "torso": 2, "head": 4, "thF": -6, "shF": 8, "thB": 6, "shB": -8, "all": [0, 0, 4]}   # nhà sư dựng một bàn tay trước ngực, tay F "xoe"
+const LE := {"uaF": -64, "faF": -78, "uaB": -54, "faB": -84, "torso": 14, "head": 10, "thF": -84, "shF": 84, "thB": 44, "shB": 52, "all": [0, 0, 70]}   # quỳ một gối ôm quyền thủ lễ (2 tay "nam")
+const LAY := {"torso": 70, "head": 30, "thF": -100, "shF": 120, "thB": -96, "shB": 116, "uaF": -150, "faF": -20, "uaB": -150, "faB": -20, "all": [0, 0, 200]}   # lạy rạp, hai tay duỗi trước đầu
+# xách hai người: ik hai tay về (80,-60)/(60,-70), hai tay "nam"; người bị xách = A(…, hand_w(F|B) + (±10,130), "rest", "ko", sc nhỏ hơn), rotation = PI/2
+# cầm kính lúp: vẽ kính tại hand_w(key,"F") + (10,-40), r 42, góc 1.9 (cán theo cẳng tay); phóng to = kinh_lup(ctr, 120*k) + nội dung cắt trong vòng
+```
+- Bài học: CHAP chỉ dựng tay F; cầm thêm chổi thì cho tay B buông (uaB ~22, faB ~-30) và vẽ cán nghiêng ra sau lưng, cán không cắt qua mặt.
+- Lạy LAY cần `all` y ~200 để đầu chạm sàn; kết hợp mx(rest, LAY, k) cho động tác cúi dần.
 
 ## D. Vật phẩm (`prop(a, kind, at, side, extra)` · đổi chỗ `prop_to(v, at, side)`)
 
@@ -188,3 +205,96 @@ Extra: `col, life, land (y chạm đất), on_land (Callable nhận q), z (0.45 
 - Vệt sáng (trail) chỉ bật trong đoạn quét đẹp, tắt thì clear lịch sử.
 - Cảnh có lớp phủ màn hình (ván, khung): màu phủ ≥ #8a5e38, vign ≤ 0.25, thêm quầng đèn sau nhân vật, nếu không cả khung đen kịt.
 - Đọc giá trị Variant từ dict: khai kiểu rõ `var x: float = v.pour` (`:=` → parse error).
+
+---
+
+## G. Thêm từ tap-09 Dương Quá – Tiểu Long Nữ (2026-10-22, engine tập có khoá `sc/rot/hide/alpha/tint`)
+- **Khoá actor mới (canh.gd tập 09)**: `a.sc` (co giãn, đi xa thì giảm 1→0.4), `a.rot` (rad, xoay cả người khi rơi), `a.hide` (ẩn hẳn cả bóng — dùng khi alpha≈0 vì bóng đất vẫn vẽ), `a.alpha`, `a.tint` (Color nhân thêm, vd chìm nước `Color(0.75,0.9,1.15)`).
+- **Pha pose tuần tự**: `extra` trộn lần lượt, pose sau đè pose trước theo trọng số → muốn dao động giữa A và B dùng `[[A, m], [B, m*(1-ph)]]`, đừng đặt hai pose trọng số 1.
+### khac_da — mũi kiếm tì vách, rung theo nét
+- `{"uaF": -120 + row*14 + sin(t*14)*6, "faF": -10 + sin(t*14)*8, "head": -8}`; `row` = dòng đang khắc (hạ tay dần). Chữ hiện theo `substr(0, n)` đồng bộ. Mẫu: tap-09 `k13`.
+### ve_tren_khong — ngón tay vẽ hình lơ lửng
+- `["point", k]` + `a.hold["F"] = [Vector2(70,-160) + hướng tới điểm đang vẽ, k]`; nét vẽ ở `_glow`, nét đứt = bịa, liền = thật. Mẫu: tap-09 `k14`.
+### lon_nhao / nhay_vuc — nhảy xuống vực, rơi theo
+- `a.pos` nội suy tay: x trượt, `y = FL + f*f*(BOT-FL)`; `extra [["run",1-f],["fly",f]]`, `a.rot = f*0.6`; camera bám `p.y-120`. Chìm/trồi: `y = BOT + 160*sin(min(1,k*1.6)*PI)` + `tint` lam. Mẫu: tap-09 `k18`.
+### nam_la / ngoi_thien — ngồi thiền trên đá lạnh
+- `[["kneel",1],[{"uaF":20,"faF":-60,"uaB":20,"faB":-60,"head":6},1]]`, hạ `pos.y` 30 cho khớp mặt đá. Mẫu: tap-09 `k16`.
+### ngoi_ghe — ngồi ghế đá
+- `[["kneel",0.55],[{"uaF":20,"faF":-70,"uaB":10,"faB":-60},0.8]]`, pos = mặt ghế. Mẫu: tap-09 `k19`.
+### leo_day — leo dây
+- `["raise",1]` + đùi so le `thF/thB ± sin(t*6)*20`; tay giơ cao bị đầu chibi che → để camera xa (zoom 0.7). Mẫu: tap-09 `k18`.
+### luoi_tay / gai_dau — gãi đầu
+- `{"uaB": -170, "faB": -110 + sin(t*9)*12, "head": 8 + …}` trọng số theo câu thoại. Mẫu: tap-09 `k17`.
+### om_dau — ôm đầu hai tay
+- `{"uaF":-150,"faF":-120,"uaB":-150,"faB":-120,"head":10}`. Mẫu: tap-09 `k14`, `k17`.
+### nhac_kiem_nang — huyền thiết trọng kiếm
+- Kiếm nặng vẽ tay (`_heavy(c, g, ang)`) gắn `a.node.hand(world,"F")`, góc chúc xuống; nhân vật một tay (`duong-qua`) không có tay B. Mẫu: tap-09 `k15`.
+- **oneArm**: char `duong-qua` (sau khi cụt tay) đã nướng sẵn kiếm đen + tay áo trống; trước cảnh chặt tay dùng `duong-qua-nho`, đổi actor (hide cái cũ) đúng khung lóe sáng.
+- **Bài học tập 09**: thứ cần khớp chỗ đứng nhân vật phải vẽ ở `_ground`/`_near` (parallax 1.0); `_back` 0.7 và `_front` 1.3 làm lệch khi camera trượt (thác/bia/thẻ CTA chạy lệch).
+
+---
+
+## H. Thêm từ tap-08 Thiếu Lâm – Võ Đang (2026-10-22, mẫu: kiem-hiep `tap-08-thieu-lam-vo-dang/godot/ky.gd` + `canh/*.gd`)
+### ganh_thung — gánh đòn hai thùng
+- `var e := don(c, a.pos + Vector2(6,-134), 150.0, bend, 0.0)` → 2 đầu đòn; mỗi đầu `day(c,p,b±(34,-18))` + `thung(c,b,0.8)`, `b = p + (sin(t*5)*8, 70)`; vai nhún `sin(t*12)*4`. Tay: `hold F (44,-66)`, `B (-38,-64)`. Vẽ ở `_near`. Mẫu: `cay_co.gd`, `dem_co.gd` (k08-12, có đầu trẻ ló ra).
+### ngoi_tua / ngoi_bo_goi — ngồi dựa / ngồi bó gối (pose dict trong ky.gd)
+- `extra = [[NGOI_TUA, 1]]` hoặc `[[NGOI_BO_GOI, 1]]`, hạ `pos.y` theo mặt ngồi; ghép `chap(a)` để chắp tay thiền. Mẫu: `nui_lua.gd` (ba lão tăng trên cột đá).
+### chap — chắp tay trước ngực: `chap(a, w)` (hold F/B cùng một điểm trước ngực). Cúi chào hàng: `chap` + `head` 14 lần lượt từng người lệch 0.15 s. Mẫu: `hoi_minh.gd`, `ben_song.gd` k07d-06.
+### walk_to — đi/chạy từ A tới B trong [t0,t1]: `walk_to(a, p0, p1, t0, t1, run)` tự đặt face + walk. Mẫu: `dem_co.gd`, `hoi_minh.gd` (Vi Tiểu Bảo chạy vòng).
+### ve_chu_khong — viết chữ trên không (Thuý Sơn): `["point",k]` + `hold F` chạy theo nét, chữ hiện dần ở `_glow`. Mẫu: `tran_do.gd`.
+### ve_vong_ik — tay vẽ vòng tròn Thái Cực: `hold F = c + (cos θ, sin θ)*r`, `hold B` đối xứng lệch π. Mẫu: chiêu `thai_cuc`.
+### dinh_tay — dính tay đối thủ (Thái Cực): hold F của hai người cùng một điểm trôi theo vòng.
+### mua_kiem_go — kiếm gỗ múa vòng: vật vẽ tay gắn `a.node.hand(world,"F")`, góc = θ vòng + π/2. Mẫu: `kiem_go.gd` (k05d).
+### bong_bong_nho — bong bóng ký ức trên đầu: elip mờ + 3 chấm nhỏ dẫn lên, nội dung vẽ trong elip ở `_ui`.
+### quet_la — quét lá bằng chổi (Tảo Địa Tăng): chổi gắn hand F, `hold F/B` dao động `sin(t*3)*30` ngang, lá bay ở `_near`. Mẫu: `gia_sach.gd`.
+### gai_dau_v2 — gãi đầu bằng hold: `hold F = (-6,-262)` (đủ cao để tay không che mặt) + `head` lắc nhẹ. Mẫu: `gia_sach.gd` k07-11.
+### tho_doc — thở dốc: `torso` 10 + `head` 8 + `sin(t*7)*4` cả hai, tay chống gối `[["kneel",0.3]]`. Mẫu: `nui_lua.gd` k06d-01.
+### roi_bong_tint — nhân vật chưa có sheet: mượn actor khác + `tint` (đỏ = Cưu Ma Trí, sẫm = Tiêu Viễn Sơn, lam = Mộ Dung Phục) và alpha 0.85 như bóng.
+- **Bài học tập 08**: `_ground` vẽ sau `_mid` → thứ vẽ ở mid bị đất che; bộ đếm/nhãn phải ở `_ui`. Phần tử `extra` phải là `[pose, w]` (lỗi `["palm",1.0]` lồng sai báo "Invalid access to key"). `%` trên float cần ngoặc phần int.
+
+---
+
+## I. Thêm từ tap-03 Ngũ Tuyệt Hoa Sơn (2026-10-22, mẫu: kiem-hiep `tap-03-ngu-tuyet-hoa-son/godot/mam.gd` + `o/*.gd`, shorts `canh/*.gd`)
+### the_coc — thế cóc Cáp Mô Công: `px(a, [[COC, sq]])`, COC = `{"thF":-105,"shF":118,"ftF":-10,"thB":-80,"shB":128,"ftB":-6,"torso":34,"head":-30,"uaF":-28,"faF":-8,"uaB":-18,"faB":-10,"all":[0,0,78]}`; thở nén: `a.sc = base + sin(t*4)*0.04*sq`; vòm độc khí ở `_glow` (`draw_arc` nửa trên + blob lục). Mẫu: `o/linh.gd`, short `01-quan-tai/canh/quan.gd`.
+### hai_tay_tu_danh — Song Thủ Hỗ Bác (Chu Bá Thông): `hai_tay(t)` trả dict tay F/B lệch nhịp `sin(t*7)` / `sin(t*9.3+1.2)`. Mẫu: `mam.gd`, `o/dong.gd`.
+### lon_nguoc — Âu Dương Phong lộn ngược: `a.rot = PI` + `a.pos.y -= chiều cao tượng`, tay `{"uaF":150,"uaB":150}` chống đất; lắc `sin(t*3)*0.05`. Mẫu: `o/hoason.gd` k21.
+### tuong_moc — tượng bột mọc ra từ cục bột: `a.pop` 0→1 (`_pop_ease` nảy quá 1 rồi về), `_d_shadow` vẽ cục bột co lại dưới chân. Mẫu: mọi cảnh `o/*.gd`.
+### nan_bot — Tèo nặn: `tay_tho(c, p, s, ang)` (tay bột to có vân tay) đưa vào/ra theo `kk(id)`; tượng `pop` cùng lúc. Mẫu: `o/quay.gd`, short `03-hai-ban/canh/sach.gd` (đặt sách).
+### om_dau / om_tai / kiet — dict trong `mam.gd`: OM_DAU (bỏ chạy, ghép `["run",0.6]`), OM_TAI (nghe tiêu, `all` hạ 16), KIET (kiệt sức chống gối, `all` hạ 30; ôm nhau cười = tay `{-60,-40}` + `rot` ±`sin(t*9)*0.07`). Mẫu: `o/cuoi.gd` k22, short `02-oan-gia/canh/oan.gd`.
+- **Bài học tập 03**: khối bột co về 0 (mộ, lá gói) làm `triangulate_polygon` lỗi → `bot()` lùi về bao lồi khi tam giác hoá rỗng. Short mới tạo phải chạy `--import` một lần, không thì font/mp3 null.
+
+---
+
+## J. Thêm từ tap-05 Cổ Long (2026-10-22, mẫu: kiem-hiep `tap-05-co-long/godot/khuon/*.gd`, khung xưởng in đêm)
+### ngoi_ghe — ngồi ghế đẩu: `{"thF":-70,"shF":80,"thB":-70,"shB":80,"all":[0,60,0]}` trộn với `rest`, đứng dậy bằng cách giảm w về 0. Mẫu: `gan_sang.gd` (k17).
+### chong_cam — chống cằm chờ: `{"uaF":-60,"faF":-150,"head":12}` khi đang ngồi. Mẫu: `gan_sang.gd` k17-02b.
+### thao_tap_de — vòng hai tay ra sau lưng: `{"uaF":40,"faF":-60,"uaB":40,"faB":-60,"head":10}` khoảng 2.4 s, rồi vẽ tạp dề treo lên ghế ở `_near`. Mẫu: `gan_sang.gd` k17-07b.
+### dat_len_ke — với tay đặt đồ lên giá cao: `{"uaF":-150+sin(t*6)*20,"faF":-20}`, x đi theo vật thứ n đang đặt (`nbot()`). Mẫu: `gan_sang.gd` k17-05.
+### nem_dau_chi — ném dấu chì vào ô bảng: vật bay theo parabol từ `a.node.hand(c,"F")` tới ô, chạm thì nảy chữ đỏ. Mẫu: `bang_diem.gd` (k14).
+### khoa_khuon_run — khoá khuôn tay run: tay F + `sin(t*30)*4` ở `faF`, nét mặt "soc"/"quyet-tam". Mẫu: `trang_muc.gd` k13-05.
+### keo_hoc — kéo hộc tủ lần lượt: hộc i mở từ `L(id)+i*0.72`, đồ vật trồi lên từ trong hộc. Mẫu: `bay_hoc.gd` (k15).
+### quy_xuong — quỳ sau khi thua: `["kneel", w]` + kiếm vẽ tay trượt xuống mái ngói, có toé lửa. Mẫu: `trang_sau.gd` k13c.
+- **Bài học tập 05**: nét mặt "ko" ra mắt X, nên dùng binh/buon/soc. Chữ ở `_front` trôi khi camera lia, nên đổi toạ độ màn hình bằng `scr()` (parallax 1.3) hoặc chuyển sang `_near`. Đặt `[["point",1.0],0.0]` trong `extra` sẽ lỗi "Invalid access" vì phần tử phải là `[pose, w]`.
+
+---
+
+## K. Thêm từ tap-07 Ỷ Thiên Đồ Long (2026-10-22, mẫu: kiem-hiep `tap-07-y-thien-do-long/godot/ben/*.gd`, khung hải trình trên hải đồ)
+### nam_ngu — nằm ngủ / ngồi dậy: `nam(a, k, huong)` (ben.gd) xoay `a.rot` ±PI/2 và hạ `pos.y`; ngồi dậy = giảm k về 0 kèm `["kneel",0.35]`. Mẫu: `k17.gd` (đảo hoang, thuốc mê).
+### cheo_can_dai — chèo bằng mái dài: `can_dai(c, a, 70, 260)` vẽ cán theo hai tay; hai tay `hold` F/B lệch pha `sin(ph)` / `sin(ph+0.6)`. Mẫu: `k02.gd`, `k18.gd`.
+### quai_bua_nhip — quai búa theo danh sách nhát: `_nhat()` trả các giây nện, `_bua_k()` 1 = giơ cao → 0 = nện; `hold F` lerp (60,-150)→(120,-10); vật trên đe liền dần theo số nhát đã nện. Mẫu: `k19.gd`.
+### nhac_dao_mot_tay — nhấc vật trăm cân như cành củi: `prop(a,"dao","tay")` + `["raise", w]` nhanh 0.3 s, không nhún (khác vật nặng thường). Mẫu: `k10.gd`.
+### chuyen_gay — chuyền gậy qua tay ba người: gậy vẽ tay ở `_near`, gốc lerp giữa `tay(a,"F")` của người trước và người sau theo `qua(id)`; đặt lệch `30*face` để khỏi che mặt. Mẫu: `k18.gd` (Đả Cẩu Bổng).
+### doi_actor_mu — đổi nhân vật sang bản mù giữa tập: hai actor cùng chỗ (`nv("tt")` / `nv("ta-ton-mu")`), bật `vis` chéo nhau ở mốc câu. Nhớ đặt lại `vis=true` đầu `_story` cho mọi actor có thể bị ẩn ở mốc trước (không thì ẩn vĩnh viễn khi tua). Mẫu: `k16.gd`, `k17.gd`, `k20b.gd`.
+### thut_nut_chi — sợi chỉ đỏ nối hai người rồi thắt nút (thù khép lại): polyline võng giữa hai `head_of`, độ võng và sóng giảm theo `qua`, nút = arc + chấm ở giữa. Mẫu: `k20b.gd`.
+### toc_rung_la — tóc rụng thành lá (quy y): `roi(head_of(a)+…, v0, t0, y_dat, quay)` cho từng lá, lệch giờ 0.3 s. Mẫu: `k20b.gd`.
+- **Bài học tập 07**: biểu cảm không có "buon" (dùng "ngai"); hình chữ nhật làm mờ lộ cạnh → dùng làn khói/blob; nhãn đặt ở `_d_screen` không trôi theo máy quay. Biểu thức lấy từ Array/Dict phải khai kiểu (`var ang: float = …`).
+
+---
+
+## L. Thêm từ tap-12 Giang Nam Thất Quái (2026-10-24, mẫu: kiem-hiep `tap-12-giang-nam-that-quai/godot/doan/*.gd`, khung tấm lụa thêu; nhân vật bọc CanvasGroup shader thêu `lib/theu_nv.gdshader`)
+### go_gay_nghe — người mù gõ gậy nghe tiếng vọng: `{"uaF": -40, "faF": 10, "torso": -10, "head": 14, "all": [0, 6, 18]}` đúng nhịp gõ, xen `{"head": 16, "torso": 2}` nghiêng tai; vòng cung mũi đột lan từ chân gậy (nửa trên, `circ(o, r, n, -PI*0.95, -PI*0.05)`). Mẫu: `k05.gd`, chiêu `bien_buc`.
+### khum_tai — nấp nghe trộm: `{"head": 18, "torso": 4, "uaB": -150, "faB": -110}` + vòng cung nhỏ quanh tai. Mẫu: `k08.gd` (Thiết Thương Miếu).
+### be_con — bế đứa trẻ: `{"uaF": -40, "faF": -90, "uaB": -40, "faB": -90, "head": 10}`, vẽ bọc tã giữa hai bàn tay. Mẫu: `k05.gd` (Lý Bình).
+### cui_nhan_thua — cúi đầu nhận thua: `{"torso": 40, "head": 24, "uaF": -64, "faF": -78, "uaB": -54, "faB": -84, "all": [0, 0, 30]}` blend 0.8 s. Mẫu: `k07.gd` (Khâu Xứ Cơ).
+### bong_goi_ten — nhân vật hiện sẵn dạng bóng một màu, được gọi tên thì "thêu màu" vào: `a.bong = 0.85*(1 - sm(t_goi-0.1, t_goi+0.35))` mỗi khung (shader thêu có tham số `bong`). Mẫu: `k01.gd`.
+- **Bài học tập 12**: chữ Hán (醉仙樓…) với font Latin (Lora) ra ô vuông — gắn `FontFile.fallbacks = [Hiragino Sans GB.ttc chép vào godot/font]` (SystemFont fallback báo lỗi FreeType); `draw_multiline` với mảng rỗng báo lỗi, luôn kiểm `size() >= 2`; vân lụa trong hình tròn: `draw_colored_polygon(pts, màu, uv, tex)` + `texture_repeat` thay vì `draw_texture_rect` (lộ ô vuông).
