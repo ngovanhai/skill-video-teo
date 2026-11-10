@@ -407,3 +407,15 @@ Mỗi clip ghi các trường:
 - [ ] Tóc, tay áo, vạt áo, dây và vũ khí có secondary motion đúng hướng.
 - [ ] Không giật ở đầu/cuối clip; transition sang clip kế tiếp hợp lý.
 - [ ] Có contact sheet và preview render thật đã được xem.
+
+
+## E. Action Library kiếm hiệp (Full Body Rig)
+
+Với nhân vật dùng segmented Full Body Rig, tra bộ 33 clip tại `nhan-vat-chibi/builder/actions/wuxia_action_library.json` (theo đường dẫn bộ skills đã cài). Các nhóm:
+- Di chuyển: `walk_ready`, `run_forward`, `stop_skid`, `turn_around`, `kneel_respect`.
+- Kiếm thuật: `sword_draw`, `slash_horizontal`, `slash_vertical`, `thrust_forward`, `backhand_slash`, `double_slash`, `spin_slash`, `sword_guard`, `parry_high`, `parry_low`, `sheathe_sword`.
+- Phòng thủ: `dodge_left`, `dodge_right`, `duck_evade`, `lean_evade`, `hit_recoil`, `block_impact`, `stagger_recover`.
+- Khinh công: `jump_up`, `air_kick`, `land_heavy`, `float_pose`, `somersault`.
+- Diễn xuất: `taunt`, `fear_flinch`, `victory_pose`, `meditate`, `collapse_kneel`.
+
+Gọi action qua `builder/godot/action_library.gd`: `$ActionLibrary.play("slash_horizontal")`. Mỗi clip có keyframe pose, expression cue, camera cue và FX cue. Camera/FX là metadata để cảnh tự triển khai, không tự chạy. Luôn đồng bộ frame contact với vệt kiếm, âm thanh va chạm và rung camera; kiểm tra silhouette, chân trụ, điểm cầm kiếm và hướng nhìn trước khi tái sử dụng. Các clip hiện là motion blocking để chỉnh sửa, chưa phải choreography hoàn thiện.
