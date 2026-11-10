@@ -28,7 +28,12 @@ func _create_part(part_name: String, config: Dictionary) -> void:
     var pivot := Node2D.new()
     pivot.name = part_name + "_pivot"
     var point: Dictionary = config.get("pivot", {"x":512,"y":768})
-    pivot.position = Vector2(float(point.get("x",512)), float(point.get("y",768)))
+    var absolute_pivot := Vector2(float(point.get("x",512)), float(point.get("y",768)))
+    var parent_pivot := Vector2.ZERO
+    if parent_name != "root" and pivots.has(parent_name):
+        var pp: Dictionary = pivots[parent_name].get("pivot", {})
+        parent_pivot = Vector2(float(pp.get("x",0)), float(pp.get("y",0)))
+    pivot.position = absolute_pivot - parent_pivot
     parent_node.add_child(pivot)
     var sprite := Sprite2D.new()
     sprite.name = part_name
