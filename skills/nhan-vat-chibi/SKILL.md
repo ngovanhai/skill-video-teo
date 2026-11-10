@@ -130,3 +130,16 @@ python skills/nhan-vat-chibi/builder/split_layers.py $svg --out "art/characters/
 ```
 
 The splitter exports aligned SVG layers and `pivots.json`. Missing required groups are a hard failure. Copy `layers/` into Godot `res://`, attach `builder/godot/character_svg_rig.gd` to a Node2D, and set its manifest path. All pivot coordinates are initial estimates and require manual visual adjustment. Read `builder/LAYER-RIG.md` for setup and limitations. This first rig rotates whole limbs; it is not yet a full elbow/knee segmented rig.
+
+
+## Full-body segmented rig (v2, optional)
+
+For characters that need independent elbow, wrist, knee and ankle motion, use `builder/split_full_body.py` instead of the simpler 11-layer splitter. DeepSeek must create 21 top-level SVG groups with the exact IDs documented in `builder/FULL-BODY-RIG.md`. Each segment needs hidden overlap geometry beneath the adjacent segment; otherwise rotations expose gaps.
+
+Export with:
+
+```powershell
+python skills/nhan-vat-chibi/builder/split_full_body.py path\to\master.svg --out art\characters\<id>\full-body
+```
+
+Copy the output into Godot `res://`, attach `builder/godot/full_body_rig.gd` to a Node2D, and set `manifest_path`. This rig supports separate upper/lower arms, hands, thighs, shins and feet. Pivots are generic starter coordinates and must be adjusted per character. Starter sword actions are in `builder/actions/sword_actions.json`; load a selected action's `keyframes` and pass them to `play_action()`. See `builder/FULL-BODY-RIG.md` for limitations. Keep the original rig2 and v1 path as fallback until a real Godot test scene passes.
