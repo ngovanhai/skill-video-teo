@@ -94,6 +94,12 @@ Việc nặng ở máy nhà (render, preview, check chiêu) luôn chạy qua `LO
    - Chữ hiện trên hình (thẻ, bảng, chú thích) phải có câu đọc đi kèm.
    - Điền `godot/story.json`: khung, teo_role, but (bút / kiểu nét), may_quay, palette, nhac, thumb, mat, font; `doan` ghi kiểu dựng của từng đoạn (mỗi đoạn một kiểu: tranh, bản đồ, sân khấu bóng, sổ tay, bàn cờ…); `seo` (title, mo_ta, `chan` = chân mô tả viết theo giọng của khung, mời bình luận/đăng ký theo kiểu của tập, tags).
 4. **Giọng:** `gd-voice` (chạy thẳng, không qua `LOCK`; chạy nền nếu hàng Colab dài), giọng Tiến Đạt (`tiendat`) đọc bằng ZeroTTS. Sau đó `gd-check --no-godot`: biết tổng thời lượng thật. Dưới 20:00 thì viết thêm lời (thêm chủ đề phụ hoặc chi tiết), không kéo dài khoảng lặng.
+5. **Nhân vật — registry tự nhận diện (bắt buộc với nhân vật Hybrid mới).**
+   - Trước khi dựng cast hoặc storyboard, resolve tên từng nhân vật qua `art/characters/registry.json` bằng `node skills/nhan-vat-chibi/builder/builder.mjs list`.
+   - Đã có ID: dùng đúng `character_id`, `approved_revision` và identity lock; không tạo lại, không đổi preset để thay thế.
+   - Chưa có ID: tạo hồ sơ bằng `builder.mjs ensure <id> --name "Tên" --brief "Mô tả"`, rồi DeepSeek generate → validate → preview. Nhân vật chưa duyệt là WIP, không đưa vào render cuối.
+   - Chỉ khi người dùng/artist đã xem và duyệt hình mới chạy `builder.mjs approve <id> --human-reviewed`, sau đó `builder.mjs cast <id> --actor-id <cast-id>` để sinh manifest cho tập.
+   - Mọi shot phải nhận cùng `character_id + approved_revision + identity.json`; được đổi pose/biểu cảm/ánh sáng, không được tự đổi mặt, tóc, trang phục, màu hay vũ khí. Nhân vật rig2 cũ giữ nguyên đường cast cũ, không tự migrate.
 5. **Nhân vật.**
    - Look lấy từ skill `nhan-vat-chibi`: chưa có thì tạo bằng skill đó và soi sheet. `godot/cast.json`: `{"tieu": {"char": "tieu-phong", "name": "Tiêu Phong"}}`; khoá khác cạnh `char` sẽ ghi đè.
    - Mặt riêng của tập: viết `<tap>/ve.mjs` (mắt, mũi, miệng theo bút của tập, khác tập trước), rồi `gd-mat`.
