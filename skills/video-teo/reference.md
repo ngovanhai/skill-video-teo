@@ -1,19 +1,19 @@
 # Tra cứu nhanh — cảnh, hiệu ứng, mẫu
 
-Nguồn chuẩn vẫn là `__MUSE_ROOT__\kit\README.md`. File này chỉ để tra nhanh.
+Nguồn chuẩn vẫn là `__MUSE_ROOT__/kit/README.md`. File này chỉ để tra nhanh.
 
 ## Khung video.json
 
 ```jsonc
 {
-  "slug": "ten-khong-dau", "title": "…", "voice": "Lóng", "target_min": [20, 30],
+  "slug": "ten-khong-dau", "title": "…", "voice": "tiendat", "target_min": [20, 30],
   "names": "Tên riêng 1, Tên riêng 2",          // giúp Whisper căn chữ tên nước ngoài
   "bgm": "playful-pizzicato.mp3", "bgm_volume": 0.09,
   "cast": { "key": { "svg": "chars/key.svg", "name": "Tên hiển thị" } },   // "teo" có sẵn, không cần khai
   "thumbnail": { "text": "3–7 từ", "highlight": "từ đắt", "who": ["chinh", "teo"], "pose": "<khác tập trước>",
                  "prop": "dovat", "circle_x": "<chỗ trống thật>", "circle_y": "…", "circle_r": "…", "arrow": "<true|false>",
                  "badge": "?", "bg": "<khác tập trước>", "sub": "Nhãn dưới", "series": "…" },
-  "publish": { "titles": ["…≤60 ký tự…", "…", "…"], "description": "…", "hashtags": [], "tags": [], "notes": "…" },
+  "publish": { "titles": ["…≤51 ký tự, không ghi đuôi…", "…", "…"], "description": "…", "hashtags": [], "tags": [], "notes": "…" },
   "chapters": ["chapters/01.json", "…"]
 }
 ```

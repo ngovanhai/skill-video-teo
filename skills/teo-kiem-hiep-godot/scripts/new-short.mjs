@@ -2,7 +2,7 @@
 // với tập (gd-voice / gd-render / gd-check / pack chạy thẳng trên thư mục short).
 //   node <SKILL>/scripts/new-short.mjs <tap> <NN-ten> [--tu kA-01..kB-05]… [--nhac <giây>]
 // Làm:
-//   - chép từ <tap>/godot: font/, mat/, chuong/, sfx/, cast.json và các file .gd vẽ của tập (trừ main/phim/thumb) — short vẽ bằng
+//   - chép từ <tap>/godot: font/, mat/, chars/, chuong/, sfx/, cast.json và các file .gd vẽ của tập (trừ main/phim/thumb) — short vẽ bằng
 //     chính bút của tập; renderer + màu nền theo project của tập.
 //   - --tu a..b (lặp được): chép các câu id a…b của loi.txt tập vào đoạn thân, kèm wav + voice.json (gd-voice không đọc lại).
 //   - nhạc: cắt nhac.ogg của tập từ --nhac <giây> (mặc định: 10 s trước câu --tu đầu tiên, theo timeline.json), 70 s, fade vào.
@@ -15,7 +15,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const SKILL = dirname(dirname(fileURLToPath(import.meta.url)));
-const FFMPEG = "__FFMPEG__";
+const FFMPEG = (process.env.FFMPEG || "ffmpeg");
 const args = process.argv.slice(2);
 const die = (m) => { console.error("new-short: " + m); process.exit(1); };
 const tus = [];
@@ -33,9 +33,9 @@ mkdirSync(join(G, "voice"), { recursive: true });
 const made = [];
 const put = (f, s) => { const p = join(G, f); if (existsSync(p)) return; writeFileSync(p, s); made.push(f); };
 
-// ---- tài nguyên của tập (bút, mặt, font, chiêu, sfx)
+// ---- tài nguyên của tập (bút, mặt, nhân vật, font, chiêu, sfx)
 const skip = (f) => /\.(import|uid)$/.test(f);
-for (const d of ["font", "mat", "chuong", "sfx"]) {
+for (const d of ["font", "mat", "chars", "chuong", "sfx"]) {
   if (!existsSync(join(TG, d))) continue;
   cpSync(join(TG, d), join(G, d), { recursive: true, force: false, filter: (f) => !skip(f) });
   made.push(d + "/");
@@ -62,7 +62,7 @@ for (const r of tus) {
 const tman = existsSync(join(TG, "voice/voice.json")) ? JSON.parse(readFileSync(join(TG, "voice/voice.json"), "utf8")) : null;
 const manFile = join(G, "voice/voice.json");
 if (tman && picked.length && !existsSync(manFile)) {
-  const man = { voice: tman.voice, lines: {} };
+  const man = { voice: tman.voice, engine: tman.engine, lines: {} };
   for (const l of picked) {
     const w = join(TG, "voice", l.id + ".wav");
     if (!tman.lines[l.id] || !existsSync(w)) continue;
@@ -94,7 +94,7 @@ put("story.json", JSON.stringify({
   kieu: "<kiểu short: một cảnh chưởng trọn vẹn / một bí mật / một con số / một cuộc cãi… — 3 short của tập phải khác kiểu>",
   nguon: tus,
   phu_de: { font: "", size: 66, mau: "#ffffff", vien: "#000000", y: 1490 },
-  seo: { title: "… | Tèo Kể", mo_ta: "", tags: [], full: existsSync(tieuDe) ? readFileSync(tieuDe, "utf8").trim() : "" },
+  seo: { title: "…", mo_ta: "", tags: [], full: existsSync(tieuDe) ? readFileSync(tieuDe, "utf8").trim() : "" },
 }, null, 1) + "\n");
 
 put("phude.gd", `# Phụ đề short dọc (sinh bởi new-short.mjs; hạ tầng, tập sửa được). Mỗi lần hiện một nhóm 2–4 chữ của câu đang đọc,
@@ -174,7 +174,9 @@ if (existsSync(tnhac) && !existsSync(join(G, "nhac.ogg"))) {
     const c = (tl.cau || []).find((x) => x.id === picked[0]?.id) || (tl.khung || []).find((x) => x.id === picked[0]?.id.split("-")[0]);
     nhacAt = c ? Math.max(0, c.t0 - 10) : 0;
   }
-  const r = spawnSync(FFMPEG, ["-v", "error", "-y", "-ss", String(nhacAt), "-t", "70", "-i", tnhac, "-af", "afade=t=in:d=0.4", "-c:a", "libvorbis", "-q:a", "5", join(G, "nhac.ogg")], { stdio: "inherit" });
+  const cut = (enc) => spawnSync(FFMPEG, ["-v", "error", "-y", "-ss", String(nhacAt), "-t", "70", "-i", tnhac, "-af", "afade=t=in:d=0.4", "-ac", "2", ...enc, join(G, "nhac.ogg")], { stdio: "inherit" });
+  let r = cut(["-c:a", "libvorbis", "-q:a", "5"]);
+  if (r.status !== 0) r = cut(["-c:a", "vorbis", "-strict", "-2", "-q:a", "5"]); // ffmpeg bản gọn (Homebrew) không có libvorbis
   if (r.status === 0) made.push(`nhac.ogg (nhạc tập từ ${nhacAt.toFixed(1)} s)`);
 }
 

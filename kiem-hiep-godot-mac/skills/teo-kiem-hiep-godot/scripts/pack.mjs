@@ -5,6 +5,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from "node:fs";
 import { join, resolve, basename, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
+import { ganDuoi, kiemTieuDe } from "__MUSE_ROOT__/yt-auto/tools/tieu-de.mjs"; // luật tiêu đề chung: ideas/TIEU-DE-ANH-BIA.md mục 1d
 
 const FFMPEG = (process.env.FFMPEG || "ffmpeg");
 const FFPROBE = FFMPEG.replace(/ffmpeg(\.exe)?$/, "ffprobe");
@@ -25,7 +26,8 @@ if (basename(dirname(TAP)) === "shorts") {
   mkdirSync(out, { recursive: true });
   copyFileSync(vid, join(out, slug + ".mp4"));
   const tags = seo.tags || [];
-  const title = /#shorts/i.test(seo.title) ? seo.title : seo.title + " #Shorts";
+  const title = ganDuoi(seo.title, true);
+  for (const w of Object.values(kiemTieuDe(title)).flat()) console.log("⚠ " + w);
   const hash = ["#Shorts", "#TeoKe", "#KiemHiep", ...tags.slice(0, 3).map((t) => "#" + plain(t))];
   writeFileSync(join(out, slug + ".txt"), [
     `TIÊU ĐỀ:\n${title}`,
@@ -46,7 +48,9 @@ copyFileSync(vid, join(Y, slug + ".mp4"));
 spawnSync(FFMPEG, ["-y", "-v", "error", "-i", th, "-vf", "scale=1280:720:flags=lanczos", join(Y, "thumbnail.png")], { stdio: "inherit" });
 const tags = seo.tags || [];
 const hash = ["#TeoKe", "#KiemHiep", ...tags.slice(0, 4).map((t) => "#" + plain(t))];
-writeFileSync(join(Y, "tieu-de.txt"), seo.title + "\n");
+const title = ganDuoi(seo.title);
+for (const w of Object.values(kiemTieuDe(title)).flat()) console.log("⚠ " + w);
+writeFileSync(join(Y, "tieu-de.txt"), title + "\n");
 writeFileSync(join(Y, "mo-ta.txt"), `${seo.mo_ta}
 
 ━━━━━━━━━━━━━━━

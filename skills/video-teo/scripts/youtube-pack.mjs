@@ -9,11 +9,11 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync, linkS
 import { execFileSync } from "child_process";
 import { join, resolve, basename } from "path";
 import { syncToDrive } from "./drive-sync.mjs";
+import { ganDuoi, kiemTieuDe } from "__MUSE_ROOT__/yt-auto/tools/tieu-de.mjs"; // luật tiêu đề chung: ideas/TIEU-DE-ANH-BIA.md mục 1d
 
 const BRAND = "Tèo Kể"; // dấu ấn kênh: đuôi mọi tiêu đề + hashtag đầu tiên
-const SUFFIX = ` | ${BRAND}`;
 const TAG_BRAND = "#TeoKe";
-const MAX_TITLE = 60, MAX_TAGS = 500, MAX_DESC = 5000;
+const MAX_TAGS = 500, MAX_DESC = 5000;
 const LEAD = 0.25, TAIL = 0.3; // phải khớp kit/make.mjs (layout)
 
 const die = (m) => { console.error(`youtube-pack: ${m}`); process.exit(1); };
@@ -39,8 +39,12 @@ function pack(dir) {
   const problems = [];
 
   // tiêu đề: dấu ấn + giới hạn độ dài
-  const titles = [seo.title, ...(seo.alts || [])].map((t) => t.trim() + SUFFIX);
-  for (const t of titles) if ([...t].length > MAX_TITLE) problems.push(`tiêu đề ${[...t].length} ký tự > ${MAX_TITLE}: ${t}`);
+  const titles = [seo.title, ...(seo.alts || [])].map((t) => ganDuoi(t));
+  for (const [i, t] of titles.entries()) {
+    const k = kiemTieuDe(t, { thumb: i === 0 ? video.thumbnail?.text : "" });
+    problems.push(...k.err);
+    for (const w of k.warn) console.log(`  ⚠ ${slug}: ${w}`);
+  }
 
   // mô tả: hook + nội dung (video.json) + mốc thời gian + chân trang cố định + hashtag
   const timeline = JSON.parse(readFileSync(join(dir, "work/timeline.json"), "utf8"));

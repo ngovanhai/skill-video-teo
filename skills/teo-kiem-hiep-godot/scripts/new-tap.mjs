@@ -105,7 +105,7 @@ func _ready() -> void:
 	for i in 6:
 		var p := AudioStreamPlayer.new(); add_child(p); sfx_pool.append(p)
 	if ResourceLoader.exists("res://nhac.ogg"):
-		nhac.stream = load("res://nhac.ogg"); nhac.volume_db = -3.0
+		nhac.stream = load("res://nhac.ogg"); nhac.volume_db = -12.0   # nhạc nền nhỏ hơn hẳn giọng (người dùng chốt 2026-10-23)
 	t = from
 	# --from / --par: sfx bắt đầu trước from mà còn ngân thì phát tiếp từ đúng chỗ (khớp bản render liền)
 	for i in cues.size():
@@ -240,12 +240,12 @@ put("story.json", JSON.stringify({
   tap: slug,
   khung: "", teo_role: "", but: "", may_quay: "", palette: "", nhac: "", thumb: "", mat: "", font: "",
   doan: { k01: "kiểu dựng của đoạn (mỗi đoạn một kiểu)" },
-  seo: { title: "… | Tèo Kể", mo_ta: "", chan: "", tags: [] },
+  seo: { title: "…", mo_ta: "", chan: "", tags: [] },
 }, null, 1) + "\n");
 
 put("cast.json", "{}\n");
 
-const sfxSrc = "__MUSE_ROOT__/kit/sfx";
+const sfxSrc = (process.env.MUSE_ROOT || "__MUSE_ROOT__") + "/kit/sfx";
 for (const f of existsSync(sfxSrc) ? readdirSync(sfxSrc) : []) {
   if (/^lib-.*\.mp3$/.test(f) && !existsSync(join(G, "sfx", f))) copyFileSync(join(sfxSrc, f), join(G, "sfx", f));
 }

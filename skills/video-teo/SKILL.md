@@ -1,24 +1,24 @@
 ---
 name: video-teo
 description: >
-  Sản xuất video YouTube explainer hoạt hình 2D tiếng Việt dài trên 20 phút (thường 20–30) do mascot Tèo dẫn (giọng VieNeu "Lóng"),
+  Sản xuất video YouTube explainer hoạt hình 2D tiếng Việt dài trên 20 phút (thường 20–30) do mascot Tèo dẫn (giọng Tiến Đạt, đọc bằng ZeroTTS),
   từ chọn chủ đề (bắt buộc là người nổi tiếng hoặc sự việc nhiều người biết) → nghiên cứu ≥2 nguồn → kịch bản video.json → nhân vật SVG → TTS/align/build → snapshot → render MP4
   + thumbnail 1280×720 đẹp + tiêu đề chuẩn SEO (đuôi "| Tèo Kể") + gói đăng youtube/ (mp4, thumb, tiêu đề, mô tả, tags, phụ đề .srt). Dùng khi người dùng nói "tạo video", "làm video Tèo",
-  "video dài hôm nay", "làm tiếp video", hoặc chạy chế độ sản xuất liên tục. Dùng kit tại __MUSE_ROOT__\kit.
+  "video dài hôm nay", "làm tiếp video", hoặc chạy chế độ sản xuất liên tục. Dùng kit tại __MUSE_ROOT__/kit.
 ---
 
 # Video Tèo — dây chuyền video dài trên 20 phút
 
 Mày là cả ê-kíp của một kênh YouTube tiếng Việt: biên kịch, họa sĩ, dựng phim, SEO. Mỗi video làm TRỌN gói. Người dùng chỉ việc xem lại rồi tự đăng.
 
-`KIT = __MUSE_ROOT__\kit` · `<SKILL_DIR>` = thư mục chứa file này.
+`KIT = __MUSE_ROOT__/kit` · `<SKILL_DIR>` = thư mục chứa file này.
 
 **ĐỌC TRƯỚC (bắt buộc, mỗi phiên):** `KIT/README.md`. Đây là spec định dạng video.json, các loại cảnh, luật kịch bản, nhân vật, thumbnail và publish. Bảng tra cứu nhanh nằm ở `<SKILL_DIR>/reference.md`.
 
 ## Luật cứng
 
 - KHÔNG đăng gì lên mạng. KHÔNG gửi tin nhắn cho ai.
-- Chỉ sửa thư mục video đang làm, `__MUSE_ROOT__\ideas\` và **thêm** fx mới vào `kit/fx/<ten>.mjs`. KHÔNG sửa template cũ trong `kit/scenes/`, `kit/lib/`, `kit/make.mjs`. Cảnh tự chế (`custom`) để trong `videos/<slug>/scenes/`.
+- Chỉ sửa thư mục video đang làm, `__MUSE_ROOT__/ideas/` và **thêm** fx mới vào `kit/fx/<ten>.mjs`. KHÔNG sửa template cũ trong `kit/scenes/`, `kit/lib/`, `kit/make.mjs`. Cảnh tự chế (`custom`) để trong `videos/<slug>/scenes/`.
 - Không dùng `videos\_pilot` hay `khoi-nguyen-vu-tru-hy-lap` để thử nghiệm.
 - Tránh chính trị nhạy cảm, tôn giáo gây tranh cãi, 18+, bạo lực ghê rợn. Phần truyền thuyết phải nói rõ là truyền thuyết.
 - Hỏng mà không tự sửa được thì dừng lại, báo rõ lỗi kèm log.
@@ -28,11 +28,16 @@ Mày là cả ê-kíp của một kênh YouTube tiếng Việt: biên kịch, h�
 Xong video này thì làm ngay video kế. Cho các việc chạy chồng lên nhau để máy không lúc nào rảnh:
 
 - Trong lúc video A chạy TTS hoặc render ở nền, viết kịch bản và vẽ nhân vật cho video B. Có thể giao nghiên cứu cho agent nền (research-expert), dặn rõ ≥2 nguồn mỗi dữ kiện và tách riêng mục tranh cãi.
-- Các việc nặng CPU chạy tuần tự: không chạy 2 TTS, 2 align hay 2 render cùng lúc. Riêng `thumb` và `validate` nhẹ, chạy song song được.
+- Các việc nặng CPU chạy tuần tự: không chạy 2 align hay 2 render cùng lúc. Riêng `thumb` và `validate` nhẹ, chạy song song được.
+- **TTS chỉ dùng ZeroTTS (người dùng chốt 2026-11-03, bỏ hẳn VieNeu):** giọng **Tiến Đạt** (`"voice": "tiendat"`, giọng nam trẻ có sẵn của ZeroTTS; người dùng chốt 2026-11-03, trước đó là "Lóng" nạp ở `~/.zerotts/voices`); mọi pipeline đọc bằng `kit/py/tts-zerotts.py` (máy nhà: venv `~/Projects/ZeroTTS-src/.venv`, model int8) hoặc chính file đó trên Colab (`colab-tts.mjs` gửi lên, `synth-zerotts.py`, model fp32 GPU T4). Mỗi cảnh kéo về -20 LUFS; khoá `.key` có tiền tố `zerotts|` nên wav VieNeu cũ được đọc lại. Code trước khi đổi: `kit/_bak-zerotts-20261103/`.
+- **TTS (bản dài) và căn chữ chạy trên Google Colab** (từ 2026-10-23, người dùng yêu cầu): `make.mjs --stage tts` gọi `kiem-hiep/_tools/colab-tts/colab-tts.mjs`, `--stage align` gọi `colab-tts.mjs --align` (chạy chính `py/align.py` trên GPU T4, kết quả y hệt CPU) — cùng job, cùng cache với bản máy nhà, không tốn CPU. `chay-nang.sh` cho các stage tới hết `align` chạy ngay, không chờ làn; `build,lint` mới vào làn giong. Colab thu hồi / không tạo được phiên GPU thì `make.mjs` tự làm tts và căn chữ bằng CPU máy nhà (người dùng chốt 2026-11-03, luật chung `colabThenLocal` trong `kit/lib/mix.mjs`); Colab lỗi khác thì `make.mjs` dừng — sửa Colab theo bảng "Lỗi Colab TTS" trong skill teo-kiem-hiep-godot; chỉ thêm `--tts-local` / `--align-local` (làm ở máy nhà) khi người dùng cho phép. Không đặt `COLAB_TTS_GRACE`.
+  **Ngoại lệ chốt 2026-10-24: short (`…/shorts/…`) và sửa ngắn (< 30 câu cần đọc/căn sau cache) tự làm ở máy nhà bằng CPU, chỉ bản dài mới lên Colab** (`kit/lib/mix.mjs`, colab-tts `--min` trả mã 75). Short vì vậy vẫn xếp làn giong trong `chay-nang.sh` như cũ.
+- **Người dùng chốt 2026-10-29: KHÔNG hiệu ứng âm thanh nào** (whoosh, pop, chime, riser, kèn, sáo, chuông, mõ, chiêng "beng beng"…). Video chỉ có giọng đọc + nhạc nền nhỏ; nhạc nền cũng không có kèn, sáo, chuông, mõ, chiêng, trống — chỉ đàn gảy/dây êm. `kit/lib/mix.mjs` đặt `SFX_ON = false` nên mọi pipeline (kit/make.mjs, build-short, teo-kiem-hiep build, gd-render) bỏ hết sfx dù cảnh/fx/phim.sfx() có khai báo. Không tự bật lại. Video đã render mà còn sfx: `node kit/remix-audio.mjs <dir>` (video-teo; short: `<dir short> --short`) hoặc `gd-render.mjs <tap> --audio-only` (Godot) — chỉ dựng lại tiếng, giữ hình. Nhạc tập Godot chỉ đàn gảy: `python kit/py/nhac-gay.py <tap>/godot` (dùng python có numpy/soundfile, vd. VieNeu-TTS/.venv).
+- **Luật âm thanh (người dùng chốt 2026-10-24, `kit/lib/mix.mjs`):** không sfx "ùm ùm tùm tùm" gây giật mình; sfx luôn nhỏ hơn giọng; nhạc nền nhỏ hơn hẳn giọng. `kit/sfx` là bản êm (`kit/sfx-soft.mjs`: lọc trầm < 180 Hz, ≤ -26 LUFS, đỉnh ≤ -12 dBFS; bản gốc ở `kit/sfx/_goc/`), build tự chép đè vào `assets/sfx` và kẹp `vol` sfx ≤ 0,6; nhạc nền tự đo và kẹp ≤ -40 LUFS (thấp hơn giọng ≥ 20 dB) — `bgm_volume` chỉ hạ được, không vượt trần. Không thêm sfx mới chưa qua `sfx-soft.mjs`.
 - Mỗi video xong thì báo người dùng ngắn gọn (mẫu ở mục 9), rồi làm tiếp.
-- **Chỉ tiêu: tối thiểu 10 video/ngày, video nào cũng phải chuẩn chỉnh** (không bỏ bước kiểm nào để chạy cho đủ số). Làm đa luồng: **mỗi video một session** (start_session), còn các stage nặng (`tts,align,build,lint` và `render,thumb,publish`) chạy qua hàng đợi chung:
-  `bash __MUSE_ROOT__/ideas/chay-nang.sh <video_dir> <stages> <log_file>` (chạy nền). KHÔNG gọi thẳng make.mjs cho các stage đó.
-- Lúc nào cũng phải có **≥4 video** đang viết hoặc chờ CPU. Mỗi video tốn khoảng 100 phút CPU (TTS cộng render), nên trần là khoảng 14 video/ngày. CPU rảnh là mất chỉ tiêu.
+- **Chỉ tiêu hàng ngày (người dùng chốt 2026-11-06):** Giới hạn **1 video / ngày** cho kênh Lại Là Tèo Đây (cùng với 1 video / ngày cho Tèo Tửu Lâu, tổng 2 video/ngày cho cả hệ thống). Chạy vào ca tối hàng ngày (19:00 tạo video, 20:00 đăng video).
+- **KHÔNG LÀM SHORTS (chủ kênh chốt 2026-10-29):** Kênh Lại Là Tèo Đây bỏ toàn bộ các bước làm Short (kịch bản short, giọng short, dựng short, render short). `yt-auto` cấu hình `min_shorts = 0` và `"tat_shorts": true`. Gói `youtube/` hoàn chỉnh khi có video dài + thumbnail.png + tieu-de.txt + mo-ta.txt + tags.txt.
+- **Lời mời tương tác ngay sau hook (người dùng chốt 2026-11-05):** Ngay sau đoạn hook mở đầu, luôn có một câu hỏi người xem muốn kênh làm về ai hoặc sự kiện/ý tưởng nào thì comment để kênh làm, kết hợp kêu gọi like và follow/đăng ký kênh.
 - Trước khi tạo `videos/<slug>`, phải kiểm tra slug chưa có ai làm (thư mục chưa tồn tại, DA-LAM chưa có dòng đó). Không ghi vào thư mục của session khác.
 - Cứ 2 tiếng báo cáo người dùng một lần: số video đã xong hôm nay trên chỉ tiêu 10, từng video đang ở bước nào, dự kiến xong lúc mấy giờ, lỗi nếu có.
 
@@ -42,7 +47,9 @@ Xong video này thì làm ngay video kế. Cho các việc chạy chồng lên n
 
 - **(a) Người nổi tiếng:** nhân vật lịch sử, vua chúa, tướng lĩnh, nhà khoa học, nhà phát minh, nghệ sĩ, doanh nhân, vận động viên… (Trần Hưng Đạo, Napoleon, Einstein, Steve Jobs, Pelé).
 - **(b) Sự việc nhiều người biết:** trận đánh, thảm hoạ, phát minh, vụ án, kỳ quan, bí ẩn nổi tiếng (Titanic, Chernobyl, Điện Biên Phủ, Tam giác Bermuda, Pompeii).
-- Tên neo phải nằm **trong 3 chữ đầu của tiêu đề** (từ khoá SEO), xem mục 5.
+- Tiêu đề **mở đầu bằng cụm từ khoá chứa tên neo**, đúng thứ tự chữ người ta gõ, xem mục 5. Tên neo quá lớn (Ronaldo, Quang Trung, Kim Tự Tháp…) thì phải có góc hẹp mà người ta có gõ, vì cụm rộng không chen được vào top tìm kiếm.
+
+- **Ưu tiên chủ đề ké được (luật chung mục 1e).** Trước khi chọn chủ đề hoặc loạt mới, chạy `python3 __MUSE_ROOT__/yt-auto/tools/kiem-hang.py --dang-len=lai-la-teo-day`. Nếu một video đang lên cùng mảng (văn học Việt Nam, lịch sử "toàn bộ / trong N phút" của Văn Vở, Vui Vẻ…) trùng chủ đề mà mình có góc kể riêng, thì chọn chủ đề đó và làm sớm. Tiêu đề mang cụm đặc trưng của video đó, không chép nguyên. Ghi link video đã ké vào `ideas/YYYY-MM-DD.md`.
 
 **Phép thử "đã nghe tên"** (bắt buộc, ghi kết quả vào `ideas/YYYY-MM-DD.md`). Phải đạt **≥3/4** tiêu chí:
 
@@ -114,7 +121,7 @@ Mỗi video phải **khác video trước ở cấu trúc kể, giọng kể và
    4. **Kiểm tra:** dàn khung này có dùng lại được cho video khác bằng cách chỉ thay tên nhân vật không? Nếu được thì khung còn quá chung, phải bám chất liệu hơn. Kể thẳng từ sinh tới mất chỉ được khi phân tích cho thấy chính nhịp đời người là lõi chuyện, và khi đó vẫn phải có người kể hoặc góc nhìn riêng.
 
    Khung quyết định thứ tự thân bài, cách mở, cách kết, vai Tèo và loại cảnh làm xương sống. Một khung chỉ được tính là đã dùng khi nó **chạy suốt video**: dán nhãn ở đầu/cuối rồi giữa video kể kiểu tiểu sử thì không tính. Validate (`make.mjs --stage validate`) báo khi: `creative.frame` thiếu phần nào hoặc chỉ là một cái tên; `analysis` dưới 25 chữ; tên khung hoặc trục gần giống 1 trong 3 tập gần nhất; dàn khung (axis/open/close/segments) giống ≥45% một trong 3 tập gần nhất.
-3. **Vai của Tèo** (`voice_role`, chữ tự do) rút ra từ khung: người trong cuộc, người hỏi, người ghi chép, người dẫn đường, hay vắng mặt và chỉ lồng tiếng. Không gần giống 2 tập gần nhất (validate so độ giống chữ). Mỗi vai có thói quen nói riêng như câu cửa miệng, cách gọi người xem, nhịp câu. Tèo vẫn xưng "mình". **`voice_role` chỉ đổi lời văn, KHÔNG đổi giọng đọc: luôn `"voice": "Lóng"`.**
+3. **Vai của Tèo** (`voice_role`, chữ tự do) rút ra từ khung: người trong cuộc, người hỏi, người ghi chép, người dẫn đường, hay vắng mặt và chỉ lồng tiếng. Không gần giống 2 tập gần nhất (validate so độ giống chữ). Mỗi vai có thói quen nói riêng như câu cửa miệng, cách gọi người xem, nhịp câu. Tèo vẫn xưng "mình". **`voice_role` chỉ đổi lời văn, KHÔNG đổi giọng đọc: luôn `"voice": "tiendat"`.**
 4. Ghi concept vào `ideas/YYYY-MM-DD.md` **và** `video.json`. Mỗi trường tự nghĩ ra từ phân tích, không lấy lại giá trị của 5 tập trước:
    ```jsonc
    "creative": {
@@ -183,13 +190,15 @@ Mỗi video phải **khác video trước ở cấu trúc kể, giọng kể và
 
 **Độ dài: video thật PHẢI > 20 phút. Nhắm 5.600–7.000 từ, 120–160 cảnh, 7–10 file chương. Đặt `"target_min": [20, 30]`.**
 
-- Validate ước tính 4,1 từ/giây, nhưng giọng Lóng thật đọc khoảng 4,5 từ/giây (cảnh ~45 từ mất ~10 s, cộng 0,55 s đệm mỗi cảnh). Kịch bản 6.500 từ / 142 cảnh ra **~24,6 phút**. 5.600 từ / 125 cảnh ra khoảng 21 phút, vừa đủ an toàn.
+- Validate ước tính 4,1 từ/giây, nhưng giọng thật đọc khoảng 4,5 từ/giây (cảnh ~45 từ mất ~10 s, cộng 0,55 s đệm mỗi cảnh). Kịch bản 6.500 từ / 142 cảnh ra **~24,6 phút**. 5.600 từ / 125 cảnh ra khoảng 21 phút, vừa đủ an toàn.
 - Mỗi cảnh 35–60 từ. Tối đa 70 từ; dưới 10 từ thì giọng bị méo.
 - Cue `at` phải là cụm có thật trong `say`. Kit so khớp chữ thường, dấu câu đổi thành khoảng trắng. Viết `at` ngắn 1–4 chữ, lấy đúng chữ trong câu.
 - Không quá 2 cảnh cùng **file cảnh** đứng liền nhau. Nhân vật quan trọng có cảnh giới thiệu khi ra mắt, dựng bằng loại cảnh "giới thiệu" trong bộ cảnh của tập (mục 2c), không dùng template `intro`.
 - **Cảnh dựng bằng bộ cảnh của tập (mục 2c):** `custom` ≥ 85%. Hệ hình và khung quyết định loại cảnh nào làm xương sống, ghi rõ trong ý tưởng. Nếu lỡ dùng template thì `narrator` vẫn **≤ 20%** (validate báo). Dành các cảnh bước ngoặt cho chỗ thật sự có bước ngoặt, đừng rắc đều mỗi 2–3 cảnh.
 
 ### Mở đầu (≤ 60 s)
+
+**Luật giữ chân 60 s đầu (người dùng chốt 2026-10-24, kèm số liệu thật của kênh): đọc `__MUSE_ROOT__/ideas/HOOK-MO-DAU.md` trước khi viết chương 1.** Tóm tắt: 0–5 s là hình đắt nhất và 1 câu khớp ảnh bìa. 5–15 s là một câu hỏi cụ thể. 15–30 s là lý do phải xem và một lời hứa cụ thể. Diễn biến đầu tiên bắt đầu **trước giây 45**. Câu ≤ 15 chữ, ≤ 1 con số mỗi câu. Tèo tự giới thiệu ≤ 1 câu, thể hiện vai bằng hành động. Tiểu sử và tranh cãi số liệu để sau phút 3. Mở bằng "Khoan…", tự giới thiệu theo công thức, và cá cược bằng đồ vật: mỗi kiểu tối đa 1 lần trong 5 tập. 3 tập cùng loạt phải mở theo 3 kiểu khác nhau.
 
 - **Hook ≤ 15 s, câu đầu ≤ 12 từ, vào thẳng. Mỗi video một hook riêng, sinh ra từ chính kịch bản, phải gây ấn tượng ngay 3 giây đầu.**
   1. **Đọc kịch bản trước, rồi mới thiết kế hook.** Tìm **hình ảnh đắt nhất của riêng câu chuyện này**: một đồ vật (quả vải, chiếc nhẫn, lá thư), một khoảnh khắc (tiếng súng, con tàu nghiêng), một con số, một âm thanh. Ghi vào `ideas/YYYY-MM-DD.md` mục **"Hook"**: hình chủ đạo, vì sao nó đắt, từng nhịp lời đọc ứng với biến đổi hình nào, cú chốt cuối. Ghi `creative.hook` (kiểu hook) và `creative.hook_visual` (một câu mô tả hình + chuyển động).
@@ -207,7 +216,8 @@ Mỗi video phải **khác video trước ở cấu trúc kể, giọng kể và
 
   **Không** kết hook bằng "Vậy…?" nếu tập trước đã làm vậy.
 - **Lời chào dấu ấn kênh** "Chào các bạn, lại là Tèo đây" phải có, nhưng **đặt ở đâu trong 60 s đầu và nói theo kiểu nào là tuỳ khung**. Ví dụ: nhân vật giới thiệu Tèo, Tèo chen ngang bản tin, Tèo bước vào phòng xử. Khi Tèo nói câu chào, **Tèo phải hiện trên hình** (cameo, `charBox` trong cảnh custom, hoặc cảnh có Tèo) theo đúng vai của khung, không để cảnh chào trống người. Không mở bằng công thức "hôm nay Tèo [khoác áo / làm] + đạo cụ" nếu 1 trong 5 tập trước đã dùng. Câu chào cũ in ở `fx-list.mjs`, cấm trùng.
-- **Hứa hẹn:** **CẤM** công thức "Xem tới cuối, các bạn sẽ có câu trả lời cho ba câu hỏi. Một… Hai… Và ba". Thay bằng kiểu khác mỗi tập: một câu hỏi duy nhất, một câu đố, một vật bí ẩn sẽ được mở ở cuối, một lời cá cược với người xem, hoặc không hứa gì mà vào thẳng chuyện.
+- **Lời mời đầu video (người dùng chốt 2026-11-05, bắt buộc mọi tập):** đặt **ngay sau đoạn hook ban đầu** (cảnh đầu tiên sau các cảnh `"hook": true`, trước hoặc gộp cùng câu chào), Tèo nói gọn (1–2 câu, mỗi câu ≤ 15 chữ, tổng ≤ 8 s) hai ý: **(1) mời mọi người bình luận muốn Tèo làm video về ai / ý tưởng nào**, **(2) kêu gọi like và đăng ký (theo dõi) kênh**. Lời phải có chữ "bình luận", "like" và "đăng ký" hoặc "theo dõi". Nói theo giọng khung, mỗi tập tự viết câu, không chép câu tập trước; Tèo hiện trên hình lúc nói. Không thay thế CTA giữa và cuối video. Không để lời mời đẩy diễn biến đầu tiên ra sau giây 45: hook gọn, chào + mời gộp ngắn.
+- **Hứa hẹn:** **CẤM** công thức "Xem tới cuối, các bạn sẽ có câu trả lời cho ba câu hỏi. Một… Hai… Và ba". Thay bằng kiểu khác mỗi tập: một câu hỏi duy nhất, một câu đố, một vật bí ẩn sẽ được mở ở cuối, một lời cá cược với người xem (tối đa 1 lần trong 5 tập, vì mẫu "mình cá với các bạn đúng <đồ vật>" đã thành khuôn), hoặc không hứa gì mà vào thẳng chuyện. Lời hứa phải **cụ thể** (nói rõ cuối video sẽ thấy gì), không mơ hồ kiểu "một chuyện không ai ngờ".
 
 ### Thân bài
 
@@ -234,7 +244,7 @@ Kết theo khung. **Không mặc định "điểm lại ba điều đã hứa"**
 
 Mời bình luận bằng **một** câu hỏi gắn với kết đó. Không bắt buộc kiểu chọn A/B/C. `outro` hé lộ tập sau mỗi lần một kiểu (hình bóng, đồ vật, câu đố, tên thật nếu đã biết). Không lặp "một … nổi tiếng khác, với một bí mật / cách kể hoàn toàn mới".
 
-Validate cảnh báo nếu thiếu "lại là Tèo" trong ~60 s đầu, thiếu "đăng ký" ở giữa (25–75%) hoặc ở cuối, cảnh `cta` không có chữ "đăng ký", có cụm "ba câu hỏi", hoặc câu chào / CTA giống tập trước.
+Validate cảnh báo nếu thiếu "lại là Tèo" trong ~60 s đầu, thiếu lời mời đầu video (bình luận + like + đăng ký/theo dõi) ở cảnh ngay sau hook, thiếu "đăng ký" ở giữa (25–75%) hoặc ở cuối, cảnh `cta` không có chữ "đăng ký", có cụm "ba câu hỏi", hoặc câu chào / CTA giống tập trước.
 
 **Hình và hiệu ứng:**
 - **Mật độ fx:** khoảng 1/3 số cảnh có `fx` (tối thiểu 1/4, validate báo). Hook, cảnh custom và các bước ngoặt là chỗ đầu tư nhiều nhất. fx chữ ký của tập lặp lại xuyên suốt để tạo bản sắc riêng.
@@ -288,28 +298,48 @@ Viết cảnh **mỗi cảnh một dòng** trong file chương để sau này ch
 node __MUSE_ROOT__/kit/make.mjs <dir> --stage thumb
 ```
 
-Mở `thumbnail.png` ra xem (Read). Lặp lại tới khi đạt đủ checklist:
+Mở `thumbnail.png` ra xem (Read). Lặp lại tới khi đạt đủ checklist. Luật chung về tiêu đề và ảnh bìa cho mọi kênh Tèo
+(người dùng chốt 2026-10-24) nằm ở `__MUSE_ROOT__/ideas/TIEU-DE-ANH-BIA.md`: đọc trước khi làm mục này.
 
-- [ ] 1280×720, chữ hook 3–7 từ, **khác tiêu đề**, câu hỏi hoặc nghịch lý, gây tò mò.
+- [ ] 1280×720, chữ hook **3–5 từ**, **khác tiêu đề**, câu hỏi hoặc nghịch lý, gây tò mò.
+- [ ] **Chỉ một khối chữ chính.** Dùng `series` hoặc `sub`, không dùng cả hai. Tập thuộc một loạt (sổ loạt
+  `yt-auto/series/<kênh>.json`) thì dùng `series` = nhãn loạt, giống hệt ở cả 3 tập; khi đó bỏ `sub`.
+- [ ] **Hình đắt nhất phải to.** Có `prop` thì `circle_r` ≥ 300 (mặc định của kit là 330). Đừng thu vòng đồ vật
+  thành một chấm, xuống điện thoại sẽ không thấy. Không có đồ vật đắt thì tắt vòng (`circle: false`) và dùng `closeup`.
+- [ ] Góc dưới bên phải không có chữ, vì ô thời lượng của YouTube che chỗ đó.
+- [ ] **Soi ở cỡ điện thoại:** `sips -Z 360 <dir>/thumbnail.png --out <dir>/work/thumb-phone.png` rồi Read ảnh đó.
+  Không đọc được chữ hoặc không nhận ra hình đắt nhất trong 1 giây thì làm lại.
+- [ ] Câu hỏi hoặc hình trên ảnh bìa được nhắc lại trong **30 giây đầu** của hook (luật "hứa gì trả nấy").
 - [ ] Chữ ngắt 2 dòng tự nhiên. Kit chia đều theo độ dài; nếu gãy giữa cụm, ví dụ "CÁI / NÀO THẬT", thì đổi câu (ví dụ "Tự trầm hay bị chém?").
 - [ ] `highlight` tô vàng 1–2 từ đắt nhất.
 - [ ] **Không có gì đè lên mặt nhân vật.** Vòng đạo cụ (`circle_x/y/r`) đặt vào khoảng trống thật của ảnh này, không chép toạ độ tập trước, và không chạm chữ.
 - [ ] Mũi tên chỉ bật khi chỉ vào thứ có nghĩa.
 - [ ] Nhân vật chính có cảm xúc rõ. Dùng bản biểu cảm (`<key>-soc`, `<key>-gian`…) nếu nhân vật có.
-- [ ] **Khác 3 tập trước ở ≥3/5 yếu tố:** pose / biểu cảm, `bg`, vị trí vòng, có mũi tên hay không, kiểu chữ hook (câu hỏi / cảm thán / con số / trích lời). Đổi cả `thumbnail.layout`: `classic`, `split` (2 nhân vật đối đầu, badge VS) hoặc `closeup` (cận mặt nhân vật chính); `bg` có thêm purple, noir, teal, orange. Thông số thumbnail các tập trước in ở `fx-list.mjs`.
-- [ ] `series` (nhãn trên cùng) và `sub` (nhãn vàng dưới) ngắn gọn.
+- [ ] **Khác 3 tập trước ở ≥3/5 yếu tố:** pose / biểu cảm, `bg`, vị trí vòng, có mũi tên hay không, kiểu chữ hook (câu hỏi / cảm thán / con số / trích lời). Ba tập cùng loạt thì giữ chung `bg`, còn 4 yếu tố kia phải khác ít nhất 3. Sang loạt mới thì đổi `bg`. Đổi cả `thumbnail.layout`: `classic`, `split` (2 nhân vật đối đầu, badge VS) hoặc `closeup` (cận mặt nhân vật chính); `bg` có thêm purple, noir, teal, orange. Thông số thumbnail các tập trước in ở `fx-list.mjs`.
+- [ ] Nhãn đang dùng (`series` ở trên cùng **hoặc** `sub` vàng ở dưới, không cả hai) ngắn, tối đa 3 từ.
 
-**Tiêu đề SEO** (`publish.titles`, 3 phương án; bản đăng thật nằm ở `youtube/seo.json`, xem mục 6b):
+> **LUẬT CỨNG: MỖI VIDEO TỰ ĐI TÌM TÊN CỦA RIÊNG NÓ.** Video dài và **từng short** đều phải tự tìm trên YouTube (`tu-khoa.py`, video dài thêm `kiem-hang.py`) với tên neo của chính nó, rồi chọn tên dễ được tìm thấy nhất. Không chép tên hay kết quả tìm kiếm của video khác, không đặt tên theo cảm tính. Ghi lại cụm đã tìm, điểm, mức cạnh tranh và tên đã chọn của từng video.
 
-- **Dấu ấn kênh:** mọi tiêu đề đăng lên kết thúc bằng `| Tèo Kể` (9 ký tự, script tự gắn). Phần còn lại vì thế **≤ 51 ký tự**.
-- **Tên neo nổi tiếng** (người hoặc sự việc, mục 1) phải nằm trong 3 chữ đầu tiêu đề, ví dụ `Napoleon: …`, `Titanic …`, `Trần Hưng Đạo …`.
-- **Gợi tò mò** bằng 1 trong 4 kiểu, đổi kiểu giữa các video:
-  1. Câu hỏi người xem từng thắc mắc: `Titanic Chìm Vì Đâu? Đêm Cuối Của Con Tàu`
-  2. Con số gây sốc: `Magellan: 240 Người Ra Đi, Chỉ 18 Người Về`
-  3. Nghịch lý / điều trái trực giác: `Napoleon Không Hề Lùn? Sự Thật Về Hoàng Đế`
-  4. "Sự thật / cái kết" khác điều ai cũng nghĩ: `Hai Bà Trưng: Cái Kết Mà Sử Sách Kể Khác Nhau`
-- Viết hoa chữ cái đầu mỗi từ. Không clickbait sai sự thật: mỗi lời hứa trong tiêu đề phải được trả lời trong video (đối chiếu `description`/`notes`).
-- Tiêu đề, chữ trên thumbnail và câu đầu mô tả là 3 câu KHÁC nhau, bổ sung cho nhau.
+**Tiêu đề SEO** (`publish.titles`, 3 phương án; bản đăng thật nằm ở `youtube/seo.json`, xem mục 6b). Làm đủ 4 bước của
+`__MUSE_ROOT__/ideas/TIEU-DE-ANH-BIA.md` mục 1 (1a–1d), theo thứ tự:
+
+1. **Từ khoá:** `python3 __MUSE_ROOT__/yt-auto/tools/tu-khoa.py "<tên neo>" "<tên neo + góc của tập>" "<chủ đề loạt>"` (thêm `--bo=…` để bỏ gợi ý trùng tên). Lấy cụm điểm cao nhất mà đúng nghĩa. Gõ cả tên gọi khác của tên neo.
+2. **Câu hỏi người xem:** mục "Người xem đang hỏi gì" của `tu-khoa.py`. Ít nhất một phương án trả lời thẳng câu cao điểm nhất mà video trả lời được.
+3. **Độ cạnh tranh:** `python3 __MUSE_ROOT__/yt-auto/tools/kiem-hang.py "<cụm 1>" "<cụm 2>"`. Kênh này hay gặp mức KHÓ, vì tên neo nổi tiếng thì báo lớn và kênh lớn đã chiếm top. Gặp KHÓ thì đổi sang cụm dài và hẹp (tên neo + góc riêng mà người ta có gõ). Ví dụ "Ronaldo Bị Gạch Tên…" lên #1, trong khi "Ronaldo 2013…" không lọt top.
+4. **Viết:**
+   - Cụm từ khoá đứng **đầu** tiêu đề, nguyên văn theo thứ tự chữ người ta gõ. Cụm từ khoá và lời hứa nằm trong 40 ký tự đầu.
+   - Phần tự viết ≤ 51 ký tự, **không ghi đuôi**: `youtube-pack.mjs` tự gắn `| Tèo Kể`, rồi chặn khi quá 60 ký tự, có emoji hoặc viết HOA toàn bộ. Nó cảnh báo khi chưa Viết Hoa Từng Chữ hoặc khi chữ ảnh bìa lặp quá nửa tiêu đề.
+   - Hứa một điều cụ thể. Có thể dùng một trong 4 kiểu, đổi kiểu giữa các video:
+     - Câu hỏi: `Titanic Chìm Vì Đâu? Đêm Cuối Của Con Tàu`
+     - Con số: `Magellan: 240 Người Ra Đi, Chỉ 18 Người Về`
+     - Nghịch lý: `Napoleon Không Hề Lùn? Sự Thật Về Hoàng Đế`
+     - Sự thật / cái kết khác điều ai cũng nghĩ: `Hai Bà Trưng: Cái Kết Mà Sử Sách Kể Khác Nhau`
+   - "(Phần N/3)" chỉ dùng khi các tập nối tiếp nhau về nội dung, đặt cuối.
+   - 3 phương án là 3 góc khác hẳn nhau, mỗi phương án vẫn mở bằng một cụm từ khoá. Viết Hoa Từng Chữ, không emoji.
+   - Không clickbait sai sự thật: mỗi lời hứa phải được trả lời trong video (đối chiếu `description`/`notes`).
+   - Tiêu đề, chữ thumbnail và câu đầu mô tả là 3 câu KHÁC nhau.
+   - Ghi cụm đã chọn, điểm và mức cạnh tranh vào `ideas/YYYY-MM-DD.md`.
+5. **Sau khi đăng ≥ 3 ngày:** `python3 .../kiem-hang.py --da-dang` ghi vị trí tìm kiếm của từng video vào `yt-auto/logs/hang.jsonl`. Đọc file này trước khi đặt tiêu đề cho loạt mới.
 
 Các phần còn lại của `publish`:
 
@@ -378,42 +408,18 @@ Yêu cầu: > 20 phút, có cả stream video lẫn audio. Xem lại `thumbnail.
    - `phu-de.vi.srt`: phụ đề tiếng Việt dựng từ `words/` (tăng SEO, người xem tắt tiếng vẫn theo được).
    - `DANG-YOUTUBE.md`: bảng file nào dán vào đâu, cài đặt nên chọn, dữ kiện cần kiểm lại (`notes`), mục "⚠ Cần sửa" nếu có lỗi.
 4. Script thoát mã 1 nếu tiêu đề > 60 ký tự, mô tả > 5000 hoặc có `<`/`>`, video ≤ 20 phút hay thiếu audio, phụ đề lệch timeline > 1 s. Sửa rồi chạy lại.
-5. Mở `tieu-de.txt` và `mo-ta.txt` đọc lại một lượt. Dấu ấn phải đồng nhất: đuôi tiêu đề, `#TeoKe`, chân trang mô tả, avatar, ảnh bìa, hình mờ ở `__MUSE_ROOT__\avatar\`.
+5. Mở `tieu-de.txt` và `mo-ta.txt` đọc lại một lượt. Dấu ấn phải đồng nhất: đuôi tiêu đề, `#TeoKe`, chân trang mô tả, avatar, ảnh bìa, hình mờ ở `__MUSE_ROOT__/avatar/`.
 6. Mục "Dành cho trẻ em" (COPPA) là quyết định của chủ kênh. Chỉ nhắc, không tự quyết.
-7. **Đồng bộ Google Drive (bắt buộc, tự động):** đóng gói không lỗi xong, `youtube-pack.mjs` chép cả thư mục `youtube/` sang `G:\My Drive\TeoKenhYoutube\<slug>\` (thư mục của ứng dụng Google Drive for desktop; ứng dụng tự tải lên mây ở nền).
-   - Ghi qua file `.part` rồi đổi tên, nên Drive không đồng bộ file chép dở. File đã có cùng kích thước và không cũ hơn thì bỏ qua.
-   - Sửa gói (thumbnail, tiêu đề…) thì chạy lại `youtube-pack.mjs`; file đổi sẽ được chép đè.
-   - Không thấy `G:\My Drive` (Drive chưa mở / chưa đăng nhập) thì script báo "CHƯA lên Drive" và thoát mã 1. Gói ở `youtube/` vẫn đủ; mở ứng dụng Google Drive rồi chạy `node <SKILL_DIR>/scripts/drive-sync.mjs videos/<slug>`.
-   - `--no-drive` chỉ dùng khi chạy thử. Đổi thư mục đích bằng biến môi trường `TEO_DRIVE_DIR`.
+7. **Google Drive và thư mục gói (tự động, không làm tay):**
+   - Trên Mac, job `yt-sync` (15 phút/lần, `__MUSE_ROOT__/yt-auto`) tự chép `videos/<slug>/youtube/` lên `My Drive/TeoKenhYoutube/<slug>/` khi gói đủ video dài + 3 Shorts, rồi xoá `youtube/` trên máy. Node không có quyền ghi Drive, nên `youtube-pack.mjs` báo "CHƯA lên Drive" là bình thường.
+   - `TeoKenhYoutube` chỉ chứa video của kênh Lại Là Tèo Đây. Kiếm hiệp ở `My Drive/TeoTuuLau`. Không có video thể thao.
+   - Khi `yt-auto` hẹn giờ xong video dài, thư mục gói được đổi tên thành **`<YYYY-MM-DD HHhMM> <slug>`** (giờ đăng video dài, vd. `2026-10-28 19h00 cleopatra-gio-sung`). Đăng hết (dài + Shorts) thì chuyển sang `My Drive/DaDang/lai-la-teo-day/` giữ nguyên tên.
+   - Skill **không tự đặt tiền tố giờ**: tên thư mục `videos/<slug>` vẫn là slug trần. Khi tìm xem slug đã lên Drive / đã đăng chưa, tìm thư mục tên `<slug>` **hoặc kết thúc bằng ` <slug>`** ở cả `TeoKenhYoutube` và `DaDang/lai-la-teo-day`.
+   - Sửa gói sau khi đã lên Drive (thumbnail, short…): sửa trong `videos/<slug>/youtube/`, `yt-sync` tự chép đè vào đúng thư mục đã đổi tên.
 
-## 6c. 3 Shorts dọc từ mỗi video (bắt buộc, làm sau 6b)
+## 6c. BỎ TẠO SHORTS (chủ kênh chốt 2026-10-29)
 
-Mỗi video dài làm thêm **3 short dọc 1080×1920 (9:16)**, mỗi cái 30–60 s, lấy 3 đoạn ấn tượng nhất. **Dựng lại dọc từ đầu, KHÔNG cắt hay crop từ bản 16:9** (crop thì mất nửa hình và chữ). Mỗi short là một video nhỏ hoàn chỉnh: kịch bản riêng, giọng Lóng đọc riêng, cảnh dọc riêng.
-
-1. **Chọn 3 đoạn** (ghi vào `ideas/YYYY-MM-DD.md` mục "Shorts"). Chấm từng ứng viên theo: hình đắt nhất (dừng tay lướt trong 2 s), một ý trọn vẹn kể xong trong 60 s, có cú chốt hoặc twist ở cuối, không cần xem video dài vẫn hiểu. **3 short phải khác kiểu**, ví dụ: (a) cảnh/hình sốc nhất + giải thích, (b) chuyện bên lề lạ nhất, (c) con số / nghịch lý gây tranh cãi nhất. Không lấy 3 đoạn liền nhau.
-2. **Kịch bản short** (~200–230 từ, 4–6 cảnh, mỗi cảnh 30–50 từ):
-   - Cảnh 1 `"hook": true`, **hook ≤ 12 s, câu đầu vào thẳng hình đắt nhất trong 2 s đầu**. Không chào, không "hôm nay Tèo…".
-   - Viết lại câu cho đứng riêng được: không "như mình nói ở trên", không "khung thứ…", không gọi tên segment của video dài.
-   - Cảnh cuối nhắc **"Tèo Kể"** + **"đăng ký"** + mời xem bản đầy đủ, hoặc để một câu hỏi mở cho người xem bình luận.
-   - Dữ kiện giữ đúng mức chắc chắn như bản dài ("theo Tesla", "theo các báo").
-3. **Cảnh dọc**: viết trong `videos/<slug>/shorts/scenes/` (cùng hợp đồng `default(ctx, kit)` như cảnh custom). Có một `_doc.mjs` làm bộ hình dọc chung cho 3 short (khung trên, tiêu đề, chip, dấu, nút đăng ký), **mượn màu/phông từ `_style` của video dài** để đồng bộ, nhưng bố cục là dọc: hình chủ đạo to giữa, không xếp hai cột.
-   - **Vùng an toàn Shorts:** nội dung chính trong y 190–1350; y 1380–1600 dành cho phụ đề (build-short tự vẽ); **dưới 1600 và ~100 px mép phải để trống** (nút like/bình luận, tên kênh, mô tả của YouTube đè lên).
-   - Mọi cảnh phải `type: "custom"` có `file`. `ctx` có thêm `vertical: true`, `index`, `count` (để vẽ vạch tiến độ), `fullThumb` (thumbnail video dài, dùng cho cảnh mời xem bản đầy đủ).
-   - Luật render nhanh như cảnh thường (mục 4b): không filter/clip/3D, không callback, không Math.random.
-4. **Thư mục:** `videos/<slug>/shorts/NN-ten/` gồm `video.json` + `chapters/01.json`. Nên sinh bằng một script (`shorts/_make-shorts.mjs`). `video.json` chép `voice`, `names`, `theme`, `bgm` từ video dài; `cast` đổi đường dẫn thành `../../chars/x.svg`; thêm khối:
-   ```json
-   "short": { "title": "≤60 ký tự, kết bằng | Tèo Kể", "description": "…", "hashtags": ["#Shorts", "#…"], "tags": ["…"], "full": "<tên video dài>" }
-   ```
-   Chương: `"file": "../scenes/v-xxx.mjs"`.
-5. **Chạy** (từ `__MUSE_ROOT__`, tuần tự từng short, nền):
-   ```bash
-   node kit/make.mjs videos/<slug>/shorts/NN-ten --stage scaffold,tts,align
-   node <SKILL_DIR>/scripts/build-short.mjs videos/<slug>/shorts/NN-ten --stage build
-   ```
-   build-short dựng `index.html` 1080×1920 (cảnh + giọng + sfx + nhạc nền nhỏ + phụ đề to kiểu Shorts: 4 chữ/nhóm, chữ đang đọc vàng) và **cảnh báo** khi: tổng > 60 s hoặc < 20 s, hook > 12 s, cảnh cuối thiếu "Tèo Kể"/"đăng ký", align lệch, có thuộc tính làm render chậm.
-6. **Soi trước khi render (bắt buộc):** `npx --yes hyperframes@0.8.172 snapshot . --at <mốc> --no-end -o work/snap --describe false` trong thư mục short, ≥ 1 mốc mỗi cảnh + 3 mốc trong hook. Xem ảnh: hình có tràn mép, có đè phụ đề hay vùng nút Shorts không, chữ đủ to đọc trên điện thoại không.
-7. **Render + gói:** `build-short.mjs <dir> --stage render,pack` → `renders/short.mp4` (kiểm 1080×1920) rồi chép vào `videos/<slug>/youtube/shorts/NN-ten.mp4` + `NN-ten.txt` (tiêu đề có `#Shorts`, mô tả, hashtag, tag). Chạy lại `youtube-pack.mjs` để đồng bộ cả `youtube/shorts/` lên Drive.
-8. Báo cáo: thêm 3 dòng short (tiêu đề + thời lượng) vào báo cáo mục 9.
+Kênh "Lại Là Tèo Đây" **không làm Shorts** (bỏ mọi bước kịch bản short, giọng short, dựng short, render short). `yt-auto` cấu hình `min_shorts = 0` và `"tat_shorts": true`. Gói `youtube/` chỉ cần video dài + ảnh bìa + tiêu đề + mô tả + tags là hoàn chỉnh để tải lên Drive và tự động đăng.
 
 ## 7. Thêm hoặc sửa cảnh mà không đọc lại cả video
 
@@ -435,7 +441,7 @@ Thêm 1 dòng vào bảng `ideas/DA-LAM.md`:
 - Tiêu đề đề xuất (SEO), thời lượng thật.
 - Concept sáng tạo (style / motif / kiểu hook / gag), hệ hình (medium · bố cục · màu) + bộ cảnh custom đã vẽ, tỉ lệ custom, fx chữ ký.
 - Đường dẫn thư mục `youtube/` (gói đăng) và `DANG-YOUTUBE.md`.
-- Đường dẫn bản trên Google Drive (`G:\My Drive\TeoKenhYoutube\<slug>\`), hoặc báo rõ nếu chưa lên Drive.
+- Gói lên `My Drive/TeoKenhYoutube/<slug>` qua yt-sync (hẹn giờ xong thì thành `<YYYY-MM-DD HHhMM> <slug>`).
 - Dữ kiện nên kiểm lại (lấy từ `notes`).
 - Lỗi hoặc chỗ chưa ổn nếu có.
 - Chế độ liên tục: báo đang làm video kế tiếp nào.

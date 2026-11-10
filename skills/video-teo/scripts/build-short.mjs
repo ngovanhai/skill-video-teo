@@ -11,12 +11,14 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, readd
 import { join, resolve, basename, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
+import { ganDuoi, kiemTieuDe } from "__MUSE_ROOT__/yt-auto/tools/tieu-de.mjs"; // luật tiêu đề chung: ideas/TIEU-DE-ANH-BIA.md mục 1d
 
 const KIT = "__MUSE_ROOT__/kit";
 const imp = (p) => import(pathToFileURL(join(KIT, p)).href);
 const { Cues, r3, esc, setTheme, theme, groundCss, RUNTIME } = await imp("lib/base.mjs");
 const { KIT_API } = await imp("scenes/index.mjs");
 const { captionGroups } = await imp("lib/captions.mjs");
+const { SFX_ON, sfxVol, bgmVol, syncSfx } = await imp("lib/mix.mjs"); // luật âm thanh chung: sfx êm + nhỏ hơn giọng, nhạc nền thấp hơn giọng ≥ 20 dB
 
 const HF = "hyperframes@0.8.172";
 const LEAD = 0.25, TAIL = 0.3; // giống make.mjs
@@ -204,6 +206,7 @@ function build() {
   const fullThumb = existsSync(thumb) ? (copyFileSync(thumb, P("assets", "full-thumb.png")), "assets/full-thumb.png") : null;
   const out = [];
   const sfxTracks = [];
+  if (syncSfx(P("assets/sfx"))) log("sfx: cập nhật bản êm từ kit/sfx");
   for (const [i, s] of scenes.entries()) {
     const cues = new Cues(s.words, s.dur);
     const ctx = { video, scene: s, ns: s.id, cues, dur: s.dur, W, H, vertical: true, index: i, count: scenes.length, fullThumb };
@@ -214,14 +217,14 @@ function build() {
     writeFileSync(P("compositions", `${s.id}.html`), html);
     out.push(`      <div id="el-${s.id}" class="scene" data-composition-id="${s.id}" data-composition-src="compositions/${s.id}.html" data-start="${s.at}" data-duration="${s.dur}" data-track-index="${i % 2}"></div>`);
     out.push(`      <audio id="el-${s.id}-voice" src="audio/${s.id}.wav" data-start="${r3(s.at + LEAD)}" data-duration="${r3(s.voiceDur)}" data-track-index="10" data-volume="1"></audio>`);
-    for (const [k, fx] of (r.sfx || []).filter((x) => x.t < s.dur - 0.1).entries()) {
+    for (const [k, fx] of (SFX_ON ? r.sfx || [] : []).filter((x) => x.t < s.dur - 0.1).entries()) {
       const file = P("assets/sfx", fx.file);
       if (!existsSync(file)) { log(`⚠ ${s.id}: thiếu sfx ${fx.file}`); continue; }
       const st = r3(s.at + fx.t), d = r3(Math.min(durOf(file), s.dur - fx.t));
       let tr = sfxTracks.findIndex((end) => end <= st);
       if (tr < 0) { tr = sfxTracks.length; sfxTracks.push(0); }
       sfxTracks[tr] = st + d;
-      out.push(`      <audio id="el-${s.id}-fx${k}" src="assets/sfx/${fx.file}" data-start="${st}" data-duration="${d}" data-track-index="${12 + tr}" data-volume="${fx.vol}"></audio>`);
+      out.push(`      <audio id="el-${s.id}-fx${k}" src="assets/sfx/${fx.file}" data-start="${st}" data-duration="${d}" data-track-index="${12 + tr}" data-volume="${sfxVol(fx.vol)}"></audio>`);
     }
   }
   // bgm
@@ -229,7 +232,7 @@ function build() {
   if (!existsSync(src)) die(`bgm not found: ${video.bgm}`);
   const len = r3(total + 1);
   run("ffmpeg", ["-y", "-v", "error", "-stream_loop", "-1", "-i", src, "-t", String(len), "-af", `afade=t=in:d=0.6,afade=t=out:st=${r3(len - 2)}:d=2`, "-c:a", "libmp3lame", "-b:a", "160k", P("assets/bgm/bgm-full.mp3")]);
-  out.push(`      <audio id="el-bgm" src="assets/bgm/bgm-full.mp3" data-start="0" data-duration="${total}" data-track-index="11" data-volume="${video.bgm_volume ?? 0.08}"></audio>`);
+  out.push(`      <audio id="el-bgm" src="assets/bgm/bgm-full.mp3" data-start="0" data-duration="${total}" data-track-index="11" data-volume="${bgmVol(src, video.bgm_volume)}"></audio>`);
   // phụ đề
   const words = scenes.flatMap((s) => s.words.map((w) => ({ ...w, start: r3(w.start + s.at), end: r3(w.end + s.at) })));
   writeFileSync(P("compositions", "cap.html"), captionsV("cap", total, captionGroups(words, video.short?.caption_words || 4), video.short?.caption || {}));
@@ -271,9 +274,9 @@ function pack() {
   if (!existsSync(P("renders/short.mp4"))) die("chưa có renders/short.mp4");
   copyFileSync(P("renders/short.mp4"), join(outDir, `${name}.mp4`));
   const sh = video.short || {};
-  let title = sh.title || video.title || name;
-  if (!/#shorts/i.test(title)) title = `${title} #Shorts`;
-  if ([...title].length > 100) log(`⚠ tiêu đề ${[...title].length} ký tự > 100`);
+  const title = ganDuoi(sh.title || video.title || name, true);
+  const k = kiemTieuDe(title);
+  for (const w of [...k.err, ...k.warn]) log(`⚠ ${w}`);
   const txt = [`TIÊU ĐỀ:\n${title}`, `\nMÔ TẢ:\n${sh.description || ""}\n\n${["#Shorts", ...(sh.hashtags || []).filter((h) => !/^#shorts$/i.test(h))].join(" ")}`.trimEnd(), `\nTAG:\n${(sh.tags || []).join(", ")}`, `\nGHI CHÚ:\n- Video dọc 1080×1920, dưới 3 phút → YouTube tự xếp vào Shorts.\n- Bản đầy đủ: ${sh.full || "(link video dài sau khi đăng)"}`].join("\n");
   writeFileSync(join(outDir, `${name}.txt`), txt);
   log(`pack ok: ${join(outDir, name)}.mp4 + .txt`);
