@@ -105,3 +105,8 @@ Nhân vật lấy từ `engine/chars/<id>.json`. Nhân vật mới thì tạo b�
 - Nếu có nhiều hướng nhìn, phải có asset hướng tương ứng hoặc giới hạn camera; không lật ngang nhân vật có dấu hiệu bất đối xứng (huy hiệu, vũ khí, tóc, vết sẹo).
 - Mọi thao tác mới phải có: pose đầu, anticipation, action, contact/release, follow-through, recovery; thời lượng, root motion, điểm tiếp xúc, biểu cảm, secondary motion và mốc kiểm tra.
 - Giữ rig2 làm fallback. Chuyển một nhân vật sang Hybrid chỉ khi asset được duyệt và có test scene đạt.
+
+
+## DeepSeek-only motion authoring
+
+Trong profile Hybrid, DeepSeek là model duy nhất được dùng để thiết kế pose, viết SVG layer, sinh action metadata và viết animation code. Không gọi model AI khác. Main action phải được mô tả bằng key poses/curves và các pha anticipation → action → contact/release → follow-through → recovery; tween chỉ bổ trợ chuyển động phụ. Mọi pose SVG giữ nguyên identity tokens và viewBox.
