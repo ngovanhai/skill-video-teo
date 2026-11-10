@@ -116,3 +116,17 @@ node skills/nhan-vat-chibi/builder/builder.mjs preview <character-id>
 ```
 
 Set `DEEPSEEK_API_KEY` in the current shell before generate. The builder saves timestamped SVG revisions under `art/characters/<id>/source/`; it never overwrites approved art. Validation is structural only and preview requires human visual review. Read `builder/README.md` for requirements and current v1 limitations. This tool does not yet extract individual layer files, create pivots, export PNG or import a rig into Godot.
+
+
+## SVG layer export and Godot cutout rig
+
+After a DeepSeek SVG passes structural validation, export semantic groups:
+
+```powershell
+$character = "teo-kiem-khach"
+$latest = Get-Content "art/characters/$character/source/LATEST"
+$svg = "art/characters/$character/source/$latest/master.svg"
+python skills/nhan-vat-chibi/builder/split_layers.py $svg --out "art/characters/$character/layers"
+```
+
+The splitter exports aligned SVG layers and `pivots.json`. Missing required groups are a hard failure. Copy `layers/` into Godot `res://`, attach `builder/godot/character_svg_rig.gd` to a Node2D, and set its manifest path. All pivot coordinates are initial estimates and require manual visual adjustment. Read `builder/LAYER-RIG.md` for setup and limitations. This first rig rotates whole limbs; it is not yet a full elbow/knee segmented rig.
