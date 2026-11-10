@@ -150,3 +150,39 @@ Copy the output into Godot `res://`, attach `builder/godot/full_body_rig.gd` to 
 Use `builder/actions/wuxia_action_library.json` with the segmented Full Body Rig. It contains 33 keyframe actions across movement, swordplay, defense, qinggong and acting. Attach `builder/godot/action_library.gd` to a Node, configure `library_path` and `rig_path`, then call `$ActionLibrary.play("slash_horizontal")`. See `builder/actions/README.md` for IDs and integration.
 
 Camera and FX fields are cues for the scene director only; they are not automatically executed. Match contact/peak keyframes with sword trails, impact sounds and camera shake. Always inspect the motion at multiple timestamps and adjust angles for the character's facing direction and proportions. This is a reusable motion-blocking library, not a finished choreography pack.
+
+
+## Character Registry — auto-discovery for new characters
+
+The registry at `art/characters/registry.json` is the authoritative index for Hybrid characters. Do not infer identity from a display name or create a second folder for an existing ID.
+
+### Automatic resolution rule
+When a script, episode brief, storyboard or cast request mentions a character:
+1. Normalize the requested name to a stable ASCII kebab-case ID and search the registry first.
+2. If the ID exists, reuse its `identity.json`, approved revision and asset directory. Never call `init` for an existing character.
+3. If it does not exist, create a new workspace with `ensure <id> --name "..." --brief "..." `, then use DeepSeek to generate its first SVG.
+4. A character is eligible for production cast only when `status=approved` and `approved_revision` is set. Draft/WIP characters must be listed as pending and must not be silently replaced by a preset or another character.
+5. Revisions preserve the character ID and identity lock. A new design that changes face, hair, costume or weapon materially requires explicit human approval again.
+
+### Commands (repository root)
+```powershell
+# Show known characters
+node skills/nhan-vat-chibi/builder/builder.mjs list
+
+# Reuse if present; otherwise create exactly one new profile
+node skills/nhan-vat-chibi/builder/builder.mjs ensure tieu-phong --name "Tiêu Phong" --brief "Nam hiệp khất bang, dáng cao chắc, tóc đen, áo nâu đỏ, khí chất hào sảng"
+
+# Generate with DeepSeek only, then validate and preview
+node skills/nhan-vat-chibi/builder/builder.mjs generate tieu-phong
+node skills/nhan-vat-chibi/builder/builder.mjs validate tieu-phong
+node skills/nhan-vat-chibi/builder/builder.mjs preview tieu-phong
+
+# After a human has inspected the artwork
+node skills/nhan-vat-chibi/builder/builder.mjs approve tieu-phong --human-reviewed
+node skills/nhan-vat-chibi/builder/builder.mjs cast tieu-phong --actor-id tieu
+```
+
+The `cast` command writes a cast-entry.json referencing the approved immutable revision. Copy its fields into the episode's `godot/cast.json` / character manifest as required by that episode's runtime. It does not automatically alter legacy `chars.json` or convert old rig2 characters.
+
+### Required context passed to every scene
+Each scene/shot request must carry `character_id`, approved `revision`, `identity.json` (or its locked traits), and the same approved master asset. Use the ID as the key, not the character's name. A scene may change pose, expression, camera and lighting; it may not change identity traits. For a newly named character, run the registry resolution step before generating storyboards or art.
