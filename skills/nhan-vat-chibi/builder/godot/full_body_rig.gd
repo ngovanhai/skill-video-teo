@@ -18,6 +18,7 @@ func load_rig(path: String) -> void:
         push_error("Invalid full_body_rig.json")
         return
     var parts: Dictionary = parsed.parts
+    _parts_cache = parts
     # Parents must be created before children. Iterate until all resolvable nodes are built.
     var pending: Array = parts.keys()
     while not pending.is_empty():
@@ -82,20 +83,23 @@ func play_action(keyframes: Array, fps: float = 24.0) -> void:
         return
     var ordered := keyframes.duplicate(true)
     ordered.sort_custom(func(a, b): return float(a.get("at", 0.0)) < float(b.get("at", 0.0)))
+    var first_pose: Dictionary = ordered[0].get("pose", {})
+    for part_name in first_pose:
+        if part_nodes.has(part_name):
+            part_nodes[part_name].rotation = deg_to_rad(float(first_pose[part_name]))
     var tween := create_tween()
+    tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
     var previous_time := float(ordered[0].get("at", 0.0))
-    var previous_pose: Dictionary = ordered[0].get("pose", {})
-    apply_pose(previous_pose, 0.0)
     for i in range(1, ordered.size()):
         var frame: Dictionary = ordered[i]
         var at := float(frame.get("at", previous_time))
+        var duration := maxf(0.001, at - previous_time)
+        tween.tween_interval(duration)
         var pose: Dictionary = frame.get("pose", {})
-        var duration := maxf(0.0, at - previous_time)
         for part_name in pose:
             if part_nodes.has(part_name):
                 tween.parallel().tween_property(part_nodes[part_name], "rotation", deg_to_rad(float(pose[part_name])), duration)
         previous_time = at
-    tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 
 func reset_pose(duration: float = 0.18) -> void:
     var pose := {}
